@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="CLUB">
+		<jta-data-source>jdbc/club_db_resource</jta-data-source>
+		<class>club.DAO.User</class>
+		
+		
+		<properties>
+			<!-- create db tables / insert data (or what ever) on deploy  -->
+			<!-- see http://docs.oracle.com/javaee/7/tutorial/persistence-intro005.htm -->
+			
+			<property name="javax.persistence.sql-load-script-source" value="META-INF/sql/data.sql" />
+			
+			
+			
+		</properties>
+		
+	</persistence-unit>
+	
+
+</persistence>

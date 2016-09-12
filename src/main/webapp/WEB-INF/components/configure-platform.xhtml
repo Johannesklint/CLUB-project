@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition>
+	
+	<h3>Configure platform: </h3>
+		<h:form id="configure_platform_form">
+			<h:messages>
+				<h:message for="configure_platform_form"></h:message>
+			</h:messages>	
+		
+			<h:panelGrid columns="2">
+			   <h:outputLabel for="title">Title:</h:outputLabel>
+			   <h:inputText id="title" value="#{ platform.title }" required="true" label="title"/>
+			   
+			   <h:outputLabel for="description">Description:</h:outputLabel>
+			   <h:inputTextarea id="description" value="#{ platform.description }" required="true" label="description"/>
+			
+			   <h:outputLabel for="terms_and_conditions">Terms and conditions:</h:outputLabel>
+			   <h:inputTextarea id="terms_and_conditions" value="#{ platform.termsAndConditions }" required="true" label="terms_and_conditions"/>
+       			  
+       		   <h:outputLabel for="primary_color">Primary color:</h:outputLabel>
+			   <h:inputText id="primary_color" value="#{ theme.primaryColorHEX }" required="true" label="primary_color"/>
+       		   
+       		   <h:outputLabel for="secondary_color">Primary color:</h:outputLabel>
+			   <h:inputText id="secondary_color" value="#{ theme.secondaryColorHEX }" required="true" label="secondary_color"/>
+       		      
+			   <h:commandButton value="Create platform" action="#{ platform.savePlatform() }" />
+			</h:panelGrid>
+			
+		</h:form>
+	
+</ui:composition>
+</html>

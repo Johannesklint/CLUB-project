@@ -8,7 +8,9 @@
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 	
 	
-<h:head>
+<h:head >
+	<meta name="charset" content="UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>#{plattform.title}</title>
 	  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 	  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -16,10 +18,12 @@
 	  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </h:head>
 
-<h:body>
+<h:body >
 	<!-- include nav-bar -->
 	<ui:include src="/WEB-INF/components/nav-bar.xhtml" />
-
+	
+	<ui:include src="/WEB-INF/components/configure-platform.xhtml" />
+	
 	<div class="container">
 		<h1>#{ platform.title }</h1>
 		

@@ -1,14 +1,31 @@
 package club.domain;
 
-public class ColorTheme {
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
+
+import club.DAO.Theme;
+
+@Named(value = "theme")
+@RequestScoped
+public class ThemeBean {
 	
 	private String primaryColorHEX;
 	private String secondaryColorHEX;
 	
-	public ColorTheme() {
+	public ThemeBean() {
 		this.primaryColorHEX = "#B312C7";
 		this.secondaryColorHEX = "#1695A3";
 	}
+	
+	public Theme createThemeFromBean(){
+		Theme theme = new Theme();
+		theme.setId(1);
+		theme.setPrimaryColorHex(primaryColorHEX);
+		theme.setSecondaryColorHex(secondaryColorHEX);
+		
+		return theme;
+	}
+	
 	
 	public String getPrimaryColorHEX() {
 		return primaryColorHEX;

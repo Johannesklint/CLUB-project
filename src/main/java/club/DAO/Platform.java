@@ -29,7 +29,7 @@ public class Platform implements Serializable {
 	private String title;
 
 	//bi-directional many-to-one association to Theme
-	@ManyToOne
+	@ManyToOne( cascade=CascadeType.MERGE)
 	@JoinColumn(name="theme_id")
 	private Theme theme;
 

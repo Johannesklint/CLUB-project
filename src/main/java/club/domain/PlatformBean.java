@@ -3,8 +3,13 @@ package club.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
+
+import club.DAO.Platform;
+import club.EJB.interfaces.LocalPlatform;
 
 
 @Named("platform")
@@ -18,8 +23,43 @@ public class PlatformBean {
 	private String description;
 	private String termsAndConditions;
 	private List<UserBean> users;
-	private ColorTheme colorTheme;
 	
+	@Inject @Named(value="theme")
+	private ThemeBean theme;
+	
+	@EJB
+	private LocalPlatform platformEJB;
+	
+	public PlatformBean() {
+	//	Platform platform = platformEJB.getPlatformById(1);
+	//	System.out.println("aaa" + platform.getId());
+	}
+	
+	public String savePlatform(){
+		
+
+		System.out.println("before saveplatform: " + theme == null);
+		
+		Platform platform = new Platform();
+		// platform.setId(1);
+		platform.setTitle(title);
+		platform.setDescription(description);
+		platform.setTermsAndCondition(termsAndConditions);
+		platform.setTheme(theme.createThemeFromBean());
+		
+		System.out.println("i saveplatform" + theme == null);
+		
+		if(platformEJB.savePlatform(platform)){
+			this.title = null;
+			this.description = null;
+			this.termsAndConditions = null;
+			this.theme = null;
+			
+		}
+		
+		return "index";
+		
+	}
 	
 	
 	public List<UserBean> getUnapprovedUsers() {
@@ -33,6 +73,7 @@ public class PlatformBean {
 			.filter(user -> user.isApproved())
 			.collect(Collectors.toList());
 	}
+	
 	
 	public String getTitle() {
 		return title != null ? title : DEFAULT_TITLE;
@@ -58,11 +99,11 @@ public class PlatformBean {
 	public void setUsers(List<UserBean> users) {
 		this.users = users;
 	}
-	public ColorTheme getColorTheme() {
-		return colorTheme;
+	public ThemeBean getTheme() {
+		return theme;
 	}
-	public void setColorTheme(ColorTheme colorTheme) {
-		this.colorTheme = colorTheme;
+	public void setTheme(ThemeBean theme) {
+		this.theme = theme;
 	}
 	
 	

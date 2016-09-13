@@ -26,10 +26,12 @@
 	<ui:include src="/WEB-INF/components/nav-bar.xhtml" >
 		<ui:param name="platformData" value="#{ platformData }"></ui:param>
 	</ui:include>
-		
-
-		<ui:include src="/WEB-INF/components/update-user.xhtml" />
 	
+
+		<ui:include src="/WEB-INF/components/update-user.xhtml">
+			<ui:param name="loginUser2" value="#{ loginUser }"></ui:param>
+		</ui:include>
+		
 </h:body>
 	
 </html>

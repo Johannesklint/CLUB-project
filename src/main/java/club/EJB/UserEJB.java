@@ -21,7 +21,6 @@ public class UserEJB implements LocalUser{
 	@Override
 	public boolean updateUser(User user) {
 		return userDao.updateDB(user);
-		
 	}
 
 	@Override

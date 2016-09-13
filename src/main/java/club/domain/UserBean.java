@@ -40,7 +40,6 @@ public class UserBean {
 	
 	
 	public String saveUser() {
-
 		User user = new User();
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
@@ -60,28 +59,40 @@ public class UserBean {
 		
 	}
 	
-	public String updateUser(){
-		System.out.println("HALLA HALLA HALLA HALLA");
+	public String updateUser() {
+		System.out.println("inne i updateuser metod");
+		
+		User userUpd = userEJB.getUserById(1);
 
-		User user = new User();
-		user.setFirstName(firstName);
-		user.setLastName(lastName);
-		user.setEmail(email);
-		user.setPassword(password);
-		user.setAdmin(admin);
-		user.setApproved(approved);
+		userUpd.setFirstName(firstName);
+		userUpd.setLastName(lastName);
+		userUpd.setEmail("emailFromHardCode");
+		userUpd.setPassword(password);
+		userUpd.setAdmin(admin);
+		userUpd.setApproved(approved);
 		
-		if(userEJB.updateUser(user)){
-			
-			return "update-user-index";	
+		if (userEJB.saveUser(userUpd)) {			
+			System.out.println("inne i iffen");
+			this.email = null;
+			this.password = null;
+			return "update-user-index";		
+
 		}
-		
 		return "update-user-index";
+		
 	}
 	
-	public User getUserById(){
+	
+	public UserBean getUserById(){
 		User user = userEJB.getUserById(1);
-		return user;
+		setFirstName(user.getFirstName());
+		setLastName(user.getLastName());
+		setEmail(user.getEmail());		
+		setPassword(user.getPassword());
+		setAdmin(user.getAdmin());
+		setApproved(user.getApproved());
+		
+		return this;
 	}
 	
 	

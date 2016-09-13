@@ -15,8 +15,7 @@ public class PlatformEJB implements LocalPlatform{
 	private PlatformDAO platformDAO;
 	
 	@Override
-	public boolean savePlatform(Platform platform) {
-		
+	public boolean savePlatform(Platform platform) {	
 		return platformDAO.saveToDB(platform);
 	}
 

@@ -12,10 +12,17 @@ public class UserDAO {
 
 	public boolean saveToDB(User user) {
 		return entityManager.merge(user) != null;
+		
 	}
 
 	public boolean updateDB(User user) {		
-		return entityManager.merge(user) != null;	
+//		user = entityManager.find(User.class, 1);
+//		entityManager.getTransaction().begin();
+//		user.setEmail("karl@karl.se");
+//		entityManager.getTransaction().commit();
+		entityManager.persist(user);
+		return true;
+		
 	}
 
 	public User getUserById(int id) {

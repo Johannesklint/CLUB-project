@@ -31,17 +31,19 @@ public class PlatformBean {
 	private LocalPlatform platformEJB;
 	
 	public PlatformBean() {
-	//	Platform platform = platformEJB.getPlatformById(1);
-	//	System.out.println("aaa" + platform.getId());
+	}
+	
+	public Platform getPlatformById(){
+		Platform platform = platformEJB.getPlatformById(1);
+		return platform;
 	}
 	
 	public String savePlatform(){
-		
 
 		System.out.println("before saveplatform: " + theme == null);
 		
 		Platform platform = new Platform();
-		// platform.setId(1);
+		platform.setId(1);
 		platform.setTitle(title);
 		platform.setDescription(description);
 		platform.setTermsAndCondition(termsAndConditions);

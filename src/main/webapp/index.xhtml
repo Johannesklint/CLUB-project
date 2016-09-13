@@ -19,15 +19,25 @@
 </h:head>
 
 <h:body >
+	
+	<ui:param name="platformData" value="#{ platform.getPlatformById() }"></ui:param>
+
 	<!-- include nav-bar -->
-	<ui:include src="/WEB-INF/components/nav-bar.xhtml" />
+	<ui:include src="/WEB-INF/components/nav-bar.xhtml" >
+		<ui:param name="platformData" value="#{ platformData }"></ui:param>
+	</ui:include>
 	
 	<ui:include src="/WEB-INF/components/configure-platform.xhtml" />
 	
 	<div class="container">
-		<h1>#{ platform.title }</h1>
+		<h1>#{ platformData.title }</h1>
 		
-		<p>#{ platform.description }</p>
+		<p>#{ platformData.description }</p>
+		
+		<p>#{ platformData.description }</p> 
+	
+		
+		
 		
 		<ui:include src="/WEB-INF/components/register-user.xhtml" />
 	</div>

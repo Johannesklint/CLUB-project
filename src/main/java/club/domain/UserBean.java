@@ -40,7 +40,7 @@ public class UserBean {
 	
 	
 	public String saveUser() {
-				
+
 		User user = new User();
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
@@ -48,7 +48,6 @@ public class UserBean {
 		user.setPassword(password);
 		user.setAdmin(admin);
 		user.setApproved(approved);
-		
 		if (userEJB.saveUser(user)) {
 			this.firstName = null;
 			this.lastName = null;
@@ -61,6 +60,29 @@ public class UserBean {
 		
 	}
 	
+	public String updateUser(){
+		System.out.println("HALLA HALLA HALLA HALLA");
+
+		User user = new User();
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setEmail(email);
+		user.setPassword(password);
+		user.setAdmin(admin);
+		user.setApproved(approved);
+		
+		if(userEJB.updateUser(user)){
+			
+			return "update-user-index";	
+		}
+		
+		return "update-user-index";
+	}
+	
+	public User getUserById(){
+		User user = userEJB.getUserById(1);
+		return user;
+	}
 	
 	
 	public boolean isApproved() {

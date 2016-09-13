@@ -13,7 +13,12 @@ public class UserDAO {
 	public boolean saveToDB(User user) {
 		return entityManager.merge(user) != null;
 	}
-	
-	// Skicka User till databas, hämta osv.
 
+	public boolean updateDB(User user) {		
+		return entityManager.merge(user) != null;	
+	}
+
+	public User getUserById(int id) {
+		return entityManager.find(User.class, id);
+	}
 }

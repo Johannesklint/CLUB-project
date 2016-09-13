@@ -18,4 +18,15 @@ public class UserEJB implements LocalUser{
 		return userDao.saveToDB(user);	
 	}
 
+	@Override
+	public boolean updateUser(User user) {
+		return userDao.updateDB(user);
+		
+	}
+
+	@Override
+	public User getUserById(int id) {
+		return userDao.getUserById(id);
+	}
+
 }

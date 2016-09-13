@@ -1,5 +1,7 @@
 package club.EJB;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -16,6 +18,16 @@ public class UserEJB implements LocalUser{
 	@Override
 	public boolean saveUser(User user) {
 		return userDao.saveToDB(user);	
+	}
+
+	@Override
+	public List<User> getAll() {
+		return userDao.getAll();
+	}
+
+	@Override
+	public User getUserById(int selectedUserId) {
+		return userDao.getUserById(selectedUserId);
 	}
 
 }

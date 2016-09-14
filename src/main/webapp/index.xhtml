@@ -39,10 +39,7 @@
 		
 		<ui:include src="/WEB-INF/components/register-user.xhtml" />
 
-		<ui:include src="/WEB-INF/components/login-user.xhtml">
-			<!--  ska vi ha loginUser som en parameter på varje component som behöver den? Den går nå ändå fast vi ogillar globala variblar och sitället vill jobba i scope. Isf behöver vi uppdatera ha denna som param på nav-bar -->
-			<ui:param name="loginUser2" value="#{ loginUser }"></ui:param>
-		</ui:include>
+		<ui:include src="/WEB-INF/components/login-user.xhtml"/>
 		
 		
 		

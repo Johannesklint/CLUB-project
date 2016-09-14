@@ -3,6 +3,7 @@ package club.domain;
 import javax.inject.Named;
 import javax.validation.constraints.Size;
 
+import club.DAO.User;
 import club.EJB.interfaces.LocalUser;
 
 import java.io.Serializable;
@@ -23,6 +24,7 @@ public class LoginUserBean implements Serializable {
 
 	private String username;
     private String password;
+    private User tryLoginUser;
 
 	@EJB
 	private LocalUser userEJB;
@@ -39,23 +41,29 @@ public class LoginUserBean implements Serializable {
 		return password;
 	}
 	
+	public User getUser() {
+		return tryLoginUser;
+	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public Boolean getValidLogin() {
-		return username != null;
+	public boolean isValidLogin() {
+		return tryLoginUser != null;
 	}
 	
 	public String doLogin() {
 		
-		;
+		tryLoginUser = userEJB.getUserByEmailAndPassword(username,password);
 		
-		//TODO: Vi får tyvärr inget frontend fel login misslyckades. fixa men hur? En validation-tag i html vore snyggt? Kan även diskuteras om session handler ska ligga så här nära frontend?
-		if(userEJB.getUserByEmailAndPassword(username,password)==null) { //TODO: hämta data från buisnesslagret?
+		if(tryLoginUser==null) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Not correct password for that user (or user do not exists)"));;//.addMessage(null, new FacesMessage(message));
-			username = null;
+		}
+		else {
+			//clear fields when login success
 			password = null;
+			username = null;			
 		}
 		
 		return "index";

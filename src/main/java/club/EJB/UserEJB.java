@@ -34,4 +34,9 @@ public class UserEJB implements LocalUser{
 		return userDao.getAll();
 	}
 
+	@Override
+	public User getUserByEmailAndPassword(String email, String password) {
+		return userDao.getUserByEmailAndPassword(email,password);
+	}
+
 }

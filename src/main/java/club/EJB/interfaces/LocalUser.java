@@ -11,4 +11,5 @@ public interface LocalUser {
 	boolean updateUser(User user);
 	User getUserById(int id);
 	List<User> getAll();
+	User getUserByEmailAndPassword(String email, String password);
 }

@@ -21,13 +21,17 @@ public class UserEJB implements LocalUser{
 	}
 
 	@Override
-	public List<User> getAll() {
-		return userDao.getAll();
+	public boolean updateUser(User user) {
+		return userDao.updateDB(user);
 	}
 
 	@Override
-	public User getUserById(int selectedUserId) {
-		return userDao.getUserById(selectedUserId);
+	public User getUserById(int id) {
+		return userDao.getUserById(id);
+	}	
+	
+	public List<User> getAll() {
+		return userDao.getAll();
 	}
 
 	@Override

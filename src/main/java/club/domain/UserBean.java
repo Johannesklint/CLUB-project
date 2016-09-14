@@ -40,7 +40,6 @@ public class UserBean {
 	
 	
 	public String saveUser() {
-				
 		User user = new User();
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
@@ -48,7 +47,6 @@ public class UserBean {
 		user.setPassword(password);
 		user.setAdmin(admin);
 		user.setApproved(approved);
-		
 		if (userEJB.saveUser(user)) {
 			this.firstName = null;
 			this.lastName = null;
@@ -61,6 +59,41 @@ public class UserBean {
 		
 	}
 	
+	public String updateUser() {
+		System.out.println("inne i updateuser metod");
+		
+		User userUpd = userEJB.getUserById(1);
+
+		userUpd.setFirstName(firstName);
+		userUpd.setLastName(lastName);
+		userUpd.setEmail("emailFromHardCode");
+		userUpd.setPassword(password);
+		userUpd.setAdmin(admin);
+		userUpd.setApproved(approved);
+		
+		if (userEJB.saveUser(userUpd)) {			
+			System.out.println("inne i iffen");
+			this.email = null;
+			this.password = null;
+			return "update-user-index";		
+
+		}
+		return "update-user-index";
+		
+	}
+	
+	
+	public UserBean getUserById(){
+		User user = userEJB.getUserById(1);
+		setFirstName(user.getFirstName());
+		setLastName(user.getLastName());
+		setEmail(user.getEmail());		
+		setPassword(user.getPassword());
+		setAdmin(user.getAdmin());
+		setApproved(user.getApproved());
+		
+		return this;
+	}
 	
 	
 	public boolean isApproved() {

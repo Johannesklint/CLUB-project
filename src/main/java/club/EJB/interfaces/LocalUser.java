@@ -8,7 +8,8 @@ import club.DAO.User;
 @Local
 public interface LocalUser {
 	boolean saveUser(User user);
+	boolean updateUser(User user);
+	User getUserById(int id);
 	List<User> getAll();
-	User getUserById(int selectedUserId);
 	User getUserByEmailAndPassword(String email, String password);
 }

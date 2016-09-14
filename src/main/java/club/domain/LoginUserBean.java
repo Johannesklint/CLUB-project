@@ -66,6 +66,6 @@ public class LoginUserBean implements Serializable {
 			username = null;			
 		}
 		
-		return "index";
+		return "login-index";
 	}
 }

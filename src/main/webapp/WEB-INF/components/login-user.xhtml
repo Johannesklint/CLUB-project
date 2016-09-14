@@ -19,7 +19,8 @@
 			   <h:inputText id="email" value="#{ loginUser.username }" required="true" label="Email"/>
 			   
 			   <h:outputLabel for="password">Password:</h:outputLabel>
-			   <h:inputText id="password" value="#{ loginUser.password }" required="true" label="Password"/>
+			   <h:inputSecret id="password" value="#{ loginUser.password }" required="true" label="Password"/>
+						   
 						   
 			   <h:commandButton value="Login user" action="#{ loginUser.doLogin() }" />
 			</h:panelGrid>

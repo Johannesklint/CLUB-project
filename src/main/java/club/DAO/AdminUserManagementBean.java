@@ -15,22 +15,20 @@ import club.EJB.interfaces.LocalUser;
 @RequestScoped
 public class AdminUserManagementBean {
 	
-	private static final int INVALID_SELECTED_USER_ID = -1;
 	@EJB
-	private LocalUser userEJB;
+	private LocalUser userEJB;	
+	// Workaround for not being able to send User as a parameter to changeApprovedStatus
+	// see more at: admin-user-management-table.xhtml (<f:setPropertyActionListener ....)
+	private User selectedUser; // used to know which user needs to change status etc.
 	
-	private int selectedUserId = INVALID_SELECTED_USER_ID;
-	
-
-	public String approveSelectedUser() {
-		if(selectedUserId == INVALID_SELECTED_USER_ID) return "admin-user-management";
+	public String changeApprovedStatus() {
 		
-		User userToApprove = userEJB.getUserById(selectedUserId);
+		System.out.println("changing approved status for user " + selectedUser.getFirstName());
+		// switch the boolean value
+		boolean previousValue = selectedUser.getApproved();
+		selectedUser.setApproved(!previousValue);
+		userEJB.saveUser(selectedUser);
 		
-		if(userToApprove == null) return "admin-user-management";
-		
-		userToApprove.setApproved(true);
-		userEJB.saveUser(userToApprove);
 		return "admin-user-management";
 	}
 	
@@ -47,8 +45,6 @@ public class AdminUserManagementBean {
 		return getAllUsersMatching(user -> user.getApproved());
 	}
 	
-	
-	
 	private List<User> getAllUsersMatching(Predicate<User> predicate) {
 		List<User> users = userEJB.getAll();
 		return users.stream()
@@ -56,11 +52,11 @@ public class AdminUserManagementBean {
 				.collect(Collectors.toList());
 	}
 	
-	public int getSelectedUserId() {
-		return selectedUserId;
+	public User getSelectedUser() {
+		return selectedUser;
 	}
 	
-	public void setSelectedUserId(int selectedUserId) {
-		this.selectedUserId = selectedUserId;
+	public void setSelectedUser(User selectedUser) {
+		this.selectedUser = selectedUser;
 	}
 }

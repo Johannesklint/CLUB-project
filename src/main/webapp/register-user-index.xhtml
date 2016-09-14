@@ -29,11 +29,8 @@
 	</ui:include>
 	
 	<div class="container">
-		<h1>#{ platformData.title }</h1>
 		
-		<p>#{ platformData.description }</p>
-		
-		<p>(Redirect to login / home, depending on user login status)</p>
+		<ui:include src="/WEB-INF/components/register-user.xhtml" />
 		
 	</div>
 </h:body>

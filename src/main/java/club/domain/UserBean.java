@@ -3,6 +3,7 @@ package club.domain;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import club.DAO.User;
@@ -20,6 +21,10 @@ public class UserBean {
 	private boolean admin;
 	private boolean approved;
 	
+	@Named(value="loginUser")
+	@Inject
+	private LoginUserBean loginUser;
+	
 	@EJB
 	private LocalUser userEJB;
 	
@@ -28,14 +33,11 @@ public class UserBean {
 	}
 	
 
-	public UserBean(String firstName, String lastName, String email, String password, boolean admin, boolean approved) {
+	public UserBean(String email, String password) {
 		
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.admin = admin;
-		this.approved = approved;
+		this.email = loginUser.getUser().getEmail();
+		this.password = loginUser.getUser().getPassword();
+		System.out.println( loginUser.getUser().getEmail());
 	}
 	
 	
@@ -59,22 +61,18 @@ public class UserBean {
 		
 	}
 	
-	public String updateUser() {		
-		User userUpd = userEJB.getUserById(1);
+	public String updateUser() {
+		User loggedInUser = loginUser.getUser();		
 		
-		userUpd.setFirstName(firstName);
-		userUpd.setLastName(lastName);
-		userUpd.setEmail(email);	
-		userUpd.setPassword(password);
-		userUpd.setAdmin(true);
-		userUpd.setApproved(false);
-		
-		if (userEJB.saveUser(userUpd)) {									
+		loggedInUser.setEmail(email);	
+		loggedInUser.setPassword(password);
+		loggedInUser.setAdmin(true);
+		loggedInUser.setApproved(false);
+				
+		if (userEJB.saveUser(loggedInUser)) {									
 				return "update-user-index";		
-
 		}
 		return "update-user-index";
-		
 	}
 	
 	
@@ -91,7 +89,7 @@ public class UserBean {
 	}
 	
 	public UserBean deleteUser(){
-		
+		//do stuff to delete
 		return this;
 	}
 	

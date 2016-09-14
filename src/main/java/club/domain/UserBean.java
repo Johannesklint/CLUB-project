@@ -59,22 +59,17 @@ public class UserBean {
 		
 	}
 	
-	public String updateUser() {
-		System.out.println("inne i updateuser metod");
-		
+	public String updateUser() {		
 		User userUpd = userEJB.getUserById(1);
-
+		
 		userUpd.setFirstName(firstName);
 		userUpd.setLastName(lastName);
-		userUpd.setEmail("emailFromHardCode");
+		userUpd.setEmail(email);	
 		userUpd.setPassword(password);
-		userUpd.setAdmin(admin);
-		userUpd.setApproved(approved);
+		userUpd.setAdmin(true);
+		userUpd.setApproved(false);
 		
-		if (userEJB.saveUser(userUpd)) {			
-			System.out.println("inne i iffen");
-			this.email = null;
-			this.password = null;
+		if (userEJB.saveUser(userUpd)) {									
 			return "update-user-index";		
 
 		}
@@ -87,11 +82,15 @@ public class UserBean {
 		User user = userEJB.getUserById(1);
 		setFirstName(user.getFirstName());
 		setLastName(user.getLastName());
-		setEmail(user.getEmail());		
+		setEmail(user.getEmail());
 		setPassword(user.getPassword());
 		setAdmin(user.getAdmin());
 		setApproved(user.getApproved());
 		
+		return this;
+	}
+	
+	public UserBean deleteUser(){ 
 		return this;
 	}
 	

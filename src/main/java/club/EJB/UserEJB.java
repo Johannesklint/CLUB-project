@@ -34,4 +34,9 @@ public class UserEJB implements LocalUser{
 		return userDao.getAll();
 	}
 
+	@Override
+	public User deleteUser(int id) {
+		return userDao.deleteUser(id);
+	}
+
 }

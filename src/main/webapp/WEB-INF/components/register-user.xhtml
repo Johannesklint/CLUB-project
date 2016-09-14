@@ -22,7 +22,9 @@
 			   <h:inputText id="last_name" value="#{ user.lastName }" required="true" label="Last name"/>
 			
 			   <h:outputLabel for="email">Email:</h:outputLabel>
-			   <h:inputText id="email" value="#{ user.email }" required="true" label="Email"/>
+			   <h:inputText id="email" value="#{ user.email }" required="true" label="Email">
+			   	<f:validateRegex pattern='((?=.*[a-z]).{6,})'></f:validateRegex>
+			   </h:inputText>
 			
 			   <h:outputLabel for="password">Password:</h:outputLabel>
 			   <h:inputSecret id="password" value="#{ user.password }" required="true" label="Password" />        

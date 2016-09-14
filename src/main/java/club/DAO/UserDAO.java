@@ -14,8 +14,7 @@ public class UserDAO {
 	EntityManager entityManager;
 
 	public boolean saveToDB(User user) {
-		return entityManager.merge(user) != null;
-		
+		return entityManager.merge(user) != null;	
 	}
 
 	public boolean updateDB(User user) {		
@@ -23,7 +22,7 @@ public class UserDAO {
 //		entityManager.getTransaction().begin();
 //		user.setEmail("karl@karl.se");
 //		entityManager.getTransaction().commit();
-		entityManager.persist(user);
+//		entityManager.persist(user);
 		return true;
 		
 	}
@@ -35,5 +34,16 @@ public class UserDAO {
 	public List<User> getAll() {
 		Query findAll = entityManager.createNamedQuery("User.findAll");
 		return (List<User>)findAll.getResultList();
+	}
+
+	public User deleteUser(int id) {
+		User user = entityManager.find(User.class, id);
+		if(user != null){
+			entityManager.getTransaction().begin();
+			entityManager.remove(user);
+			entityManager.getTransaction().commit();
+			return user;
+		}
+		return null;
 	}
 }

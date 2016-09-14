@@ -7,7 +7,15 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition>
-	<div>Logged in as:#{ loginUser.username }</div>
+
+	<h:panelGroup rendered="#{!loginUser.validLogin}">
+	    <div>Not logged in</div>
+	</h:panelGroup>
+	
+	<h:panelGroup rendered="#{loginUser.validLogin}">
+	    <div>Logged in as:#{ loginUser.username }</div>
+	</h:panelGroup>
+
 	<div class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">

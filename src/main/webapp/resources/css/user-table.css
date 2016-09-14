@@ -1,0 +1,21 @@
+.user-table {   
+   border-collapse:collapse;
+   border:1px solid #000000;
+}
+
+.user-table-header {
+   text-align:center;
+   background:none repeat scroll 0 0 #B5B5B5;
+   border-bottom:1px solid #000000;  
+   padding:2px;
+}
+
+.user-table-odd-row {
+   text-align:center;
+   background:none repeat scroll 0 0 #FFFFFFF;	
+}
+
+.user-table-even-row {
+   text-align:center;
+   background:none repeat scroll 0 0 #D3D3D3;
+}

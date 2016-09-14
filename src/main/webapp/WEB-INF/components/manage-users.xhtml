@@ -8,8 +8,11 @@
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition>
+
+	<h2>User management</h2>
+
 	<ui:param name="allUsers" value="#{ userManagement.getAllUsers()}" />
-	<p>Total number of users: #{ allUsers.size() }</p>
+	<p>Total number of user(s): #{ allUsers.size() }</p>
 	
 	
 	<ui:param name="unApprovedUsers" value="#{ userManagement.getAllUnapproved() }" />
@@ -17,23 +20,13 @@
 	
 	<ui:include src="/WEB-INF/components/admin-user-management-table.xhtml">
 		<ui:param name="users" value="#{ unApprovedUsers }"></ui:param>
-		<ui:param name="includeChangeStatusForm" value="#{ true }"></ui:param>
 	</ui:include>
 	
 	<ui:param name="approvedUsers" value="#{ userManagement.getAllApproved() }" />
-	<h3>#{ approvedUsers.size() } approved users</h3>
+	<h3>#{ approvedUsers.size() } approved user(s)</h3>
 	<ui:include src="/WEB-INF/components/admin-user-management-table.xhtml">
 		<ui:param name="users" value="#{ approvedUsers }"></ui:param>
-		<ui:param name="includeChangeStatusForm" value="#{ false }"></ui:param>
 	</ui:include>
-	
-	
-	<h3>All users</h3>
-	<ui:include src="/WEB-INF/components/admin-user-management-table.xhtml">
-		<ui:param name="users" value="#{ allUsers }"></ui:param>
-		<ui:param name="includeChangeStatusForm" value="#{ false }"></ui:param>
-	</ui:include>
-	
 	
 	
 </ui:composition>

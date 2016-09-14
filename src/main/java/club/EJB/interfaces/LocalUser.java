@@ -10,4 +10,5 @@ public interface LocalUser {
 	boolean saveUser(User user);
 	List<User> getAll();
 	User getUserById(int selectedUserId);
+	User getUserByEmailAndPassword(String email, String password);
 }

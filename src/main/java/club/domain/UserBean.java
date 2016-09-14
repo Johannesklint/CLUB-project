@@ -88,9 +88,13 @@ public class UserBean {
 		return this;
 	}
 	
-	public UserBean deleteUser(){
-		//do stuff to delete
-		return this;
+	public String deleteUser(){
+		if(userEJB.deleteUser(loginUser.getUser().getId())){
+			loginUser.doLogin();
+			return "update-user-index";
+		}
+			
+		return "update-user-index";
 	}
 	
 	

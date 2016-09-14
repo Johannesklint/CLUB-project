@@ -21,11 +21,6 @@ public class UserEJB implements LocalUser{
 	}
 
 	@Override
-	public boolean updateUser(User user) {
-		return userDao.updateDB(user);
-	}
-
-	@Override
 	public User getUserById(int id) {
 		return userDao.getUserById(id);
 	}	
@@ -35,7 +30,7 @@ public class UserEJB implements LocalUser{
 	}
 
 	@Override
-	public User deleteUser(int id) {
+	public boolean deleteUser(int id) {
 		return userDao.deleteUser(id);
 	}	
 

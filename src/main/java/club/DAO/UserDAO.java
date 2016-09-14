@@ -18,15 +18,7 @@ public class UserDAO {
 		return entityManager.merge(user) != null;	
 	}
 
-	public boolean updateDB(User user) {		
-//		user = entityManager.find(User.class, 1);
-//		entityManager.getTransaction().begin();
-//		user.setEmail("karl@karl.se");
-//		entityManager.getTransaction().commit();
-//		entityManager.persist(user);
-		return true;
-		
-	}
+
 
 	public User getUserById(int id) {
 		return entityManager.find(User.class, id);
@@ -54,14 +46,12 @@ public class UserDAO {
 		return (List<User>)findAll.getResultList();
 	}
 
-	public User deleteUser(int id) {
+	public boolean deleteUser(int id) {
 		User user = entityManager.find(User.class, id);
 		if(user != null){
-			entityManager.getTransaction().begin();
-			entityManager.remove(user);
-			entityManager.getTransaction().commit();
-			return user;
+			 entityManager.remove(user);
+			 return true;
 		}
-		return null;
+		return false;
 	}
 }

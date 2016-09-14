@@ -13,7 +13,7 @@
 	
 	<!-- assumes the variable 'users' (a List<User>) is provided  -->
 	
-	<h:dataTable value="#{ users }" var="u" 
+	<h:dataTable value="#{ users }" var="u" rendered="#{ users.size() > 0 }"
 		styleClass="user-table"
 		headerClass="user-table-header"
 		rowClasses="user-table-odd-row,user-table-even-row"

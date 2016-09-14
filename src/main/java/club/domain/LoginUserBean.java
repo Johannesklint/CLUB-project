@@ -25,7 +25,7 @@ public class LoginUserBean implements Serializable {
 	private String username;
     private String password;
     private User tryLoginUser;
-
+    
 	@EJB
 	private LocalUser userEJB;
 
@@ -68,4 +68,6 @@ public class LoginUserBean implements Serializable {
 		
 		return "login-index";
 	}
+	
+
 }

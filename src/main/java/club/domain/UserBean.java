@@ -3,6 +3,7 @@ package club.domain;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import club.DAO.User;
@@ -20,6 +21,10 @@ public class UserBean {
 	private boolean admin;
 	private boolean approved;
 	
+	@Named(value="loginUser")
+	@Inject
+	private LoginUserBean loginUser;
+	
 	@EJB
 	private LocalUser userEJB;
 	
@@ -28,14 +33,11 @@ public class UserBean {
 	}
 	
 
-	public UserBean(String firstName, String lastName, String email, String password, boolean admin, boolean approved) {
+	public UserBean(String email, String password) {
 		
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-		this.admin = admin;
-		this.approved = approved;
+		this.email = loginUser.getUser().getEmail();
+		this.password = loginUser.getUser().getPassword();
+		System.out.println( loginUser.getUser().getEmail());
 	}
 	
 	
@@ -60,26 +62,17 @@ public class UserBean {
 	}
 	
 	public String updateUser() {
-		System.out.println("inne i updateuser metod");
+		User loggedInUser = loginUser.getUser();		
 		
-		User userUpd = userEJB.getUserById(1);
-
-		userUpd.setFirstName(firstName);
-		userUpd.setLastName(lastName);
-		userUpd.setEmail("emailFromHardCode");
-		userUpd.setPassword(password);
-		userUpd.setAdmin(admin);
-		userUpd.setApproved(approved);
-		
-		if (userEJB.saveUser(userUpd)) {			
-			System.out.println("inne i iffen");
-			this.email = null;
-			this.password = null;
-			return "update-user-index";		
-
+		loggedInUser.setEmail(email);	
+		loggedInUser.setPassword(password);
+		loggedInUser.setAdmin(true);
+		loggedInUser.setApproved(false);
+				
+		if (userEJB.saveUser(loggedInUser)) {									
+				return "update-user-index";		
 		}
 		return "update-user-index";
-		
 	}
 	
 	
@@ -87,12 +80,21 @@ public class UserBean {
 		User user = userEJB.getUserById(1);
 		setFirstName(user.getFirstName());
 		setLastName(user.getLastName());
-		setEmail(user.getEmail());		
+		setEmail(user.getEmail());
 		setPassword(user.getPassword());
 		setAdmin(user.getAdmin());
 		setApproved(user.getApproved());
 		
 		return this;
+	}
+	
+	public String deleteUser(){
+		if(userEJB.deleteUser(loginUser.getUser().getId())){
+			loginUser.doLogin();
+			return "update-user-index";
+		}
+			
+		return "update-user-index";
 	}
 	
 	

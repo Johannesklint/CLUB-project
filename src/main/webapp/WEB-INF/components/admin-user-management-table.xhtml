@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<ui:composition>
+	<!-- assumes the variable 'users' (a List<User>) is provided  -->
+	<!-- assumes the variable 'includeChangeStatusForm' (boolean) is provided  -->
+	<h:dataTable value="#{ users }" var="u">
+		<h:column>
+			<f:facet name="header"> Id </f:facet>
+			<p>#{u.id}</p>
+		</h:column>
+		<h:column>
+			<f:facet name="header"> First name </f:facet>
+			<p>#{u.firstName}</p>
+		</h:column>
+		<h:column>
+			<f:facet name="header"> Last name </f:facet>
+			<p>#{u.lastName}</p>
+		</h:column>
+		<h:column>
+			<f:facet name="header"> Email </f:facet>
+			<p>#{u.email}</p>
+		</h:column>
+		<h:column>
+			<f:facet name="header"> Is admin </f:facet>
+			<p>#{u.admin}</p>
+		</h:column>
+		<h:column>
+			<f:facet name="header"> Is approved </f:facet>
+			<p>#{u.approved}</p>
+		</h:column>
+
+	</h:dataTable>
+	
+	<c:if test="#{ includeChangeStatusForm }">
+		<h3>Select user id to approve</h3>
+		
+		<h:form>
+			<h:inputText  value="#{ userManagement.selectedUserId }"></h:inputText>
+			<h:commandButton value="Change!" action="#{ userManagement.approveSelectedUser() }"></h:commandButton>
+		</h:form>	
+	</c:if>
+	
+	
+</ui:composition>
+</html>

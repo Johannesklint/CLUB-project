@@ -1,5 +1,7 @@
 package club.EJB;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -26,6 +28,10 @@ public class UserEJB implements LocalUser{
 	@Override
 	public User getUserById(int id) {
 		return userDao.getUserById(id);
+	}	
+	
+	public List<User> getAll() {
+		return userDao.getAll();
 	}
 
 }

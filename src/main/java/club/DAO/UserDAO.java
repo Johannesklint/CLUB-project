@@ -1,8 +1,11 @@
 package club.DAO;
 
+import java.util.List;
+
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 @Stateful
 public class UserDAO {
@@ -27,5 +30,10 @@ public class UserDAO {
 
 	public User getUserById(int id) {
 		return entityManager.find(User.class, id);
+	}
+
+	public List<User> getAll() {
+		Query findAll = entityManager.createNamedQuery("User.findAll");
+		return (List<User>)findAll.getResultList();
 	}
 }

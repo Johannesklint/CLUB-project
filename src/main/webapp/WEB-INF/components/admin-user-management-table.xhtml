@@ -35,17 +35,18 @@
 			<f:facet name="header"> Is approved </f:facet>
 			<p>#{u.approved}</p>
 		</h:column>
+		
+		<h:column>
+			<ui:param name="btnText" value="#{ u.approved ? 'Unapprove user' : 'Approve user'  }"></ui:param>
+			<h:form>
+				<h:commandButton value="#{ btnText }" action="#{ userManagement.changeApprovedStatus() }">				
+					<f:setPropertyActionListener value="#{ u }" target="#{ userManagement.selectedUser }"></f:setPropertyActionListener>
+				</h:commandButton>
+				
+			</h:form>
+		</h:column>
 
 	</h:dataTable>
-	
-	<c:if test="#{ includeChangeStatusForm }">
-		<h3>Select user id to approve</h3>
-		
-		<h:form>
-			<h:inputText  value="#{ userManagement.selectedUserId }"></h:inputText>
-			<h:commandButton value="Change!" action="#{ userManagement.approveSelectedUser() }"></h:commandButton>
-		</h:form>	
-	</c:if>
 	
 	
 </ui:composition>

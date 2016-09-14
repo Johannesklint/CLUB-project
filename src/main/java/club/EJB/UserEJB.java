@@ -37,6 +37,11 @@ public class UserEJB implements LocalUser{
 	@Override
 	public User deleteUser(int id) {
 		return userDao.deleteUser(id);
+	}	
+
+	public User getUserByEmailAndPassword(String email, String password) {
+		return userDao.getUserByEmailAndPassword(email,password);
+
 	}
 
 }

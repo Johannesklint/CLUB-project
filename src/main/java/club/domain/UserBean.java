@@ -70,7 +70,7 @@ public class UserBean {
 		userUpd.setApproved(false);
 		
 		if (userEJB.saveUser(userUpd)) {									
-			return "update-user-index";		
+				return "update-user-index";		
 
 		}
 		return "update-user-index";
@@ -90,7 +90,8 @@ public class UserBean {
 		return this;
 	}
 	
-	public UserBean deleteUser(){ 
+	public UserBean deleteUser(){
+		
 		return this;
 	}
 	

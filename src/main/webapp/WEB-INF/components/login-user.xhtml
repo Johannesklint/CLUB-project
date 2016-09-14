@@ -13,15 +13,15 @@
 			<h:messages>
 				<h:message for="login_user_form"></h:message>
 			</h:messages>	
-		
+								
 			<h:panelGrid columns="2">
 			   <h:outputLabel for="email">Email:</h:outputLabel>
-			   <h:inputText id="email" value="#{ loginUser2.username }" required="true" label="Email"/>
+			   <h:inputText id="email" value="#{ loginUser.username }" required="true" label="Email"/>
 			   
 			   <h:outputLabel for="password">Password:</h:outputLabel>
-			   <h:inputText id="password" value="#{ loginUser2.password }" required="true" label="Password"/>
+			   <h:inputText id="password" value="#{ loginUser.password }" required="true" label="Password"/>
 						   
-			   <h:commandButton value="Login user" action="#{ loginUser2.doLogin() }" />
+			   <h:commandButton value="Login user" action="#{ loginUser.doLogin() }" />
 			</h:panelGrid>
 			
 		</h:form>

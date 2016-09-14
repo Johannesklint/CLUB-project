@@ -13,7 +13,7 @@
 	</h:panelGroup>
 	
 	<h:panelGroup rendered="#{loginUser.validLogin}">
-	    <div>Logged in as:#{ loginUser.username }</div>
+	    <div>Logged in as: #{ loginUser.user.firstName } #{ loginUser.user.lastName }</div>
 	</h:panelGroup>
 
 	<div class="navbar navbar-default">

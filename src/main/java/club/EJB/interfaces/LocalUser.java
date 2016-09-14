@@ -12,4 +12,5 @@ public interface LocalUser {
 	User getUserById(int id);
 	List<User> getAll();
 	User deleteUser(int id);
+	User getUserByEmailAndPassword(String email, String password);
 }

@@ -1,8 +1,6 @@
 package club.backingBeans;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -38,19 +36,14 @@ public class NewsBean {
 	
 	@PostConstruct
 	public void init() {
+		redirectIfNotLoggedIn();
 		this.author = loginUserBean.getUser();
-		if(author == null) {
-			try {
-				ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-				context.redirect(context.getRequestContextPath() + "/faces/login-index.xhtml");				
-			} catch(Exception ex) {
-				// YOLO
-			}
-		}
 	}
 	
 	
 	public String createNews(){
+		
+		redirectIfNotLoggedIn();
 		
 		News news = new News();
 		news.setAuthor(this.author);
@@ -60,6 +53,7 @@ public class NewsBean {
 		
 		if(newsEJB.saveNews(news)) {
 			System.out.println("Saved news");
+			clearBeanFields();
 		} else {
 			System.out.println("Failed to save news");
 		}
@@ -85,6 +79,30 @@ public class NewsBean {
 	}
 	public void setAuthor(User author) {
 		this.author = author;
+	}
+	
+	private void clearBeanFields() {
+		this.title = null;
+		this.description = null;
+	}
+	
+	private void redirectIfNotLoggedIn() {
+		setAuthorFromUserLoginBean();
+		
+		if(this.author != null) return; // everything is ok!
+		
+		
+		try {
+			ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+			context.redirect(context.getRequestContextPath() + "/faces/login-index.xhtml");				
+		} catch(Exception ex) {
+			// YOLO
+		}
+	}
+	
+	private void setAuthorFromUserLoginBean(){
+		this.author = loginUserBean.getUser();
+		
 	}
 	
 }

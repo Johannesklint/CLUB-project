@@ -3,7 +3,6 @@ package club.backingBeans.user;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.ejb.Init;
 import javax.ejb.Startup;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;

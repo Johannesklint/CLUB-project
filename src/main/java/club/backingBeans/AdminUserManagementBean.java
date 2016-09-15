@@ -1,4 +1,4 @@
-package club.domain;
+package club.backingBeans;
 
 import java.util.List;
 import java.util.function.Predicate;

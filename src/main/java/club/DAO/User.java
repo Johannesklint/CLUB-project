@@ -4,11 +4,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
-/**
- * The persistent class for the user database table.
- * 
- */
 @Entity
 @Table(name="user")
 @NamedQueries({
@@ -20,6 +15,7 @@ public class User implements Serializable {
 
 	@Id
 	@Column(unique=true, nullable=false)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	@Column(nullable=false)

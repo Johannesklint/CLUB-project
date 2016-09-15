@@ -1,4 +1,4 @@
-package club.domain;
+package club.backingBeans.user;
 
 
 import javax.annotation.PostConstruct;
@@ -42,8 +42,7 @@ public class UserBean {
 	public void Init(){
 		this.email = loginUser.getUser().getEmail();
 		this.password = loginUser.getUser().getPassword();
-		System.out.println("FROM LOGINUSER.GETUSER" + loginUser.getUser().getEmail());
-		System.out.println("FROM THIS" + email + "  " + password);
+	
 	}
 	
 	

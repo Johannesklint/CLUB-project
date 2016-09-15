@@ -1,4 +1,4 @@
-package club.domain;
+package club.backingBeans;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -16,6 +16,7 @@ import javax.inject.Named;
 import club.DAO.News;
 import club.DAO.User;
 import club.EJB.interfaces.LocalNews;
+import club.backingBeans.user.LoginUserBean;
 
 @Named(value="news")
 @RequestScoped

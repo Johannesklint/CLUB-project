@@ -1,8 +1,13 @@
 package club.domain;
 
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.Init;
+import javax.ejb.Startup;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -11,13 +16,14 @@ import club.EJB.interfaces.LocalUser;
 
 @Named(value="user")
 @RequestScoped
+@Startup
 public class UserBean {
 	
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String password;
-	
+	private String repeatPassword;
 	private boolean admin;
 	private boolean approved;
 	
@@ -32,12 +38,12 @@ public class UserBean {
 		
 	}
 	
-
-	public UserBean(String email, String password) {
-		
+	@PostConstruct
+	public void Init(){
 		this.email = loginUser.getUser().getEmail();
 		this.password = loginUser.getUser().getPassword();
-		System.out.println( loginUser.getUser().getEmail());
+		System.out.println("FROM LOGINUSER.GETUSER" + loginUser.getUser().getEmail());
+		System.out.println("FROM THIS" + email + "  " + password);
 	}
 	
 	
@@ -49,6 +55,7 @@ public class UserBean {
 		user.setPassword(password);
 		user.setAdmin(admin);
 		user.setApproved(approved);
+		
 		if (userEJB.saveUser(user)) {
 			this.firstName = null;
 			this.lastName = null;
@@ -63,14 +70,20 @@ public class UserBean {
 	public String updateUser() {
 		User loggedInUser = loginUser.getUser();		
 		
-		loggedInUser.setEmail(email);	
-		loggedInUser.setPassword(password);
-		loggedInUser.setAdmin(true);
-		loggedInUser.setApproved(false);
-				
-		if (userEJB.saveUser(loggedInUser)) {									
+		if(password.equals(repeatPassword)){
+			loggedInUser.setEmail(email);	
+			loggedInUser.setPassword(password);
+			loggedInUser.setAdmin(true);
+			loggedInUser.setApproved(false);
+			
+			if (userEJB.saveUser(loggedInUser)) {									
 				return "update-user-index";		
+			}
+			
+		}else{
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("The passwords do not match."));
 		}
+		
 		return "update-user-index";
 	}
 	
@@ -133,7 +146,11 @@ public class UserBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	public String getRepeatPassword() {
+		return repeatPassword;
+	}
+	public void setRepeatPassword(String repeatPassword) {
+		this.repeatPassword = repeatPassword;
+	}
 	
-
 }

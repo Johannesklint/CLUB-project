@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	
+	
+<h:head >
+	<meta name="charset" content="UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>#{plattform.title}</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</h:head>
+
+<h:body >
+	
+	<ui:param name="platformData" value="#{ platform.getPlatformById() }"></ui:param>
+
+	<!-- include nav-bar -->
+	<ui:include src="/WEB-INF/components/nav-bar.xhtml" >
+		<ui:param name="platformData" value="#{ platformData }"></ui:param>
+	</ui:include>
+	
+	<div class="container">
+		
+		<h:form id="create_news_form">
+			<h:messages>
+				<h:message for="create_news_form"></h:message>
+			</h:messages>
+			
+			<h:panelGrid columns="2">	
+				
+				<h:outputLabel for="news_author">Author:</h:outputLabel>
+			   	<h:outputText id="news_author" value="#{ ''.concat(news.author.firstName).concat(' ').concat(news.author.lastName) }" />
+			
+				<h:outputLabel for="news_title">News title:</h:outputLabel>
+			   	<h:inputText id="news_title" value="#{ news.title }" required="true" label="News Title"/>
+			   
+			   	<h:outputLabel for="news_desc">News description:</h:outputLabel>
+			   	<h:inputTextarea id="news_desc" value="#{ news.description }" required="true" label="News description"/>
+			
+				<h:commandButton action="{ news.createNews() }" value="Create news post"></h:commandButton>
+			
+			</h:panelGrid>
+		
+		</h:form>
+		
+	</div>
+</h:body>
+	
+</html>

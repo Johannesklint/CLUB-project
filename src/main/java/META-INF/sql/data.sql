@@ -14,7 +14,7 @@ INSERT INTO `club_db`.`theme`(`id`,`primary_color_hex`,`secondary_color_hex`) VA
 
 
 # Create Platform
-INSERT INTO `club_db`.`platform`(`id`,`title`,`description`,`terms_and_condition`,`theme_id`) VALUES (1,'hej','j','a',1);
+INSERT INTO `club_db`.`platform`(`id`,`title`,`description`,`terms_and_condition`,`theme_id`) VALUES (1,'Default Title','Default Description','Terms and condition',1);
 
 
 

@@ -42,6 +42,8 @@ public class LoginUserBean implements Serializable {
 	}
 	
 	public User getUser() {
+		System.out.println(tryLoginUser.getEmail());
+		System.out.println(tryLoginUser.getPassword());
 		return tryLoginUser;
 	}
 	

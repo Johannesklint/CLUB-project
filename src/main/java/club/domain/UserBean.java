@@ -1,7 +1,10 @@
 package club.domain;
 
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.Init;
+import javax.ejb.Startup;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -11,6 +14,7 @@ import club.EJB.interfaces.LocalUser;
 
 @Named(value="user")
 @RequestScoped
+@Startup
 public class UserBean {
 	
 	private String firstName;
@@ -32,12 +36,12 @@ public class UserBean {
 		
 	}
 	
-
-	public UserBean(String email, String password) {
-		
+	@PostConstruct
+	public void Init(){
 		this.email = loginUser.getUser().getEmail();
 		this.password = loginUser.getUser().getPassword();
-		System.out.println( loginUser.getUser().getEmail());
+		System.out.println("FROM LOGINUSER.GETUSER" + loginUser.getUser().getEmail());
+		System.out.println("FROM THIS" + email + "  " + password);
 	}
 	
 	
@@ -49,6 +53,7 @@ public class UserBean {
 		user.setPassword(password);
 		user.setAdmin(admin);
 		user.setApproved(approved);
+		
 		if (userEJB.saveUser(user)) {
 			this.firstName = null;
 			this.lastName = null;
@@ -70,7 +75,7 @@ public class UserBean {
 		loggedInUser.setApproved(false);
 				
 		if (userEJB.saveUser(loggedInUser)) {									
-				return "update-user-index";		
+			return "update-user-index";		
 		}
 		return "update-user-index";
 	}

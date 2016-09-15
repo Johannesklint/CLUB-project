@@ -21,7 +21,7 @@
                 <h:inputText id="email" label="Email" value="#{ user.email }" required="true"></h:inputText>
                 
                 <h:outputLabel for="password" value="Password:"></h:outputLabel>
-                <h:inputText id="password" label="Password" value="#{ user.password }" required="true"></h:inputText>              
+                <h:inputSecret id="password" label="Password" value="#{ user.password }" required="true"></h:inputSecret>              
                
                 <h:commandButton action="#{ user.updateUser() }" value="Save"></h:commandButton>
             </h:panelGrid>			

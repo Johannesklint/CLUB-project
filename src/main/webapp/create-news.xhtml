@@ -45,7 +45,7 @@
 			   	<h:outputLabel for="news_desc">News description:</h:outputLabel>
 			   	<h:inputTextarea id="news_desc" value="#{ news.description }" required="true" label="News description"/>
 			
-				<h:commandButton action="{ news.createNews() }" value="Create news post"></h:commandButton>
+				<h:commandButton action="#{ news.createNews() }" value="Create news post"></h:commandButton>
 			
 			</h:panelGrid>
 		

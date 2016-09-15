@@ -6,6 +6,8 @@ import javax.ejb.EJB;
 import javax.ejb.Init;
 import javax.ejb.Startup;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -21,7 +23,7 @@ public class UserBean {
 	private String lastName;
 	private String email;
 	private String password;
-	
+	private String repeatPassword;
 	private boolean admin;
 	private boolean approved;
 	
@@ -69,14 +71,20 @@ public class UserBean {
 	public String updateUser() {
 		User loggedInUser = loginUser.getUser();		
 		
-		loggedInUser.setEmail(email);	
-		loggedInUser.setPassword(password);
-		loggedInUser.setAdmin(true);
-		loggedInUser.setApproved(false);
-				
-		if (userEJB.saveUser(loggedInUser)) {									
-			return "update-user-index";		
+		if(password.equals(repeatPassword)){
+			loggedInUser.setEmail(email);	
+			loggedInUser.setPassword(password);
+			loggedInUser.setAdmin(true);
+			loggedInUser.setApproved(false);
+			
+			if (userEJB.saveUser(loggedInUser)) {									
+				return "update-user-index";		
+			}
+			
+		}else{
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("The passwords do not match."));
 		}
+		
 		return "update-user-index";
 	}
 	
@@ -139,7 +147,11 @@ public class UserBean {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	public String getRepeatPassword() {
+		return repeatPassword;
+	}
+	public void setRepeatPassword(String repeatPassword) {
+		this.repeatPassword = repeatPassword;
+	}
 	
-
 }

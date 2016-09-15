@@ -1,11 +1,13 @@
 package club.backingBeans;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.ejb.Startup;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -23,9 +25,10 @@ public class NewsBean {
 	private String title;
 	private User author;
 	
-	@Inject
+	@Inject @Named("loginUser")
 	private LoginUserBean loginUserBean;
 	
+	@EJB
 	private LocalNews newsEJB;
 	
 	public NewsBean() {
@@ -33,11 +36,14 @@ public class NewsBean {
 	
 	@PostConstruct
 	public void init() {
+		redirectIfNotLoggedIn();
 		this.author = loginUserBean.getUser();
 	}
 	
 	
 	public String createNews(){
+		
+		redirectIfNotLoggedIn();
 		
 		News news = new News();
 		news.setAuthor(this.author);
@@ -47,6 +53,7 @@ public class NewsBean {
 		
 		if(newsEJB.saveNews(news)) {
 			System.out.println("Saved news");
+			clearBeanFields();
 		} else {
 			System.out.println("Failed to save news");
 		}
@@ -72,6 +79,30 @@ public class NewsBean {
 	}
 	public void setAuthor(User author) {
 		this.author = author;
+	}
+	
+	private void clearBeanFields() {
+		this.title = null;
+		this.description = null;
+	}
+	
+	private void redirectIfNotLoggedIn() {
+		setAuthorFromUserLoginBean();
+		
+		if(this.author != null) return; // everything is ok!
+		
+		
+		try {
+			ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+			context.redirect(context.getRequestContextPath() + "/faces/login-index.xhtml");				
+		} catch(Exception ex) {
+			// YOLO
+		}
+	}
+	
+	private void setAuthorFromUserLoginBean(){
+		this.author = loginUserBean.getUser();
+		
 	}
 	
 }

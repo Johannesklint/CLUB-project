@@ -1,5 +1,6 @@
 package club.EJB;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import club.DAO.News;
@@ -10,6 +11,7 @@ import club.EJB.interfaces.LocalNews;
 @Stateless
 public class NewsEJB implements LocalNews{
 	
+	@EJB
 	private NewsDao newsDao;
 
 	@Override

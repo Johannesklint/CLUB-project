@@ -17,6 +17,7 @@ public class Theme implements Serializable {
 
 	@Id
 	@Column(unique=true, nullable=false)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	@Column(name="primary_color_hex", nullable=false, length=7)

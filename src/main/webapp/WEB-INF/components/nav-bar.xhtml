@@ -13,7 +13,7 @@
 	</h:panelGroup>
 	
 	<h:panelGroup rendered="#{loginUser.validLogin}">
-	    <div>Logged in as: #{ loginUser.user.firstName } #{ loginUser.user.lastName }</div>
+	    <div>Logged in as: <a href="/clubproject/faces/update-user-index.xhtml">#{ loginUser.user.firstName } #{ loginUser.user.lastName }</a></div>
 		<h:form id="logout_user_form">
 	    <h:commandButton value="Logout user" action="#{ loginUser.doLogout() }" />
 		</h:form>

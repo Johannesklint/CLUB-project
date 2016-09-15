@@ -15,7 +15,7 @@ public class CommentBean {
 
 	private String text;
 	private UserBean author;
-	private Post parentPost;
+	private NewsBean parentPost;
 	private LocalDateTime created;
 	
 	@EJB
@@ -24,7 +24,7 @@ public class CommentBean {
 	public CommentBean(){
 	}
 	
-	public CommentBean(String text, UserBean author, Post parentPost, LocalDateTime created) {
+	public CommentBean(String text, UserBean author, NewsBean parentPost, LocalDateTime created) {
 		this.text = text;
 		this.author = author;
 		this.parentPost = parentPost;
@@ -45,10 +45,10 @@ public class CommentBean {
 	public void setAuthor(UserBean author) {
 		this.author = author;
 	}
-	public Post getParentPost() {
+	public NewsBean getParentPost() {
 		return parentPost;
 	}
-	public void setParentPost(Post parentPost) {
+	public void setParentPost(NewsBean parentPost) {
 		this.parentPost = parentPost;
 	}
 	public LocalDateTime getCreated() {

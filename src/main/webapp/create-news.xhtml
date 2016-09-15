@@ -24,14 +24,34 @@
 
 	<!-- include nav-bar -->
 	<ui:include src="/WEB-INF/components/nav-bar.xhtml" >
-		<!-- TODO: add loginUser -->
 		<ui:param name="platformData" value="#{ platformData }"></ui:param>
 	</ui:include>
 	
 	<div class="container">
-		<ui:include src="/WEB-INF/components/login-user.xhtml"/>
+		
+		<h:form id="create_news_form">
+			<h:messages>
+				<h:message for="create_news_form"></h:message>
+			</h:messages>
+			
+			<h:panelGrid columns="2">	
+				
+				<h:outputLabel for="news_author">Author:</h:outputLabel>
+			   	<h:outputText id="news_author" value="#{ ''.concat(news.author.firstName).concat(' ').concat(news.author.lastName) }" />
+			
+				<h:outputLabel for="news_title">News title:</h:outputLabel>
+			   	<h:inputText id="news_title" value="#{ news.title }" required="true" label="News Title"/>
+			   
+			   	<h:outputLabel for="news_desc">News description:</h:outputLabel>
+			   	<h:inputTextarea id="news_desc" value="#{ news.description }" required="true" label="News description"/>
+			
+				<h:commandButton action="{ news.createNews() }" value="Create news post"></h:commandButton>
+			
+			</h:panelGrid>
+		
+		</h:form>
+		
 	</div>
-	No account? <a href="register-user-index.xhtml">Click here to create account</a>
 </h:body>
 	
 </html>

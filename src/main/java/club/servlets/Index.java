@@ -19,8 +19,8 @@ import club.domain.LoginUserBean;
 @WebServlet("/")
 public class Index extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
-
+	private static final long serialVersionUID = -2959281604519041055L;
+	
 	@Inject
 	private LoginUserBean bean;
 	
@@ -36,11 +36,6 @@ public class Index extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    final HttpSession session = request.getSession();
-
-	    FacesContext.getCurrentInstance();
-
-	   // LoginUserBean bean = (LoginUserBean) request.getSession().getAttribute("loginUser");
 
 	    if(!bean.isValidLogin())
 	    	response.sendRedirect("/clubproject/faces/login-index.xhtml");

@@ -12,6 +12,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 @Named(value="loginUser")
 @SessionScoped
@@ -24,7 +25,7 @@ public class LoginUserBean implements Serializable {
 
 	private String username;
     private String password;
-    private User tryLoginUser;
+    private User loggedInUser;
     
 	@EJB
 	private LocalUser userEJB;
@@ -42,9 +43,7 @@ public class LoginUserBean implements Serializable {
 	}
 	
 	public User getUser() {
-		System.out.println(tryLoginUser.getEmail());
-		System.out.println(tryLoginUser.getPassword());
-		return tryLoginUser;
+		return loggedInUser;
 	}
 	
 	public void setPassword(String password) {
@@ -52,23 +51,27 @@ public class LoginUserBean implements Serializable {
 	}
 
 	public boolean isValidLogin() {
-		return tryLoginUser != null;
+		return loggedInUser != null;
 	}
 
 	public String doLogout() {
-		tryLoginUser = null;
+		loggedInUser = null;
 		return "login-index";
 	}
 	
 	public String doLogin() {
 		
-		tryLoginUser = userEJB.getUserByEmailAndPassword(username,password);	
-		
-		if(tryLoginUser==null) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Not correct password for that user (or user do not exists)"));;//.addMessage(null, new FacesMessage(message));
-			
+		try {
+			loggedInUser = userEJB.loginUser(username,password);
+			return "home-index";				
+		}
+		catch(Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));//.addMessage(null, new FacesMessage(message));
 			return "login-index";
 		}
+		/*
+		
+		
 		else if(tryLoginUser.getApproved()) {
 			//clear fields when login success
 			password = null;
@@ -76,12 +79,11 @@ public class LoginUserBean implements Serializable {
 
 		}else{
 			tryLoginUser = null;
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("This user is not approved by admin, pls try again later."));
 
 			return "login-index";
 
 		}
-		return "home-index";
+		return "home-index";*/
 	}
 	
 

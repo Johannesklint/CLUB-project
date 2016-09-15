@@ -54,11 +54,10 @@ public class UserBean {
 			this.lastName = null;
 			this.email = null;
 			this.password = null;
-			return "index";		
+			return "wait-for-approve-index";		
 
 		}
-		return "index";		
-		
+		return ""; //TODO: make sure this is the right way to 'redirect' to same page		
 	}
 	
 	public String updateUser() {

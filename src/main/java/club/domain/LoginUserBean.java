@@ -55,15 +55,18 @@ public class LoginUserBean implements Serializable {
 	
 	public String doLogin() {
 		
-		tryLoginUser = userEJB.getUserByEmailAndPassword(username,password);
+		tryLoginUser = userEJB.getUserByEmailAndPassword(username,password);	
 		
 		if(tryLoginUser==null) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Not correct password for that user (or user do not exists)"));;//.addMessage(null, new FacesMessage(message));
 		}
-		else {
+		else if(tryLoginUser.getApproved()) {
 			//clear fields when login success
 			password = null;
 			username = null;			
+		}else{
+			tryLoginUser = null;
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("This user is not approved by admin, pls try again later."));
 		}
 		
 		return "login-index";

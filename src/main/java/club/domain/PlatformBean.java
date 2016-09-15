@@ -3,18 +3,29 @@ package club.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import club.DAO.Platform;
+import club.DAO.Theme;
 import club.EJB.interfaces.LocalPlatform;
 
 
 @Named("platform")
-@RequestScoped // TODO: more permanent scope. 
+@Startup
+@Singleton
 public class PlatformBean {
+	
+	
+	@PostConstruct
+	public void init() {
+		setPlatformBeanFieldsFromDb();
+	}
 	
 	public static final String DEFAULT_TITLE = "Default Title";
 	public static final String DEFAULT_DESCRIPTION = "Default Description";
@@ -106,6 +117,24 @@ public class PlatformBean {
 	}
 	public void setTheme(ThemeBean theme) {
 		this.theme = theme;
+	}
+	
+	
+	private void setPlatformBeanFieldsFromDb() {
+		Platform platform = getPlatformById();
+		System.out.println("init platform: " + platform.getTitle());
+		
+		// set PlatformBean fields
+		
+		this.setTitle(platform.getTitle());
+		this.setDescription(platform.getDescription());
+		this.setTermsAndConditions(platform.getTermsAndCondition());
+		
+		// set ThemeBean fields
+		
+		Theme theme = platform.getTheme();
+		this.theme.setPrimaryColorHEX(theme.getPrimaryColorHex());
+		this.theme.setSecondaryColorHEX(theme.getSecondaryColorHex());
 	}
 	
 	

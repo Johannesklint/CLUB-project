@@ -1,12 +1,12 @@
 use club_db;
 
 # Create Admins
-INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`password`,`admin`, `approved`) VALUES (1,'Erik', 'Wiberg', 'erik@wiberg.se', 'password', true, true);
-INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`password`,`admin`, `approved`) VALUES (2,'Marcin', 'Retek', 'marcin@retek.se', 'password', true, true);
+INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`password`,`admin`, `approved`) VALUES (0,'Erik', 'Wiberg', 'erik@wiberg.se', 'password', true, true);
+INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`password`,`admin`, `approved`) VALUES (1,'Marcin', 'Retek', 'marcin@retek.se', 'password', true, true);
                              
 # Create Users                
-INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`password`,`admin`, `approved`) VALUES (3, 'Kalle', 'Larsson', 'kalle-larsson@telia.net', 'password', false, false);
-INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`password`,`admin`, `approved`) VALUES (4, 'Emma', 'Karlsson', 'emma_karlssont@tele2.se', '12345', false, false);
+INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`password`,`admin`, `approved`) VALUES (2, 'Kalle', 'Larsson', 'kalle-larsson@telia.net', 'password', false, false);
+INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`password`,`admin`, `approved`) VALUES (3, 'Emma', 'Karlsson', 'emma_karlssont@tele2.se', '12345', false, false);
 
 # Create Theme
 

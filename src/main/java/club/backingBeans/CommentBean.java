@@ -1,4 +1,4 @@
-package club.domain;
+package club.backingBeans;
 
 import java.time.LocalDateTime;
 
@@ -8,6 +8,7 @@ import javax.inject.Named;
 
 import club.DAO.Comment;
 import club.EJB.interfaces.LocalUser;
+import club.backingBeans.user.UserBean;
 
 @Named(value="comment")
 @RequestScoped

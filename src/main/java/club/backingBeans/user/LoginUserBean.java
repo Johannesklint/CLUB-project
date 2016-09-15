@@ -1,4 +1,4 @@
-package club.domain;
+package club.backingBeans.user;
 
 import javax.inject.Named;
 import javax.validation.constraints.Size;

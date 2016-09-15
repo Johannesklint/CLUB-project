@@ -1,4 +1,4 @@
-package club.domain;
+package club.backingBeans;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +14,7 @@ import javax.inject.Named;
 import club.DAO.Platform;
 import club.DAO.Theme;
 import club.EJB.interfaces.LocalPlatform;
+import club.backingBeans.user.UserBean;
 
 
 @Named("platform")

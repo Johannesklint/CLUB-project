@@ -1,4 +1,4 @@
-package club.domain;
+package club.backingBeans;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;

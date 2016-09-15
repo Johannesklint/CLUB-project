@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -24,9 +25,10 @@ public abstract class Post {
 	private String description;
 	private String title;
 	private User author;
+	
 	private LocalDateTime created;
-	@ManyToOne(targetEntity=User.class)
-	private List<User> followers;
+//	@OneToMany(targetEntity=User.class, mappedBy="comments")
+//	private List<User> followers;
 
 	public Post() {}
 
@@ -62,12 +64,12 @@ public abstract class Post {
 	public void setCreated(LocalDateTime created) {
 		this.created = created;
 	}
-	public List<User> getFollowers() {
-		return followers;
-	}
-	public void setFollowers(List<User> followers) {
-		this.followers = followers;
-	}
+//	public List<User> getFollowers() {
+//		return followers;
+//	}
+//	public void setFollowers(List<User> followers) {
+//		this.followers = followers;
+//	}
 	
 	
 }

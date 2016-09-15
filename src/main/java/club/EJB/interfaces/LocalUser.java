@@ -3,8 +3,6 @@ package club.EJB.interfaces;
 import java.util.List;
 
 import javax.ejb.Local;
-import javax.faces.validator.ValidatorException;
-
 import club.DAO.User;
 
 @Local

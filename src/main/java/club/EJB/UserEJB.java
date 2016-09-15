@@ -4,9 +4,6 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.faces.application.FacesMessage;
-import javax.faces.validator.ValidatorException;
-
 import club.DAO.User;
 import club.DAO.UserDAO;
 import club.EJB.interfaces.LocalUser;

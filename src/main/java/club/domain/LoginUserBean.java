@@ -52,6 +52,11 @@ public class LoginUserBean implements Serializable {
 	public boolean isValidLogin() {
 		return tryLoginUser != null;
 	}
+
+	public String doLogout() {
+		tryLoginUser = null;
+		return "login-index";
+	}
 	
 	public String doLogin() {
 		
@@ -64,9 +69,10 @@ public class LoginUserBean implements Serializable {
 			//clear fields when login success
 			password = null;
 			username = null;			
+			return "home-index";
 		}
-		
 		return "login-index";
+		
 	}
 	
 

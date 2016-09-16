@@ -148,5 +148,4 @@ public class UserBean {
 	public void setRepeatPassword(String repeatPassword) {
 		this.repeatPassword = repeatPassword;
 	}
-	
 }

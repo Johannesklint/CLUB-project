@@ -20,17 +20,15 @@
 
 <h:body >
 	
-	<ui:param name="platformData" value="#{ platform.getPlatformById() }"></ui:param>
-
 	<!-- include nav-bar -->
 	<ui:include src="/WEB-INF/components/nav-bar.xhtml" />
-	<!-- include post list, both news- and event-list -->
-	<ui:include src="/WEB-INF/components/post-list.xhtml">
-		<ui:param name="postList" value="#{  }"></ui:param>
-	</ui:include>
-			
-	<h1>NEWS!!! EVENTS!!!</h1>
-			
+	
+	<h3>EVENTS</h3>
+	
+	<!-- @param postEntity -->
+	<h:outputText value="#{ param['post'] }"></h:outputText>
+	
+	
 </h:body>
 	
 </html>

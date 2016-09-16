@@ -63,10 +63,17 @@ public class PlatformBean {
 		System.out.println("i saveplatform" + theme == null);
 		
 		if(platformEJB.savePlatform(platform)){
-			this.title = null;
-			this.description = null;
-			this.termsAndConditions = null;
-			this.theme = null;
+			
+			Platform p = platformEJB.getPlatformById(1);
+			this.title = p.getTitle();
+			this.description = p.getDescription();
+			this.termsAndConditions = p.getTermsAndCondition();
+			
+			Theme theme = p.getTheme();
+			
+			this.theme.setPrimaryColorHEX(theme.getPrimaryColorHex());
+			this.theme.setSecondaryColorHEX(theme.getSecondaryColorHex());
+			
 			
 		}
 		

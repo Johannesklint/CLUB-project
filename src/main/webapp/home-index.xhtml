@@ -24,6 +24,10 @@
 
 	<!-- include nav-bar -->
 	<ui:include src="/WEB-INF/components/nav-bar.xhtml" />
+	<!-- include post list, both news- and event-list -->
+	<ui:include src="/WEB-INF/components/post-list.xhtml">
+		<ui:param name="postList" value="#{}"></ui:param>
+	</ui:include>
 			
 	<h1>NEWS!!! EVENTS!!!</h1>
 			

@@ -1,5 +1,7 @@
 package club.EJB;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -17,6 +19,12 @@ public class NewsEJB implements LocalNews{
 	@Override
 	public boolean saveNews(News news) {
 		return newsDao.save(news);
+	}
+
+	@Override
+	public List<News> getAll() {
+	
+		return newsDao.getAll();
 	}
 	
 }

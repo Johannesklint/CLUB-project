@@ -12,17 +12,22 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="post_type", discriminatorType=DiscriminatorType.STRING)
+@NamedQueries({
+    @NamedQuery(name="Post.findAll", query="SELECT p FROM Post p")
+}) 
 public abstract class Post {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String description;
+	private String text;
 	private String title;
 	private User author;
 	
@@ -40,11 +45,11 @@ public abstract class Post {
 		this.id = id;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getText() {
+		return text;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setText(String text) {
+		this.text = text;
 	}
 	public String getTitle() {
 		return title;

@@ -1,6 +1,7 @@
 package club.backingBeans;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -21,7 +22,7 @@ import club.backingBeans.user.LoginUserBean;
 @Startup
 public class NewsBean {
 
-	private String description;
+	private String text;
 	private String title;
 	private User author;
 	
@@ -48,7 +49,7 @@ public class NewsBean {
 		News news = new News();
 		news.setAuthor(this.author);
 		news.setTitle(this.title);
-		news.setDescription(this.description);
+		news.setText(this.text);
 		news.setCreated(LocalDateTime.now());
 		
 		if(newsEJB.saveNews(news)) {
@@ -60,13 +61,17 @@ public class NewsBean {
 		
 		return "create-news.xhtml";
 	}
+	
+	public List<News> getAll(){
+		return newsEJB.getAll();
+	}
 
 	
-	public String getDescription() {
-		return description;
+	public String getText() {
+		return text;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setText(String text) {
+		this.text = text;
 	}
 	public String getTitle() {
 		return title;
@@ -83,7 +88,7 @@ public class NewsBean {
 	
 	private void clearBeanFields() {
 		this.title = null;
-		this.description = null;
+		this.text = null;
 	}
 	
 	private void redirectIfNotLoggedIn() {

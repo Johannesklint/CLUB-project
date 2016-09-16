@@ -20,36 +20,16 @@
 
 <h:body >
 	
-	<ui:param name="platformData" value="#{ platform.getPlatformById() }"></ui:param>
-
 	<!-- include nav-bar -->
 	<ui:include src="/WEB-INF/components/nav-bar.xhtml" />
 	
-	<div class="container">
-		
-		<h:form id="create_news_form">
-			<h:messages>
-				<h:message for="create_news_form"></h:message>
-			</h:messages>
-			
-			<h:panelGrid columns="2">	
-				
-				<h:outputLabel for="news_author">Author:</h:outputLabel>
-			   	<h:outputText id="news_author" value="#{ news.author.fullName }" />
-			
-				<h:outputLabel for="news_title">News title:</h:outputLabel>
-			   	<h:inputText id="news_title" value="#{ news.title }" required="true" label="News Title"/>
-			   
-			   	<h:outputLabel for="news_text">News description:</h:outputLabel>
-			   	<h:inputTextarea id="news_text" value="#{ news.text }" required="true" label="News Description"/>
-			
-				<h:commandButton action="#{ news.createNews() }" value="Create news post"></h:commandButton>
-			
-			</h:panelGrid>
-		
-		</h:form>
-		
-	</div>
+	<h3>EVENTS</h3>
+	
+	<!-- include post list, event-list -->
+	<ui:include src="/WEB-INF/components/post-list.xhtml">
+		<ui:param name="postList" value="#{}"></ui:param>
+	</ui:include>
+						
 </h:body>
 	
 </html>

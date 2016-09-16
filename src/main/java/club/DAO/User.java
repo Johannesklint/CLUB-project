@@ -120,5 +120,9 @@ public class User implements Serializable {
 
 		return comment;
 	}
+	
+	public String getFullName(){
+		return this.firstName + " " + this.lastName;
+	}
 
 }

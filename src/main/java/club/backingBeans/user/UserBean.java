@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import club.DAO.User;
+import club.DAO.User.ApprovedState;
 import club.EJB.interfaces.LocalUser;
 
 @Named(value="user")
@@ -24,7 +25,7 @@ public class UserBean {
 	private String password;
 	private String repeatPassword;
 	private boolean admin;
-	private boolean approved;
+	private ApprovedState approved;
 	
 	@Named(value="loginUser")
 	@Inject
@@ -52,7 +53,7 @@ public class UserBean {
 		user.setEmail(email);
 		user.setPassword(password);
 		user.setAdmin(admin);
-		user.setApproved(approved);
+		user.setApprovedState(approved);
 		
 		if (userEJB.saveUser(user)) {
 			this.firstName = null;
@@ -91,7 +92,7 @@ public class UserBean {
 		setEmail(user.getEmail());
 		setPassword(user.getPassword());
 		setAdmin(user.getAdmin());
-		setApproved(user.getApproved());
+		setApproved(user.getApprovedState());
 		
 		return this;
 	}
@@ -106,11 +107,8 @@ public class UserBean {
 	}
 	
 	
-	public boolean isApproved() {
-		return approved;
-	}
-	public void setApproved(boolean approved) {
-		this.approved = approved;
+	public void setApproved(ApprovedState approvedState) {
+		this.approved = approvedState;
 	}
 	public boolean isAdmin() {
 		return admin;

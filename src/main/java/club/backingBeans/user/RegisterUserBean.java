@@ -5,6 +5,7 @@ import javax.ejb.Startup;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import club.DAO.User;
+import club.DAO.User.ApprovedState;
 import club.EJB.interfaces.LocalUser;
 
 @Named(value="registerUser")
@@ -29,7 +30,7 @@ public class RegisterUserBean {
 		user.setEmail(email);
 		user.setPassword(password);
 		user.setAdmin(admin);
-		user.setApproved(approved);
+		user.setApprovedState(ApprovedState.PENDING);
 		
 		if (userEJB.saveUser(user)) {
 			this.firstName = null;

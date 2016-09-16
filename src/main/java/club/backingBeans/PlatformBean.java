@@ -79,21 +79,7 @@ public class PlatformBean {
 		
 		return "index";
 		
-	}
-	
-	
-	public List<UserBean> getUnapprovedUsers() {
-		return users.stream()
-			.filter(user -> !user.isApproved())
-			.collect(Collectors.toList());
-	}
-	
-	public List<UserBean> getApprovedUsers() {
-		return users.stream()
-			.filter(user -> user.isApproved())
-			.collect(Collectors.toList());
-	}
-	
+	}	
 	
 	public String getTitle() {
 		return title != null ? title : DEFAULT_TITLE;

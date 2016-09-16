@@ -12,11 +12,12 @@ import javax.inject.Named;
 
 import club.DAO.User;
 import club.EJB.interfaces.LocalUser;
+import club.backingBeans.BasicFrontendBean;
 
 @Named(value="user")
 @RequestScoped
 @Startup
-public class UserBean {
+public class UserBean extends BasicFrontendBean {
 	
 	private String firstName;
 	private String lastName;
@@ -54,13 +55,19 @@ public class UserBean {
 		user.setAdmin(admin);
 		user.setApproved(approved);
 		
-		if (userEJB.saveUser(user)) {
-			this.firstName = null;
-			this.lastName = null;
-			this.email = null;
-			this.password = null;
-			return "wait-for-approve-index";		
+		
+		
+		try {
+			if (userEJB.saveUser(user)) {
+				this.firstName = null;
+				this.lastName = null;
+				this.email = null;
+				this.password = null;
+				return "wait-for-approve-index";		
 
+			}
+		} catch (Exception e) {
+			super.addFacesMessage(e.getMessage());
 		}
 		return ""; //TODO: make sure this is the right way to 'redirect' to same page		
 	}
@@ -72,8 +79,12 @@ public class UserBean {
 			loggedInUser.setEmail(email);	
 			loggedInUser.setPassword(password);
 			
-			if (userEJB.saveUser(loggedInUser)) {									
-				return "home-index";		
+			try {
+				if (userEJB.saveUser(loggedInUser)) {									
+					return "home-index";		
+				}
+			} catch (Exception e) {
+				super.addFacesMessage(e.getMessage());
 			}
 			
 		}else{

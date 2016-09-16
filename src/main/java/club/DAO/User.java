@@ -9,6 +9,7 @@ import java.util.List;
 @NamedQueries({
     @NamedQuery(name="User.findAll", query="SELECT u FROM User u"),
     @NamedQuery(name="User.findByEmailAndPassword", query="SELECT u FROM User u WHERE  u.email = :email AND u.password = :password"),
+    @NamedQuery(name="User.findByEmail", query="SELECT u FROM User u WHERE  u.email = :email")
 }) 
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;

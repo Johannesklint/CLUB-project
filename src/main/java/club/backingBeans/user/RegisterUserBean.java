@@ -3,6 +3,8 @@ package club.backingBeans.user;
 import javax.ejb.EJB;
 import javax.ejb.Startup;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import club.DAO.User;
 import club.EJB.interfaces.LocalUser;
@@ -31,7 +33,16 @@ public class RegisterUserBean {
 		user.setAdmin(admin);
 		user.setApproved(approved);
 		
-		if (userEJB.saveUser(user)) {
+		boolean isSaved = false;
+		try {
+			isSaved = userEJB.saveUser(user);
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));//.addMessage(null, new FacesMessage(message));
+			return "register-user-index";
+		}
+
+		
+		if (isSaved) {
 			this.firstName = null;
 			this.lastName = null;
 			this.email = null;

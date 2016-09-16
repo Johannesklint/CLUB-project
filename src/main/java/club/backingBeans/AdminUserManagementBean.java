@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import club.DAO.User;
@@ -28,7 +30,11 @@ public class AdminUserManagementBean {
 		// switch the boolean value
 		boolean previousValue = selectedUser.getApproved();
 		selectedUser.setApproved(!previousValue);
-		userEJB.saveUser(selectedUser);
+		try {
+			userEJB.saveUser(selectedUser);
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("The passwords do not match."));
+		}
 		
 		return "admin-user-management";
 	}

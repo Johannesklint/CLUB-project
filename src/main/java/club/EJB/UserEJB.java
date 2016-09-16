@@ -15,7 +15,13 @@ public class UserEJB implements LocalUser{
 	private UserDAO userDao;
 	
 	@Override
-	public boolean saveUser(User user) {
+	public boolean saveUser(User user) throws Exception {
+		
+		if(userWithEmailExists(user.getEmail())) {
+			throw new Exception("A user with that email + (" +user.getEmail() + ") already exists.");
+		}
+		
+		
 		return userDao.saveToDB(user);	
 	}
 
@@ -51,6 +57,11 @@ public class UserEJB implements LocalUser{
 	public User getUserByEmailAndPassword(String email, String password) {
 		return userDao.getUserByEmailAndPassword(email,password);
 
+	}
+	
+	private boolean userWithEmailExists(String email) {
+		User user = userDao.getUserByEmail(email);
+		return user != null;
 	}
 
 }

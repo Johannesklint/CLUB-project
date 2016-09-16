@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import club.DAO.User;
+import club.DAO.User.ApprovedState;
 import club.DAO.UserDAO;
 import club.EJB.interfaces.LocalUser;
 
@@ -32,7 +33,7 @@ public class UserEJB implements LocalUser{
 			throw new Exception("Not correct password for that user (or user do not exists)");			
 		}
 
-		if(!tryLoginUser.getApproved()) {
+		if(tryLoginUser.getApprovedState()!=ApprovedState.GRANTED) {
 			throw new Exception("This user is not approved by admin, pls try again later.");
 		}
 			

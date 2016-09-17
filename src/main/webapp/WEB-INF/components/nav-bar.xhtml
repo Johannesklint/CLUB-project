@@ -8,23 +8,29 @@
 
 <ui:composition>
 
+
+	<div class="navbar navbar-default">
+	  <div class="container-fluid">
+
+		<div class="login-container">
 	<h:panelGroup rendered="#{!loginUser.validLogin}">
-	    <div>Not logged in</div>
+	    Not logged in
 	</h:panelGroup>
 	
 	<h:panelGroup rendered="#{loginUser.validLogin}">
-	    <div>Logged in as: <a href="/clubproject/faces/update-user-index.xhtml">#{ loginUser.user.firstName } #{ loginUser.user.lastName }</a></div>
+	    Logged in as: <a href="/clubproject/faces/update-user-index.xhtml">#{ loginUser.user.firstName } #{ loginUser.user.lastName }</a>
 		<h:form id="logout_user_form">
 	    <h:commandButton value="Logout user" action="#{ loginUser.doLogout() }" />
 		</h:form>
 
 	</h:panelGroup>
-
-	<div class="navbar navbar-default">
-	  <div class="container-fluid">
+</div>
 	    <div class="navbar-header">
 	      <a class="navbar-brand" href="#">#{ platform.title }</a>
 	    </div>
+
+		
+
 	    <ul class="nav navbar-nav">
 	      <li class="active"><a href="#">Home</a></li>
 	      <li><a href="#">News</a></li>

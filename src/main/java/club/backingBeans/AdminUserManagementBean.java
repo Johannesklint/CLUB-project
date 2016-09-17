@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import club.DAO.User;
+import club.DAO.User.ApprovedState;
 import club.EJB.interfaces.LocalUser;
 
 
@@ -26,16 +27,19 @@ public class AdminUserManagementBean {
 	
 	public String changeApprovedStatus() {
 		
+		/*
 		System.out.println("changing approved status for user " + selectedUser.getFirstName());
 		// switch the boolean value
 		boolean previousValue = selectedUser.getApproved();
 		selectedUser.setApproved(!previousValue);
+		
 		try {
 			userEJB.saveUser(selectedUser);
 		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("The passwords do not match."));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("????"));
 		}
-		
+
+		*/
 		return "admin-user-management";
 	}
 	
@@ -44,12 +48,16 @@ public class AdminUserManagementBean {
 		return users;
 	}
 	
-	public List<User> getAllUnapproved() {
-		return getAllUsersMatching(user -> !user.getApproved());
+	public List<User> getAllApprovedGranted() {
+		return getAllUsersMatching(user -> user.getApprovedState()==ApprovedState.GRANTED);
 	}
-	
-	public List<User> getAllApproved() {
-		return getAllUsersMatching(user -> user.getApproved());
+
+	public List<User> getAllApprovedDenied() {
+		return getAllUsersMatching(user -> user.getApprovedState()==ApprovedState.DENIED);
+	}
+
+	public List<User> getAllApprovedPending() {
+		return getAllUsersMatching(user -> user.getApprovedState()==ApprovedState.PENDING);
 	}
 	
 	private List<User> getAllUsersMatching(Predicate<User> predicate) {

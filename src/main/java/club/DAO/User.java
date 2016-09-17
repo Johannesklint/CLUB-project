@@ -12,7 +12,12 @@ import java.util.List;
     @NamedQuery(name="User.findByEmail", query="SELECT u FROM User u WHERE  u.email = :email")
 }) 
 public class User implements Serializable {
-	private static final long serialVersionUID = 1L;
+
+	public enum ApprovedState {
+		GRANTED, DENIED, PENDING
+	};
+
+	private static final long serialVersionUID = 7589032287673546267L;
 
 	@Id
 	@Column(unique=true, nullable=false)
@@ -22,8 +27,8 @@ public class User implements Serializable {
 	@Column(nullable=false)
 	private boolean admin;
 
-	@Column(nullable=false)
-	private boolean approved;
+	@Column(name="approved_state", nullable=false)
+	private int approvedState;
 
 	@Column(nullable=false, length=60)
 	private String email;
@@ -60,12 +65,12 @@ public class User implements Serializable {
 		this.admin = admin;
 	}
 
-	public boolean getApproved() {
-		return this.approved;
+	public ApprovedState getApprovedState() {
+		return ApprovedState.values()[this.approvedState];
 	}
 
-	public void setApproved(boolean approved) {
-		this.approved = approved;
+	public void setApprovedState(ApprovedState approvedState) {
+		this.approvedState = approvedState.ordinal();
 	}
 
 	public String getEmail() {

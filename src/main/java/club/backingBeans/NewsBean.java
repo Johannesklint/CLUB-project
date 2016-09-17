@@ -25,6 +25,7 @@ public class NewsBean {
 	private String text;
 	private String title;
 	private User author;
+	private int id;
 	
 	@Inject @Named("loginUser")
 	private LoginUserBean loginUserBean;
@@ -62,6 +63,11 @@ public class NewsBean {
 		return "create-news.xhtml";
 	}
 	
+	public NewsBean getPostById(int id){
+		//get id from post-entity and then request it from post-details
+		return null;
+	}
+	
 	public List<News> getAll(){
 		return newsEJB.getAll();
 	}
@@ -84,13 +90,19 @@ public class NewsBean {
 	}
 	public void setAuthor(User author) {
 		this.author = author;
+	}	
+	public int getId() {
+		return id;
 	}
-	
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	private void clearBeanFields() {
 		this.title = null;
 		this.text = null;
 	}
-	
+
 	private void redirectIfNotLoggedIn() {
 		setAuthorFromUserLoginBean();
 		

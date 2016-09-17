@@ -7,6 +7,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import club.DAO.User;
+import club.DAO.User.ApprovedState;
 import club.EJB.interfaces.LocalUser;
 
 @Named(value="registerUser")
@@ -31,7 +32,7 @@ public class RegisterUserBean {
 		user.setEmail(email);
 		user.setPassword(password);
 		user.setAdmin(admin);
-		user.setApproved(approved);
+		user.setApprovedState(ApprovedState.PENDING);
 		
 		boolean isSaved = false;
 		try {

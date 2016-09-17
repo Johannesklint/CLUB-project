@@ -36,11 +36,11 @@
 		</h:column>
 		<h:column>
 			<f:facet name="header"> Is approved </f:facet>
-			<p>#{u.approved}</p>
+			<p></p>
 		</h:column>
 		
 		<h:column>
-			<ui:param name="btnText" value="#{ u.approved ? 'Unapprove user' : 'Approve user'  }"></ui:param>
+			<ui:param name="btnText" value=""></ui:param>
 			<h:form>
 				<h:commandButton value="#{ btnText }" action="#{ userManagement.changeApprovedStatus() }">				
 					<f:setPropertyActionListener value="#{ u }" target="#{ userManagement.selectedUser }"></f:setPropertyActionListener>

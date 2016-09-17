@@ -15,14 +15,14 @@
 	<p>Total number of user(s): #{ allUsers.size() }</p>
 	
 	
-	<ui:param name="unApprovedUsers" value="#{ userManagement.getAllUnapproved() }" />
+	<ui:param name="unApprovedUsers" value="#{ userManagement.getAllApprovedPending() }" />
 	<h3>#{unApprovedUsers.size() } users waiting for approval</h3>
 	
 	<ui:include src="/WEB-INF/components/admin-user-management-table.xhtml">
 		<ui:param name="users" value="#{ unApprovedUsers }"></ui:param>
 	</ui:include>
 	
-	<ui:param name="approvedUsers" value="#{ userManagement.getAllApproved() }" />
+	<ui:param name="approvedUsers" value="#{ userManagement.getAllApprovedGranted() }" />
 	<h3>#{ approvedUsers.size() } approved user(s)</h3>
 	<ui:include src="/WEB-INF/components/admin-user-management-table.xhtml">
 		<ui:param name="users" value="#{ approvedUsers }"></ui:param>

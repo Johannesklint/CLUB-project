@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import club.DAO.User;
+import club.DAO.User.ApprovedState;
 import club.EJB.interfaces.LocalUser;
 import club.backingBeans.BasicFrontendBean;
 
@@ -25,7 +26,7 @@ public class UserBean extends BasicFrontendBean {
 	private String password;
 	private String repeatPassword;
 	private boolean admin;
-	private boolean approved;
+	private ApprovedState approved;
 	
 	@Named(value="loginUser")
 	@Inject
@@ -53,7 +54,7 @@ public class UserBean extends BasicFrontendBean {
 		user.setEmail(email);
 		user.setPassword(password);
 		user.setAdmin(admin);
-		user.setApproved(approved);
+		user.setApprovedState(approved);
 		
 		
 		
@@ -102,7 +103,7 @@ public class UserBean extends BasicFrontendBean {
 		setEmail(user.getEmail());
 		setPassword(user.getPassword());
 		setAdmin(user.getAdmin());
-		setApproved(user.getApproved());
+		setApproved(user.getApprovedState());
 		
 		return this;
 	}
@@ -117,11 +118,8 @@ public class UserBean extends BasicFrontendBean {
 	}
 	
 	
-	public boolean isApproved() {
-		return approved;
-	}
-	public void setApproved(boolean approved) {
-		this.approved = approved;
+	public void setApproved(ApprovedState approvedState) {
+		this.approved = approvedState;
 	}
 	public boolean isAdmin() {
 		return admin;
@@ -159,5 +157,4 @@ public class UserBean extends BasicFrontendBean {
 	public void setRepeatPassword(String repeatPassword) {
 		this.repeatPassword = repeatPassword;
 	}
-	
 }

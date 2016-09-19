@@ -7,7 +7,7 @@ import club.DAO.User;
 
 @Local
 public interface LocalUser {
-	boolean saveUser(User user);
+	boolean saveUser(User user) throws Exception;
 	User getUserById(int id);
 	List<User> getAll();
 	boolean deleteUser(int id);

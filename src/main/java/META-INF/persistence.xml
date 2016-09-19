@@ -6,6 +6,9 @@
 		<class>club.DAO.User</class>
 		<class>club.DAO.Platform</class>
 		<class>club.DAO.Theme</class>
+		<class>club.DAO.Post</class>
+		<class>club.DAO.Event</class>
+		<class>club.DAO.News</class>
 		
 		
 		<properties>

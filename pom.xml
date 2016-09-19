@@ -40,10 +40,11 @@
     
     <!--  Java 8 time classes support.   -->
     
-    <dependency>
-		<groupId>org.hibernate</groupId>
-		<artifactId>hibernate-java8</artifactId>
-		<version>5.0.1.Final</version>
+	
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-core</artifactId>
+	    <version>5.2.2.Final</version>
 	</dependency>
 	 
 	

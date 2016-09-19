@@ -12,15 +12,14 @@
 <ui:composition template="WEB-INF/templates/main-template.xhtml">
 	<ui:define name="pageContent">
 	
-		<h1>#{ platformData.title }</h1>
+		<h3>EVENTS</h3>
 		
-		<p>#{ platformData.description }</p>
-		
-		<p>(Redirect to login / home, depending on user login status)</p>
+		<!-- @param postEntity -->
+		<h:outputText value="#{ param['post'] }"></h:outputText>
 	
 	</ui:define>
-</ui:composition>	
-	
+</ui:composition>
+
 </h:body>
 	
 </html>

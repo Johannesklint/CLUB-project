@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import club.DAO.User;
@@ -23,15 +25,25 @@ public class AdminUserManagementBean {
 	// see more at: admin-user-management-table.xhtml (<f:setPropertyActionListener ....)
 	private User selectedUser; // used to know which user needs to change status etc.
 	
+
 	public String denyApprovement() {
 		selectedUser.setApprovedState(ApprovedState.DENIED);
-		userEJB.saveUser(selectedUser);
+		try {
+			userEJB.saveUser(selectedUser);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "admin-user-management";
 	}
 	
 	public String grantApprovement() {
 		selectedUser.setApprovedState(ApprovedState.GRANTED);
-		userEJB.saveUser(selectedUser);
+		try {
+			userEJB.saveUser(selectedUser);
+		} catch (Exception e) {
+			// TODO: have a save approved state method. then we do not have to validate email-conflict
+			e.printStackTrace();
+		}
 		return "admin-user-management";
 	}
 	

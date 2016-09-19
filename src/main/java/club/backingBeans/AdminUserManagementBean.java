@@ -23,15 +23,15 @@ public class AdminUserManagementBean {
 	// see more at: admin-user-management-table.xhtml (<f:setPropertyActionListener ....)
 	private User selectedUser; // used to know which user needs to change status etc.
 	
-	public String changeApprovedStatus() {
-		
-		/*
-		System.out.println("changing approved status for user " + selectedUser.getFirstName());
-		// switch the boolean value
-		boolean previousValue = selectedUser.getApproved();
-		selectedUser.setApproved(!previousValue);
+	public String denyApprovement() {
+		selectedUser.setApprovedState(ApprovedState.DENIED);
 		userEJB.saveUser(selectedUser);
-		*/
+		return "admin-user-management";
+	}
+	
+	public String grantApprovement() {
+		selectedUser.setApprovedState(ApprovedState.GRANTED);
+		userEJB.saveUser(selectedUser);
 		return "admin-user-management";
 	}
 	

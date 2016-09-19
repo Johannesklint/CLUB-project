@@ -34,18 +34,20 @@
 			<f:facet name="header"> Is admin </f:facet>
 			<p>#{u.admin}</p>
 		</h:column>
-		<h:column>
-			<f:facet name="header"> Is approved </f:facet>
-			<p></p>
-		</h:column>
 		
 		<h:column>
 			<ui:param name="btnText" value=""></ui:param>
 			<h:form>
-				<h:commandButton value="#{ btnText }" action="#{ userManagement.changeApprovedStatus() }">				
-					<f:setPropertyActionListener value="#{ u }" target="#{ userManagement.selectedUser }"></f:setPropertyActionListener>
-				</h:commandButton>
-				
+				<h:panelGroup rendered="#{show_deny_option}">
+					<h:commandButton value="Deny" action="#{ userManagement.denyApprovement() }">				
+						<f:setPropertyActionListener value="#{ u }" target="#{ userManagement.selectedUser }"></f:setPropertyActionListener>
+					</h:commandButton>
+				</h:panelGroup>
+				<h:panelGroup rendered="#{show_grant_option}">
+					<h:commandButton value="Approve" action="#{ userManagement.grantApprovement() }">				
+						<f:setPropertyActionListener value="#{ u }" target="#{ userManagement.selectedUser }"></f:setPropertyActionListener>
+					</h:commandButton>
+				</h:panelGroup>				
 			</h:form>
 		</h:column>
 

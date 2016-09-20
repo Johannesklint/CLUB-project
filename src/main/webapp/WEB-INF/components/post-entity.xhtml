@@ -15,9 +15,8 @@
 			<p>#{ postEntity.text }</p>
 			<p>#{ postEntity.author.fullName }</p>
 			
-			<!-- rendered for this link to not include this on post-details -->
 			
-			<h:link outcome="post-details" value="Read more" includeViewParams="true">		
+			<h:link rendered="#{ includeReadMoreBtn }" outcome="post-details" value="Read more" includeViewParams="true">		
 			  <f:param name="id" value="#{ postEntity.id }"></f:param>		
 			</h:link>
 			

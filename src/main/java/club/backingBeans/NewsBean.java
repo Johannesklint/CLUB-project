@@ -2,17 +2,14 @@ package club.backingBeans;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Startup;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import club.DAO.News;
 import club.DAO.User;
 import club.EJB.interfaces.LocalNews;

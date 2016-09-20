@@ -7,16 +7,16 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition>
+	<!-- @param postEntity. Post -->
 	<h:form id="create_comment_form">
-	
-		<h:messages>
-			<h:message for="create_commen_form"></h:message>
-		</h:messages>
-		
-		<h:panelGrid>
-			<h:inputTextarea id="comment_textarea" value="#{  }" required="true" label="Comment"/></h:inputTextarea>
-		</h:panelGrid>
-		<h:commandButton value="Create comment" action="#{ user.saveComment() }" />
+
+	   <h:outputLabel for="text">Text:</h:outputLabel>
+	   <h:inputText id="text" value="#{ comment.text }" required="true" label="Text"/>	
+
+	   <h:outputLabel for="post">Post:</h:outputLabel>
+	   <h:inputText id="post" value="#{ postEntity }" required="true" label="Post"/>	
+
+	   <h:commandButton value="Do comment" action="#{ comment.saveComment() }" />
 		
 	</h:form>
 </ui:composition>

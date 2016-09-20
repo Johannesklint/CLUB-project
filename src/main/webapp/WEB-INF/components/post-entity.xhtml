@@ -16,6 +16,12 @@
 			<h:link outcome="post-details" value="Read more" includeViewParams="true">		
 			  <f:param name="post" value="#{ postEntity.id }"></f:param>			
 			</h:link>
+
+			<ui:include src="/WEB-INF/components/comment-list.xhtml">
+				<ui:param name="commentList" value="#{ postEntity.comments }"></ui:param>
+				<ui:param name="postEntity" value="#{ postEntity }"></ui:param>
+			</ui:include>
+
 		</div>
 		
 			

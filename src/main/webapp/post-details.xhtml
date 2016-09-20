@@ -15,8 +15,15 @@
 		<h3>EVENTS</h3>
 		
 		<!-- @param postEntity -->
-		<h:outputText value="#{ param['post'] }"></h:outputText>
-	
+		
+		<f:metadata>
+			<f:viewParam name="id" value="#{ news.selectedNewsId }"></f:viewParam>
+			<f:event listener="#{ news.getSelectedNews }" type="preRenderView"></f:event>
+		</f:metadata>
+		
+		<h:outputText value="#{news.title}"></h:outputText>
+		<h:outputText value="#{news.text}"></h:outputText>
+							
 	</ui:define>
 </ui:composition>
 

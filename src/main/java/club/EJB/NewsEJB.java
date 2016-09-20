@@ -26,5 +26,10 @@ public class NewsEJB implements LocalNews{
 	
 		return newsDao.getAll();
 	}
+
+	@Override
+	public News getNewsById(int selectedNewsId) {
+		return newsDao.getNewsById(selectedNewsId);
+	}
 	
 }

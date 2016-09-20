@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Startup;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -26,6 +27,7 @@ public class NewsBean {
 	private String title;
 	private User author;
 	private int id;
+	private int selectedNewsId;
 	
 	@Inject @Named("loginUser")
 	private LoginUserBean loginUserBean;
@@ -63,11 +65,24 @@ public class NewsBean {
 		return "create-news.xhtml";
 	}
 	
-	public NewsBean getPostById(int id){
-		//get id from post-entity and then request it from post-details
-		return null;
+	public News getSelectedNews(){
+		News news = newsEJB.getNewsById(selectedNewsId);
+		setAuthor(news.getAuthor());
+		setText(news.getText());
+		setTitle(news.getTitle());
+		
+		return news;
 	}
 	
+	
+	public int getSelectedNewsId() {
+		return selectedNewsId;
+	}
+
+	public void setSelectedNewsId(int selectedNewsId) {
+		this.selectedNewsId = selectedNewsId;
+	}
+
 	public List<News> getAll(){
 		return newsEJB.getAll();
 	}

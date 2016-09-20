@@ -28,6 +28,8 @@ public class NewsBean {
 	private User author;
 	private int id;
 	private int selectedNewsId;
+	private News selectedNews;
+	
 	
 	@Inject @Named("loginUser")
 	private LoginUserBean loginUserBean;
@@ -65,29 +67,34 @@ public class NewsBean {
 		return "create-news.xhtml";
 	}
 	
-	public News getSelectedNews(){
-		News news = newsEJB.getNewsById(selectedNewsId);
-		setAuthor(news.getAuthor());
-		setText(news.getText());
-		setTitle(news.getTitle());
-		
-		return news;
+	public void useSelectedNews(){
+		selectedNews = newsEJB.getNewsById(selectedNewsId);
+		System.out.println("getitng" + selectedNews.getTitle());
 	}
-	
 	
 	public int getSelectedNewsId() {
 		return selectedNewsId;
 	}
 
 	public void setSelectedNewsId(int selectedNewsId) {
+		System.out.println("Setting selectedNews to: " + selectedNewsId);
 		this.selectedNewsId = selectedNewsId;
 	}
 
 	public List<News> getAll(){
 		return newsEJB.getAll();
 	}
-
 	
+	
+
+	public News getSelectedNews() {
+		return selectedNews;
+	}
+
+	public void setSelectedNews(News selectedNews) {
+		this.selectedNews = selectedNews;
+	}
+
 	public String getText() {
 		return text;
 	}

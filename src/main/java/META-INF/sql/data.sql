@@ -16,5 +16,10 @@ INSERT INTO `club_db`.`theme`(`id`,`primary_color_hex`,`secondary_color_hex`) VA
 # Create Platform
 INSERT INTO `club_db`.`platform`(`id`,`title`,`description`,`terms_and_condition`,`theme_id`) VALUES (null,'Default Title','Default Description','Terms and condition',1);
 
+# Create Post > News
+INSERT INTO `club_db`.`POST` (`ID`, `post_type`, `TEXT`, `TITLE`, `AUTHOR_ID`) VALUES ('1', 'NEWS', 'text for news', 'News -1', 1);
+INSERT INTO `club_db`.`POST` (`ID`, `post_type`, `TEXT`, `TITLE`, `AUTHOR_ID`) VALUES ('2', 'NEWS', 'text for news', 'News -2', 1);
+
+
 
 

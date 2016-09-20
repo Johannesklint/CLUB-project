@@ -57,16 +57,9 @@ public class UserDAO {
 
 
 
-	public User getUserByEmail(String email) {
+	public List<User> getUsersByEmail(String email) {
 		Query findByEmail = entityManager.createNamedQuery("User.findByEmail");
 		findByEmail.setParameter("email", email);
-		User user = null;
-		
-		try {
-			user = (User) findByEmail.getSingleResult();			
-		} catch(NoResultException ex) {
-			return null;
-		}
-		return user;
+		return (List<User>)findByEmail.getResultList();
 	}
 }

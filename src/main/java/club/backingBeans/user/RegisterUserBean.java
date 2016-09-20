@@ -29,7 +29,7 @@ public class RegisterUserBean {
 	private void validateRegisterUser(User user) throws FormException {
 
 		if(!userEJB.hasUniqueEmail(user)) {
-			throw new FormException("A user with that email + (" +user.getEmail() + ") already exists.");
+			throw new FormException("A user with that email (" +user.getEmail() + ") already exists.");
 		}		
 	}
 	

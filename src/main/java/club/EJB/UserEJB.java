@@ -41,6 +41,7 @@ public class UserEJB implements LocalUser{
 		loginUserBean.onLogin(tryLoginUser);		
 	}
 	
+	@Override
 	public List<User> getAll() {
 		return userDao.getAll();
 	}
@@ -50,19 +51,19 @@ public class UserEJB implements LocalUser{
 		return userDao.deleteUser(id);
 	}	
 
+	@Override
 	public User getUserByEmailAndPassword(String email, String password) {
 		return userDao.getUserByEmailAndPassword(email,password);
 
 	}
 	
-	private boolean userWithEmailExists(String email) {
-		User user = userDao.getUserByEmail(email);
-		return user != null;
-	}
-
 	@Override
 	public boolean hasUniqueEmail(User user) {
-		// TODO: fix this
+		
+		String compareEmail = user.getEmail();
+		for(User compareUser : userDao.getUsersByEmail(compareEmail)) {
+			if(compareUser!=user) return false;
+		}
 		return true;
 	}
 

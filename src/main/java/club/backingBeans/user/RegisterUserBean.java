@@ -9,6 +9,7 @@ import javax.inject.Named;
 import club.DAO.User;
 import club.DAO.User.ApprovedState;
 import club.EJB.interfaces.LocalUser;
+import exceptions.FormException;
 
 @Named(value="registerUser")
 @RequestScoped
@@ -25,6 +26,15 @@ public class RegisterUserBean {
 	@EJB
 	private LocalUser userEJB;
 	
+	private void validateRegisterUser(User user) throws FormException {
+
+		if(!userEJB.hasUniqueEmail(user)) {
+			throw new FormException("A user with that email (" +user.getEmail() + ") already exists.");
+		}		
+	}
+	
+	
+	
 	public String saveUser() {
 		User user = new User();
 		user.setFirstName(firstName);
@@ -34,13 +44,15 @@ public class RegisterUserBean {
 		user.setAdmin(admin);
 		user.setApprovedState(ApprovedState.PENDING);
 		
-		boolean isSaved = false;
 		try {
-			isSaved = userEJB.saveUser(user);
-		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));//.addMessage(null, new FacesMessage(message));
+			validateRegisterUser(user);
+		} catch (FormException e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 			return "register-user-index";
 		}
+
+		boolean isSaved = false;
+		isSaved = userEJB.saveUser(user);
 
 		
 		if (isSaved) {

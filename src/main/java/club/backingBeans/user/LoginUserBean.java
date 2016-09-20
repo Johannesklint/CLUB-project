@@ -59,28 +59,18 @@ public class LoginUserBean implements Serializable {
 	public String doLogin() {
 		
 		try {
-			loggedInUser = userEJB.loginUser(username,password);
+			userEJB.loginUser(username,password,this);
 			return "home-index";				
 		}
 		catch(Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));//.addMessage(null, new FacesMessage(message));
 			return "login-index";
 		}
-		/*
-		
-		
-		else if(tryLoginUser.getApproved()) {
-			//clear fields when login success
-			password = null;
-			username = null;			
 
-		}else{
-			tryLoginUser = null;
+	}
 
-			return "login-index";
-
-		}
-		return "home-index";*/
+	public void onLogin(User user) {
+		this.loggedInUser = user;
 	}
 	
 

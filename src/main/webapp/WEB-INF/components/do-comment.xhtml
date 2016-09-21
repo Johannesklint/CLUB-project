@@ -10,13 +10,16 @@
 	<!-- @param postEntity. Post -->
 	<h:form id="create_comment_form">
 
-	   <h:outputLabel for="text">Text:</h:outputLabel>
-	   <h:inputText id="text" value="#{ comment.text }" required="true" label="Text"/>	
+		<h:messages>
+			<h:message for="create_comment_form"></h:message>
+		</h:messages>	
 
-	   <h:outputLabel for="post">Post:</h:outputLabel>
-	   <h:inputText id="post" value="#{ postEntity }" required="true" label="Post"/>	
+		<h:outputLabel for="text">Text:</h:outputLabel>
+		<h:inputText id="text" value="#{ comment.text }" required="true" label="Text"/>	
 
-	   <h:commandButton value="Do comment" action="#{ comment.saveComment() }" />
+		<h:commandButton value="Do comment" action="#{ comment.saveComment() }">
+			<f:setPropertyActionListener value="#{ postEntity }" target="#{ comment.post }"></f:setPropertyActionListener>
+		</h:commandButton>
 		
 	</h:form>
 </ui:composition>

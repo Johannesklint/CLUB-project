@@ -10,9 +10,12 @@
 	<!-- @param commentList. List<Comment>-->
 	
 	<ui:repeat var="c" value="#{commentList}">
-		<ui:include src="/WEB-INF/components/comment-entity.xhtml">
-			<ui:param name="commentEntity" value="#{ c }"></ui:param>
-		</ui:include>
+		<!-- TODO: fix a param to tell if this render check should be used. Or even better. define the method in root page (news.html) -->
+		<h:panelGroup rendered="#{commentListLimitBean.render(c)}">
+			<ui:include src="/WEB-INF/components/comment-entity.xhtml">
+				<ui:param name="commentEntity" value="#{ c }"></ui:param>
+			</ui:include>
+		</h:panelGroup>
 	</ui:repeat>
 	
 	

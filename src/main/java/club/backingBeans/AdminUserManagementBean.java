@@ -46,8 +46,6 @@ public class AdminUserManagementBean {
 		}
 		return "admin-user-management";
 	}
-
-
 	
 	public List<User> getAllUsers() {
 		List<User> users = userEJB.getAll();

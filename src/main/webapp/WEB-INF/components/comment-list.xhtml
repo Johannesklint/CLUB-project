@@ -9,15 +9,16 @@
 <ui:composition>
 	<!-- @param commentList. List<Comment>-->
 	
-	..
 	<ui:repeat var="c" value="#{commentList}">
 		<ui:include src="/WEB-INF/components/comment-entity.xhtml">
 			<ui:param name="commentEntity" value="#{ c }"></ui:param>
 		</ui:include>
-	</ui:repeat>..
+	</ui:repeat>
+	
+	
 	<ui:include src="/WEB-INF/components/do-comment.xhtml">
 		<ui:param name="postEntity" value="#{ postEntity }"></ui:param>
-	</ui:include>
+	</ui:include>	
 			
 </ui:composition>
 </html>

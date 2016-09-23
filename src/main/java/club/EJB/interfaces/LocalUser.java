@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 import club.DAO.User;
 import club.backingBeans.user.LoginUserBean;
+import exceptions.FormException;
 
 @Local
 public interface LocalUser {
@@ -15,4 +16,5 @@ public interface LocalUser {
 	User getUserByEmailAndPassword(String email, String password);
 	void loginUser(String username, String password, LoginUserBean loginUserBean) throws Exception;
 	boolean hasUniqueEmail(User user);
+	void validateRegisterUser(User user) throws FormException;
 }

@@ -15,7 +15,9 @@
 		</h:messages>	
 
 		<h:outputLabel for="text">Text:</h:outputLabel>
-		<h:inputText id="text" value="#{ comment.text }" required="true" label="Text"/>	
+		<h:inputText id="text" value="#{ comment.text }" required="true" label="Text">
+			<f:validateLength minimum="1" maximum="140"/>
+		</h:inputText>	
 
 		<h:commandButton value="Do comment" action="#{ comment.saveComment() }">
 			<f:setPropertyActionListener value="#{ postEntity }" target="#{ comment.post }"></f:setPropertyActionListener>

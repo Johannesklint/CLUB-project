@@ -23,7 +23,7 @@ public class Comment implements Serializable {
 	@Column(nullable=false)
 	private Timestamp created;
 
-	@Column(nullable=false, length=500)
+	@Column(nullable=false, length=140)
 	private String text;
 
 	//bi-directional many-to-one association to User

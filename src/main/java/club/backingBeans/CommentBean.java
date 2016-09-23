@@ -87,9 +87,15 @@ public class CommentBean {
 		comment.setPost(post);
 
 		try {
-			validatePost(comment);
+			commentEJB.validateComment(comment);
 			boolean isSaved = false;
 			isSaved = commentEJB.saveComment(comment);
+			if(isSaved) {
+				text = null;
+			}
+			else {
+				//TODO: how to handle this?
+			}
 		}
 		catch(FormException e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
@@ -98,10 +104,6 @@ public class CommentBean {
 		return "";
 	}
 
-	private void validatePost(Comment comment) throws FormException {
-		if(comment.getPost()==null) throw new FormException("INTERNAL ERROR: no post");
-		if(comment.getUser()==null) throw new FormException("INTERNAL ERROR: no user");
-		
-	}
+
 		
 }

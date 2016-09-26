@@ -10,11 +10,11 @@ INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`password`
                              
 # Create Theme
 
-INSERT INTO `club_db`.`theme`(`id`,`primary_color_hex`,`secondary_color_hex`) VALUES (null,"#ffffff","#dddddd");
+INSERT INTO `club_db`.`theme`(`id`,`primary_color_hex`,`secondary_color_hex`) VALUES (null,"#6cffb8","#fcb0b3");
 
 
 # Create Platform
-INSERT INTO `club_db`.`platform`(`id`,`title`,`description`,`terms_and_condition`,`theme_id`) VALUES (null,'Default Title','Default Description','Terms and condition',1);
+INSERT INTO `club_db`.`platform`(`id`,`title`,`description`,`terms_and_condition`,`theme_id`) VALUES (null,'Liseberg','Bunnys and stuff','Terms and condition',1);
 
 # Create Post > News
 INSERT INTO `club_db`.`post` (`ID`, `created`, `post_type`, `TEXT`, `TITLE`, `AUTHOR_ID`) VALUES (null, NOW(),'NEWS', 'text for news 1', 'News - 1', 1);

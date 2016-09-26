@@ -27,7 +27,6 @@ public class UserBean extends BasicFrontendBean {
 	private String repeatPassword;
 	private boolean admin;
 	private ApprovedState approved;
-	private boolean termsAndConditions;
 	
 	@Named(value="loginUser")
 	@Inject
@@ -40,7 +39,7 @@ public class UserBean extends BasicFrontendBean {
 		
 	}
 	
-	@PostConstruct
+	@PostConstruct	
 	public void Init(){
 		this.email = loginUser.getUser().getEmail();
 		this.password = loginUser.getUser().getPassword();
@@ -48,9 +47,7 @@ public class UserBean extends BasicFrontendBean {
 	}
 	
 	
-	public String saveUser() {
-		if(termsAndConditions = true){
-			
+	public String saveUser() {			
 			User user = new User();
 			user.setFirstName(firstName);
 			user.setLastName(lastName);
@@ -75,9 +72,6 @@ public class UserBean extends BasicFrontendBean {
 			}
 			return ""; //TODO: make sure this is the right way to 'redirect' to same page		
 		
-		}else{
-			return "register-user";
-		}
 	}
 	
 	public String updateUser() {
@@ -164,10 +158,6 @@ public class UserBean extends BasicFrontendBean {
 	public void setRepeatPassword(String repeatPassword) {
 		this.repeatPassword = repeatPassword;
 	}
-	public boolean isTermsAndConditions() {
-		return termsAndConditions;
-	}
-	public void setTermsAndConditions(boolean termsAndConditions) {
-		this.termsAndConditions = termsAndConditions;
-	}
+
+
 }

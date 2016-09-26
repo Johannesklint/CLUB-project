@@ -17,26 +17,20 @@
 		<!-- @param postEntity -->
 		<f:metadata>
 			<f:viewParam name="id" value="#{ news.selectedNewsId }"></f:viewParam>
-
 			<f:event listener="#{ news.useSelectedNews() }" type="preRenderView"></f:event>
 		</f:metadata>
 		
 		<h:form id="delete_news_form">
-		<h:panelGrid columns="2">
-		
+		<h:panelGrid columns="2" rendered="#{ loginUser.user.admin }">
 			<h:commandButton action="#{ news.setFieldFromSelectedNews() }" value="Edit fields"></h:commandButton>
-			
-			<h:commandButton action="#{ news.deleteNews() }" value="Delete"></h:commandButton>
-			
+			<h:commandButton action="#{ news.deleteNews() }" value="Delete"></h:commandButton>	
 		</h:panelGrid>
 		</h:form>
 		
 		<h:form id="update_news_form">
 			<h:panelGrid columns="2">
-			
 				<h:outputText value="#{news.title}"></h:outputText><br></br>
 				<h:outputText value="#{news.text}"></h:outputText>
-
 			</h:panelGrid>
 		</h:form>
 		

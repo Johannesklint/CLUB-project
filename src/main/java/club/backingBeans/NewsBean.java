@@ -3,11 +3,13 @@ package club.backingBeans;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Startup;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -17,6 +19,7 @@ import club.DAO.News;
 import club.DAO.User;
 import club.EJB.interfaces.LocalNews;
 import club.backingBeans.user.LoginUserBean;
+
 
 @Named(value="news")
 @RequestScoped
@@ -65,15 +68,38 @@ public class NewsBean {
 		return "create-news.xhtml";
 	}
 	
-	public News getSelectedNews(){
+	public String updateNews(){
+		
+		System.out.println("inne i update news " + title);
+		
+		redirectIfNotLoggedIn();
+		
+		News newsToUpdate = newsEJB.getNewsById(selectedNewsId);
+		newsToUpdate.setTitle(title);
+		newsToUpdate.setText(text);
+		
+			if(newsEJB.saveNews(newsToUpdate)){
+				return "home-index";
+			}
+		return "create-news.xhtml";
+	} 
+	
+	public String deleteNews(){
+		if(newsEJB.deleteNews(selectedNewsId)){
+			return "home-index";
+		}else{
+			return "";
+		}
+	}
+	
+	public void getSelectedNews(){
 		News news = newsEJB.getNewsById(selectedNewsId);
 		setAuthor(news.getAuthor());
 		setText(news.getText());
 		setTitle(news.getTitle());
 		
-		return news;
 	}
-	
+		
 	
 	public int getSelectedNewsId() {
 		return selectedNewsId;
@@ -117,6 +143,7 @@ public class NewsBean {
 		this.title = null;
 		this.text = null;
 	}
+	
 
 	private void redirectIfNotLoggedIn() {
 		setAuthorFromUserLoginBean();

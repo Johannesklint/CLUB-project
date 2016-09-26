@@ -18,11 +18,27 @@
 		
 		<f:metadata>
 			<f:viewParam name="id" value="#{ news.selectedNewsId }"></f:viewParam>
-			<f:event listener="#{ news.getSelectedNews }" type="preRenderView"></f:event>
+			<f:event listener="#{ news.getSelectedNews() }" type="preRenderView"></f:event>
 		</f:metadata>
 		
-		<h:outputText value="#{news.title}"></h:outputText>
-		<h:outputText value="#{news.text}"></h:outputText>
+		<h:form id="delete_news_form">
+		<h:panelGrid columns="2">
+		
+			<h:commandButton action="update-news-index" value="Edit fields"></h:commandButton>
+			
+			<h:commandButton action="#{ news.deleteNews() }" value="Delete"></h:commandButton>
+			
+		</h:panelGrid>
+		</h:form>
+		
+		<h:form id="update_news_form">
+			<h:panelGrid columns="2">
+			
+				<h:outputText value="#{news.title}"></h:outputText><br></br>
+				<h:outputText value="#{news.text}"></h:outputText>
+
+			</h:panelGrid>
+		</h:form>
 							
 	</ui:define>
 </ui:composition>

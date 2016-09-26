@@ -1,5 +1,7 @@
 package club.backingBeans;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -52,7 +54,7 @@ public class NewsBean {
 		news.setAuthor(this.author);
 		news.setTitle(this.title);
 		news.setText(this.text);
-		news.setCreated(LocalDateTime.now());
+		news.setCreated(Timestamp.from(Instant.now()));
 		
 		if(newsEJB.saveNews(news)) {
 			System.out.println("Saved news");

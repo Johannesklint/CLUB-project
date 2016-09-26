@@ -1,5 +1,6 @@
 package club.DAO;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public abstract class Post {
 	private String title;
 	private User author;
 	
-	private LocalDateTime created;
+	private Timestamp created;
 //	@OneToMany(targetEntity=User.class, mappedBy="comments")
 //	private List<User> followers;
 
@@ -65,12 +66,15 @@ public abstract class Post {
 	public void setAuthor(User author) {
 		this.author = author;
 	}
-	public LocalDateTime getCreated() {
+
+	public Timestamp getCreated() {
 		return created;
 	}
-	public void setCreated(LocalDateTime created) {
+
+	public void setCreated(Timestamp created) {
 		this.created = created;
 	}
+
 //	public List<User> getFollowers() {
 //		return followers;
 //	}

@@ -12,7 +12,7 @@
 	
 		<f:metadata>
 			<f:viewParam name="id" value="#{ news.selectedNewsId }"></f:viewParam>
-			<f:event listener="#{ news.getSelectedNews() }" type="preRenderView"></f:event>
+			<f:event listener="#{ news.setFieldFromSelectedNews() }" type="preRenderView"></f:event>
 		</f:metadata>
 	
 		<h:form id="update_news_form">

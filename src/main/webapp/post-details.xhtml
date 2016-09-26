@@ -15,16 +15,16 @@
 		<h3>EVENTS</h3>
 		
 		<!-- @param postEntity -->
-		
 		<f:metadata>
 			<f:viewParam name="id" value="#{ news.selectedNewsId }"></f:viewParam>
-			<f:event listener="#{ news.getSelectedNews() }" type="preRenderView"></f:event>
+
+			<f:event listener="#{ news.useSelectedNews() }" type="preRenderView"></f:event>
 		</f:metadata>
 		
 		<h:form id="delete_news_form">
 		<h:panelGrid columns="2">
 		
-			<h:commandButton action="update-news-index" value="Edit fields"></h:commandButton>
+			<h:commandButton action="#{ news.setFieldFromSelectedNews() }" value="Edit fields"></h:commandButton>
 			
 			<h:commandButton action="#{ news.deleteNews() }" value="Delete"></h:commandButton>
 			
@@ -39,6 +39,12 @@
 
 			</h:panelGrid>
 		</h:form>
+		
+		<ui:include src="WEB-INF/components/post-entity.xhtml">
+				<ui:param name="postEntity" value="#{ news.selectedNews }"></ui:param>
+				<ui:param name="includeReadMoreBtn" value="#{ false }"></ui:param>
+		</ui:include>	
+		
 							
 	</ui:define>
 </ui:composition>

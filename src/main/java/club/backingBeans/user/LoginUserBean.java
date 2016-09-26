@@ -5,6 +5,7 @@ import club.DAO.User;
 import club.EJB.interfaces.LocalUser;
 
 import java.io.Serializable;
+import java.security.KeyStore.PrivateKeyEntry;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -23,11 +24,50 @@ public class LoginUserBean implements Serializable {
 	private String username;
     private String password;
     private User loggedInUser;
+    private boolean loggedIn = true;
     
 	@EJB
 	private LocalUser userEJB;
 
-    public String getUsername() {
+	public String doLogin() {
+		
+		try {
+			userEJB.loginUser(username,password,this);
+			loggedIn = false;
+			return "home-index";				
+		}
+		catch(Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));//.addMessage(null, new FacesMessage(message));
+			return "login-index";
+		}
+		
+	}
+	
+	public String doLogout() {
+		loggedInUser = null;
+		loggedIn = true;
+		return "login-index";
+	}
+	
+	public void onLogin(User user) {
+		this.loggedInUser = user;
+	}
+	
+	
+    public boolean isloggedIn() {
+    	if(loggedIn == false){
+    		return loggedIn = false;
+    		
+    	}else{
+    		return loggedIn = true;
+    	}
+	}
+
+	public void setloggedIn(boolean isloggedIn) {
+		this.loggedIn = isloggedIn;
+	}
+
+	public String getUsername() {
 		return username;
 	}
 	
@@ -50,28 +90,5 @@ public class LoginUserBean implements Serializable {
 	public boolean isValidLogin() {
 		return loggedInUser != null;
 	}
-
-	public String doLogout() {
-		loggedInUser = null;
-		return "login-index";
-	}
-	
-	public String doLogin() {
-		
-		try {
-			userEJB.loginUser(username,password,this);
-			return "home-index";				
-		}
-		catch(Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));//.addMessage(null, new FacesMessage(message));
-			return "login-index";
-		}
-
-	}
-
-	public void onLogin(User user) {
-		this.loggedInUser = user;
-	}
-	
 
 }

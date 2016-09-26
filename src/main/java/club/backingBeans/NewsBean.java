@@ -2,19 +2,14 @@ package club.backingBeans;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
-import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Startup;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import club.DAO.News;
 import club.DAO.User;
 import club.EJB.interfaces.LocalNews;
@@ -31,6 +26,8 @@ public class NewsBean {
 	private User author;
 	private int id;
 	private int selectedNewsId;
+	private News selectedNews;
+	
 	
 	@Inject @Named("loginUser")
 	private LoginUserBean loginUserBean;
@@ -68,6 +65,7 @@ public class NewsBean {
 		return "create-news.xhtml";
 	}
 	
+
 	public String updateNews(){
 		
 		System.out.println("inne i update news " + title);
@@ -92,28 +90,46 @@ public class NewsBean {
 		}
 	}
 	
-	public void getSelectedNews(){
+	public String setFieldFromSelectedNews(){
 		News news = newsEJB.getNewsById(selectedNewsId);
 		setAuthor(news.getAuthor());
 		setText(news.getText());
 		setTitle(news.getTitle());
 		
+		return "update-news-index";
+		
 	}
 		
+
+	public void useSelectedNews(){
+		selectedNews = newsEJB.getNewsById(selectedNewsId);
+		System.out.println("getitng" + selectedNews.getTitle());
+	}
+
 	
 	public int getSelectedNewsId() {
 		return selectedNewsId;
 	}
 
 	public void setSelectedNewsId(int selectedNewsId) {
+		System.out.println("Setting selectedNews to: " + selectedNewsId);
 		this.selectedNewsId = selectedNewsId;
 	}
 
 	public List<News> getAll(){
 		return newsEJB.getAll();
 	}
-
 	
+	
+
+	public News getSelectedNews() {
+		return selectedNews;
+	}
+
+	public void setSelectedNews(News selectedNews) {
+		this.selectedNews = selectedNews;
+	}
+
 	public String getText() {
 		return text;
 	}

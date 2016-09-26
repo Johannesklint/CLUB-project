@@ -18,10 +18,10 @@ public class CommentListLimitBean {
 	@Inject @Named(value="listNews")
 	private ListNewsBean listNews;
 			
-	public boolean render(Comment c) {
+	public boolean render(Comment c, int limit) {
 
-		Integer limit = getLimit();
-		if(limit==null) return true;
+		//Integer limit = getLimit();
+		//if(limit==null) return true;
 		
 		int size = c.getPost().getComments().size();
 		int index = 0;

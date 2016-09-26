@@ -29,6 +29,15 @@ public class NewsDao {
 	public News getNewsById(int selectedNewsId) {
 		return entityManager.find(News.class, selectedNewsId);
 	}
+
+	public boolean deleteNews(int id) {
+		News news = entityManager.find(News.class, id);
+		if(news != null){
+			entityManager.remove(news);
+			return true;
+		}
+		return false;
+	}
 	
 	
 

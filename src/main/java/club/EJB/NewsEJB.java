@@ -31,5 +31,10 @@ public class NewsEJB implements LocalNews{
 	public News getNewsById(int selectedNewsId) {
 		return newsDao.getNewsById(selectedNewsId);
 	}
+
+	@Override
+	public boolean deleteNews(int id) {
+		return newsDao.deleteNews(id);
+	}
 	
 }

@@ -17,6 +17,7 @@ import club.DAO.User;
 import club.EJB.interfaces.LocalNews;
 import club.backingBeans.user.LoginUserBean;
 
+
 @Named(value="news")
 @RequestScoped
 @Startup
@@ -66,10 +67,47 @@ public class NewsBean {
 		return "create-news.xhtml";
 	}
 	
+
+	public String updateNews(){
+		
+		System.out.println("inne i update news " + title);
+		
+		redirectIfNotLoggedIn();
+		
+		News newsToUpdate = newsEJB.getNewsById(selectedNewsId);
+		newsToUpdate.setTitle(title);
+		newsToUpdate.setText(text);
+		
+			if(newsEJB.saveNews(newsToUpdate)){
+				return "home-index";
+			}
+		return "create-news.xhtml";
+	} 
+	
+	public String deleteNews(){
+		if(newsEJB.deleteNews(selectedNewsId)){
+			return "home-index";
+		}else{
+			return "";
+		}
+	}
+	
+	public String setFieldFromSelectedNews(){
+		News news = newsEJB.getNewsById(selectedNewsId);
+		setAuthor(news.getAuthor());
+		setText(news.getText());
+		setTitle(news.getTitle());
+		
+		return "update-news-index";
+		
+	}
+		
+
 	public void useSelectedNews(){
 		selectedNews = newsEJB.getNewsById(selectedNewsId);
 		System.out.println("getitng" + selectedNews.getTitle());
 	}
+
 	
 	public int getSelectedNewsId() {
 		return selectedNewsId;
@@ -123,6 +161,7 @@ public class NewsBean {
 		this.title = null;
 		this.text = null;
 	}
+	
 
 	private void redirectIfNotLoggedIn() {
 		setAuthorFromUserLoginBean();

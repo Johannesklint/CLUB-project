@@ -11,8 +11,11 @@ public interface LocalNews {
 
 	boolean saveNews(News news);
 
+	boolean deleteNews(int id);
+	
 	List<News> getAll();
 
 	News getNewsById(int selectedNewsId);
-		
+
+	
 }

@@ -24,15 +24,7 @@ public class RegisterUserBean {
 	private boolean approved;
 	
 	@EJB
-	private LocalUser userEJB;
-	
-	private void validateRegisterUser(User user) throws FormException {
-
-		if(!userEJB.hasUniqueEmail(user)) {
-			throw new FormException("A user with that email (" +user.getEmail() + ") already exists.");
-		}		
-	}
-	
+	private LocalUser userEJB;	
 	
 	
 	public String saveUser() {
@@ -45,7 +37,7 @@ public class RegisterUserBean {
 		user.setApprovedState(ApprovedState.PENDING);
 		
 		try {
-			validateRegisterUser(user);
+			userEJB.validateRegisterUser(user);
 		} catch (FormException e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 			return "register-user-index";

@@ -8,24 +8,25 @@
 
 <ui:composition>
 	<!-- @param postEntity. Post -->
-		<div class="">
-		
-			<h5>#{ postEntity.title }</h5>
-			<p>#{ postEntity.text }</p>
-			<p>#{ postEntity.author.fullName }</p>
 
-
+		<div class="post-box">
+			<div class="post-inner-box">
 			
-			
-			<h:link rendered="#{ includeReadMoreBtn }" outcome="post-details" value="Read more" includeViewParams="true">		
-			  <f:param name="id" value="#{ postEntity.id }"></f:param>		
-			</h:link>
+				<h5>#{ postEntity.title }<span> created: #{postEntity.created}</span></h5>
+				<p>#{ postEntity.text }</p>
+				<p>#{ postEntity.author.fullName }</p>
+				
+				
+				<h:link rendered="#{ includeReadMoreBtn }" outcome="post-details" value="Read more" includeViewParams="true">		
+				  <f:param name="id" value="#{ postEntity.id }"></f:param>		
+				</h:link>
 
-			<ui:include src="/WEB-INF/components/comment-list.xhtml">
-				<ui:param name="commentList" value="#{ postEntity.comments }"></ui:param>
-				<ui:param name="postEntity" value="#{ postEntity }"></ui:param>
-			</ui:include>
+				<ui:include src="/WEB-INF/components/comment-list.xhtml">
+					<ui:param name="commentList" value="#{ postEntity.comments }"></ui:param>
+					<ui:param name="postEntity" value="#{ postEntity }"></ui:param>
+				</ui:include>
 
+			</div>
 		</div>
 		
 			

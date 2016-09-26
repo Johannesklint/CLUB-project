@@ -10,6 +10,8 @@
 		<class>club.DAO.Event</class>
 		<class>club.DAO.News</class>
 		
+		<!-- https://en.wikibooks.org/wiki/Java_Persistence/Caching#Example_JPA_2.0_Cacheable_annotation -->
+		<shared-cache-mode>NONE</shared-cache-mode>
 		
 		<properties>
 			<!-- create db tables / insert data (or what ever) on deploy  -->

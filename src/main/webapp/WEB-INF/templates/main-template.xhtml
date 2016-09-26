@@ -13,13 +13,39 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>#{platform.title}</title>
 	  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-	  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<h:outputStylesheet library="css" name="mantis.css"  />
+	<link href="https://fonts.googleapis.com/css?family=David+Libre" rel="stylesheet"/>
 </h:head>
 
 <h:body >
 
+	<style>
+		.navbar{
+			
+		}
+		
+		ul.nav{
+			background: #{ theme.secondaryColorHEX };
+		}
+		ul.nav a:hover{
+			color: #{ theme.primaryColorHEX };
+		}
+		
+		.post-box{
+			border: 2px solid #{ theme.primaryColorHEX };
+			margin: 20px;
+		}
+		
+		.post-entity{
+			margin: 10px;
+			padding: 10px;
+		}
+		
+		.post-inner-box{
+			padding: 20px;
+		}
+		
+	</style>
 	
 	<!-- include nav-bar -->
 	<ui:include src="/WEB-INF/components/nav-bar.xhtml" />

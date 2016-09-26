@@ -30,20 +30,35 @@
 			   <h:inputSecret id="password" value="#{ registerUser.password }" required="true" label="Password" />
 	
 			   
-		 	   <h:outputLabel for="terms_and_conditions" >Terms And Conditions:</h:outputLabel>
+		 	   <h:outputLabel for="terms_and_conditions" onclick="readTerms(#{ platform.termsAndConditions })" >Terms And Conditions:</h:outputLabel>
 			   <h:selectBooleanCheckbox id="terms_and_conditions" value="#{ registerUser.termsAndConditions }" requiredMessage="You must agree with the Terms and Conditions" required="true" label="Terms and Conditions">
 			   		<f:validator validatorId="requiredCheckboxValidator" />
 			   </h:selectBooleanCheckbox>
 			   
+			   <h:inputHidden id="terms" value="#{platform.termsAndConditions}"></h:inputHidden>
+			   
+			   <div id="printTerms"></div>
 			   <br></br>
 			   
 			   <h:commandButton value="Create user" action="#{ registerUser.saveUser() }" />
+			   
+			   
 			</h:panelGrid>
 			
 		</h:form>
+		<button onclick="readTerms()">Read Terms and Conditions</button>
+     <script type="text/javascript" language="javascript">  
+	     function readTerms() {
+	    	   //document.getElementById("printTerms").innerHTML = text;
+	    	   
+	    	   var terms;
+	    	   
+	    	   document.getElementById("terms").value = terms;
+	    	   console.log(terms);
+	    	}
+	</script>
 	
-		
 	</ui:composition>
-	
+		
 	
 </html>

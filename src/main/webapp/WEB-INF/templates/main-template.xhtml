@@ -18,6 +18,35 @@
 </h:head>
 
 <h:body >
+
+	<style>
+		
+		.navbar{
+			
+		 }
+				
+		 ul.nav{
+			background: #{ theme.secondaryColorHEX };
+		 }
+		 ul.nav a:hover{
+			color: #{ theme.primaryColorHEX };
+		 }
+				
+		 .post-box{
+			border: 2px solid #{ theme.primaryColorHEX };
+			margin: 20px;
+		 }
+				
+		 .post-entity{
+			margin: 10px;
+			padding: 10px;
+		 }
+				
+		 .post-inner-box{
+			padding: 20px;
+		 }
+	
+	</style>
 	
 	<!-- include nav-bar -->
 	<ui:include src="/WEB-INF/components/nav-bar.xhtml" />

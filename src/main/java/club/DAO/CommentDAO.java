@@ -1,13 +1,19 @@
 package club.DAO;
 
-import club.EJB.interfaces.LocalComment;
+import javax.ejb.Stateful;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-public class CommentDAO implements LocalComment {
+import club.DAO.Comment;
 
-	@Override
-	public boolean saveComment() {
-		
-		return false;
+@Stateful
+public class CommentDAO {
+	
+	@PersistenceContext
+	private EntityManager manager;
+
+	public boolean save(Comment comment) {
+		return manager.merge(comment) != null;
 	}
 
 }

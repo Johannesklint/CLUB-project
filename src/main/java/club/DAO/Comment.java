@@ -23,13 +23,17 @@ public class Comment implements Serializable {
 	@Column(nullable=false)
 	private Timestamp created;
 
-	@Column(nullable=false, length=500)
+	@Column(nullable=false, length=140)
 	private String text;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name="author_id", nullable=false)
 	private User user;
+
+	@ManyToOne
+	@JoinColumn(name="post_id", nullable=false)
+	private Post post;
 
 	public Comment() {
 	}
@@ -64,6 +68,14 @@ public class Comment implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Post getPost() {
+		return this.post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
 	}
 
 }

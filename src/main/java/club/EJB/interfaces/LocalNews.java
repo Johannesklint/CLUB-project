@@ -1,7 +1,6 @@
 package club.EJB.interfaces;
 
 import java.util.List;
-
 import javax.ejb.Local;
 
 import club.DAO.News;

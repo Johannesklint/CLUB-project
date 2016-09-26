@@ -26,18 +26,11 @@ public class RegisterUserBean {
 
 	
 	@EJB
-	private LocalUser userEJB;
-	
-	private void validateRegisterUser(User user) throws FormException {
-
-		if(!userEJB.hasUniqueEmail(user)) {
-			throw new FormException("A user with that email (" +user.getEmail() + ") already exists.");
-		}		
-	}
-	
+	private LocalUser userEJB;	
 	
 	
 	public String saveUser() {
+
 		System.out.println("SAVEUSER");
 		if(termsAndConditions == true){
 			System.out.println("inne i true");
@@ -50,7 +43,7 @@ public class RegisterUserBean {
 			user.setApprovedState(ApprovedState.PENDING);
 			
 			try {
-				validateRegisterUser(user);
+				userEJB.validateRegisterUser(user);
 			} catch (FormException e) {
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 				return "register-user-index";
@@ -70,6 +63,34 @@ public class RegisterUserBean {
 			}
 		}else{
 			System.out.println("FAN" + termsAndConditions);
+
+			User user = new User();
+			user.setFirstName(firstName);
+			user.setLastName(lastName);
+			user.setEmail(email);
+			user.setPassword(password);
+			user.setAdmin(admin);
+			user.setApprovedState(ApprovedState.PENDING);
+			
+			try {
+				userEJB.validateRegisterUser(user);
+			} catch (FormException e) {
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+				return "register-user-index";
+			}
+	
+			boolean isSaved = false;
+			isSaved = userEJB.saveUser(user);
+	
+			
+			if (isSaved) {
+				this.firstName = null;
+				this.lastName = null;
+				this.email = null;
+				this.password = null;
+				return "wait-for-approve-index";		
+	
+			}
 		}
 		return "index"; //TODO: make sure this is the right way to 'redirect' to same page		
 	}

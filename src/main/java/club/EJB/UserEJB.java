@@ -9,6 +9,7 @@ import club.DAO.User.ApprovedState;
 import club.DAO.UserDAO;
 import club.EJB.interfaces.LocalUser;
 import club.backingBeans.user.LoginUserBean;
+import exceptions.FormException;
 
 @Stateless
 public class UserEJB implements LocalUser{
@@ -56,7 +57,15 @@ public class UserEJB implements LocalUser{
 		return userDao.getUserByEmailAndPassword(email,password);
 
 	}
-	
+
+	@Override
+	public void validateRegisterUser(User user) throws FormException {
+
+		if(!hasUniqueEmail(user)) {
+			throw new FormException("A user with that email (" +user.getEmail() + ") already exists.");
+		}		
+	}
+
 	@Override
 	public boolean hasUniqueEmail(User user) {
 		

@@ -121,8 +121,6 @@ public class NewsBean {
 	public List<News> getAll(){
 		return newsEJB.getAll();
 	}
-	
-	
 
 	public News getSelectedNews() {
 		return selectedNews;
@@ -180,6 +178,10 @@ public class NewsBean {
 	private void setAuthorFromUserLoginBean(){
 		this.author = loginUserBean.getUser();
 		
+	}
+
+	public Integer getCommentLimit() {
+		return null;
 	}
 	
 }

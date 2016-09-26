@@ -98,3 +98,32 @@
  .denied td{
  	background: #fcbdbd;
  }
+ 
+ <!-- Post Entity -->
+ 
+ .navbar{
+			
+ }
+		
+ ul.nav{
+	background: #{ theme.secondaryColorHEX };
+ }
+ ul.nav a:hover{
+	color: #{ theme.primaryColorHEX };
+ }
+		
+ .post-box{
+	border: 2px solid #{ theme.primaryColorHEX };
+	margin: 20px;
+ }
+		
+ .post-entity{
+	margin: 10px;
+	padding: 10px;
+ }
+		
+ .post-inner-box{
+	padding: 20px;
+ }
+ 
+ <!-- End of Post Entity -->

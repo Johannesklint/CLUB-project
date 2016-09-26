@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.sql.Timestamp;
 import club.DAO.Comment;
+import club.DAO.News;
 import club.DAO.Post;
 import club.DAO.User;
 import club.EJB.interfaces.LocalComment;
@@ -68,6 +69,7 @@ public class CommentBean {
 	}
 	
 	public void setPost(Post post) {
+		System.out.println("setting post to post: " + post);
 		this.post = post;
 	}
 	
@@ -80,12 +82,18 @@ public class CommentBean {
 	}
 	
 	public String saveComment() {
-		
+		System.out.println("In saveComment!");
 		Comment comment = new Comment();		
 		comment.setCreated(Timestamp.from(Instant.now()));
 		comment.setText(text);
 		comment.setUser(author);
-		comment.setPost(post);
+		
+		newsBean.useSelectedNews();
+		News post1 = newsBean.getSelectedNews();
+		System.out.println("post from newsBean is: " + post1);
+		comment.setPost(post1);
+		
+		System.out.println("Comment is: " + comment);
 
 		try {
 			commentEJB.validateComment(comment);

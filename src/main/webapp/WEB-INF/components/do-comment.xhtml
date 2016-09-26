@@ -18,9 +18,14 @@
 		<h:inputText id="text" value="#{ comment.text }" required="true" label="Text">
 			<f:validateLength minimum="1" maximum="140"/>
 		</h:inputText>	
-
+	
+		<p>Our entity title is: #{ postEntity.title}</p>
 		<h:commandButton value="Do comment" action="#{ comment.saveComment() }">
-			<f:setPropertyActionListener value="#{ postEntity }" target="#{ comment.post }"></f:setPropertyActionListener>
+			<!-- <f:setPropertyActionListener value="#{ postEntity }" target="#{ comment.post }"></f:setPropertyActionListener> -->
+			
+			<!-- Can we use something like this? 
+			<f:event listener="#{ news.useSelectedNews() }" type="preRenderView"></f:event> -->
+			
 		</h:commandButton>
 		
 	</h:form>

@@ -38,6 +38,7 @@ public class NewsBean {
 	private LocalNews newsEJB;
 	
 	public NewsBean() {
+		System.out.println("Creating new NewsBean");
 	}
 	
 	@PostConstruct
@@ -105,7 +106,7 @@ public class NewsBean {
 
 	public void useSelectedNews(){
 		selectedNews = newsEJB.getNewsById(selectedNewsId);
-		System.out.println("getitng" + selectedNews.getTitle());
+		System.out.println("getting news with title: " + selectedNews.getTitle());
 	}
 
 	

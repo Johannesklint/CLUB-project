@@ -1,12 +1,13 @@
 package club.backingBeans;
 
+import javax.ejb.Singleton;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import club.DAO.Theme;
 
 @Named(value = "theme")
-@RequestScoped
+@Singleton
 public class ThemeBean {
 	
 	private String primaryColorHEX;

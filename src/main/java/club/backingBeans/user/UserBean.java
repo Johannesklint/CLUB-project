@@ -27,6 +27,7 @@ public class UserBean extends BasicFrontendBean {
 	private String repeatPassword;
 	private boolean admin;
 	private ApprovedState approved;
+	private boolean termsAndConditions;
 	
 	@Named(value="loginUser")
 	@Inject
@@ -48,29 +49,35 @@ public class UserBean extends BasicFrontendBean {
 	
 	
 	public String saveUser() {
-		User user = new User();
-		user.setFirstName(firstName);
-		user.setLastName(lastName);
-		user.setEmail(email);
-		user.setPassword(password);
-		user.setAdmin(admin);
-		user.setApprovedState(approved);
-		
-		
-		
-		try {
-			if (userEJB.saveUser(user)) {
-				this.firstName = null;
-				this.lastName = null;
-				this.email = null;
-				this.password = null;
-				return "wait-for-approve-index";		
-
+		if(termsAndConditions = true){
+			
+			User user = new User();
+			user.setFirstName(firstName);
+			user.setLastName(lastName);
+			user.setEmail(email);
+			user.setPassword(password);
+			user.setAdmin(admin);
+			user.setApprovedState(approved);
+			
+			
+			
+			try {
+				if (userEJB.saveUser(user)) {
+					this.firstName = null;
+					this.lastName = null;
+					this.email = null;
+					this.password = null;
+					return "wait-for-approve-index";		
+					
+				}
+			} catch (Exception e) {
+				super.addFacesMessage(e.getMessage());
 			}
-		} catch (Exception e) {
-			super.addFacesMessage(e.getMessage());
+			return ""; //TODO: make sure this is the right way to 'redirect' to same page		
+		
+		}else{
+			return "register-user";
 		}
-		return ""; //TODO: make sure this is the right way to 'redirect' to same page		
 	}
 	
 	public String updateUser() {
@@ -156,5 +163,11 @@ public class UserBean extends BasicFrontendBean {
 	}
 	public void setRepeatPassword(String repeatPassword) {
 		this.repeatPassword = repeatPassword;
+	}
+	public boolean isTermsAndConditions() {
+		return termsAndConditions;
+	}
+	public void setTermsAndConditions(boolean termsAndConditions) {
+		this.termsAndConditions = termsAndConditions;
 	}
 }

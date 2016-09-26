@@ -27,7 +27,10 @@
 			   </h:inputText>
 			
 			   <h:outputLabel for="password">Password:</h:outputLabel>
-			   <h:inputSecret id="password" value="#{ registerUser.password }" required="true" label="Password" />        
+			   <h:inputSecret id="password" value="#{ registerUser.password }" required="true" label="Password" />
+			   
+			   <h:selectBooleanCheckbox value="#{ user.termsAndConditions }">Have you read the Terms and Conditions?</h:selectBooleanCheckbox>        
+			   <br></br>
 			   
 			   <h:commandButton value="Create user" action="#{ registerUser.saveUser() }" />
 			</h:panelGrid>

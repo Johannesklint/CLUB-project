@@ -20,6 +20,10 @@ INSERT INTO `club_db`.`platform`(`id`,`title`,`description`,`terms_and_condition
 INSERT INTO `club_db`.`POST` (`ID`, `created`, `post_type`, `TEXT`, `TITLE`, `AUTHOR_ID`) VALUES ('1', NOW(), 'NEWS', 'text for news', 'News - 1', 1);
 INSERT INTO `club_db`.`POST` (`ID`, `created`,  `post_type`, `TEXT`, `TITLE`, `AUTHOR_ID`) VALUES ('2', NOW(), 'NEWS', 'text for news', 'News - 2', 1);
 
-
+# Create Comment to post
+INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 1, by user 1', 1, 1);
+INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 1, by user 2', 1, 2);
+INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 1', 2, 1);
+INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 2', 2, 2);
 
 

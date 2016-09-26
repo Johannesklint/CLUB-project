@@ -33,7 +33,6 @@ public class PlatformBean {
 	private String title;
 	private String description;
 	private String termsAndConditions;
-	private List<UserBean> users;
 	
 	@Inject @Named(value="theme")
 	private ThemeBean theme;
@@ -63,18 +62,7 @@ public class PlatformBean {
 		System.out.println("i saveplatform" + theme == null);
 		
 		if(platformEJB.savePlatform(platform)){
-			
-			Platform p = platformEJB.getPlatformById(1);
-			this.title = p.getTitle();
-			this.description = p.getDescription();
-			this.termsAndConditions = p.getTermsAndCondition();
-			
-			Theme theme = p.getTheme();
-			
-			this.theme.setPrimaryColorHEX(theme.getPrimaryColorHex());
-			this.theme.setSecondaryColorHEX(theme.getSecondaryColorHex());
-			
-			
+			setPlatformBeanFieldsFromDb();
 		}
 		
 		return "index";
@@ -99,12 +87,7 @@ public class PlatformBean {
 	public void setTermsAndConditions(String termsAndConditions) {
 		this.termsAndConditions = termsAndConditions;
 	}
-	public List<UserBean> getUsers() {
-		return users;
-	}
-	public void setUsers(List<UserBean> users) {
-		this.users = users;
-	}
+
 	public ThemeBean getTheme() {
 		return theme;
 	}

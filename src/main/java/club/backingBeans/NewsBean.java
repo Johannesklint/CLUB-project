@@ -138,5 +138,9 @@ public class NewsBean {
 		this.author = loginUserBean.getUser();
 		
 	}
+
+	public Integer getCommentLimit() {
+		return null;
+	}
 	
 }

@@ -10,10 +10,11 @@
 	<!-- @param postEntity. Post -->
 		<div class="">
 		
-			
 			<h5>#{ postEntity.title }</h5>
 			<p>#{ postEntity.text }</p>
 			<p>#{ postEntity.author.fullName }</p>
+
+
 			
 			
 			<h:link rendered="#{ includeReadMoreBtn }" outcome="post-details" value="Read more" includeViewParams="true">		

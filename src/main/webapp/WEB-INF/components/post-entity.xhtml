@@ -8,18 +8,18 @@
 
 <ui:composition>
 	<!-- @param postEntity. Post -->
-		<div class="">
-		
+		<div class="post-box">
+			<div class="post-inner-box">
 			
-			<h5>#{ postEntity.title }<span> created: #{postEntity.created}</span></h5>
-			<p>#{ postEntity.text }</p>
-			<p>#{ postEntity.author.fullName }</p>
-			
-			
-			<h:link rendered="#{ includeReadMoreBtn }" outcome="post-details" value="Read more" includeViewParams="true">		
-			  <f:param name="id" value="#{ postEntity.id }"></f:param>		
-			</h:link>
-			
+				<h5>#{ postEntity.title }<span> created: #{postEntity.created}</span></h5>
+				<p>#{ postEntity.text }</p>
+				<p>#{ postEntity.author.fullName }</p>
+				
+				
+				<h:link rendered="#{ includeReadMoreBtn }" outcome="post-details" value="Read more" includeViewParams="true">		
+				  <f:param name="id" value="#{ postEntity.id }"></f:param>		
+				</h:link>
+			</div>
 		</div>
 		
 			

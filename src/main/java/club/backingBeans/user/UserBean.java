@@ -39,7 +39,7 @@ public class UserBean extends BasicFrontendBean {
 		
 	}
 	
-	@PostConstruct
+	@PostConstruct	
 	public void Init(){
 		this.email = loginUser.getUser().getEmail();
 		this.password = loginUser.getUser().getPassword();
@@ -47,30 +47,31 @@ public class UserBean extends BasicFrontendBean {
 	}
 	
 	
-	public String saveUser() {
-		User user = new User();
-		user.setFirstName(firstName);
-		user.setLastName(lastName);
-		user.setEmail(email);
-		user.setPassword(password);
-		user.setAdmin(admin);
-		user.setApprovedState(approved);
-		
-		
-		
-		try {
-			if (userEJB.saveUser(user)) {
-				this.firstName = null;
-				this.lastName = null;
-				this.email = null;
-				this.password = null;
-				return "wait-for-approve-index";		
-
+	public String saveUser() {			
+			User user = new User();
+			user.setFirstName(firstName);
+			user.setLastName(lastName);
+			user.setEmail(email);
+			user.setPassword(password);
+			user.setAdmin(admin);
+			user.setApprovedState(approved);
+			
+			
+			
+			try {
+				if (userEJB.saveUser(user)) {
+					this.firstName = null;
+					this.lastName = null;
+					this.email = null;
+					this.password = null;
+					return "wait-for-approve-index";		
+					
+				}
+			} catch (Exception e) {
+				super.addFacesMessage(e.getMessage());
 			}
-		} catch (Exception e) {
-			super.addFacesMessage(e.getMessage());
-		}
-		return ""; //TODO: make sure this is the right way to 'redirect' to same page		
+			return ""; //TODO: make sure this is the right way to 'redirect' to same page		
+		
 	}
 	
 	public String updateUser() {
@@ -157,4 +158,6 @@ public class UserBean extends BasicFrontendBean {
 	public void setRepeatPassword(String repeatPassword) {
 		this.repeatPassword = repeatPassword;
 	}
+
+
 }

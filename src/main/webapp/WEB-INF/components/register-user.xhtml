@@ -27,12 +27,21 @@
 			   </h:inputText>
 			
 			   <h:outputLabel for="password">Password:</h:outputLabel>
-			   <h:inputSecret id="password" value="#{ registerUser.password }" required="true" label="Password" />        
+			   <h:inputSecret id="password" value="#{ registerUser.password }" required="true" label="Password" />
+	
+			   
+		 	   <h:outputLabel for="terms_and_conditions" >Terms And Conditions:</h:outputLabel>
+			   <h:selectBooleanCheckbox id="terms_and_conditions" value="#{ registerUser.termsAndConditions }" requiredMessage="You must agree with the Terms and Conditions" required="true" label="Terms and Conditions">
+			   		<f:validator validatorId="requiredCheckboxValidator" />
+			   </h:selectBooleanCheckbox>
+			   
+			   <br></br>
 			   
 			   <h:commandButton value="Create user" action="#{ registerUser.saveUser() }" />
 			</h:panelGrid>
 			
 		</h:form>
+	
 		
 	</ui:composition>
 	

@@ -20,13 +20,9 @@
 <h:body >
 
 	<style>
-		
-		.navbar{
-			
-		 }
 				
 		 ul.nav{
-			background: #{ theme.secondaryColorHEX };
+			background-color: #{ theme.secondaryColorHEX };
 		 }
 		 ul.nav a:hover{
 			color: #{ theme.primaryColorHEX };
@@ -43,8 +39,32 @@
 		 }
 				
 		 .post-inner-box{
+		 	border: 2px solid #{ theme.primaryColorHEX };
+		 	color: gray;
 			padding: 20px;
 		 }
+		 
+		 .user-table {   
+		   border-collapse:collapse;
+		   border:1px solid #000000;
+		}
+		
+		.user-table-header {
+		   text-align:center;
+		   background:none repeat scroll 0 0 #B5B5B5;
+		   border-bottom:1px solid #000000;  
+		   padding:2px;
+		}
+		
+		.user-table-odd-row {
+		   text-align:center;
+		   background:none repeat scroll 0 0 #{ theme.primaryColorHEX };	
+		}
+		
+		.user-table-even-row {
+		   text-align:center;
+		   background:none repeat scroll 0 0 #{ theme.secondaryColorHEX };
+		}
 	
 	</style>
 	

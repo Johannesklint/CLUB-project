@@ -46,7 +46,7 @@ public class LoginUserBean extends BasicFrontendBean implements Serializable {
 	}
 	
 	
-    public boolean isloggedIn() {
+    public boolean isLoggedIn() {
     	return this.loggedInUser != null;
     }
 

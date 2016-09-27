@@ -15,7 +15,7 @@
 		<h1>Home</h1>
 		<!-- include post list, both news- and event-list -->
 		<ui:include src="/WEB-INF/components/post-list.xhtml">
-			<ui:param name="postList" value="#{ news.getAll() }"></ui:param>
+			<ui:param name="postList" value="#{ newsBean.getAll() }"></ui:param>
 		</ui:include>
 		
 	</ui:define>

@@ -76,7 +76,7 @@ public class RegisterUserBean {
 				userEJB.validateRegisterUser(user);
 			} catch (FormException e) {
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
-				return "register-user-index";
+				return "register-user";
 			}
 	
 			boolean isSaved = false;
@@ -88,7 +88,7 @@ public class RegisterUserBean {
 				this.lastName = null;
 				this.email = null;
 				this.password = null;
-				return "wait-for-approve-index";		
+				return "wait-for-approve";		
 	
 			}
 		}

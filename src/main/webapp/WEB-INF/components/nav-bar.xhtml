@@ -15,7 +15,7 @@
 	<h:panelGroup rendered="#{loginUser.validLogin}">
 	    <div>
 	    	Logged in as:
-	    	<a href="/clubproject/faces/update-user-index.xhtml">#{ loginUser.user.firstName } #{ loginUser.user.lastName }</a>
+	    	<h:link outcome="profile">#{ loginUser.user.fullName }</h:link>
 	    </div>
 		
 		<h:form id="logout_user_form">
@@ -30,13 +30,12 @@
 	    </div>
 	    
 	    <ul class="nav navbar-nav">
-	      <li class="active"><a href="/clubproject/">Home</a></li>
-	      <li><a href="/clubproject/faces/news.xhtml">News</a></li>
-			<li><a href="#">Events</a></li>
+	      <li><h:link outcome="home">Home</h:link></li>
+	      <li><h:link outcome="news-list">News</h:link></li>
 			<h:panelGroup rendered="#{loginUser.user.admin}">
-				<li><a href="/clubproject/faces/configure-platform-index.xhtml">Configure platform</a></li>
-				<li><a href="/clubproject/faces/admin-user-management.xhtml">Approve users</a></li>
-				<li><a href="/clubproject/faces/create-news.xhtml">Create News</a></li>
+				<li><h:link outcome="configure-platform">Configure platform</h:link></li>
+				<li><h:link outcome="user-management">Approve users</h:link></li>
+				<li><h:link outcome="create-news">Create News</h:link></li>
 			</h:panelGroup>
 	    </ul>
 	  </div>

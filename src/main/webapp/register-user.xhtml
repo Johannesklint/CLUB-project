@@ -11,9 +11,42 @@
 
 <ui:composition template="WEB-INF/templates/main-template.xhtml">
 	<ui:define name="pageContent">
-		<ui:include src="/WEB-INF/components/register-user.xhtml" />		
 	
-	<a href="/clubproject/">Back to index</a>
+		<h1>Create user: </h1>
+		<h:form id="create_user_form">
+			<h:messages>
+				<h:message for="create_user_form"></h:message>
+			</h:messages>	
+		
+			<h:panelGrid columns="2">
+			   <h:outputLabel for="first_name">First name:</h:outputLabel>
+			   <h:inputText id="first_name" value="#{ registerUser.firstName }" required="true" label="First name"/>
+			   
+			   <h:outputLabel for="last_name">Last name:</h:outputLabel>
+			   <h:inputText id="last_name" value="#{ registerUser.lastName }" required="true" label="Last name"/>
+			
+			   <h:outputLabel for="email">Email:</h:outputLabel>
+			   <h:inputText id="email" value="#{ registerUser.email }" required="true" label="Email">
+			   	<f:validateRegex pattern='((?=.*[a-z]).{6,})'></f:validateRegex>
+			   </h:inputText>
+			
+			   <h:outputLabel for="password">Password:</h:outputLabel>
+			   <h:inputSecret id="password" value="#{ registerUser.password }" required="true" label="Password" />
+	
+			   
+		 	   <h:outputLabel for="terms_and_conditions" >Terms And Conditions:</h:outputLabel>
+			   <h:selectBooleanCheckbox id="terms_and_conditions" value="#{ registerUser.termsAndConditions }" requiredMessage="You must agree with the Terms and Conditions" required="true" label="Terms and Conditions">
+			   		<f:validator validatorId="requiredCheckboxValidator" />
+			   </h:selectBooleanCheckbox>
+			   
+			   <br></br>
+			   
+			   <h:commandButton value="Create user" action="#{ registerUser.saveUser() }" />
+			</h:panelGrid>
+			
+		</h:form>		
+	
+		<h:link outcome="index">Back to index</h:link>
 	
 	</ui:define>
 </ui:composition>

@@ -11,9 +11,27 @@
 
 <ui:composition template="WEB-INF/templates/main-template.xhtml">
 	<ui:define name="pageContent">
-		<ui:include src="/WEB-INF/components/login-user.xhtml"/>
 	
-		No account? <a href="register-user-index.xhtml">Click here to create account</a>
+		<h1>Login: </h1>
+		<h:form id="login_user_form">
+			<h:messages>
+				<h:message for="login_user_form"></h:message>
+			</h:messages>	
+								
+			<h:panelGrid columns="2">
+			   <h:outputLabel for="email">Email:</h:outputLabel>
+			   <h:inputText id="email" value="#{ loginUser.username }" required="true" label="Email"/>
+			   
+			   <h:outputLabel for="password">Password:</h:outputLabel>
+			   <h:inputSecret id="password" value="#{ loginUser.password }" required="true" label="Password"/>
+						   
+						   
+			   <h:commandButton value="Login user" action="#{ loginUser.doLogin() }" />
+			</h:panelGrid>
+			
+		</h:form>
+	
+		No account? <h:link outcome="register-user">Click here to create account</h:link> 
 	
 	</ui:define>
 </ui:composition>

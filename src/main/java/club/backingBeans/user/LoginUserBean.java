@@ -34,11 +34,11 @@ public class LoginUserBean implements Serializable {
 		try {
 			userEJB.loginUser(username,password,this);
 			loggedIn = false;
-			return "home-index";				
+			return "home";				
 		}
 		catch(Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));//.addMessage(null, new FacesMessage(message));
-			return "login-index";
+			return "login";
 		}
 		
 	}
@@ -46,7 +46,7 @@ public class LoginUserBean implements Serializable {
 	public String doLogout() {
 		loggedInUser = null;
 		loggedIn = true;
-		return "login-index";
+		return "login";
 	}
 	
 	public void onLogin(User user) {

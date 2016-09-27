@@ -20,13 +20,13 @@
 								
 			<h:panelGrid columns="2">
 			   <h:outputLabel for="email">Email:</h:outputLabel>
-			   <h:inputText id="email" value="#{ loginUser.username }" required="true" label="Email"/>
+			   <h:inputText id="email" value="#{ loginUserBean.username }" required="true" label="Email"/>
 			   
 			   <h:outputLabel for="password">Password:</h:outputLabel>
-			   <h:inputSecret id="password" value="#{ loginUser.password }" required="true" label="Password"/>
+			   <h:inputSecret id="password" value="#{ loginUserBean.password }" required="true" label="Password"/>
 						   
 						   
-			   <h:commandButton value="Login user" action="#{ loginUser.doLogin() }" />
+			   <h:commandButton value="Login user" action="#{ loginUserBean.doLogin() }" />
 			</h:panelGrid>
 			
 		</h:form>

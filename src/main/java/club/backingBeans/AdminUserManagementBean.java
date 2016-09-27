@@ -15,7 +15,7 @@ import club.DAO.User.ApprovedState;
 import club.EJB.interfaces.LocalUser;
 
 
-@Named("userManagement")
+@Named("userManagementBean")
 @RequestScoped
 public class AdminUserManagementBean {
 	
@@ -29,7 +29,7 @@ public class AdminUserManagementBean {
 	public String denyApprovement() {
 		selectedUser.setApprovedState(ApprovedState.DENIED);
 		try {
-			userEJB.saveUser(selectedUser);
+			userEJB.create(selectedUser);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -39,7 +39,7 @@ public class AdminUserManagementBean {
 	public String grantApprovement() {
 		selectedUser.setApprovedState(ApprovedState.GRANTED);
 		try {
-			userEJB.saveUser(selectedUser);
+			userEJB.create(selectedUser);
 		} catch (Exception e) {
 			// TODO: have a save approved state method. then we do not have to validate email-conflict
 			e.printStackTrace();

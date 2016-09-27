@@ -36,13 +36,13 @@
 		<h:column>
 			<h:form>
 				<h:panelGroup rendered="#{show_deny_option}">
-					<h:commandButton value="Deny" action="#{ userManagement.denyApprovement() }">				
-						<f:setPropertyActionListener value="#{ u }" target="#{ userManagement.selectedUser }"></f:setPropertyActionListener>
+					<h:commandButton value="Deny" action="#{ userManagementBean.denyApprovement() }">				
+						<f:setPropertyActionListener value="#{ u }" target="#{ userManagementBean.selectedUser }"></f:setPropertyActionListener>
 					</h:commandButton>
 				</h:panelGroup>
 				<h:panelGroup rendered="#{show_grant_option}">
-					<h:commandButton value="Approve" action="#{ userManagement.grantApprovement() }">				
-						<f:setPropertyActionListener value="#{ u }" target="#{ userManagement.selectedUser }"></f:setPropertyActionListener>
+					<h:commandButton value="Approve" action="#{ userManagementBean.grantApprovement() }">				
+						<f:setPropertyActionListener value="#{ u }" target="#{ userManagementBean.selectedUser }"></f:setPropertyActionListener>
 					</h:commandButton>
 				</h:panelGroup>				
 			</h:form>

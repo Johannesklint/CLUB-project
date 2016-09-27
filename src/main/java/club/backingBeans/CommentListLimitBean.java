@@ -15,7 +15,7 @@ import club.DAO.Comment;
 @RequestScoped
 public class CommentListLimitBean {
 
-	@Inject @Named(value="listNews")
+	@Inject @Named(value="listNewsBean")
 	private ListNewsBean listNews;
 			
 	public boolean render(Comment c, int limit) {

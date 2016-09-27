@@ -6,7 +6,7 @@ import javax.inject.Named;
 
 import club.DAO.Theme;
 
-@Named(value = "theme")
+@Named(value = "themeBean")
 @Singleton
 public class ThemeBean {
 	

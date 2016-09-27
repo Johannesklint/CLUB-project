@@ -18,10 +18,11 @@ import club.DAO.Post;
 import club.DAO.User;
 import club.EJB.interfaces.LocalComment;
 import club.backingBeans.user.LoginUserBean;
-import club.backingBeans.user.UserBean;
-import exceptions.FormException;
+import club.backingBeans.user.UserProfileBean;
+import club.exceptions.ValidateException;
 
-@Named(value="comment")
+
+@Named(value="commentBean")
 @RequestScoped
 public class CommentBean {
 
@@ -33,10 +34,10 @@ public class CommentBean {
 	@EJB
 	private LocalComment commentEJB;
 
-	@Inject @Named("loginUser")
+	@Inject @Named("loginUserBean")
 	private LoginUserBean loginUserBean;
 
-	@Inject @Named(value="news")
+	@Inject @Named(value="newsBean")
 	private NewsBean newsBean;
 
 	@PostConstruct
@@ -106,7 +107,7 @@ public class CommentBean {
 				//TODO: how to handle this?
 			}
 		}
-		catch(FormException e) {
+		catch(ValidateException e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 		}
 		

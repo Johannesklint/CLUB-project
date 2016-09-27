@@ -8,18 +8,18 @@
 
 <ui:composition>
 
-	<h:panelGroup rendered="#{!loginUser.validLogin}">
+	<h:panelGroup rendered="#{!loginUserBean.validLogin}">
 	    <div>Not logged in</div>
 	</h:panelGroup>
 	
-	<h:panelGroup rendered="#{loginUser.validLogin}">
+	<h:panelGroup rendered="#{loginUserBean.validLogin}">
 	    <div>
 	    	Logged in as:
-	    	<h:link outcome="profile">#{ loginUser.user.fullName }</h:link>
+	    	<h:link outcome="profile">#{ loginUserBean.user.fullName }</h:link>
 	    </div>
 		
 		<h:form id="logout_user_form">
-	    	<h:commandButton value="Logout user" action="#{ loginUser.doLogout() }" />
+	    	<h:commandButton value="Logout user" action="#{ loginUserBean.doLogout() }" />
 		</h:form>
 	</h:panelGroup>
 
@@ -32,7 +32,7 @@
 	    <ul class="nav navbar-nav">
 	      <li><h:link outcome="home">Home</h:link></li>
 	      <li><h:link outcome="news-list">News</h:link></li>
-			<h:panelGroup rendered="#{loginUser.user.admin}">
+			<h:panelGroup rendered="#{loginUserBean.user.admin}">
 				<li><h:link outcome="configure-platform">Configure platform</h:link></li>
 				<li><h:link outcome="user-management">Approve users</h:link></li>
 				<li><h:link outcome="create-news">Create News</h:link></li>

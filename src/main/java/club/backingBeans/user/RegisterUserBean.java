@@ -9,12 +9,13 @@ import javax.inject.Named;
 import club.DAO.User;
 import club.DAO.User.ApprovedState;
 import club.EJB.interfaces.LocalUser;
-import exceptions.FormException;
+import club.backingBeans.BasicFrontendBean;
+import club.exceptions.ValidateException;
 
-@Named(value="registerUser")
+@Named(value="registerUserBean")
 @RequestScoped
-@Startup
-public class RegisterUserBean {
+//@Startup
+public class RegisterUserBean extends BasicFrontendBean{
 	
 	private String firstName;
 	private String lastName;
@@ -23,78 +24,30 @@ public class RegisterUserBean {
 	private boolean admin;
 	private boolean approved;
 	private Boolean termsAndConditions;
-
 	
 	@EJB
-	private LocalUser userEJB;	
+	private LocalUser userEJB;		
 	
-	
-	public String saveUser() {
+	public String create() {
+			
+		User user = buildFromFields();
+		
+		try {
+			userEJB.validateRegisterUser(user);
 
-		System.out.println("SAVEUSER");
-		if(termsAndConditions == true){
-			System.out.println("inne i true");
-			User user = new User();
-			user.setFirstName(firstName);
-			user.setLastName(lastName);
-			user.setEmail(email);
-			user.setPassword(password);
-			user.setAdmin(admin);
-			user.setApprovedState(ApprovedState.PENDING);
-			
-			try {
-				userEJB.validateRegisterUser(user);
-			} catch (FormException e) {
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
-				return "register-user-index";
+			if (userEJB.create(user) != null) {
+				return "wait-for-approve-index";			
+			}else {
+				super.addFacesMessage("User could not be saved");
+				return "";
 			}
-	
-			boolean isSaved = false;
-			isSaved = userEJB.saveUser(user);
-	
 			
-			if (isSaved) {
-				this.firstName = null;
-				this.lastName = null;
-				this.email = null;
-				this.password = null;
-				return "wait-for-approve-index";		
-	
-			}
-		}else{
-			System.out.println("FAN" + termsAndConditions);
+		} catch (ValidateException e) {
+			super.addFacesMessage(e.getMessage());
+			return "";
+		}		
 
-			User user = new User();
-			user.setFirstName(firstName);
-			user.setLastName(lastName);
-			user.setEmail(email);
-			user.setPassword(password);
-			user.setAdmin(admin);
-			user.setApprovedState(ApprovedState.PENDING);
-			
-			try {
-				userEJB.validateRegisterUser(user);
-			} catch (FormException e) {
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
-				return "register-user";
-			}
-	
-			boolean isSaved = false;
-			isSaved = userEJB.saveUser(user);
-	
-			
-			if (isSaved) {
-				this.firstName = null;
-				this.lastName = null;
-				this.email = null;
-				this.password = null;
-				return "wait-for-approve";		
-	
-			}
-		}
-		return "index"; //TODO: make sure this is the right way to 'redirect' to same page		
 	}
-	
 	
 	public boolean isApproved() {
 		return approved;
@@ -137,6 +90,16 @@ public class RegisterUserBean {
 	}
 	public void setTermsAndConditions(Boolean termsAndConditions) {
 		this.termsAndConditions = termsAndConditions;
-	}	
-
+	}
+	
+	private User buildFromFields() {
+		User user = new User();
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setEmail(email);
+		user.setPassword(password);
+		user.setAdmin(admin);
+		user.setApprovedState(ApprovedState.PENDING);
+		return user;
+	}
 }

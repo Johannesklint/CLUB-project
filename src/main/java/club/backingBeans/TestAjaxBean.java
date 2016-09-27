@@ -8,7 +8,7 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-@Named(value = "testAjax")
+@Named(value = "testAjaxBean")
 @SessionScoped
 public class TestAjaxBean implements Serializable {
 

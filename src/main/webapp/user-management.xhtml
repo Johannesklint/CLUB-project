@@ -14,10 +14,10 @@
 
 	<h1>User management</h1>
 
-	<ui:param name="allUsers" value="#{ userManagement.getAllUsers()}" />
+	<ui:param name="allUsers" value="#{ userManagementBean.getAllUsers()}" />
 	<p>Total number of user(s): #{ allUsers.size() }</p>
 
-	<ui:param name="pendingUsers" value="#{ userManagement.getAllApprovedPending() }" />
+	<ui:param name="pendingUsers" value="#{ userManagementBean.getAllApprovedPending() }" />
 	<h3>#{unApprovedUsers.size() } users waiting for approval</h3>	
 	<ui:include src="/WEB-INF/components/user-management-list.xhtml">
 		<ui:param name="users" value="#{ pendingUsers }"></ui:param>
@@ -26,7 +26,7 @@
 		<ui:param name="show_grant_option" value="#{true}"></ui:param>
 	</ui:include>
 
-	<ui:param name="grantedUsers" value="#{ userManagement.getAllApprovedGranted() }" />
+	<ui:param name="grantedUsers" value="#{ userManagementBean.getAllApprovedGranted() }" />
 	<h3>#{ approvedUsers.size() } approved user(s)</h3>
 	<ui:include src="/WEB-INF/components/user-management-list.xhtml">
 		<ui:param name="users" value="#{ grantedUsers }"></ui:param>
@@ -34,7 +34,7 @@
 		<ui:param name="show_deny_option" value="#{true}"></ui:param>
 	</ui:include>
 			
-	<ui:param name="deniedUsers" value="#{ userManagement.getAllApprovedDenied() }" />
+	<ui:param name="deniedUsers" value="#{ userManagementBean.getAllApprovedDenied() }" />
 	<h3>#{ approvedUsers.size() } denied user(s)</h3>
 	<ui:include src="/WEB-INF/components/user-management-list.xhtml">
 		<ui:param name="users" value="#{ deniedUsers }"></ui:param>

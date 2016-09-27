@@ -15,8 +15,8 @@
 		<h1>Manage news: </h1>
 	
 		<f:metadata>
-			<f:viewParam name="id" value="#{ news.selectedNewsId }"></f:viewParam>
-			<f:event listener="#{ news.setFieldFromSelectedNews() }" type="preRenderView"></f:event>
+			<f:viewParam name="id" value="#{ newsBean.selectedNewsId }"></f:viewParam>
+			<f:event listener="#{ newsBean.setFieldFromSelectedNews() }" type="preRenderView"></f:event>
 		</f:metadata>
 	
 		<h:form id="update_news_form">
@@ -26,10 +26,10 @@
 		
 			<h:panelGrid columns="2" columnsClasses="rightAlign, leftAlign">
                
- 				<h:inputText value="#{ news.title }"></h:inputText><br></br>
- 				<h:inputText value="#{ news.text }"></h:inputText><br></br>           
+ 				<h:inputText value="#{ newsBean.title }"></h:inputText><br></br>
+ 				<h:inputText value="#{ newsBean.text }"></h:inputText><br></br>           
                
-                <h:commandButton action="#{ news.updateNews() }" value="Update"></h:commandButton>
+                <h:commandButton action="#{ newsBean.updateNews() }" value="Update"></h:commandButton>
             </h:panelGrid>			
 		</h:form>		
 	

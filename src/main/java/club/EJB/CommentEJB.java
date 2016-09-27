@@ -6,7 +6,7 @@ import javax.ejb.Stateless;
 import club.DAO.Comment;
 import club.DAO.CommentDAO;
 import club.EJB.interfaces.LocalComment;
-import exceptions.FormException;
+import club.exceptions.ValidateException;
 
 @Stateless
 public class CommentEJB implements LocalComment {
@@ -20,7 +20,7 @@ public class CommentEJB implements LocalComment {
 	}
 	
 	@Override
-	public void validateComment(Comment comment) throws FormException {
+	public void validateComment(Comment comment) throws ValidateException {
 		// Since the input text validation (required and less and equal than 140) is in JSF-component.
 		// and relation to author and post can not be set in frontend (and validated in Entity)
 		// there is no reason to have anything here. Keeps a method here for continullity

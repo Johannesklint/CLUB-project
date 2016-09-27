@@ -10,7 +10,7 @@ import javax.inject.Named;
 import club.DAO.News;
 import club.EJB.interfaces.LocalNews;
 
-@Named(value="listNews")
+@Named(value="listNewsBean")
 @RequestScoped
 public class ListNewsBean {
 

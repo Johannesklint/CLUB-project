@@ -13,10 +13,10 @@ import javax.inject.Named;
 import club.DAO.Platform;
 import club.DAO.Theme;
 import club.EJB.interfaces.LocalPlatform;
-import club.backingBeans.user.UserBean;
+import club.backingBeans.user.UserProfileBean;
 
 
-@Named("platform")
+@Named("platformBean")
 @Startup
 @Singleton
 public class PlatformBean {
@@ -34,7 +34,7 @@ public class PlatformBean {
 	private String description;
 	private String termsAndConditions;
 	
-	@Inject @Named(value="theme")
+	@Inject @Named(value="themeBean")
 	private ThemeBean theme;
 	
 	@EJB

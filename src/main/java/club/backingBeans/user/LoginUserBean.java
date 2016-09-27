@@ -12,7 +12,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-@Named(value="loginUser")
+@Named(value="loginUserBean")
 @SessionScoped
 public class LoginUserBean implements Serializable {
 

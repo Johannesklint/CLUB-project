@@ -14,8 +14,8 @@ public class UserDAO {
 	@PersistenceContext
 	EntityManager entityManager;
 
-	public boolean saveToDB(User user) {
-		return entityManager.merge(user) != null;	
+	public User saveToDB(User user) {
+		return entityManager.merge(user);	
 	}
 
 

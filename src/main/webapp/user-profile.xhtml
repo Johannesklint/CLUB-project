@@ -21,22 +21,22 @@
 			<h:panelGrid columns="2" columnsClasses="rightAlign, leftAlign">
                
                 <h:outputLabel for="email" value="Email:"></h:outputLabel>
-                <h:inputText id="email" label="Email" value="#{ user.email }" required="true"></h:inputText>
+                <h:inputText id="email" label="Email" value="#{ userProfileBean.email }" required="true"></h:inputText>
                 
                 <h:outputLabel for="password" value="Password:"></h:outputLabel>
-                <h:inputSecret id="password" label="Password" value="#{ user.password }" required="true"></h:inputSecret>
+                <h:inputSecret id="password" label="Password" value="#{ userProfileBean.password }" required="true"></h:inputSecret>
                 
 				<h:outputLabel for="repeatPassword" value="Repeat password:"></h:outputLabel>
-                <h:inputSecret id="repeatPassword" label="Repeat Password" value="#{ user.repeatPassword }" required="true"></h:inputSecret>                     
+                <h:inputSecret id="repeatPassword" label="Repeat Password" value="#{ userProfileBean.repeatPassword }" required="true"></h:inputSecret>                     
                
-                <h:commandButton action="#{ user.updateUser() }" value="Save"></h:commandButton>
+                <h:commandButton action="#{ userProfileBean.update() }" value="Save"></h:commandButton>
             </h:panelGrid>			
 		</h:form>
 		<br></br><br></br><br></br>
 		<h:form id="delete_user_form">
 			<h:panelGrid columns="2">
 				<h:outputText value="Want do delete user?"></h:outputText>
-				<h:commandButton action="#{ user.deleteUser() }" value="Delete"></h:commandButton>
+				<h:commandButton action="#{ userProfileBean.delete() }" value="Delete"></h:commandButton>
 			</h:panelGrid>
 		</h:form>
 		

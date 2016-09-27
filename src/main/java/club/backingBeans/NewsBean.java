@@ -18,7 +18,7 @@ import club.EJB.interfaces.LocalNews;
 import club.backingBeans.user.LoginUserBean;
 
 
-@Named(value="news")
+@Named(value="newsBean")
 @RequestScoped
 @Startup
 public class NewsBean {
@@ -31,7 +31,7 @@ public class NewsBean {
 	private News selectedNews;
 	
 	
-	@Inject @Named("loginUser")
+	@Inject @Named("loginUserBean")
 	private LoginUserBean loginUserBean;
 	
 	@EJB

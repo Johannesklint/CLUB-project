@@ -11,16 +11,14 @@
 	<h:form id="create_comment_form">
 
 		<h:messages>
-			<h:message for="create_comment_form"></h:message>
+			<h:message for="text"></h:message>
 		</h:messages>	
 
-		<h:outputLabel for="text">Text:</h:outputLabel>
 		<h:inputText id="text" value="#{ comment.text }" required="true" label="Text">
 			<f:validateLength minimum="1" maximum="140"/>
 		</h:inputText>	
 	
-		<p>Our entity title is: #{ postEntity.title}</p>
-		<h:commandButton value="Do comment" action="#{ comment.saveComment() }">
+		<h:commandButton value="Comment" action="#{ comment.saveComment() }">
 			<!-- <f:setPropertyActionListener value="#{ postEntity }" target="#{ comment.post }"></f:setPropertyActionListener> -->
 			
 			<!-- Can we use something like this? 

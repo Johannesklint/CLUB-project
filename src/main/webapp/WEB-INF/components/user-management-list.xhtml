@@ -9,9 +9,7 @@
 
 <ui:composition>
 
-	<h:outputStylesheet library="css" name="user-table.css"></h:outputStylesheet>
-	
-	<!-- assumes the variable 'users' (a List<User>) is provided  -->
+	<!-- @param List<User> users  -->
 	
 	<h:dataTable value="#{ users }" var="u" rendered="#{ users.size() > 0 }"
 		styleClass="user-table"
@@ -54,4 +52,5 @@
 	
 	
 </ui:composition>
+
 </html>

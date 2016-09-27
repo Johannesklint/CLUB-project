@@ -65,7 +65,7 @@ public class PlatformBean {
 			setPlatformBeanFieldsFromDb();
 		}
 		
-		return "index";
+		return "";
 		
 	}	
 	

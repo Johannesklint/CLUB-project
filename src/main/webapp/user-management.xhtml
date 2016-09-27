@@ -1,13 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
-<ui:composition>
+<h:body>
+
+<ui:composition template="WEB-INF/templates/main-template.xhtml">
+	<ui:define name="pageContent">
 
 	<h2>User management</h2>
 
@@ -16,7 +19,7 @@
 
 	<ui:param name="pendingUsers" value="#{ userManagement.getAllApprovedPending() }" />
 	<h3>#{unApprovedUsers.size() } users waiting for approval</h3>	
-	<ui:include src="/WEB-INF/components/admin-user-management-table.xhtml">
+	<ui:include src="/WEB-INF/components/user-management-list.xhtml">
 		<ui:param name="users" value="#{ pendingUsers }"></ui:param>
 		<ui:param name="style" value="pending"></ui:param>
 		<ui:param name="show_deny_option" value="#{true}"></ui:param>
@@ -25,7 +28,7 @@
 
 	<ui:param name="grantedUsers" value="#{ userManagement.getAllApprovedGranted() }" />
 	<h3>#{ approvedUsers.size() } approved user(s)</h3>
-	<ui:include src="/WEB-INF/components/admin-user-management-table.xhtml">
+	<ui:include src="/WEB-INF/components/user-management-list.xhtml">
 		<ui:param name="users" value="#{ grantedUsers }"></ui:param>
 		<ui:param name="style" value="granted"></ui:param>
 		<ui:param name="show_deny_option" value="#{true}"></ui:param>
@@ -33,13 +36,17 @@
 			
 	<ui:param name="deniedUsers" value="#{ userManagement.getAllApprovedDenied() }" />
 	<h3>#{ approvedUsers.size() } denied user(s)</h3>
-	<ui:include src="/WEB-INF/components/admin-user-management-table.xhtml">
+	<ui:include src="/WEB-INF/components/user-management-list.xhtml">
 		<ui:param name="users" value="#{ deniedUsers }"></ui:param>
 		<ui:param name="style" value="denied"></ui:param>
 		<ui:param name="show_grant_option" value="#{true}"></ui:param>
 	</ui:include>
-	
-	
-</ui:composition>
 
+
+
+	</ui:define>
+</ui:composition>
+</h:body>
+
+	
 </html>

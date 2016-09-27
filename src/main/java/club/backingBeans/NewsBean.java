@@ -48,7 +48,7 @@ public class NewsBean {
 	}
 	
 	
-	public String createNews(){
+	public String createNews(){ // TODO: naming standard
 		
 		redirectIfNotLoggedIn();
 		
@@ -58,14 +58,14 @@ public class NewsBean {
 		news.setText(this.text);
 		news.setCreated(Timestamp.from(Instant.now()));
 		
-		if(newsEJB.saveNews(news)) {
+		if(newsEJB.saveNews(news)) { // TODO: return saved entity
 			System.out.println("Saved news");
 			clearBeanFields();
 		} else {
 			System.out.println("Failed to save news");
 		}
 		
-		return "create-news.xhtml";
+		return "create-news.xhtml"; // TODO:  redirect to post-details.xhtml?id= + saved.id
 	}
 	
 

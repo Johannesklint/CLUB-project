@@ -29,10 +29,10 @@
 			   <h:inputTextarea id="terms_and_conditions" value="#{ platformBean.termsAndConditions }" required="true" label="terms_and_conditions"/>
        			  
        		   <h:outputLabel for="primary_color">Primary color:</h:outputLabel>
-			   <h:inputText id="primary_color" value="#{ themBean.primaryColorHEX }" required="true" label="primary_color"/>
+			   <h:inputText id="primary_color" value="#{ themeBean.primaryColorHEX }" required="true" label="primary_color"/>
        		   
        		   <h:outputLabel for="secondary_color">Primary color:</h:outputLabel>
-			   <h:inputText id="secondary_color" value="#{ themBean.secondaryColorHEX }" required="true" label="secondary_color"/>
+			   <h:inputText id="secondary_color" value="#{ themeBean.secondaryColorHEX }" required="true" label="secondary_color"/>
        		      
 			   <h:commandButton value="Create platform" action="#{ platformBean.savePlatform() }" />
 			</h:panelGrid>

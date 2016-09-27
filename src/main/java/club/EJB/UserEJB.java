@@ -9,6 +9,7 @@ import club.DAO.User.ApprovedState;
 import club.DAO.UserDAO;
 import club.EJB.interfaces.LocalUser;
 import club.backingBeans.user.LoginUserBean;
+import club.exceptions.LoginException;
 import club.exceptions.ValidateException;
 
 @Stateless
@@ -28,15 +29,15 @@ public class UserEJB implements LocalUser{
 	}	
 	
 	@Override
-	public void loginUser(String username, String password, LoginUserBean loginUserBean) throws Exception {
+	public void loginUser(String username, String password, LoginUserBean loginUserBean) throws LoginException{
 		User tryLoginUser = getUserByEmailAndPassword(username,password);	
 
 		if(tryLoginUser==null) {
-			throw new Exception("Not correct password for that user (or user do not exists)");			
+			throw new LoginException("Not correct password for that user (or user do not exists)");			
 		}
 
 		if(tryLoginUser.getApprovedState()!=ApprovedState.GRANTED) {
-			throw new Exception("This user is not approved by admin, pls try again later.");
+			throw new LoginException("This user is not approved by admin, pls try again later.");
 		}
 			
 		loginUserBean.onLogin(tryLoginUser);		

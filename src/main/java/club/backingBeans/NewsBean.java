@@ -69,25 +69,25 @@ public class NewsBean {
 	}
 	
 
-	public String updateNews(){
+	public String update(){
 		
 		System.out.println("inne i update news " + title);
 		
 		redirectIfNotLoggedIn();
 		
 		News newsToUpdate = newsEJB.getNewsById(selectedNewsId);
-		newsToUpdate.setTitle(title);
+		newsToUpdate.setTitle(title); ///TODO erik fix this mofaka meta data kanske?
 		newsToUpdate.setText(text);
 		
 			if(newsEJB.saveNews(newsToUpdate)){
-				return "home-index";
+				return "home";
 			}
-		return "create-news.xhtml";
+		return "create-news";
 	} 
 	
 	public String deleteNews(){
 		if(newsEJB.deleteNews(selectedNewsId)){
-			return "home-index";
+			return "home";
 		}else{
 			return "";
 		}
@@ -99,7 +99,7 @@ public class NewsBean {
 		setText(news.getText());
 		setTitle(news.getTitle());
 		
-		return "update-news-index";
+		return "update-news";
 		
 	}
 		
@@ -170,7 +170,7 @@ public class NewsBean {
 		
 		try {
 			ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-			context.redirect(context.getRequestContextPath() + "/faces/login-index.xhtml");				
+			context.redirect(context.getRequestContextPath() + "/faces/login.xhtml");				
 		} catch(Exception ex) {
 			// YOLO
 		}

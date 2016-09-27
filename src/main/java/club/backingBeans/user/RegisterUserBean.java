@@ -36,7 +36,7 @@ public class RegisterUserBean extends BasicFrontendBean{
 			userEJB.validateRegisterUser(user);
 
 			if (userEJB.create(user) != null) {
-				return "wait-for-approve-index";			
+				return "wait-for-approve";			
 			}else {
 				super.addFacesMessage("User could not be saved");
 				return "";

@@ -20,7 +20,7 @@
 				  <f:param name="id" value="#{ postEntity.id }"></f:param>		
 				</h:link>
 
-				<h:panelGroup rendered="#{ compactCommentList}">
+				<h:panelGroup rendered="#{ compactCommentList }">
 
 					<ui:include src="/WEB-INF/components/comment-list-compact.xhtml">
 						<ui:param name="commentList" value="#{ postEntity.comments }"></ui:param>

@@ -19,7 +19,7 @@
 		
 		<!-- include post list news-list -->
 		<ui:include src="/WEB-INF/components/post-list.xhtml">
-			<ui:param name="postList" value="#{ listNews.getAll() }"></ui:param>
+			<ui:param name="postList" value="#{ listNewsBean.getAll() }"></ui:param>
 		</ui:include>
 	</ui:define>
 </ui:composition>

@@ -45,6 +45,11 @@
 						<f:setPropertyActionListener value="#{ u }" target="#{ userManagementBean.selectedUser }"></f:setPropertyActionListener>
 					</h:commandButton>
 				</h:panelGroup>				
+				<h:panelGroup rendered="#{ true }">
+					<h:commandButton value="Switch Admin state" action="#{ userManagementBean.switchAdminState() }">				
+						<f:setPropertyActionListener value="#{ u }" target="#{ userManagementBean.selectedUser }"></f:setPropertyActionListener>
+					</h:commandButton>
+				</h:panelGroup>				
 			</h:form>
 		</h:column>
 

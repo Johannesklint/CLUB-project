@@ -56,7 +56,7 @@ public class NewsBean extends BasicFrontendBean {
 		
 		if(savedNews != null) {
 			System.out.println("Saved news");
-			return "news-list";
+			return "post-details.xhtml?faces-redirect=true&id=" + savedNews.getId();
 		} else {
 			System.out.println("Failed to save news");
 			return "";
@@ -74,7 +74,7 @@ public class NewsBean extends BasicFrontendBean {
 		
 		News savedNews = newsEJB.saveNews(newsToUpdate);
 			if(savedNews != null){
-				return "post-details.xhtml?id=" + savedNews.getId();
+				return "post-details.xhtml?faces-redirect=true&id=" + savedNews.getId();
 			}
 		return "";
 	} 

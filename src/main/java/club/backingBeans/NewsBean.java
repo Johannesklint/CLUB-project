@@ -21,7 +21,7 @@ import club.backingBeans.user.LoginUserBean;
 @Named(value="newsBean")
 @RequestScoped
 @Startup
-public class NewsBean {
+public class NewsBean extends BasicFrontendBean {
 
 	private String text;
 	private String title;
@@ -43,14 +43,12 @@ public class NewsBean {
 	
 	@PostConstruct
 	public void init() {
-		redirectIfNotLoggedIn();
+		super.redirectIfNotLoggedIn(loginUserBean);
 		this.author = loginUserBean.getUser();
 	}
 	
 	
 	public String createNews(){ // TODO: naming standard
-		
-		redirectIfNotLoggedIn();
 		
 		News news = new News();
 		news.setAuthor(this.author);
@@ -72,8 +70,6 @@ public class NewsBean {
 	public String update(){
 		
 		System.out.println("inne i update news " + title);
-		
-		redirectIfNotLoggedIn();
 		
 		News newsToUpdate = newsEJB.getNewsById(selectedNewsId);
 		newsToUpdate.setTitle(title); ///TODO erik fix this mofaka meta data kanske?
@@ -161,26 +157,6 @@ public class NewsBean {
 		this.text = null;
 	}
 	
-
-	private void redirectIfNotLoggedIn() {
-		setAuthorFromUserLoginBean();
-		
-		if(this.author != null) return; // everything is ok!
-		
-		
-		try {
-			ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-			context.redirect(context.getRequestContextPath() + "/faces/login.xhtml");				
-		} catch(Exception ex) {
-			// YOLO
-		}
-	}
-	
-	private void setAuthorFromUserLoginBean(){
-		this.author = loginUserBean.getUser();
-		
-	}
-
 	public Integer getCommentLimit() {
 		return null;
 	}

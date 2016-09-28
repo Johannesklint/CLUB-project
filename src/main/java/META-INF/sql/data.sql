@@ -17,10 +17,10 @@ INSERT INTO `club_db`.`theme`(`id`,`primary_color_hex`,`secondary_color_hex`) VA
 INSERT INTO `club_db`.`platform`(`id`,`title`,`description`,`terms_and_condition`,`theme_id`) VALUES (null,'Liseberg','Bunnys and stuff','Terms and condition',1);
 
 # Create Post > News
-INSERT INTO `club_db`.`post` (`ID`, `created`, `post_type`, `TEXT`, `TITLE`, `AUTHOR_ID`) VALUES (null, NOW(),'NEWS', 'text for news 1', 'News - 1', 1);
-INSERT INTO `club_db`.`post` (`ID`, `created`, `post_type`, `TEXT`, `TITLE`, `AUTHOR_ID`) VALUES (null, NOW(),'NEWS', 'text for news 2', 'News - 2', 1);
-INSERT INTO `club_db`.`POST` (`ID`, `created`, `post_type`, `TEXT`, `TITLE`, `AUTHOR_ID`) VALUES (null, NOW(), 'NEWS', 'text for news 3', 'News - 3', 1);
-INSERT INTO `club_db`.`POST` (`ID`, `created`, `post_type`, `TEXT`, `TITLE`, `AUTHOR_ID`) VALUES (null, NOW(), 'NEWS', 'text for news 4', 'News - 4', 1);
+INSERT INTO `club_db`.`post` (`ID`, `created`, `post_type`, `TEXT`, `TITLE`, `AUTHOR_ID`, `hidden`) VALUES (null, NOW(),'NEWS', 'text for news 1', 'News - 1', 1, false);
+INSERT INTO `club_db`.`post` (`ID`, `created`, `post_type`, `TEXT`, `TITLE`, `AUTHOR_ID`, `hidden`) VALUES (null, NOW(),'NEWS', 'text for news 2', 'News - 2', 1, true);
+INSERT INTO `club_db`.`post` (`ID`, `created`, `post_type`, `TEXT`, `TITLE`, `AUTHOR_ID`, `hidden`) VALUES (null, NOW(), 'NEWS', 'text for news 3', 'News - 3', 1, true);
+INSERT INTO `club_db`.`post` (`ID`, `created`, `post_type`, `TEXT`, `TITLE`, `AUTHOR_ID`, `hidden`) VALUES (null, NOW(), 'NEWS', 'text for news 4', 'News - 4', 1, true);
 
 # Create Comment to post
 INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 1, by user 1', 1, 1);

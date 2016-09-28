@@ -17,6 +17,7 @@
 		<f:metadata>
 			<f:viewParam name="id" value="#{ newsBean.selectedNewsId }"></f:viewParam>
 			<f:event listener="#{ newsBean.setFieldFromSelectedNews() }" type="preRenderView"></f:event>
+			
 		</f:metadata>
 	
 		<h:form id="update_news_form">
@@ -29,10 +30,9 @@
  				<h:inputText value="#{ newsBean.title }"></h:inputText><br></br>
  				<h:inputText value="#{ newsBean.text }"></h:inputText><br></br>           
                
-                <h:commandButton action="#{ newsBean.update() }" value="Update"></h:commandButton>
+                <h:commandButton action="#{ newsBean.update() }" value="Update" ></h:commandButton>
             </h:panelGrid>			
 		</h:form>		
-	
 	
 	</ui:define>
 </ui:composition>

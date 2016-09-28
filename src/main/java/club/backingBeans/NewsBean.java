@@ -76,9 +76,9 @@ public class NewsBean extends BasicFrontendBean {
 		newsToUpdate.setText(text);
 		
 			if(newsEJB.saveNews(newsToUpdate)){
-				return "home";
+				return "post-details.xhtml?id=" + selectedNewsId;
 			}
-		return "create-news";
+		return "";
 	} 
 	
 	public String deleteNews(){
@@ -89,14 +89,11 @@ public class NewsBean extends BasicFrontendBean {
 		}
 	}
 	
-	public String setFieldFromSelectedNews(){
+	public void setFieldFromSelectedNews(){
 		News news = newsEJB.getNewsById(selectedNewsId);
 		setAuthor(news.getAuthor());
 		setText(news.getText());
 		setTitle(news.getTitle());
-		
-		return "update-news";
-		
 	}
 		
 

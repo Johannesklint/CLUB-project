@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
@@ -43,7 +44,10 @@ public abstract class Post {
 
 	@OneToMany(mappedBy="post")
 	private List<Comment> comments;
-	
+
+	@Column(name="hidden", nullable=false)
+	private boolean hidden;
+
 	public Post() {}
 
 	public Integer getId() {
@@ -72,17 +76,20 @@ public abstract class Post {
 	public void setAuthor(User author) {
 		this.author = author;
 	}
-
 	public Timestamp getCreated() {
 		return created;
 	}
-
 	public void setCreated(Timestamp created) {
 		this.created = created;
 	}
-	
 	public List<Comment> getComments() {
 		return comments;
+	}
+	public boolean getHidden() {
+		return this.hidden;
+	}
+	public void setHidden(boolean hidden) {
+		this.hidden = hidden;
 	}
 	
 //	public List<User> getFollowers() {

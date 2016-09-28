@@ -49,39 +49,6 @@ public class CommentBean {
 	public CommentBean(){
 	}
 	
-	public String getText() {
-		return text;
-	}
-	
-	public void setText(String text) {
-		this.text = text;
-	}
-	
-	public User getAuthor() {
-		return author;
-	}
-	
-	public void setAuthor(User author) {
-		this.author = author;
-	}
-	
-	public Post getPost() {
-		return post;
-	}
-	
-	public void setPost(Post post) {
-		System.out.println("setting post to post: " + post);
-		this.post = post;
-	}
-	
-	public LocalDateTime getCreated() {
-		return created;
-	}
-	
-	public void setCreated(LocalDateTime created) {
-		this.created = created;
-	}
-	
 	public String saveComment() {
 		System.out.println("In saveComment!");
 		Comment comment = new Comment();		
@@ -113,6 +80,40 @@ public class CommentBean {
 		
 		return "";
 	}
+	
+	public String getText() {
+		return text;
+	}
+	
+	public void setText(String text) {
+		this.text = text;
+	}
+	
+	public User getAuthor() {
+		return author;
+	}
+	
+	public void setAuthor(User author) {
+		this.author = author;
+	}
+	
+	public Post getPost() {
+		return post;
+	}
+	
+	public void setPost(Post post) {
+		this.post = post;
+	}
+	
+	public LocalDateTime getCreated() {
+		return created;
+	}
+	
+	public void setCreated(LocalDateTime created) {
+		this.created = created;
+	}
+	
+
 
 
 		

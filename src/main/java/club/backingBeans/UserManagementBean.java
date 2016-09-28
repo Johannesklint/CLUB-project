@@ -37,6 +37,20 @@ public class UserManagementBean extends BasicFrontendBean{
 		super.redirectIfNotAdmin(loginUserBean);
 	}
 
+	public String switchAdminState() {
+		
+		if(selectedUser.getAdmin()==false) {
+			selectedUser.setAdmin(true);
+		} else {
+			selectedUser.setAdmin(false);			
+		}
+
+		if(userEJB.update(selectedUser)!=null) {
+			
+			return "";			
+		}
+		return ""; //TODO: handle erroe
+	}
 
 	public String denyApprovement() {
 		selectedUser.setApprovedState(ApprovedState.DENIED);

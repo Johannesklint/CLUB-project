@@ -11,10 +11,6 @@ import javax.inject.Named;
 import club.backingBeans.user.LoginUserBean;
 
 public abstract class BasicFrontendBean {
-
-	@Inject @Named(value="loginUserBean")
-	LoginUserBean loginUserBean;
-	
 	
 	public void addFacesMessage(String message) {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(message));

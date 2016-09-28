@@ -8,7 +8,7 @@ import club.DAO.News;
 @Local
 public interface LocalNews {
 
-	boolean saveNews(News news);
+	News saveNews(News news);
 
 	boolean deleteNews(int id);
 	

@@ -20,7 +20,6 @@ import club.backingBeans.user.LoginUserBean;
 
 @Named(value="newsBean")
 @RequestScoped
-@Startup
 public class NewsBean extends BasicFrontendBean {
 
 	private String text;
@@ -50,20 +49,17 @@ public class NewsBean extends BasicFrontendBean {
 	
 	public String createNews(){ // TODO: naming standard
 		
-		News news = new News();
-		news.setAuthor(this.author);
-		news.setTitle(this.title);
-		news.setText(this.text);
-		news.setCreated(Timestamp.from(Instant.now()));
+		News newsToSave = getNewsEntityFromFields();
 		
-		if(newsEJB.saveNews(news)) { // TODO: return saved entity
+		News savedNews = newsEJB.saveNews(newsToSave);
+		
+		if(savedNews != null) {
 			System.out.println("Saved news");
-			clearBeanFields();
+			return "news-list";
 		} else {
 			System.out.println("Failed to save news");
+			return "";
 		}
-		
-		return "create-news.xhtml"; // TODO:  redirect to post-details.xhtml?id= + saved.id
 	}
 	
 
@@ -72,11 +68,12 @@ public class NewsBean extends BasicFrontendBean {
 		System.out.println("inne i update news " + title);
 		
 		News newsToUpdate = newsEJB.getNewsById(selectedNewsId);
-		newsToUpdate.setTitle(title); ///TODO erik fix this mofaka meta data kanske?
+		newsToUpdate.setTitle(title);
 		newsToUpdate.setText(text);
 		
-			if(newsEJB.saveNews(newsToUpdate)){
-				return "post-details.xhtml?id=" + selectedNewsId;
+		News savedNews = newsEJB.saveNews(newsToUpdate);
+			if(savedNews != null){
+				return "post-details.xhtml?id=" + savedNews.getId();
 			}
 		return "";
 	} 
@@ -148,14 +145,18 @@ public class NewsBean extends BasicFrontendBean {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	private void clearBeanFields() {
-		this.title = null;
-		this.text = null;
-	}
 	
 	public Integer getCommentLimit() {
 		return null;
+	}
+	
+	private News getNewsEntityFromFields() {
+		News news = new News();
+		news.setAuthor(this.author);
+		news.setTitle(this.title);
+		news.setText(this.text);
+		news.setCreated(Timestamp.from(Instant.now()));
+		return news;
 	}
 	
 }

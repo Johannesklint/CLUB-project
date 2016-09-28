@@ -15,8 +15,8 @@ public class NewsDao {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public boolean save(News news) {
-		return entityManager.merge(news) != null;
+	public News save(News news) {
+		return entityManager.merge(news);
 	}
 
 	@SuppressWarnings("unchecked")

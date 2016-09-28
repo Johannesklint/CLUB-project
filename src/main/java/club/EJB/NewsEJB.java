@@ -17,7 +17,7 @@ public class NewsEJB implements LocalNews{
 	private NewsDao newsDao;
 
 	@Override
-	public boolean saveNews(News news) {
+	public News saveNews(News news) {
 		return newsDao.save(news);
 	}
 

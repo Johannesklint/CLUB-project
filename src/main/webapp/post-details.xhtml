@@ -20,7 +20,10 @@
 		
 		<h:form id="manage_news_form">
 		<h:panelGrid columns="2" rendered="#{ loginUserBean.user.admin }">
-			<h:commandButton action="#{ newsBean.setFieldFromSelectedNews() }" value="Edit fields"></h:commandButton>
+			
+			<h:button outcome="update-news" value="Edit fields">
+				<f:param name="id" value="#{ newsBean.selectedNewsId }"></f:param>
+			</h:button>
 			<h:commandButton action="#{ newsBean.deleteNews() }" value="Delete"></h:commandButton>	
 		</h:panelGrid>
 		</h:form>

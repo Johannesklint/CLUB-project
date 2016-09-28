@@ -31,7 +31,10 @@
 	    
 	    <ul class="nav navbar-nav">
 	      <li><h:link outcome="home">Home</h:link></li>
-	      <li><h:link outcome="news-list">News</h:link></li>
+	      <h:panelGroup rendered="#{loginUserBean.validLogin}">
+	      		<li><h:link outcome="news-list">News</h:link></li>
+	      </h:panelGroup>
+	      
 			<h:panelGroup rendered="#{loginUserBean.user.admin}">
 				<li><h:link outcome="configure-platform">Configure platform</h:link></li>
 				<li><h:link outcome="user-management">Approve users</h:link></li>

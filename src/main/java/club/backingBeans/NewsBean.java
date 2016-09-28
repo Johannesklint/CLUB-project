@@ -49,6 +49,7 @@ public class NewsBean extends BasicFrontendBean {
 	
 	public String createNews(){ // TODO: naming standard
 		
+
 		News newsToSave = getNewsEntityFromFields();
 		
 		News savedNews = newsEJB.saveNews(newsToSave);
@@ -79,11 +80,14 @@ public class NewsBean extends BasicFrontendBean {
 	} 
 	
 	public String deleteNews(){
-		if(newsEJB.deleteNews(selectedNewsId)){
-			return "home";
-		}else{
-			return "";
+
+		News newsToUpdate = newsEJB.getNewsById(selectedNewsId);
+		newsToUpdate.setHidden(true);
+
+		if(newsEJB.saveNews(newsToUpdate) != null){
+			return "news-list.xhtml";
 		}
+		return ""; //TODO: do error handler
 	}
 	
 	public void setFieldFromSelectedNews(){
@@ -155,6 +159,7 @@ public class NewsBean extends BasicFrontendBean {
 		news.setAuthor(this.author);
 		news.setTitle(this.title);
 		news.setText(this.text);
+		news.setHidden(false);
 		news.setCreated(Timestamp.from(Instant.now()));
 		return news;
 	}

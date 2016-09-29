@@ -47,8 +47,8 @@ public class NewsBean extends BasicFrontendBean {
 	}
 	
 	
-	public String createNews(){ // TODO: naming standard
-		
+	public String create(){ // TODO: naming standard
+		System.out.println("creating news..");
 
 		News newsToSave = getNewsEntityFromFields();
 		
@@ -65,7 +65,6 @@ public class NewsBean extends BasicFrontendBean {
 	
 
 	public String update(){
-		
 		System.out.println("inne i update news " + title);
 		
 		News newsToUpdate = newsEJB.getNewsById(selectedNewsId);

@@ -8,12 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import club.DAO.Event;
 import club.DAO.User;
+import club.EJB.EventEJB;
+import club.EJB.interfaces.LocalEvent;
+import club.EJB.interfaces.LocalNews;
 import club.backingBeans.BasicFrontendBean;
 import club.backingBeans.user.LoginUserBean;
 
@@ -31,13 +35,23 @@ public class CreateEventBean extends BasicFrontendBean{
 	@Inject @Named("loginUserBean")
 	private LoginUserBean loginUserBean;
 	
+	@EJB
+	private LocalEvent eventEJB;
+	
 	
 	public String create() {
 		Event event = getEventFromFields();
 		
-		Event createdEvent = null;
+		Event createdEvent = eventEJB.save(event);
+		if(createdEvent != null) {
+			//TODO: make post-details able to handle both events and news + using postBean, or split
+			// into separate components
+			//return "post-details.xhtml?faces-redirect=true&id=" + createdEvent.getId();			
+			return "";
+		} else {
+			return "";
+		}
 		
-		return "post-details.xhtml?faces-redirect=true&id=" + createdEvent.getId();
 	}
 
 
@@ -98,7 +112,7 @@ public class CreateEventBean extends BasicFrontendBean{
 		event.setAuthor(this.author);
 		event.setTitle(this.title);
 		event.setText(this.text);
-		event.setStartTime(convertStringToTimestamp());
+		event.setStartTime(convertStringToStartTimeTimestamp());
 		event.setDurationInMinutes(this.durationInMinutes);
 		event.setCreated(Timestamp.from(Instant.now()));
 		event.setAttendees(new ArrayList<User>());
@@ -107,7 +121,7 @@ public class CreateEventBean extends BasicFrontendBean{
 	}
 
 
-	private Timestamp convertStringToTimestamp() {
+	private Timestamp convertStringToStartTimeTimestamp() {
 		//TODO: fix actual conversion or solve with datetime-picker
 		TemporalAmount twoDays = Duration.ofDays(2);
 		return Timestamp.from(Instant.now().plus(twoDays));

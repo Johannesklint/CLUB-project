@@ -40,9 +40,7 @@ public class UserProfileBean extends BasicFrontendBean{
 	@PostConstruct	
 	public void Init(){
 		fetchUserFromLogin();
-		this.email = user.getEmail();
-		this.password = user.getPassword();
-		
+		this.email = user.getEmail();		
 	}
 		
 	public String update() {	

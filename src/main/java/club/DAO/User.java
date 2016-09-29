@@ -2,13 +2,19 @@ package club.DAO;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import club.password.CouldNotEncryptPasswordException;
+import club.password.EncryptPasswordSaltPair;
+import club.password.PasswordComparer;
+import club.password.PasswordHandler;
+
 import java.util.List;
 
 @Entity
 @Table(name="user")
 @NamedQueries({
     @NamedQuery(name="User.findAll", query="SELECT u FROM User u"),
-    @NamedQuery(name="User.findByEmailAndPassword", query="SELECT u FROM User u WHERE  u.email = :email AND u.password = :password"),
+    @NamedQuery(name="User.findByEmailAndPassword", query="SELECT u FROM User u WHERE  u.email = :email AND u.pwc = :password" ),
     @NamedQuery(name="User.findByEmail", query="SELECT u FROM User u WHERE  u.email = :email")
 }) 
 public class User implements Serializable {
@@ -18,7 +24,7 @@ public class User implements Serializable {
 	};
 
 	private static final long serialVersionUID = 7589032287673546267L;
-
+	
 	@Id
 	@Column(unique=true, nullable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -39,8 +45,19 @@ public class User implements Serializable {
 	@Column(name="last_name", nullable=false, length=45)
 	private String lastName;
 
-	@Column(nullable=false, length=60)
+	@Column(nullable=false, length=161)
 	private String password;
+
+	@Column(name="pwc")
+	private PasswordComparer pwc;
+	
+	public PasswordComparer getPwc() {
+		return pwc;
+	}
+
+	public void setPwc(PasswordComparer pwc) {
+		this.pwc = pwc;
+	}
 
 	//bi-directional many-to-one association to Comment
 	@OneToMany(mappedBy="user")
@@ -64,7 +81,7 @@ public class User implements Serializable {
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
 	}
-
+	
 	public ApprovedState getApprovedState() {
 		return ApprovedState.values()[this.approvedState];
 	}
@@ -97,12 +114,16 @@ public class User implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public String getPassword() {
-		return this.password;
-	}
-
 	public void setPassword(String password) {
+		
 		this.password = password;
+		try {
+			this.password = PasswordHandler.encrypt(password).toString();
+		} catch (CouldNotEncryptPasswordException e) {
+			e.printStackTrace();
+		}
+		
+	
 	}
 
 	public List<Comment> getComments() {

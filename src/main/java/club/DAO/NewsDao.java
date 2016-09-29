@@ -9,38 +9,18 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.hibernate.exception.GenericJDBCException;
+
 @Stateful
-public class NewsDao {
+public class NewsDao extends GenericCrudDao<News> {
 	
-	@PersistenceContext
-	private EntityManager entityManager;
-
-	public News save(News news) {
-		return entityManager.merge(news);
-	}
-
-	@SuppressWarnings("unchecked")
+	@Override
 	public List<News> getAll() {
-		Query query = entityManager.createNamedQuery("News.findAll");
-		List<News> news = (List<News>)query.getResultList();
-		
+		List<News> news = super.getAll();
 		//TODO: since both Events and News have same 'do not show if' statement, this statement should be moved to Post somehow
 		return news.stream()
 				.filter(_news -> !_news.getHidden())
 				.collect(Collectors.toList());
-	}
-
-	public News getNewsById(int selectedNewsId) {
-		return entityManager.find(News.class, selectedNewsId);
-	}
-
-	public boolean deleteNews(int id) {
-		News news = entityManager.find(News.class, id);
-		if(news != null){
-			entityManager.remove(news);
-			return true;
-		}
-		return false;
 	}
 	
 	

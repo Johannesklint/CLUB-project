@@ -1,20 +1,8 @@
 package club.EJB.interfaces;
 
-import java.util.List;
-import javax.ejb.Local;
-
 import club.DAO.News;
 
-@Local
-public interface LocalNews {
-
-	News saveNews(News news);
-
-	boolean deleteNews(int id);
-	
-	List<News> getAll();
-
-	News getNewsById(int selectedNewsId);
-
-	
+public interface LocalNews extends LocalGenericCrud<News>{
+	// Nothing here, unless we want something more fancy than
+	// the basic CRUD that LocalGenericCrud<News> provides
 }

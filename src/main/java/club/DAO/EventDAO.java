@@ -2,46 +2,18 @@ package club.DAO;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 import javax.ejb.Stateful;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 @Stateful
-public class EventDAO {
-	
-	@PersistenceContext
-	private EntityManager entityManager;
+public class EventDAO extends GenericCrudDao<Event>{
 
-	public Event save(Event event) {
-		return entityManager.merge(event);
-	}
-
-	@SuppressWarnings("unchecked")
+	@Override
 	public List<Event> getAll() {
-		Query query = entityManager.createNamedQuery("Event.findAll");
-		List<Event> event = (List<Event>)query.getResultList();
-		
+		List<Event> events = super.getAll();
 		//TODO: since both Events and News have same 'do not show if' statement, this statement should be moved to Post somehow
-		return event.stream()
+		return events.stream()
 				.filter( e -> !e.getHidden())
 				.collect(Collectors.toList());
 	}
-
-	public Event getById(int id) {
-		return entityManager.find(Event.class, id);
-	}
-
-	public boolean delete(int id) {
-		Event event = entityManager.find(Event.class, id);
-		if(event != null){
-			entityManager.remove(event);
-			return true;
-		}
-		return false;
-	}
-	
-	
 
 }

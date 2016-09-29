@@ -7,7 +7,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+/**
+ * 
+ * Provides basic CRUD operations for any entity of type T. <br>
+ * Note that this class has an EntityManager, so any child class <br>
+ * can use that same instance, for example through:  super.entityManager 
+ *
+ * @param <T>
+ */
 public abstract class GenericCrudDao<T> {
+	
 	@SuppressWarnings("rawtypes")
 	// NOTE! Don't access this directly, go through #getProvidedGenericClass()
 	private Class daoEntityClass; 
@@ -36,6 +45,10 @@ public abstract class GenericCrudDao<T> {
 		return false;
 	}
 	
+	/**
+	 * NOTE: method assumes presence of NamedQuery with name {className}.findAll
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public List<T> getAll() {
 		System.out.println("Generic getAll");
@@ -46,7 +59,10 @@ public abstract class GenericCrudDao<T> {
 		return entities;
 	}
 	
-	
+	/**
+	 * Since T.getClass() doesn't work, this is a common work-around to get the generic class.
+	 * @return a class of same type as T, in "... extends GenericCrudDao&lt;T&gt;"
+	 */
 	@SuppressWarnings("rawtypes")
 	private Class getProvidedGenericClass() {
 		// get lazily. only do the real work once
@@ -58,6 +74,5 @@ public abstract class GenericCrudDao<T> {
 		
 		return this.daoEntityClass;
 	}
-	
 
 }

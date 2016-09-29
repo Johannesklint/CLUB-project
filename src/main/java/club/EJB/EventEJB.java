@@ -5,36 +5,34 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import club.DAO.News;
-import club.DAO.NewsDao;
-import club.EJB.interfaces.LocalNews;
+import club.DAO.Event;
+import club.DAO.EventDAO;
+import club.EJB.interfaces.LocalEvent;
 
-//
-//@Stateless
-//public class EventEJB implements LocalNews{
-//	
-//	@EJB
-//	private NewsDao newsDao;
-//
-//	@Override
-//	public News saveNews(News news) {
-//		return newsDao.save(news);
-//	}
-//
-//	@Override
-//	public List<News> getAll() {
-//	
-//		return newsDao.getAll();
-//	}
-//
-//	@Override
-//	public Event getNewsById(int selectedNewsId) {
-//		return newsDao.getNewsById(selectedNewsId);
-//	}
-//
-//	@Override
-//	public boolean deleteNews(int id) {
-//		return newsDao.deleteNews(id);
-//	}
-//	
-//}
+@Stateless
+public class EventEJB implements LocalEvent {
+	
+	@EJB
+	private EventDAO eventDAO;
+
+	@Override
+	public Event save(Event entity) {
+		return eventDAO.save(entity);
+	}
+
+	@Override
+	public boolean delete(int id) {
+		return eventDAO.delete(id); 
+	}
+
+	@Override
+	public List<Event> getAll() {
+		return eventDAO.getAll();
+	}
+
+	@Override
+	public Event getById(int id) {
+		return eventDAO.getById(id);		
+	}
+
+}

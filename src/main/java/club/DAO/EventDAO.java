@@ -1,7 +1,6 @@
 package club.DAO;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.ejb.Stateful;
@@ -30,14 +29,14 @@ public class EventDAO {
 				.collect(Collectors.toList());
 	}
 
-	public News getNewsById(int selectedNewsId) {
-		return entityManager.find(News.class, selectedNewsId);
+	public Event getById(int id) {
+		return entityManager.find(Event.class, id);
 	}
 
-	public boolean deleteNews(int id) {
-		News news = entityManager.find(News.class, id);
-		if(news != null){
-			entityManager.remove(news);
+	public boolean delete(int id) {
+		Event event = entityManager.find(Event.class, id);
+		if(event != null){
+			entityManager.remove(event);
 			return true;
 		}
 		return false;

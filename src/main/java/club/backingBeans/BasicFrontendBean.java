@@ -16,14 +16,22 @@ public abstract class BasicFrontendBean {
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(message));
 	}
 	
-	void redirectIfNotAdmin(LoginUserBean loginUserBean) {
+	/**
+	 * Like {@link #redirectIfNotLoggedIn(LoginUserBean)} but with admin check too
+	 * @param loginUserBean
+	 */
+	protected void redirectIfNotAdmin(LoginUserBean loginUserBean) {
 		redirectIfNotLoggedIn(loginUserBean);
-		
-		//TODO: check if admin, else redirect
+		if(loginUserBean.getUser().getAdmin() == true) return;
+		redirectToRoot();
 	}
 	
-	void redirectIfNotLoggedIn(LoginUserBean loginUserBean) {
+	protected void redirectIfNotLoggedIn(LoginUserBean loginUserBean) {
 		if(loginUserBean.isLoggedIn()) return;
+		redirectToRoot();
+	}
+	
+	private void redirectToRoot() {
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 		try {
 			context.redirect(context.getRequestContextPath() + "/");

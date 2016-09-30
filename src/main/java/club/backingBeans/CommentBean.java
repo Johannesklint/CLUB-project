@@ -24,7 +24,7 @@ import club.exceptions.ValidateException;
 
 @Named(value="commentBean")
 @RequestScoped
-public class CommentBean {
+public class CommentBean extends BasicFrontendBean{
 
 	private String text;
 	private User author;
@@ -32,6 +32,7 @@ public class CommentBean {
 	private LocalDateTime created;
 	private int selectedCommentId;
 	private Comment selectedComment;
+
 	
 	@EJB
 	private LocalComment commentEJB;
@@ -83,8 +84,32 @@ public class CommentBean {
 		return "";
 	}
 	
-	public void useSelectedComment(){
-		selectedCommentId = commentEJB.getCommentById();
+	public String updateComment(){
+		
+		Comment commentToUpdate = commentEJB.getById(selectedCommentId);
+		commentToUpdate.setText(text);
+		commentToUpdate.setCreated(Timestamp.from(Instant.now()));
+		
+		boolean savedComment = commentEJB.saveComment(commentToUpdate);
+		if(savedComment){
+			return "post-details.xhtml?faces-redirect=true&id=" + commentToUpdate.getId();
+		}else{
+			super.addFacesMessage("Could not update");
+		}return "";
+	}
+	
+	public String deleteComment(){
+		
+		Comment commentToDelete = commentEJB.getById(selectedCommentId);
+		commentToDelete.setHidden(true);
+		
+		boolean deletedComment = commentEJB.saveComment(commentToDelete);
+		if(deletedComment){
+			return "post-details.xhtml";
+		}else{
+			super.addFacesMessage("Could not delete");
+		}return "";
+
 	}
 	
 	public String getText() {

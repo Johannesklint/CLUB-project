@@ -3,15 +3,11 @@ package club.backingBeans;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import club.DAO.User;
 import club.DAO.User.ApprovedState;
 import club.EJB.interfaces.LocalUser;

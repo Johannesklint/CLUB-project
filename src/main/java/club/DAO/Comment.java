@@ -34,6 +34,18 @@ public class Comment implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="post_id", nullable=false)
 	private Post post;
+	
+	@Column(name="hidden", nullable=false)
+	private boolean hidden;
+
+	
+	public boolean isHidden() {
+		return hidden;
+	}
+
+	public void setHidden(boolean hidden) {
+		this.hidden = hidden;
+	}
 
 	public Comment() {
 	}
@@ -83,6 +95,5 @@ public class Comment implements Serializable {
 		return "Comment [id=" + id + ", created=" + created + ", text=" + text + ", user=" + user + ", post=" + post
 				+ "]";
 	}
-	
 
 }

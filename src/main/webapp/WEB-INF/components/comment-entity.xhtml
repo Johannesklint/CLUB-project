@@ -13,29 +13,6 @@
 	
 			<b>#{ commentEntity.text }</b>  <p> #{ commentEntity.user.fullName }</p>
 			
-			<h:commandLink value="Show Modal" action="#{backingBean.doAction}"
-			    onclick="$('#myModal').modal('show');" immediate="true">
-			    <f:ajax execute="@this" />
-			</h:commandLink>
-			
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal" aria-hidden="true" data-keyboard="false" data-backdrop="static">
-			    <div class="modal-dialog modal-sm">
-			        <div class="modal-content">
-			            <h:form id="myForm">
-			                <div class="modal-header">
-			                    <h4 class="modal-title">Test Modal</h4>
-			                </div>
-			                <div class="modal-body">
-			                    Content area
-			                </div>
-			                <h:panelGroup layout="block" styleClass="modal-footer">
-			                    <h:commandLink value="Close" immediate="true" styleClass="btn btn-default" oncomplete="$('#myModal').modal('hide');" />
-			                </h:panelGroup>
-			            </h:form>
-			        </div>
-			    </div>
-			</div>
-			
 		</div>
 </ui:composition>
 

@@ -30,6 +30,8 @@ public class CommentBean {
 	private User author;
 	private Post post;
 	private LocalDateTime created;
+	private int selectedCommentId;
+	private Comment selectedComment;
 	
 	@EJB
 	private LocalComment commentEJB;
@@ -81,6 +83,10 @@ public class CommentBean {
 		return "";
 	}
 	
+	public void useSelectedComment(){
+		selectedCommentId = commentEJB.getCommentById();
+	}
+	
 	public String getText() {
 		return text;
 	}
@@ -112,9 +118,22 @@ public class CommentBean {
 	public void setCreated(LocalDateTime created) {
 		this.created = created;
 	}
+
+	public int getSelectedCommentId() {
+		return selectedCommentId;
+	}
+
+	public void setSelectedCommentId(int selectedCommentId) {
+		this.selectedCommentId = selectedCommentId;
+	}
+
+	public Comment getSelectedComment() {
+		return selectedComment;
+	}
+
+	public void setSelectedComment(Comment selectedComment) {
+		this.selectedComment = selectedComment;
+	}
+
 	
-
-
-
-		
 }

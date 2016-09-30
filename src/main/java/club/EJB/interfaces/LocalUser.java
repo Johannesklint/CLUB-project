@@ -15,7 +15,7 @@ public interface LocalUser {
 	User getUserById(int id);
 	List<User> getAll();
 	boolean deleteUser(int id);
-	User getUserByEmailAndPassword(String email, String password);
+	User getUserByEmail(String email);
 	void loginUser(String username, String password, LoginUserBean loginUserBean) throws LoginException;
 	boolean hasUniqueEmail(User user);
 	void validateRegisterUser(User user) throws ValidateException;

@@ -4,8 +4,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import club.password.CouldNotEncryptPasswordException;
-import club.password.EncryptPasswordSaltPair;
-import club.password.PasswordComparer;
 import club.password.PasswordHandler;
 
 import java.util.List;
@@ -14,7 +12,6 @@ import java.util.List;
 @Table(name="user")
 @NamedQueries({
     @NamedQuery(name="User.findAll", query="SELECT u FROM User u"),
-    @NamedQuery(name="User.findByEmailAndPassword", query="SELECT u FROM User u WHERE  u.email = :email AND u.pwc = :password" ),
     @NamedQuery(name="User.findByEmail", query="SELECT u FROM User u WHERE  u.email = :email")
 }) 
 public class User implements Serializable {
@@ -48,16 +45,6 @@ public class User implements Serializable {
 	@Column(nullable=false, length=161)
 	private String password;
 
-	@Column(name="pwc")
-	private PasswordComparer pwc;
-	
-	public PasswordComparer getPwc() {
-		return pwc;
-	}
-
-	public void setPwc(PasswordComparer pwc) {
-		this.pwc = pwc;
-	}
 
 	//bi-directional many-to-one association to Comment
 	@OneToMany(mappedBy="user")
@@ -114,11 +101,15 @@ public class User implements Serializable {
 		this.lastName = lastName;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+	
 	public void setPassword(String password) {
 		
 		this.password = password;
 		try {
-			this.password = PasswordHandler.encrypt(password).toString();
+			this.password = PasswordHandler.hash(password).toString();
 		} catch (CouldNotEncryptPasswordException e) {
 			e.printStackTrace();
 		}

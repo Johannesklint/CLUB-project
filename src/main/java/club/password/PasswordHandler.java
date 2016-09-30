@@ -9,16 +9,31 @@ import javax.xml.bind.DatatypeConverter;
 
 public class PasswordHandler {
 
-	public static EncryptPasswordSaltPair encrypt(String password) throws CouldNotEncryptPasswordException{
+	private static HashedPasswordSaltPair hash(String password, byte[] salt) throws CouldNotEncryptPasswordException{
 		try {
-			byte[] salt = generateSalt();			
 			String sha1Password = getSHA(password,salt,"SHA-512");
-			return new EncryptPasswordSaltPair(sha1Password, bytesToHex(salt));
+			return new HashedPasswordSaltPair(sha1Password, bytesToHex(salt));
+		} catch (NoSuchAlgorithmException e) {
+			throw new CouldNotEncryptPasswordException();
+		}
+	}
+	
+	public static boolean isPasswordMatch(String password, HashedPasswordSaltPair hashedPasswordSaltPair) throws CouldNotEncryptPasswordException {
+		HashedPasswordSaltPair c = hash(password,hashedPasswordSaltPair.getSaltBytes());		
+		System.out.println(".");
+		return c.equals(hashedPasswordSaltPair);
+	}
+	
+	public static HashedPasswordSaltPair hash(String password) throws CouldNotEncryptPasswordException {
+		byte[] salt;
+		try {
+			salt = generateSalt();
 		} catch (NoSuchAlgorithmException e) {
 			throw new CouldNotEncryptPasswordException();
 		} catch (NoSuchProviderException e) {
 			throw new CouldNotEncryptPasswordException();
 		}
+		return hash(password,salt);
 	}
 	
 	private static byte[] generateSalt() throws NoSuchAlgorithmException, NoSuchProviderException{
@@ -36,9 +51,7 @@ public class PasswordHandler {
 	
 	private static String hashPassword(MessageDigest md, String password, byte[] salt) {
 		md.update(salt);
-		System.out.println("iiii"+password);
 		byte[] bytes = md.digest(password.getBytes());
-		System.out.println("iiii"+bytes);
 		return DatatypeConverter.printHexBinary(bytes);
 	}
 	

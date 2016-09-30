@@ -24,11 +24,10 @@ public class UserDAO {
 		return entityManager.find(User.class, id);
 	}
 
-	public User getUserByEmailAndPassword(String email, String password) {
-		Query query = entityManager.createNamedQuery("User.findByEmailAndPassword");
+	public User getUserByEmail(String email) {
+		Query query = entityManager.createNamedQuery("User.findByEmail");
 
 		query.setParameter("email", email);
-		query.setParameter("password", password);
 		
 		//TODO: detta är fel att använda exception för fel man faktiskt kan medvetet göra IMO. borde finnas något sätt att se om resultat finns innan man hämtar det.
 		try {

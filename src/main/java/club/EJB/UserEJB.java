@@ -11,6 +11,9 @@ import club.EJB.interfaces.LocalUser;
 import club.backingBeans.user.LoginUserBean;
 import club.exceptions.LoginException;
 import club.exceptions.ValidateException;
+import club.password.CouldNotEncryptPasswordException;
+import club.password.HashedPasswordSaltPair;
+import club.password.PasswordHandler;
 
 @Stateless
 public class UserEJB implements LocalUser{
@@ -30,10 +33,20 @@ public class UserEJB implements LocalUser{
 	
 	@Override
 	public void loginUser(String username, String password, LoginUserBean loginUserBean) throws LoginException{
-		User tryLoginUser = getUserByEmailAndPassword(username,password);	
+		User tryLoginUser = getUserByEmail(username);	
 
+		
+		
 		if(tryLoginUser==null) {
-			throw new LoginException("Not correct password for that user (or user do not exists)");			
+			throw new LoginException("1Not correct password for that user (or user do not exists)");			
+		}
+		
+		try {
+			if(  !PasswordHandler.isPasswordMatch(password, HashedPasswordSaltPair.fromString(tryLoginUser.getPassword()) )) {
+				throw new LoginException("Not correct password for that user (or user do not exists)");							
+			}
+		} catch (CouldNotEncryptPasswordException e) {
+			throw new LoginException("INTERNAL");			
 		}
 
 		if(tryLoginUser.getApprovedState()!=ApprovedState.GRANTED) {
@@ -54,8 +67,8 @@ public class UserEJB implements LocalUser{
 	}	
 
 	@Override
-	public User getUserByEmailAndPassword(String email, String password) {
-		return userDao.getUserByEmailAndPassword(email,password);
+	public User getUserByEmail(String email) {
+		return userDao.getUserByEmail(email);
 	}
 
 	@Override

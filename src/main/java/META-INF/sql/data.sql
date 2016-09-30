@@ -1,7 +1,7 @@
 use club_db;
 
 # Create Admins
-INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`password`,`admin`, `approved_state`) VALUES (null,'Erik', 'Wiberg', 'erik@wiberg.se', 'password', true, 0);
+INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`password`,`admin`, `approved_state`) VALUES (null,'Admin', 'Adminsson', 'admin@admin.se', 'password', true, 0);
 INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`password`,`admin`, `approved_state`) VALUES (null,'Marcin', 'Retek', 'marcin@retek.se', 'password', true, 2);
 INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`password`,`admin`, `approved_state`) VALUES (null,'Emil', 'Rånge', 'emil@range.se', 'password', false, 2);
                              
@@ -14,7 +14,7 @@ INSERT INTO `club_db`.`theme`(`id`,`primary_color_hex`,`secondary_color_hex`) VA
 
 
 # Create Platform
-INSERT INTO `club_db`.`platform`(`id`,`title`,`description`,`terms_and_condition`,`theme_id`) VALUES (null,'Liseberg','Bunnys and stuff','Terms and condition',1);
+INSERT INTO `club_db`.`platform`(`id`,`title`,`description`,`terms_and_condition`,`theme_id`) VALUES (null,'Default title','Default platform description','Terms and conditions',1);
 
 # Create Post > News
 INSERT INTO `club_db`.`post` (`ID`, `created`, `post_type`, `TEXT`, `TITLE`, `AUTHOR_ID`, `hidden`) VALUES (null, NOW(),'NEWS', 'text for news 1', 'News - 1', 1, false);

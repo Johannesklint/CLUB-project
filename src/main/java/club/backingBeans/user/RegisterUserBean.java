@@ -97,7 +97,7 @@ public class RegisterUserBean extends BasicFrontendBean{
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
 		user.setEmail(email);
-		user.setPassword(password);
+		user.generateHMACpassword(password);
 		user.setAdmin(admin);
 		user.setApprovedState(ApprovedState.PENDING);
 		return user;

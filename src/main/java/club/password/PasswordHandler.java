@@ -9,22 +9,21 @@ import javax.xml.bind.DatatypeConverter;
 
 public class PasswordHandler {
 
-	private static HashedPasswordSaltPair hash(String password, byte[] salt) throws CouldNotEncryptPasswordException{
+	private static HMAC hash(String password, byte[] salt) throws CouldNotEncryptPasswordException{
 		try {
 			String sha1Password = getSHA(password,salt,"SHA-512");
-			return new HashedPasswordSaltPair(sha1Password, bytesToHex(salt));
+			return HMAC.buildfromParametes(sha1Password, bytesToHex(salt));
 		} catch (NoSuchAlgorithmException e) {
 			throw new CouldNotEncryptPasswordException();
 		}
 	}
 	
-	public static boolean isPasswordMatch(String password, HashedPasswordSaltPair hashedPasswordSaltPair) throws CouldNotEncryptPasswordException {
-		HashedPasswordSaltPair c = hash(password,hashedPasswordSaltPair.getSaltBytes());		
-		System.out.println(".");
+	public static boolean isPasswordMatch(String password, HMAC hashedPasswordSaltPair) throws CouldNotEncryptPasswordException {
+		HMAC c = hash(password,hashedPasswordSaltPair.getSaltBytes());		
 		return c.equals(hashedPasswordSaltPair);
 	}
 	
-	public static HashedPasswordSaltPair hash(String password) throws CouldNotEncryptPasswordException {
+	public static HMAC hash(String password) throws CouldNotEncryptPasswordException {
 		byte[] salt;
 		try {
 			salt = generateSalt();
@@ -58,6 +57,4 @@ public class PasswordHandler {
 	private static String bytesToHex(byte[] bytes) {		
 		return DatatypeConverter.printHexBinary(bytes);
 	}
-	
-
 }

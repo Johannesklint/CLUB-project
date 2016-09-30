@@ -42,8 +42,8 @@ public class User implements Serializable {
 	@Column(name="last_name", nullable=false, length=45)
 	private String lastName;
 
-	@Column(nullable=false, length=161)
-	private String password;
+	@Column(name="hmac_password", nullable=false, length=161)
+	private String hMACPassword;
 
 
 	//bi-directional many-to-one association to Comment
@@ -101,20 +101,12 @@ public class User implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getHashedPasswordSaltpair() {
+		return hMACPassword;
 	}
 	
-	public void setPassword(String password) {
-		
-		this.password = password;
-		try {
-			this.password = PasswordHandler.hash(password).toString();
-		} catch (CouldNotEncryptPasswordException e) {
-			e.printStackTrace();
-		}
-		
-	
+	public void generateHMACpassword(String password) {		
+		hMACPassword = PasswordHandler.hash(password).toString();	
 	}
 
 	public List<Comment> getComments() {

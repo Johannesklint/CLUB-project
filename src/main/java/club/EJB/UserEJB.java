@@ -12,7 +12,7 @@ import club.backingBeans.user.LoginUserBean;
 import club.exceptions.LoginException;
 import club.exceptions.ValidateException;
 import club.password.CouldNotEncryptPasswordException;
-import club.password.HashedPasswordSaltPair;
+import club.password.HMAC;
 import club.password.PasswordHandler;
 
 @Stateless
@@ -41,12 +41,8 @@ public class UserEJB implements LocalUser{
 			throw new LoginException("1Not correct password for that user (or user do not exists)");			
 		}
 		
-		try {
-			if(  !PasswordHandler.isPasswordMatch(password, HashedPasswordSaltPair.fromString(tryLoginUser.getPassword()) )) {
-				throw new LoginException("Not correct password for that user (or user do not exists)");							
-			}
-		} catch (CouldNotEncryptPasswordException e) {
-			throw new LoginException("INTERNAL");			
+		if(  !PasswordHandler.isPasswordMatch(password, HMAC.buildfromString(tryLoginUser.getHashedPasswordSaltpair()) )) {
+			throw new LoginException("Not correct password for that user (or user do not exists)");							
 		}
 
 		if(tryLoginUser.getApprovedState()!=ApprovedState.GRANTED) {

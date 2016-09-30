@@ -1,13 +1,17 @@
 package club.password;
 
-public class HashedPasswordSaltPair {
+public class HMAC {
 	
 	private String encryptPassword;
 	private String salt;
 	
-	HashedPasswordSaltPair(String encryptPassword,String salt) {
-		this.encryptPassword = encryptPassword;
-		this.salt = salt;
+	public static HMAC buildfromString(String string) {
+	    String[] res = string.split(":");
+		return new HMAC(res[0],res[1]);
+	}
+
+	static HMAC buildfromParametes(String encryptPassword, String salt) {
+		return new HMAC(encryptPassword,salt);
 	}
 
 	public String getEncryptPassword() {
@@ -21,12 +25,20 @@ public class HashedPasswordSaltPair {
 		return hexStringToByteArray(salt);
 	}
 
-	public static HashedPasswordSaltPair fromString(String string) {
-	    String[] res = string.split(":");
-		return new HashedPasswordSaltPair(res[0],res[1]);
+	@Override
+	public String toString() {
+		return encryptPassword+":"+salt;
 	}
-
-	public static byte[] hexStringToByteArray(String s) {
+	
+	@Override
+	public boolean equals(Object o) {
+		if(!(o instanceof HMAC)) return false;
+		HMAC c = (HMAC)o;
+		return c.salt.equals(salt) && c.encryptPassword.equals(encryptPassword); 
+	}
+	
+	// COPY PASTED FOM STACK OVERFLOW
+	private static byte[] hexStringToByteArray(String s) {
 	    int len = s.length();
 	    byte[] data = new byte[len / 2];
 	    for (int i = 0; i < len; i += 2) {
@@ -35,24 +47,10 @@ public class HashedPasswordSaltPair {
 	    }
 	    return data;
 	}
-	
-	@Override
-	public String toString() {
-		return encryptPassword+":"+salt;
-	}
-	
-	@Override
-	public boolean equals(Object o) {
-		if(!(o instanceof HashedPasswordSaltPair)) return false;
-		
-		HashedPasswordSaltPair c = (HashedPasswordSaltPair)o;
+	// ---
 
-		System.out.println("------");;
-		System.out.println(salt);
-		System.out.println(encryptPassword);
-		System.out.println(c.salt);
-		System.out.println(c.encryptPassword);
-		
-		return c.salt.equals(salt) && c.encryptPassword.equals(encryptPassword); 
+	private HMAC(String encryptPassword,String salt) {
+		this.encryptPassword = encryptPassword;
+		this.salt = salt;
 	}
 }

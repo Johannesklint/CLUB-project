@@ -20,7 +20,7 @@ import club.backingBeans.user.LoginUserBean;
 
 @Named(value="newsBean")
 @RequestScoped
-public class NewsBean extends BasicFrontendBean {
+public class NewsBean extends PostBean<News> {
 
 	private String text;
 	private String title;
@@ -49,6 +49,8 @@ public class NewsBean extends BasicFrontendBean {
 	
 	public String create(){ // TODO: naming standard
 		System.out.println("creating news..");
+		
+		super.save();
 
 		News newsToSave = getNewsEntityFromFields();
 		
@@ -160,6 +162,14 @@ public class NewsBean extends BasicFrontendBean {
 		news.setText(this.text);
 		news.setHidden(false);
 		news.setCreated(Timestamp.from(Instant.now()));
+		
+		return news;
+	}
+
+	@Override
+	public News getFromFields() {
+		News news = new News();
+		super.getBasicPostEntityFromFields(news);
 		return news;
 	}
 	

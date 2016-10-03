@@ -14,7 +14,7 @@ import club.backingBeans.user.LoginUserBean;
 
 @Named(value="listNewsBean")
 @RequestScoped
-public class ListNewsBean extends BasicFrontendBean{
+public class ListNewsBean extends PostBean {
 	
 	@Inject @Named(value="loginUserBean")
 	LoginUserBean loginUserBean;
@@ -22,20 +22,13 @@ public class ListNewsBean extends BasicFrontendBean{
 	@EJB
 	private LocalNews newsEJB;
 	
-	private boolean hasCalledGetAll = false;
-	
 	@PostConstruct
 	public void init() {
 		super.redirectIfNotLoggedIn(loginUserBean);
 	}
 	
 	public List<News> getAll(){
-		hasCalledGetAll = true;
 		return newsEJB.getAll();
-	}
-	
-	public Integer getCommentLimit() {
-		return hasCalledGetAll ? 3 : null;
 	}
 
 }

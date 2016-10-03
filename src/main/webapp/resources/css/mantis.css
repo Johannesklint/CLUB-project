@@ -19,8 +19,7 @@
  }
  
  ul.nav li{
- 	display: block;
- 	float:left;
+ 	display: inline;
  	padding: 0 14px 0 14px;
  	border-right: 1px solid #999;
  
@@ -92,4 +91,19 @@
  
  .denied td{
  	background: #fcbdbd;
+ }
+ 
+ .logged-in-as-link {
+ 	display: inline;
+ 	float: right;
+ }
+ 
+ .logout-link{
+ 	display: inline;
+	float: right;
+ }
+ 
+ .not-logged-in{
+ 	display: inline;
+	float: right;
  }

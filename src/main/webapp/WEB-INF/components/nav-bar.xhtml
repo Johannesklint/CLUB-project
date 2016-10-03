@@ -6,22 +6,12 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+
 <ui:composition>
 
-	<h:panelGroup rendered="#{!loginUserBean.validLogin}">
-	    <div>Not logged in</div>
-	</h:panelGroup>
 	
-	<h:panelGroup rendered="#{loginUserBean.validLogin}">
-	    <div>
-	    	Logged in as:
-	    	<h:link outcome="profile">#{ loginUserBean.user.fullName }</h:link>
-	    </div>
-		
-		<h:form id="logout_user_form">
-	    	<h:commandButton value="Logout user" action="#{ loginUserBean.doLogout() }" />
-		</h:form>
-	</h:panelGroup>
+	
+
 
 	<div class="navbar navbar-default">
 	  <div class="container-fluid">
@@ -30,17 +20,29 @@
 	    </div>
 	    
 	    <ul class="nav navbar-nav">
-	      <li><h:link outcome="home">Home</h:link></li>
-	      <h:panelGroup rendered="#{loginUserBean.validLogin}">
+	      	<li><h:link outcome="home">Home</h:link></li>
+	      	<h:panelGroup rendered="#{loginUserBean.validLogin}">
 	      		<li><h:link outcome="news-list">News</h:link></li>
-	      </h:panelGroup>
-	      
-			<h:panelGroup rendered="#{loginUserBean.user.admin}">
+	      		
+	      	<h:panelGroup rendered="#{loginUserBean.user.admin}">
 				<li><h:link outcome="configure-platform">Configure platform</h:link></li>
 				<li><h:link outcome="user-management">Approve users</h:link></li>
 				<li><h:link outcome="create-news">Create News</h:link></li>
 				<li><h:link outcome="create-event">Create Event</h:link></li>
 			</h:panelGroup>
+	      		
+	    		<li class="logout-link">
+				<h:form id="logout_user_form">
+	    			<h:commandLink value="Logout user" action="#{ loginUserBean.doLogout() }" />
+				</h:form>
+				</li>
+				<li class="logged-in-as-link">Logged in as: <h:link outcome="user-profile">#{ loginUserBean.user.fullName }</h:link></li>
+	      	</h:panelGroup>
+	      
+	      	<h:panelGroup rendered="#{!loginUserBean.validLogin}">
+	    		<li class="not-logged-in">Not logged in</li>
+		 	</h:panelGroup>
+	     
 	    </ul>
 	  </div>
 	</div>

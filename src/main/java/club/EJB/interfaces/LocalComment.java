@@ -12,4 +12,6 @@ public interface LocalComment {
 
 	void validateComment(Comment comment) throws ValidateException;
 
+	public Comment getById(int selectedCommentId);
+
 }

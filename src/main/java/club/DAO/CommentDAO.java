@@ -16,4 +16,8 @@ public class CommentDAO {
 		return manager.merge(comment) != null;
 	}
 
+	public Comment getById(int id) {
+		return manager.find(Comment.class, id);
+	}
+
 }

@@ -24,12 +24,15 @@ import club.exceptions.ValidateException;
 
 @Named(value="commentBean")
 @RequestScoped
-public class CommentBean {
+public class CommentBean extends BasicFrontendBean{
 
 	private String text;
 	private User author;
 	private Post post;
 	private LocalDateTime created;
+	private int selectedCommentId;
+	private Comment selectedComment;
+
 	
 	@EJB
 	private LocalComment commentEJB;
@@ -81,6 +84,34 @@ public class CommentBean {
 		return "";
 	}
 	
+	public String updateComment(){
+		
+		Comment commentToUpdate = commentEJB.getById(selectedCommentId);
+		commentToUpdate.setText(text);
+		commentToUpdate.setCreated(Timestamp.from(Instant.now()));
+		
+		boolean savedComment = commentEJB.saveComment(commentToUpdate);
+		if(savedComment){
+			return "post-details.xhtml?faces-redirect=true&id=" + commentToUpdate.getId();
+		}else{
+			super.addFacesMessage("Could not update");
+		}return "";
+	}
+	
+	public String deleteComment(){
+		
+		Comment commentToDelete = commentEJB.getById(selectedCommentId);
+		commentToDelete.setHidden(true);
+		
+		boolean deletedComment = commentEJB.saveComment(commentToDelete);
+		if(deletedComment){
+			return "post-details.xhtml";
+		}else{
+			super.addFacesMessage("Could not delete");
+		}return "";
+
+	}
+	
 	public String getText() {
 		return text;
 	}
@@ -112,9 +143,22 @@ public class CommentBean {
 	public void setCreated(LocalDateTime created) {
 		this.created = created;
 	}
+
+	public int getSelectedCommentId() {
+		return selectedCommentId;
+	}
+
+	public void setSelectedCommentId(int selectedCommentId) {
+		this.selectedCommentId = selectedCommentId;
+	}
+
+	public Comment getSelectedComment() {
+		return selectedComment;
+	}
+
+	public void setSelectedComment(Comment selectedComment) {
+		this.selectedComment = selectedComment;
+	}
+
 	
-
-
-
-		
 }

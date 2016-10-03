@@ -27,4 +27,9 @@ public class CommentEJB implements LocalComment {
 		return;
 	}
 
+	@Override
+	public Comment getById(int id) {
+		return commentDao.getById(id);
+	}
+
 }

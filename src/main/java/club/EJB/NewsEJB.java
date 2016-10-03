@@ -17,24 +17,25 @@ public class NewsEJB implements LocalNews{
 	private NewsDao newsDao;
 
 	@Override
-	public News saveNews(News news) {
-		return newsDao.save(news);
+	public News save(News entity) {
+		return newsDao.save(entity);
+	}
+
+	@Override
+	public boolean delete(int id) {
+		return newsDao.delete(id);
 	}
 
 	@Override
 	public List<News> getAll() {
-	
 		return newsDao.getAll();
 	}
 
 	@Override
-	public News getNewsById(int selectedNewsId) {
-		return newsDao.getNewsById(selectedNewsId);
+	public News getById(int id) {
+		return newsDao.getById(id);
 	}
 
-	@Override
-	public boolean deleteNews(int id) {
-		return newsDao.deleteNews(id);
-	}
+
 	
 }

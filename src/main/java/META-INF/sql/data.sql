@@ -1,7 +1,12 @@
 use club_db;
 
+# Create custom function to generate timestamp inte the future (for future events)
+DROP FUNCTION IF EXISTS timestamp_plus_x_days_with_y_time;
+CREATE FUNCTION timestamp_plus_x_days_with_y_time(daysIntoFuture INTEGER, new_time VARCHAR(5)) RETURNS DATETIME RETURN DATE_ADD(DATE_ADD( CURRENT_DATE(), INTERVAL daysIntoFuture DAY), INTERVAL new_time HOUR_MINUTE);
+
+
 # Create Admins
-INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`password`,`admin`, `approved_state`) VALUES (null,'Erik', 'Wiberg', 'erik@wiberg.se', 'password', true, 0);
+INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`password`,`admin`, `approved_state`) VALUES (null,'Admin', 'Adminsson', 'admin@admin.se', 'password', true, 0);
 INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`password`,`admin`, `approved_state`) VALUES (null,'Marcin', 'Retek', 'marcin@retek.se', 'password', true, 2);
 INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`password`,`admin`, `approved_state`) VALUES (null,'Emil', 'Rånge', 'emil@range.se', 'password', false, 2);
                              
@@ -14,7 +19,7 @@ INSERT INTO `club_db`.`theme`(`id`,`primary_color_hex`,`secondary_color_hex`) VA
 
 
 # Create Platform
-INSERT INTO `club_db`.`platform`(`id`,`title`,`description`,`terms_and_condition`,`theme_id`) VALUES (null,'Liseberg','Bunnys and stuff','Terms and condition',1);
+INSERT INTO `club_db`.`platform`(`id`,`title`,`description`,`terms_and_condition`,`theme_id`) VALUES (null,'Default title','Default platform description','Terms and conditions',1);
 
 # Create Post > News
 INSERT INTO `club_db`.`post` (`ID`, `created`, `post_type`, `TEXT`, `TITLE`, `AUTHOR_ID`, `hidden`) VALUES (null, NOW(),'NEWS', 'text for news 1', 'News - 1', 1, false);
@@ -28,16 +33,7 @@ INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 1, by user
 INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 1', 2, 1);
 INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 2', 2, 2);
 INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 1', 2, 1);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 1', 2, 1);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 1', 2, 1);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 1', 2, 1);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 1', 2, 1);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 1', 2, 1);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 1', 2, 1);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 1', 2, 1);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 1', 2, 1);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 1', 2, 1);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 1', 2, 1);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 1', 2, 1);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 1', 2, 1);
 
+# Create Post > Event
+INSERT INTO `club_db`.`post` (`post_type`, `CREATED`, `hidden`, `TITLE`, `TEXT`, `AUTHOR_ID`, `STARTTIME`,`DURATIONINMINUTES`) VALUES ("EVENT", NOW(), 0, "Event nr 1", "There will be a 2 hour event today.", 1, timestamp_plus_x_days_with_y_time(0, '20:00'), 120);
+INSERT INTO `club_db`.`post` (`post_type`, `CREATED`, `hidden`, `TITLE`, `TEXT`, `AUTHOR_ID`, `STARTTIME`,`DURATIONINMINUTES`) VALUES ("EVENT", NOW(), 0, "Event nr 2", "There will be a 1 hour event tomorrow.", 1, timestamp_plus_x_days_with_y_time(1, '15:00'), 60);

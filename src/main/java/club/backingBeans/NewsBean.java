@@ -47,12 +47,12 @@ public class NewsBean extends BasicFrontendBean {
 	}
 	
 	
-	public String createNews(){ // TODO: naming standard
-		
+	public String create(){ // TODO: naming standard
+		System.out.println("creating news..");
 
 		News newsToSave = getNewsEntityFromFields();
 		
-		News savedNews = newsEJB.saveNews(newsToSave);
+		News savedNews = newsEJB.save(newsToSave);
 		
 		if(savedNews != null) {
 			System.out.println("Saved news");
@@ -65,14 +65,13 @@ public class NewsBean extends BasicFrontendBean {
 	
 
 	public String update(){
-		
 		System.out.println("inne i update news " + title);
 		
-		News newsToUpdate = newsEJB.getNewsById(selectedNewsId);
+		News newsToUpdate = newsEJB.getById(selectedNewsId);
 		newsToUpdate.setTitle(title);
 		newsToUpdate.setText(text);
 		
-		News savedNews = newsEJB.saveNews(newsToUpdate);
+		News savedNews = newsEJB.save(newsToUpdate);
 			if(savedNews != null){
 				return "post-details.xhtml?faces-redirect=true&id=" + savedNews.getId();
 			}
@@ -81,17 +80,17 @@ public class NewsBean extends BasicFrontendBean {
 	
 	public String deleteNews(){
 
-		News newsToUpdate = newsEJB.getNewsById(selectedNewsId);
+		News newsToUpdate = newsEJB.getById(selectedNewsId);
 		newsToUpdate.setHidden(true);
 
-		if(newsEJB.saveNews(newsToUpdate) != null){
+		if(newsEJB.save(newsToUpdate) != null){
 			return "news-list.xhtml";
 		}
 		return ""; //TODO: do error handler
 	}
 	
 	public void setFieldFromSelectedNews(){
-		News news = newsEJB.getNewsById(selectedNewsId);
+		News news = newsEJB.getById(selectedNewsId);
 		setAuthor(news.getAuthor());
 		setText(news.getText());
 		setTitle(news.getTitle());
@@ -99,7 +98,7 @@ public class NewsBean extends BasicFrontendBean {
 		
 
 	public void useSelectedNews(){
-		selectedNews = newsEJB.getNewsById(selectedNewsId);
+		selectedNews = newsEJB.getById(selectedNewsId);
 		System.out.println("getting news with title: " + selectedNews.getTitle());
 	}
 

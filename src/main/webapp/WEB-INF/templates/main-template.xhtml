@@ -5,12 +5,13 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head >
 	<meta name="charset" content="UTF-8" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>#{platform.title}</title>
+	<title>#{platformBean.title}</title>
 	  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<h:outputStylesheet library="css" name="mantis.css"  />
 	<link href="https://fonts.googleapis.com/css?family=David+Libre" rel="stylesheet"/>
@@ -71,6 +72,8 @@
 	
 	<!-- Main content goes here -->
 	<div class="container">
+		
+	
 		<ui:insert name="pageContent">
 			<p>No content inserted</p>
 		</ui:insert>

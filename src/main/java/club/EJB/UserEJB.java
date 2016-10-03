@@ -35,10 +35,8 @@ public class UserEJB implements LocalUser{
 	public void loginUser(String username, String password, LoginUserBean loginUserBean) throws LoginException{
 		User tryLoginUser = getUserByEmail(username);	
 
-		
-		
 		if(tryLoginUser==null) {
-			throw new LoginException("1Not correct password for that user (or user do not exists)");			
+			throw new LoginException("Not correct password for that user (or user do not exists)");			
 		}
 		
 		if(  !PasswordHandler.isPasswordMatch(password, HMAC.buildfromString(tryLoginUser.getHashedPasswordSaltpair()) )) {

@@ -47,7 +47,7 @@ public class UserProfileBean extends BasicFrontendBean{
 		
 		if(password.equals(repeatPassword)){
 			user.setEmail(email);	
-			user.generateHMACpassword(password);
+			user.generateNewHMACpassword(password);
 			
 			if (userEJB.update(user) != null) {  									
 				return "home";		

@@ -105,7 +105,7 @@ public class User implements Serializable {
 		return hMACPassword;
 	}
 	
-	public void generateHMACpassword(String password) {		
+	public void generateNewHMACpassword(String password) {		
 		hMACPassword = PasswordHandler.hash(password).toString();	
 	}
 

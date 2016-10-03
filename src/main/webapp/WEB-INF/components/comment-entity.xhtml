@@ -4,15 +4,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition>
+
 	<!-- @param commentEntity. Comment -->
+	<ui:param name="modalId" value="#{ commentEntity.id }"></ui:param>
+	
 		<div>
 			<hr></hr>			
 	
 			<b>#{ commentEntity.text }</b>  <p> #{ commentEntity.user.fullName }</p>
 			
+				<p:commandButton value="Update" type="button" onclick="PF(#{ modalId }).show();" />
+				 
+				<p:dialog header="Update comment" widgetVar="#{ modalId }" modal="true" height="300">
+					<h:form id="update_comment">
+				
+						<h:messages>
+							<h:message for="update_comment"></h:message>
+						</h:messages>
+						<!-- unfinished. Commandbtn not working. Code is right butt still noo... -->
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:inputText value="#{ commentEntity.text }" />
+							<p:commandButton action="#{ commentBean.updateComment }" value="Update" ></p:commandButton>
+							<h:commandButton action="#{ commentBean.deleteComment }" value="Delete"></h:commandButton>			
+						</h:panelGrid>	
+						
+					</h:form>	   
+					
+				</p:dialog>
 		</div>
 </ui:composition>
 

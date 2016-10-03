@@ -46,6 +46,13 @@
 	    <artifactId>hibernate-core</artifactId>
 	    <version>5.2.2.Final</version>
 	</dependency>
+	
+	<!-- Primefaces -->
+	<dependency>  
+	    <groupId>org.primefaces</groupId>  
+	    <artifactId>primefaces</artifactId>  
+	    <version>6.0</version>  
+	</dependency>  
 	 
 	
   </dependencies>

@@ -9,6 +9,7 @@ import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionListener;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.sql.Timestamp;
@@ -51,7 +52,6 @@ public class CommentBean extends BasicFrontendBean{
 	}
 	
 	public String saveComment() {
-		System.out.println("In saveComment!");
 		Comment comment = new Comment();		
 		comment.setCreated(Timestamp.from(Instant.now()));
 		comment.setText(text);
@@ -59,10 +59,8 @@ public class CommentBean extends BasicFrontendBean{
 		
 		newsBean.useSelectedNews();
 		News post1 = newsBean.getSelectedNews();
-		System.out.println("post from newsBean is: " + post1);
 		comment.setPost(post1);
 		
-		System.out.println("Comment is: " + comment);
 
 		try {
 			commentEJB.validateComment(comment);
@@ -83,7 +81,7 @@ public class CommentBean extends BasicFrontendBean{
 	}
 	
 	public String updateComment(){
-		
+		System.out.println("HALLA");
 		Comment commentToUpdate = commentEJB.getById(selectedCommentId);
 		commentToUpdate.setText(text);
 		commentToUpdate.setCreated(Timestamp.from(Instant.now()));
@@ -95,9 +93,9 @@ public class CommentBean extends BasicFrontendBean{
 			super.addFacesMessage("Could not update");
 		}return "";
 	}
-	
+
 	public String deleteComment(){
-		
+		System.out.println("DELETE FFS");
 		Comment commentToDelete = commentEJB.getById(selectedCommentId);
 		commentToDelete.setHidden(true);
 		

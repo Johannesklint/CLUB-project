@@ -14,7 +14,7 @@ import club.backingBeans.user.LoginUserBean;
 
 @Named(value="listNewsBean")
 @RequestScoped
-public class ListNewsBean extends PostBean {
+public class ListNewsBean extends BasicFrontendBean {
 	
 	@Inject @Named(value="loginUserBean")
 	LoginUserBean loginUserBean;

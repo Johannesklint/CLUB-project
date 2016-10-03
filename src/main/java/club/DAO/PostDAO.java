@@ -3,6 +3,9 @@ package club.DAO;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.ejb.Stateful;
+
+@Stateful
 public class PostDAO extends GenericCrudDao<Post> {
 
 	public List<News> getAllNews() {

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition>
+	<!-- @param eventEntity. News -->
+
+		<div class="post-box">
+			<div class="post-inner-box">
+			
+				<h5>#{ eventEntity.title }<span> created: #{eventEntity.created}</span></h5>
+				<p>#{ eventEntity.text }</p>
+				<p>#{ eventEntity.author.fullName }</p>
+				<p>When: #{ eventEntity.startTime }</p>
+				
+				<h:link rendered="#{ includeReadMoreBtn }" outcome="post-details" value="Read more" includeViewParams="true">		
+				  <f:param name="id" value="#{ eventEntity.id }"></f:param>		
+				</h:link>
+
+				<h:panelGroup rendered="#{ compactCommentList }">
+
+					<ui:include src="/WEB-INF/components/comment-list-compact.xhtml">
+						<ui:param name="commentList" value="#{ eventEntity.comments }"></ui:param>
+					</ui:include>
+
+				</h:panelGroup>
+
+				<h:panelGroup rendered="#{ !compactCommentList }">
+
+					<ui:include src="/WEB-INF/components/comment-list.xhtml">
+						<ui:param name="commentList" value="#{ eventEntity.comments }"></ui:param>
+					</ui:include>
+
+				</h:panelGroup>
+
+			</div>
+		</div>
+		
+			
+	
+</ui:composition>
+</html>

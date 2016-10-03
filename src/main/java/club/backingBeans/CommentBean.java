@@ -31,8 +31,6 @@ public class CommentBean extends BasicFrontendBean{
 	private Post post;
 	private LocalDateTime created;
 	private int selectedCommentId;
-	private Comment selectedComment;
-
 	
 	@EJB
 	private LocalComment commentEJB;
@@ -109,7 +107,6 @@ public class CommentBean extends BasicFrontendBean{
 		}else{
 			super.addFacesMessage("Could not delete");
 		}return "";
-
 	}
 	
 	public String getText() {
@@ -143,22 +140,9 @@ public class CommentBean extends BasicFrontendBean{
 	public void setCreated(LocalDateTime created) {
 		this.created = created;
 	}
-
-	public int getSelectedCommentId() {
-		return selectedCommentId;
-	}
-
-	public void setSelectedCommentId(int selectedCommentId) {
-		this.selectedCommentId = selectedCommentId;
-	}
-
-	public Comment getSelectedComment() {
-		return selectedComment;
-	}
-
-	public void setSelectedComment(Comment selectedComment) {
-		this.selectedComment = selectedComment;
-	}
-
 	
+
+
+
+		
 }

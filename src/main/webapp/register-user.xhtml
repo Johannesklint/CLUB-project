@@ -44,12 +44,11 @@
 		</h:form>
 		
 		<button onclick="readTerms()">Read Terms and Conditions</button>
-		<h:inputHidden id="terms" value="#{ platformBean.termsAndConditions }"></h:inputHidden>
+		<h:inputHidden id="hej" value="#{ platformBean.termsAndConditions }"></h:inputHidden>
 	 	<div id="printTerms"></div>
-	 	
      <script type="text/javascript" language="javascript">  
 	     function readTerms() {
-	    	 	var x = document.getElementById('terms').value;
+	    	 	var x = document.getElementById('hej').value;
 	    	   document.getElementById("printTerms").innerHTML = x;
 	   
 	    	}

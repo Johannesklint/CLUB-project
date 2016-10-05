@@ -56,6 +56,12 @@ public class NewsUpdateBean extends NewsBean {
 		//System.out.println("seeting id to " + selectedId);
 		//this.selectedId = selectedId;
 	}
+
+	@Override
+	public News getFromFields() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

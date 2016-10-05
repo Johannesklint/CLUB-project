@@ -10,6 +10,7 @@ import javax.inject.Named;
 import club.DAO.Event;
 import club.DAO.News;
 import club.DAO.Post;
+import club.DAO.User;
 import club.EJB.interfaces.LocalNews;
 import club.backingBeans.user.LoginUserBean;
 
@@ -19,7 +20,16 @@ public abstract class EventBean extends PostBean<Event> {
 	private int selectedNewsId;
 	private Timestamp startTime;
 	private int durationInMinutes;
+	private List<User> attendees;
 	
+	public List<User> getAttendees() {
+		return attendees;
+	}
+
+	public void setAttendees(List<User> attendees) {
+		this.attendees = attendees;
+	}
+
 	@Inject @Named("loginUserBean")
 	private LoginUserBean loginUserBean;
 	
@@ -38,12 +48,6 @@ public abstract class EventBean extends PostBean<Event> {
 	
 	
 	
-	@Override
-	public Event getFromFields() {
-		Event event = new Event();
-		super.getBasicPostEntityFromFields(event);
-		return event;
-	}
 
 	
 	public String deleteNews(){

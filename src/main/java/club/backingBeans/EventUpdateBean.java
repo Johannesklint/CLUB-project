@@ -46,5 +46,11 @@ public class EventUpdateBean extends EventBean {
 		eventToUpdate.setText(super.getText());
 		eventToUpdate.setDurationInMinutes(super.getDurationInMinutes());
 		return eventToUpdate;
+	}
+
+	@Override
+	public Event getFromFields() {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 }

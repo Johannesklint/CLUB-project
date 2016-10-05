@@ -72,12 +72,12 @@ public abstract class PostBean<T extends Post> extends BasicFrontendBean {
 	public String createAndRedirect(){ // TODO: naming standard
 		System.out.println("creating news..");
 
-		Post savedNews = save();
-		System.out.println("saved news is: " + savedNews);
+		Post savedPost = save();
+		System.out.println("saved news is: " + savedPost);
 		
-		if(savedNews != null) {
+		if(savedPost != null) {
 			System.out.println("Saved news");
-			return "post-details.xhtml?faces-redirect=true&id=" + savedNews.getId();
+			return "post-details.xhtml?faces-redirect=true&id=" + savedPost.getId();
 		} else {
 			System.out.println("Failed to save news");
 			return "";
@@ -95,19 +95,6 @@ public abstract class PostBean<T extends Post> extends BasicFrontendBean {
 		return "";
 	} 
 
-	/**
-	 * Handles author, title, text, hidden, and created
-	 * @param post to update
-	 * @return
-	 */
-	public Post getBasicPostEntityFromFields(Post post) {
-		post.setAuthor(this.author);
-		post.setTitle(this.title);
-		post.setText(this.text);
-		post.setHidden(false);
-		post.setCreated(Timestamp.from(Instant.now()));
-		return post;
-	}
 	
 	
 	/**

@@ -25,15 +25,10 @@ import club.backingBeans.user.LoginUserBean;
 @Named(value="createEventBean")
 @RequestScoped
 public class CreateEventBean extends EventBean{
-	
-	private List<User> attendees;
-	
+		
 	@Inject @Named("loginUserBean")
 	private LoginUserBean loginUserBean;
-	
-	@EJB
-	private LocalEvent eventEJB;
-	
+		
 	public String submit() {
 		return super.createAndRedirect();
 	}

@@ -94,12 +94,6 @@ public abstract class NewsBean extends PostBean<News> {
 		return null;
 	}
 
-	@Override
-	public News getFromFields() {
-		News news = new News();
-		super.getBasicPostEntityFromFields(news);
-		return news;
-	}
 
 	
 }

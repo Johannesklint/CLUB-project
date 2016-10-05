@@ -27,7 +27,10 @@ public class PostEJB implements LocalPost {
 
 	@Override
 	public boolean delete(int id) {
-		return postDao.delete(id);
+		
+		Post post = postDao.getById(id);
+		post.setHidden(true);
+		return postDao.save(post) != null;
 	}
 
 	@Override

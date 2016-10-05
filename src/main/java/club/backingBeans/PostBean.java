@@ -84,6 +84,10 @@ public abstract class PostBean<T extends Post> extends BasicFrontendBean {
 		}
 	}
 
+	public String deleteAndRedirect() {
+		postEJB.delete(id);
+		return "home";
+	}
 	
 	String updateAndGetRedirect(){ // TODO: rename
 		System.out.println("inne i update news " + getTitle());

@@ -10,13 +10,9 @@ INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`hmac_pass
 INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`hmac_password`,`admin`, `approved_state`) VALUES (null,'Marcin', 'Retek', 'marcin@retek.se', '73617059CED40DB461984E72F15EA0F2F30C2385565CDF59124B8C56911ECDC29E90328EF190E5D0EA339E7B1221A6F9BDC4BB5D25F14F560E7FA8B451931A0A:7B8509E35DD2EBBC00BAECA928F9CD57', true, 2);
 INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`hmac_password`,`admin`, `approved_state`) VALUES (null,'Emil', 'Rånge', 'emil@range.se', '73617059CED40DB461984E72F15EA0F2F30C2385565CDF59124B8C56911ECDC29E90328EF190E5D0EA339E7B1221A6F9BDC4BB5D25F14F560E7FA8B451931A0A:7B8509E35DD2EBBC00BAECA928F9CD57', false, 2);
                              
-# Create Users                
-INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`password`,`admin`, `approved_state`) VALUES (null, 'Kalle', 'Larsson', 'kalle-larsson@telia.net', 'password', false, 1);
-                             
 # Create Theme
 
 INSERT INTO `club_db`.`theme`(`id`,`primary_color_hex`,`secondary_color_hex`) VALUES (null,"#6cffb8","#fcb0b3");
-
 
 # Create Platform
 INSERT INTO `club_db`.`platform`(`id`,`title`,`description`,`terms_and_condition`,`theme_id`) VALUES (null,'Default title','Default platform description','Terms and conditions',1);
@@ -28,11 +24,11 @@ INSERT INTO `club_db`.`post` (`ID`, `created`, `post_type`, `TEXT`, `TITLE`, `AU
 INSERT INTO `club_db`.`post` (`ID`, `created`, `post_type`, `TEXT`, `TITLE`, `AUTHOR_ID`, `hidden`) VALUES (null, NOW(), 'NEWS', 'text for news 4', 'News - 4', 1, true);
 
 # Create Comment to post
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 1, by user 1', 1, 1);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 1, by user 2', 1, 2);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 1', 2, 1);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 2', 2, 2);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), 'Comment to post 2, by user 1', 2, 1);
+INSERT INTO `club_db`.`comment` VALUES (null, NOW(), '0', 'Comment to post 1, by user 1', 1, 1);
+INSERT INTO `club_db`.`comment` VALUES (null, NOW(), '0', 'Comment to post 1, by user 2', 1, 2);
+INSERT INTO `club_db`.`comment` VALUES (null, NOW(), '0', 'Comment to post 2, by user 1', 2, 1);
+INSERT INTO `club_db`.`comment` VALUES (null, NOW(), '0', 'Comment to post 2, by user 2', 2, 2);
+INSERT INTO `club_db`.`comment` VALUES (null, NOW(), '0', 'Comment to post 2, by user 1', 2, 1);
 
 # Create Post > Event
 INSERT INTO `club_db`.`post` (`post_type`, `CREATED`, `hidden`, `TITLE`, `TEXT`, `AUTHOR_ID`, `STARTTIME`,`DURATIONINMINUTES`) VALUES ("EVENT", NOW(), 0, "Event nr 1", "There will be a 2 hour event today.", 1, timestamp_plus_x_days_with_y_time(0, '20:00'), 120);

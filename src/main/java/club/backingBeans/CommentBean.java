@@ -81,7 +81,8 @@ public class CommentBean extends BasicFrontendBean{
 	}
 	
 	public String updateComment(){
-		System.out.println("HALLA");
+		System.out.println("HALLA TEXT: " + text + "AND ID: " + selectedCommentId);
+		
 		Comment commentToUpdate = commentEJB.getById(selectedCommentId);
 		commentToUpdate.setText(text);
 		commentToUpdate.setCreated(Timestamp.from(Instant.now()));
@@ -105,6 +106,11 @@ public class CommentBean extends BasicFrontendBean{
 		}else{
 			super.addFacesMessage("Could not delete");
 		}return "";
+	}
+	
+	public void setFieldFromSelectedComment(){
+		Comment comment = commentEJB.getById(selectedCommentId);
+		setText(comment.getText());
 	}
 	
 	public String getText() {
@@ -138,8 +144,16 @@ public class CommentBean extends BasicFrontendBean{
 	public void setCreated(LocalDateTime created) {
 		this.created = created;
 	}
-	
 
+	public int getSelectedCommentId() {
+		return selectedCommentId;
+	}
+
+	public void setSelectedCommentId(int selectedCommentId) {
+		this.selectedCommentId = selectedCommentId;
+	}
+	
+	
 
 
 		

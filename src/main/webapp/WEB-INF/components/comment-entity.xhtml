@@ -20,22 +20,41 @@
 				<p:commandButton value="Update" type="button" onclick="PF(#{ modalId }).show();" />
 				 
 				<p:dialog header="Update comment" widgetVar="#{ modalId }" modal="true" height="300">
+
 					<h:form id="update_comment">
-				
 						<h:messages>
 							<h:message for="update_comment"></h:message>
 						</h:messages>
-						<!-- unfinished. Commandbtn not working. Code is right butt still noo... -->
-						<h:panelGrid columns="2" cellpadding="5">
-							<h:inputText value="#{ commentEntity.text }" />
-							<p:commandButton action="#{ commentBean.updateComment }" value="Update" ></p:commandButton>
+
+						<h:panelGrid columns="2" cellpadding="5">	
+							<input type="hidden" class="hidden" value="#{ commentEntity.text }"></input>	 
+							<h:inputText class="text" value="#{ commentEntity.text }"></h:inputText>
+							<p:commandButton action="#{ commentBean.updateComment }" value="Update">
+    							<f:setPropertyActionListener target="#{ commentBean.text }" value="#{ commentEntity.text }" />
+							</p:commandButton>
 							<h:commandButton action="#{ commentBean.deleteComment }" value="Delete"></h:commandButton>			
 						</h:panelGrid>	
 						
 					</h:form>	   
 					
 				</p:dialog>
+				
 		</div>
+			
+			
+		<script type="text/javascript" language="javascript">
+		  jQuery(document).ready(function($) {
+				  $('.getText').click(function(){
+						var comment = $('.hidden').val();
+						console.log(comment);
+						$('.text').val(comment);	 
+				  });
+
+		
+			   });
+		
+		</script>
+		
 </ui:composition>
 
 </html>

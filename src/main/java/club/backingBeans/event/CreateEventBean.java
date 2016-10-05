@@ -19,17 +19,13 @@ import club.EJB.EventEJB;
 import club.EJB.interfaces.LocalEvent;
 import club.EJB.interfaces.LocalNews;
 import club.backingBeans.BasicFrontendBean;
+import club.backingBeans.EventBean;
 import club.backingBeans.user.LoginUserBean;
 
 @Named(value="createEventBean")
 @RequestScoped
-public class CreateEventBean extends BasicFrontendBean{
+public class CreateEventBean extends EventBean{
 	
-	private String title;
-	private String text;
-	private User author;
-	private String startTime; // TODO: find datetime picker, else implement own converter from string?
-	private int durationInMinutes;
 	private List<User> attendees;
 	
 	@Inject @Named("loginUserBean")
@@ -38,94 +34,43 @@ public class CreateEventBean extends BasicFrontendBean{
 	@EJB
 	private LocalEvent eventEJB;
 	
-	
-	public String create() {
-		Event event = getEventFromFields();
-		
-		Event createdEvent = eventEJB.save(event);
-		if(createdEvent != null) {
-			//TODO: make post-details able to handle both events and news + using postBean, or split
-			// into separate components
-			//return "post-details.xhtml?faces-redirect=true&id=" + createdEvent.getId();			
-			return "";
-		} else {
-			return "";
-		}
-		
+	public String submit() {
+		return super.createAndRedirect();
 	}
-
-
-	/*
-	 * Getters and setters
-	 */
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getText() {
-		return text;
-	}
-	public void setText(String text) {
-		this.text = text;
-	}
-	public User getAuthor() {
-		return author;
-	}
-	public void setAuthor(User author) {
-		this.author = author;
-	}
-	public String getStartTime() {
-		return startTime;
-	}
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-	}
-	public int getDurationInMinutes() {
-		return durationInMinutes;
-	}
-	public void setDurationInMinutes(int durationInMinutes) {
-		this.durationInMinutes = durationInMinutes;
-	}
-	
-	/*
-	 * End of getters and setters
-	 */
-	
 	
 	@PostConstruct
-	private void init() {
+	public void init() {
 		System.out.println("In CreateEventBean init()");
-		super.redirectIfNotAdmin(loginUserBean);
-		setAuthorFromLoggedInUser();
-	}
+		super.redirectIfNotAdmin(loginUserBean);	}
 	
-	private void setAuthorFromLoggedInUser() {
-		author = loginUserBean.getUser();
-	}
-	
-	private Event getEventFromFields() {
+	@Override
+	public Event getFromFields() {
 		
 		Event event = new Event();
-		
-		event.setAuthor(this.author);
-		event.setTitle(this.title);
-		event.setText(this.text);
+		event.setAuthor(super.getAuthor());
+		event.setTitle(super.getTitle());
+		event.setText(super.getText());
 		event.setStartTime(convertStringToStartTimeTimestamp());
-		event.setDurationInMinutes(this.durationInMinutes);
+		event.setDurationInMinutes(super.getDurationInMinutes());
 		event.setCreated(Timestamp.from(Instant.now()));
 		event.setAttendees(new ArrayList<User>());
-		
 		return event;
 	}
-
-
+	
+	@Override
+	public Event updateFromFields() {
+		
+		Event eventToUpdate = (Event)super.getById(getId());
+		eventToUpdate.setTitle(super.getTitle());
+		eventToUpdate.setText(super.getText());
+		eventToUpdate.setDurationInMinutes(super.getDurationInMinutes());
+		return eventToUpdate;
+	}	
+	
 	private Timestamp convertStringToStartTimeTimestamp() {
 		//TODO: fix actual conversion or solve with datetime-picker
 		TemporalAmount twoDays = Duration.ofDays(2);
 		return Timestamp.from(Instant.now().plus(twoDays));
 	}
-	
-	
+
 }

@@ -7,7 +7,6 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition>
-	<!-- @param News newsEntity -->
 	<h1>Manage news: </h1>
 				
 		<h:form id="update_news_form">
@@ -27,7 +26,7 @@
 			   	<h:inputTextarea id="news_text" value="#{ newsUpdateBean.text }" required="true" label="News Description"/>
 
 				<h:commandButton  action="#{ newsUpdateBean.submit() }" value="Update news post">
-					<f:setPropertyActionListener target="#{ newsUpdateBean.selectedId }" value="#{ 1 }" />
+					<f:param name="id" value="#{ newsUpdateBean.id }"></f:param>
 				</h:commandButton>
                
             </h:panelGrid>			

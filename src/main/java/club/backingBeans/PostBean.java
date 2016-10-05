@@ -68,7 +68,23 @@ public abstract class PostBean<T extends Post> extends BasicFrontendBean {
 		Post post = getFromFields();
 		return postEJB.save(post);
 	}
+
+	public String createAndRedirect(){ // TODO: naming standard
+		System.out.println("creating news..");
+
+		Post savedNews = save();
+		System.out.println("saved news is: " + savedNews);
 		
+		if(savedNews != null) {
+			System.out.println("Saved news");
+			return "post-details.xhtml?faces-redirect=true&id=" + savedNews.getId();
+		} else {
+			System.out.println("Failed to save news");
+			return "";
+		}
+	}
+
+	
 	String updateAndGetRedirect(){ // TODO: rename
 		System.out.println("inne i update news " + getTitle());
 		

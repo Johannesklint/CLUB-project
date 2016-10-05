@@ -26,6 +26,10 @@ public abstract class PostBean<T extends Post> extends BasicFrontendBean {
 		System.out.println("In PostBean init");
 	}
 	
+	public Post getById(int id) {
+		return postEJB.getById(id);
+	}
+	
 	
 	
 	public String getText() {
@@ -64,12 +68,17 @@ public abstract class PostBean<T extends Post> extends BasicFrontendBean {
 		Post post = getFromFields();
 		return postEJB.save(post);
 	}
-	
-	Post update() {
-		Post post = updateFromFields();
-		return postEJB.save(post);
-	}
-	
+		
+	String updateAndGetRedirect(){ // TODO: rename
+		System.out.println("inne i update news " + getTitle());
+		
+		Post savedPost = update();
+			if(savedPost != null){
+				return "post-details.xhtml?faces-redirect=true&id=" + savedPost.getId();
+			}
+		return "";
+	} 
+
 	/**
 	 * Handles author, title, text, hidden, and created
 	 * @param post to update
@@ -96,5 +105,9 @@ public abstract class PostBean<T extends Post> extends BasicFrontendBean {
 	 */
 	public abstract T updateFromFields();
 	
+	private Post update() {
+		Post post = updateFromFields();
+		return postEJB.save(post);
+	}
 
 }

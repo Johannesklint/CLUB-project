@@ -11,9 +11,7 @@ import club.EJB.interfaces.LocalNews;
 import club.backingBeans.user.LoginUserBean;
 
 
-@Named(value="newsBean")
-@RequestScoped
-public class NewsBean extends PostBean<News> {
+public abstract class NewsBean extends PostBean<News> {
 
 	private int selectedNewsId;
 	private News selectedNews;
@@ -52,15 +50,6 @@ public class NewsBean extends PostBean<News> {
 	}
 	
 
-	public String submit(){ // TODO: rename
-		System.out.println("inne i update news " + super.getTitle());
-		
-		Post savedNews = super.update();
-			if(savedNews != null){
-				return "post-details.xhtml?faces-redirect=true&id=" + savedNews.getId();
-			}
-		return "";
-	} 
 	
 	public String deleteNews(){
 
@@ -112,12 +101,5 @@ public class NewsBean extends PostBean<News> {
 		return news;
 	}
 
-	@Override
-	public News updateFromFields() {
-		News newsToUpdate = newsEJB.getById(selectedNewsId);
-		newsToUpdate.setTitle(super.getTitle());
-		newsToUpdate.setText(super.getText());
-		return newsToUpdate;
-	}
 	
 }

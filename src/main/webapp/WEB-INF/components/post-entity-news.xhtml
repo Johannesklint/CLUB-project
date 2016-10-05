@@ -20,7 +20,7 @@
 				  <f:param name="id" value="#{ newsEntity.id }"></f:param>		
 				</h:link>
 
-				<h:panelGroup rendered="#{ compactCommentList }">
+				<h:panelGroup rendered="#{ compactCommentList and false }">
 
 					<ui:include src="/WEB-INF/components/comment-list-compact.xhtml">
 						<ui:param name="commentList" value="#{ newsEntity.comments }"></ui:param>
@@ -28,7 +28,7 @@
 
 				</h:panelGroup>
 
-				<h:panelGroup rendered="#{ !compactCommentList }">
+				<h:panelGroup rendered="#{ !compactCommentList and false }">
 
 					<ui:include src="/WEB-INF/components/comment-list.xhtml">
 						<ui:param name="commentList" value="#{ newsEntity.comments }"></ui:param>

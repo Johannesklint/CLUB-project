@@ -16,7 +16,7 @@
 		<h:form id="manage_news_form">
 		<h:panelGrid columns="2" rendered="#{ loginUserBean.user.admin }">
 			
-			<h:button outcome="update-news" value="Edit fields">
+			<h:button outcome="post-update" value="Edit fields">
 				<f:param name="id" value="#{ postGetterBean.selectedPost.id }"></f:param>
 			</h:button>
 			<h:commandButton action="#{ postGetterBean.deletePost() }" value="Delete"></h:commandButton>	

@@ -27,7 +27,7 @@ public class EventEJB implements LocalEvent {
 
 	@Override
 	public List<Event> getAll() {
-		return eventDAO.getAll();
+		return eventDAO.getAll(false);
 	}
 
 	@Override

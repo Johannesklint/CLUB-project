@@ -46,16 +46,12 @@ public abstract class GenericCrudDao<T> {
 		return false;
 	}
 
-	public List<T> getAll() {
-		return getAll(false);
-	}
-
 	/**
 	 * NOTE: method assumes presence of NamedQuery with name {className}.findAll
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<T> getAll(boolean includeHidden) {
+	List<T> getAll() {
 		System.out.println("Generic getAll");
 		String className = getProvidedGenericClass().getSimpleName();
 		System.out.println("Generic getAll. className is: " + className);

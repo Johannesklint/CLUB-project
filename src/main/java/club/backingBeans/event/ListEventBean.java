@@ -1,6 +1,7 @@
 package club.backingBeans.event;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -29,9 +30,8 @@ public class ListEventBean extends BasicFrontendBean {
 	public void init() {
 		super.redirectIfNotLoggedIn(loginUserBean);
 	}
-	
+		
 	public List<Event> getAll(){
 		return eventsEJB.getAll();
 	}
-
 }

@@ -6,14 +6,15 @@ import javax.ejb.Stateful;
 
 @Stateful
 public class EventDAO extends GenericCrudDao<Event>{
-
-	@Override
-	public List<Event> getAll() {
-		List<Event> events = super.getAll();
-		//TODO: since both Events and News have same 'do not show if' statement, this statement should be moved to Post somehow
-		return events.stream()
-				.filter( e -> !e.getHidden())
-				.collect(Collectors.toList());
+	
+	public List<Event> getAll(boolean includeHidden) {
+		return super.getAll()
+			.stream()
+			.filter(post -> post instanceof Event)
+			.filter( post -> !post.getHidden() || includeHidden)
+			.map(post -> (Event) post) // cast to please the compiler
+			.collect(Collectors.toList());
 	}
+
 
 }

@@ -24,6 +24,7 @@
 
 					<ui:include src="/WEB-INF/components/comment-list-compact.xhtml">
 						<ui:param name="commentList" value="#{ newsEntity.comments }"></ui:param>
+						<ui:param name="postEntity" value="#{ newsEntity }"></ui:param>
 					</ui:include>
 
 				</h:panelGroup>
@@ -32,6 +33,7 @@
 
 					<ui:include src="/WEB-INF/components/comment-list.xhtml">
 						<ui:param name="commentList" value="#{ newsEntity.comments }"></ui:param>
+						<ui:param name="postEntity" value="#{ newsEntity }"></ui:param>
 					</ui:include>
 
 				</h:panelGroup>

@@ -17,9 +17,10 @@
 		<h:inputText id="text" value="#{ commentBean.text }" required="true" label="Text">
 			<f:validateLength minimum="1" maximum="140"/>
 		</h:inputText>	
-	
+		
 		<h:commandButton value="Comment" action="#{ commentBean.saveComment() }">
-			<!-- <f:setPropertyActionListener value="#{ postEntity }" target="#{ comment.post }"></f:setPropertyActionListener> -->
+			<f:param name="id" value="#{ postEntity.id }"/>
+						<!-- <f:setPropertyActionListener value="#{ postEntity }" target="#{ comment.post }"></f:setPropertyActionListener> -->
 			
 			<!-- Can we use something like this? 
 			<f:event listener="#{ news.useSelectedNews() }" type="preRenderView"></f:event> -->

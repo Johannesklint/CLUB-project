@@ -27,10 +27,11 @@
 						</h:messages>
 
 						<h:panelGrid columns="2" cellpadding="5">	
-							<input type="hidden" class="hidden" value="#{ commentEntity.text }"></input>	 
 							<h:inputText class="text" value="#{ commentEntity.text }"></h:inputText>
+
 							<p:commandButton action="#{ commentBean.updateComment }" value="Update">
     							<f:setPropertyActionListener target="#{ commentBean.text }" value="#{ commentEntity.text }" />
+    							<f:setPropertyActionListener target="#{ commentBean.selectedCommentId }" value="#{ commentEntity.id }"/>
 							</p:commandButton>
 							<h:commandButton action="#{ commentBean.deleteComment }" value="Delete"></h:commandButton>			
 						</h:panelGrid>	

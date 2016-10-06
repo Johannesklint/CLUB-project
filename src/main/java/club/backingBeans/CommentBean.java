@@ -85,11 +85,11 @@ public class CommentBean extends BasicFrontendBean{
 		
 		Comment commentToUpdate = commentEJB.getById(selectedCommentId);
 		commentToUpdate.setText(text);
-		commentToUpdate.setCreated(Timestamp.from(Instant.now()));
+		//commentToUpdate.setCreated(Timestamp.from(Instant.now())); 
 		
 		boolean savedComment = commentEJB.saveComment(commentToUpdate);
 		if(savedComment){
-			return "post-details.xhtml?faces-redirect=true&id=" + commentToUpdate.getId();
+			return "post-details.xhtml?faces-redirect=true&id=" + commentToUpdate.getPost().getId();
 		}else{
 			super.addFacesMessage("Could not update");
 		}return "";

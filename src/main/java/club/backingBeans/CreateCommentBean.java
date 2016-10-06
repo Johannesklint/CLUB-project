@@ -38,7 +38,7 @@ public class CreateCommentBean extends CommentBean{
 		comment.setPost(post);
 		try {
 			commentEJB.validateComment(comment);
-			commentEJB.saveComment(comment);
+			commentEJB.updateComment(comment);
 		}
 		catch(ValidateException e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));

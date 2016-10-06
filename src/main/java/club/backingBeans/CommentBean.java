@@ -1,23 +1,16 @@
 package club.backingBeans;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.sql.Timestamp;
 import club.DAO.Comment;
-import club.DAO.News;
 import club.DAO.Post;
 import club.DAO.User;
 import club.EJB.interfaces.LocalComment;
 import club.backingBeans.user.LoginUserBean;
-import club.exceptions.ValidateException;
 
 
 @Named(value="commentBean")
@@ -35,9 +28,6 @@ public class CommentBean extends BasicFrontendBean{
 
 	@Inject @Named("loginUserBean")
 	private LoginUserBean loginUserBean;
-
-	@Inject @Named(value="postGetterBean")
-	private PostGetterBean postGetterBean;
 	
 	@PostConstruct
 	public void init() {
@@ -47,43 +37,7 @@ public class CommentBean extends BasicFrontendBean{
 
 	public CommentBean(){
 	}
-	
-	public String submit() {
-		return "";
-	}
-	
-	public String saveComment() {
 		
-		System.out.println("..1");
-		
-		Comment comment = new Comment();		
-		comment.setCreated(Timestamp.from(Instant.now()));
-		comment.setText(text);
-		comment.setUser(author);
-		System.out.println("..2");
-				
-		News post1 = postGetterBean.getAsNews();
-		comment.setPost(post1);
-		
-		System.out.println("..3");
-
-		try {
-			commentEJB.validateComment(comment);
-			boolean isSaved = false;
-			isSaved = commentEJB.saveComment(comment);
-			if(isSaved) {
-				text = null;
-			}
-			else {
-				//TODO: how to handle this?
-			}
-		}
-		catch(ValidateException e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
-		}
-		
-		return "post-details.xhtml?faces-redirect=true&id=" + post1.getId();
-	}
 	
 	public String updateComment(){
 		System.out.println("HALLA TEXT: " + text + "AND ID: " + selectedCommentId);

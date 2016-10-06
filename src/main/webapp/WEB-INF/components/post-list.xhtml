@@ -10,11 +10,21 @@
 	<!-- @param postList. List<Post>-->
 	
 	<ui:repeat var="p" value="#{postList}">
-		<ui:include src="/WEB-INF/components/post-entity.xhtml">
-			<ui:param name="postEntity" value="#{ p }"></ui:param>
-			<ui:param name="includeReadMoreBtn" value="#{ true }"></ui:param>
-			<ui:param name="compactCommentList" value="#{ true }"></ui:param>
-		</ui:include>
+		<h:panelGroup rendered="#{ p['class'].getSimpleName() eq 'News'}">
+			<ui:include src="/WEB-INF/components/post-entity-news.xhtml">
+				<ui:param name="newsEntity" value="#{ p }"></ui:param>
+				<ui:param name="includeReadMoreBtn" value="#{ true }"></ui:param>
+				<ui:param name="compactCommentList" value="#{ true }"></ui:param>
+			</ui:include>
+		</h:panelGroup>
+		
+		<h:panelGroup rendered="#{ p['class'].getSimpleName() eq 'Event'}">
+			<ui:include src="/WEB-INF/components/post-entity-event.xhtml">
+				<ui:param name="eventEntity" value="#{ p }"></ui:param>
+				<ui:param name="includeReadMoreBtn" value="#{ true }"></ui:param>
+				<ui:param name="compactCommentList" value="#{ true }"></ui:param>
+			</ui:include>
+		</h:panelGroup>	
 	</ui:repeat>
 	
 </ui:composition>

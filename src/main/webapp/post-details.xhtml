@@ -12,28 +12,34 @@
 
 <ui:composition template="WEB-INF/templates/main-template.xhtml">
 	<ui:define name="pageContent">
-		
-		<!-- @param postEntity -->
-		<f:metadata>
-			<f:viewParam name="id" value="#{ newsBean.selectedNewsId }"></f:viewParam>
-			<f:event listener="#{ newsBean.useSelectedNews() }" type="preRenderView"></f:event>
-		</f:metadata>
-		
+
+			 
 		<h:form id="manage_news_form">
 		<h:panelGrid columns="2" rendered="#{ loginUserBean.user.admin }">
 			
-			<h:button outcome="update-news" value="Edit fields">
-				<f:param name="id" value="#{ newsBean.selectedNewsId }"></f:param>
+			<h:button outcome="post-update" value="Edit fields">
+				<f:param name="id" value="#{ postGetterBean.selectedPost.id }"></f:param>
 			</h:button>
-			<h:commandButton action="#{ newsBean.deleteNews() }" value="Delete"></h:commandButton>	
+			<h:commandButton action="#{ deletePostBean.submit() }" value="Delete">
+				<f:param name="id" value="#{ postGetterBean.selectedPost.id }"></f:param>			
+			</h:commandButton>	
 		</h:panelGrid>
 		</h:form>
 		
 		
-		<ui:include src="WEB-INF/components/post-entity.xhtml">
-				<ui:param name="postEntity" value="#{ newsBean.selectedNews }"></ui:param>
-				<ui:param name="includeReadMoreBtn" value="#{ false }"></ui:param>
-		</ui:include>	
+		<h:panelGroup rendered="#{ postGetterBean.isNews() }">
+			<ui:include src="WEB-INF/components/post-entity-news.xhtml">
+					<ui:param name="newsEntity" value="#{ postGetterBean.getAsNews() }"></ui:param>
+					<ui:param name="includeReadMoreBtn" value="#{ false }"></ui:param>
+			</ui:include>	
+		</h:panelGroup>
+		
+		<h:panelGroup rendered="#{ postGetterBean.isEvent() }">
+			<ui:include src="WEB-INF/components/post-entity-event.xhtml">
+					<ui:param name="eventEntity" value="#{ postGetterBean.getAsEvent() }"></ui:param>
+					<ui:param name="includeReadMoreBtn" value="#{ false }"></ui:param>
+			</ui:include>	
+		</h:panelGroup>
 							
 	</ui:define>
 </ui:composition>

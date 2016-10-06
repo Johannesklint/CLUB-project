@@ -42,7 +42,7 @@ public class CommentListLimitBean {
 		if(listNews==null) {
 			return null;
 		}
-		return listNews.getCommentLimit();
+		return 3; // TODO: fix?
 	}
 
 }

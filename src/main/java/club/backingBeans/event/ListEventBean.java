@@ -1,6 +1,7 @@
-package club.backingBeans;
+package club.backingBeans.event;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -8,27 +9,29 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import club.DAO.Event;
 import club.DAO.News;
+import club.EJB.interfaces.LocalEvent;
 import club.EJB.interfaces.LocalNews;
+import club.backingBeans.BasicFrontendBean;
 import club.backingBeans.user.LoginUserBean;
 
-@Named(value="listNewsBean")
+@Named(value="listEventBean")
 @RequestScoped
-public class ListNewsBean extends BasicFrontendBean {
-	
+public class ListEventBean extends BasicFrontendBean {
+
 	@Inject @Named(value="loginUserBean")
 	LoginUserBean loginUserBean;
 
 	@EJB
-	private LocalNews newsEJB;
+	private LocalEvent eventsEJB;
 	
 	@PostConstruct
 	public void init() {
 		super.redirectIfNotLoggedIn(loginUserBean);
 	}
-	
-	public List<News> getAll(){
-		return newsEJB.getAll();
+		
+	public List<Event> getAll(){
+		return eventsEJB.getAll();
 	}
-
 }

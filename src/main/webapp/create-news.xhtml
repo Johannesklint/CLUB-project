@@ -22,15 +22,15 @@
 			<h:panelGrid columns="2">	
 				
 				<h:outputLabel for="news_author">Author:</h:outputLabel>
-			   	<h:outputText id="news_author" value="#{ newsBean.author.fullName }" />
+			   	<h:outputText id="news_author" value="#{ createNewsBean.author.fullName }" />
 			
 				<h:outputLabel for="news_title">News title:</h:outputLabel>
-			   	<h:inputText id="news_title" value="#{ newsBean.title }" required="true" label="News Title"/>
+			   	<h:inputText id="news_title" value="#{ createNewsBean.title }" required="true" label="News Title"/>
 			   
 			   	<h:outputLabel for="news_text">News description:</h:outputLabel>
-			   	<h:inputTextarea id="news_text" value="#{ newsBean.text }" required="true" label="News Description"/>
+			   	<h:inputTextarea id="news_text" value="#{ createNewsBean.text }" required="true" label="News Description"/>
 			
-				<h:commandButton action="#{ newsBean.create() }" value="Create news post"></h:commandButton>
+				<h:commandButton action="#{ createNewsBean.submit() }" value="Create news post"></h:commandButton>
 			
 			</h:panelGrid>
 		</h:form>

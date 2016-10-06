@@ -30,10 +30,7 @@
 			   
 			   	<h:outputLabel for="event_text">Event description:</h:outputLabel>
 			   	<h:inputTextarea id="event_text" value="#{ createEventBean.text }" required="true" label="Event Description"/>
-			   	
-			   	<h:outputLabel for="event_starttime">Event start time:</h:outputLabel>
-			   	<h:inputTextarea a:placeholder="some placeholder" id="event_starttime" value="#{ createEventBean.startTime }" required="true" label="Event Description"/>
-			   	
+			   				   	
 			   	<h:outputLabel for="event_duration">Event duration in minutes</h:outputLabel>
 			   	<h:inputTextarea 
 			   		id="event_duration"
@@ -45,7 +42,7 @@
 			   	
 			   	
 				
-				<h:commandButton action="#{ createEventBean.create() }" value="Create event post"></h:commandButton>
+				<h:commandButton action="#{ createEventBean.submit() }" value="Create event post"></h:commandButton>
 			
 			</h:panelGrid>
 		</h:form>

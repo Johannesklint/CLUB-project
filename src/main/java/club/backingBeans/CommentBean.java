@@ -5,11 +5,9 @@ import java.time.LocalDateTime;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionListener;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.sql.Timestamp;
@@ -19,7 +17,6 @@ import club.DAO.Post;
 import club.DAO.User;
 import club.EJB.interfaces.LocalComment;
 import club.backingBeans.user.LoginUserBean;
-import club.backingBeans.user.UserProfileBean;
 import club.exceptions.ValidateException;
 
 
@@ -39,9 +36,9 @@ public class CommentBean extends BasicFrontendBean{
 	@Inject @Named("loginUserBean")
 	private LoginUserBean loginUserBean;
 
-	@Inject @Named(value="newsBean")
-	private NewsBean newsBean;
-
+	@Inject @Named(value="postGetterBean")
+	private PostGetterBean postGetterBean;
+	
 	@PostConstruct
 	public void init() {
 		//redirectIfNotLoggedIn(); //TODO: fix redirect
@@ -51,16 +48,24 @@ public class CommentBean extends BasicFrontendBean{
 	public CommentBean(){
 	}
 	
+	public String submit() {
+		return "";
+	}
+	
 	public String saveComment() {
+		
+		System.out.println("..1");
+		
 		Comment comment = new Comment();		
 		comment.setCreated(Timestamp.from(Instant.now()));
 		comment.setText(text);
 		comment.setUser(author);
-		
-		newsBean.useSelectedNews();
-		News post1 = newsBean.getSelectedNews();
+		System.out.println("..2");
+				
+		News post1 = postGetterBean.getAsNews();
 		comment.setPost(post1);
 		
+		System.out.println("..3");
 
 		try {
 			commentEJB.validateComment(comment);
@@ -77,7 +82,7 @@ public class CommentBean extends BasicFrontendBean{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 		}
 		
-		return "";
+		return "post-details.xhtml?faces-redirect=true&id=" + post1.getId();
 	}
 	
 	public String updateComment(){
@@ -102,8 +107,10 @@ public class CommentBean extends BasicFrontendBean{
 		
 		boolean deletedComment = commentEJB.saveComment(commentToDelete);
 		if(deletedComment){
-			return "post-details.xhtml";
+			System.out.println("DELETED COMMENT");
+			return "post-details.xhtml?faces-redirect=true&id=" + commentToDelete.getPost().getId();
 		}else{
+			System.out.println("NOT DELETED COMMENT");
 			super.addFacesMessage("Could not delete");
 		}return "";
 	}
@@ -152,9 +159,5 @@ public class CommentBean extends BasicFrontendBean{
 	public void setSelectedCommentId(int selectedCommentId) {
 		this.selectedCommentId = selectedCommentId;
 	}
-	
-	
 
-
-		
 }

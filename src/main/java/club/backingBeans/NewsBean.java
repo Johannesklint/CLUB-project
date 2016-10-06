@@ -37,7 +37,6 @@ public class NewsBean extends BasicFrontendBean {
 	private LocalNews newsEJB;
 	
 	public NewsBean() {
-		System.out.println("Creating new NewsBean");
 	}
 	
 	@PostConstruct

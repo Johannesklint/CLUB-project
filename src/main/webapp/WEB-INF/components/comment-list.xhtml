@@ -9,7 +9,7 @@
 <ui:composition>
 	<!-- @param commentList. List<Comment>-->
 	
-	<ui:repeat var="c" value="#{commentList}">
+	<ui:repeat var="c" value="#{ commentList }">
 		<ui:include src="/WEB-INF/components/comment-entity.xhtml">
 			<ui:param name="commentEntity" value="#{ c }"></ui:param>
 		</ui:include>

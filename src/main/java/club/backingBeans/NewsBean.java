@@ -24,7 +24,6 @@ public abstract class NewsBean extends PostBean<News> {
 	private LocalNews newsEJB;
 	
 	public NewsBean() {
-		System.out.println("Creating new NewsBean");
 	}
 	
 	@PostConstruct

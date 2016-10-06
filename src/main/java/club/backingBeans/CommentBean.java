@@ -5,11 +5,9 @@ import java.time.LocalDateTime;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionListener;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.sql.Timestamp;
@@ -19,7 +17,6 @@ import club.DAO.Post;
 import club.DAO.User;
 import club.EJB.interfaces.LocalComment;
 import club.backingBeans.user.LoginUserBean;
-import club.backingBeans.user.UserProfileBean;
 import club.exceptions.ValidateException;
 
 
@@ -110,8 +107,10 @@ public class CommentBean extends BasicFrontendBean{
 		
 		boolean deletedComment = commentEJB.saveComment(commentToDelete);
 		if(deletedComment){
-			return "post-details.xhtml";
+			System.out.println("DELETED COMMENT");
+			return "post-details.xhtml?faces-redirect=true&id=" + commentToDelete.getPost().getId();
 		}else{
+			System.out.println("NOT DELETED COMMENT");
 			super.addFacesMessage("Could not delete");
 		}return "";
 	}
@@ -160,9 +159,5 @@ public class CommentBean extends BasicFrontendBean{
 	public void setSelectedCommentId(int selectedCommentId) {
 		this.selectedCommentId = selectedCommentId;
 	}
-	
-	
 
-
-		
 }

@@ -28,7 +28,7 @@ public class NewsEJB implements LocalNews{
 
 	@Override
 	public List<News> getAll() {
-		return newsDao.getAll();
+		return newsDao.getAll(false);
 	}
 
 	@Override

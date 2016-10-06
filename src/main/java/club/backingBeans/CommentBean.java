@@ -36,9 +36,9 @@ public class CommentBean extends BasicFrontendBean{
 	@Inject @Named("loginUserBean")
 	private LoginUserBean loginUserBean;
 
-	@Inject @Named(value="newsBean")
-	private NewsBean newsBean;
-
+	@Inject @Named(value="postGetterBean")
+	private PostGetterBean postGetterBean;
+	
 	@PostConstruct
 	public void init() {
 		//redirectIfNotLoggedIn(); //TODO: fix redirect
@@ -48,16 +48,24 @@ public class CommentBean extends BasicFrontendBean{
 	public CommentBean(){
 	}
 	
+	public String submit() {
+		return "";
+	}
+	
 	public String saveComment() {
+		
+		System.out.println("..1");
+		
 		Comment comment = new Comment();		
 		comment.setCreated(Timestamp.from(Instant.now()));
 		comment.setText(text);
 		comment.setUser(author);
-		
-		newsBean.useSelectedNews();
-		News post1 = newsBean.getSelectedNews();
+		System.out.println("..2");
+				
+		News post1 = postGetterBean.getAsNews();
 		comment.setPost(post1);
 		
+		System.out.println("..3");
 
 		try {
 			commentEJB.validateComment(comment);
@@ -75,6 +83,8 @@ public class CommentBean extends BasicFrontendBean{
 		}
 		
 		return "post-details.xhtml?faces-redirect=true&id=" + comment.getPost().getId();
+
+		return "post-details.xhtml?faces-redirect=true&id=" + post1.getId();
 	}
 	
 	public String updateComment(){

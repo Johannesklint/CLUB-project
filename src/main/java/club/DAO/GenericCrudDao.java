@@ -2,6 +2,7 @@ package club.DAO;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -44,21 +45,25 @@ public abstract class GenericCrudDao<T> {
 		}
 		return false;
 	}
-	
+
+	public List<T> getAll() {
+		return getAll(false);
+	}
+
 	/**
 	 * NOTE: method assumes presence of NamedQuery with name {className}.findAll
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<T> getAll() {
+	public List<T> getAll(boolean includeHidden) {
 		System.out.println("Generic getAll");
 		String className = getProvidedGenericClass().getSimpleName();
 		System.out.println("Generic getAll. className is: " + className);
 		Query query = entityManager.createNamedQuery(className + ".findAll");
-		List<T> entities = (List<T>)query.getResultList();
+		List<T> entities = (List<T>)query.getResultList();				
 		return entities;
 	}
-	
+
 	/**
 	 * Since T.getClass() doesn't work, this is a common work-around to get the generic class.
 	 * @return a class of same type as T, in "... extends GenericCrudDao&lt;T&gt;"

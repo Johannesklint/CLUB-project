@@ -35,7 +35,7 @@ public class PostEJB implements LocalPost {
 
 	@Override
 	public List<Post> getAll() {
-		return postDao.getAll();
+		return postDao.getAllPosts(false);
 	}
 
 	@Override

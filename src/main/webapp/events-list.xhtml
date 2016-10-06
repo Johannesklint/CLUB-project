@@ -16,7 +16,7 @@
 	
 		<!-- include post list, event-list -->
 		<ui:include src="/WEB-INF/components/post-list.xhtml">
-			<ui:param name="postList" value="#{}"></ui:param>
+			<ui:param name="postList" value="#{ listEventBean.getAll() }"></ui:param>
 		</ui:include>
 	
 	</ui:define>

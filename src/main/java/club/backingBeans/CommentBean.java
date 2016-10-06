@@ -47,11 +47,11 @@ public class CommentBean extends BasicFrontendBean{
 		//commentToUpdate.setCreated(Timestamp.from(Instant.now())); 
 		
 		boolean savedComment = commentEJB.saveComment(commentToUpdate);
-		if(savedComment){
+		if(savedComment){	
 			return "post-details.xhtml?faces-redirect=true&id=" + commentToUpdate.getPost().getId();
 		}else{
 			super.addFacesMessage("Could not update");
-		}return "";
+		}return "post-details.xhtml?faces-redirect=true&id=" + commentToUpdate.getPost().getId();
 	}
 
 	public String deleteComment(){
@@ -66,7 +66,7 @@ public class CommentBean extends BasicFrontendBean{
 		}else{
 			System.out.println("NOT DELETED COMMENT");
 			super.addFacesMessage("Could not delete");
-		}return "";
+		}return "post-details.xhtml?faces-redirect=true&id=" + commentToDelete.getPost().getId();
 	}
 	
 	public void setFieldFromSelectedComment(){

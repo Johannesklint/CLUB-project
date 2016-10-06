@@ -28,7 +28,6 @@
 			
 			   <h:outputLabel for="password">Password:</h:outputLabel>
 			   <h:inputSecret id="password" value="#{ registerUserBean.password }" required="true" label="Password" />
-	
 			   
 		 	   <h:outputLabel for="terms_and_conditions">Terms And Conditions:</h:outputLabel>
 			   <h:selectBooleanCheckbox id="terms_and_conditions" value="#{ registerUserBean.termsAndConditions }" requiredMessage="You must agree with the Terms and Conditions" required="true" label="Terms and Conditions">
@@ -44,11 +43,12 @@
 		</h:form>
 		
 		<button onclick="readTerms()">Read Terms and Conditions</button>
-		<h:inputHidden id="hej" value="#{ platformBean.termsAndConditions }"></h:inputHidden>
+		<h:inputHidden id="terms" value="#{ platformBean.termsAndConditions }"></h:inputHidden>
 	 	<div id="printTerms"></div>
+	 	
      <script type="text/javascript" language="javascript">  
 	     function readTerms() {
-	    	 	var x = document.getElementById('hej').value;
+	    	 	var x = document.getElementById('terms').value;
 	    	   document.getElementById("printTerms").innerHTML = x;
 	   
 	    	}

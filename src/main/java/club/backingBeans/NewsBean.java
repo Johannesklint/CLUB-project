@@ -48,9 +48,7 @@ public abstract class NewsBean extends PostBean<News> {
 			return "";
 		}
 	}
-	
-
-	
+		
 	public String deleteNews(){
 
 		News newsToUpdate = newsEJB.getById(selectedNewsId);
@@ -65,7 +63,6 @@ public abstract class NewsBean extends PostBean<News> {
 
 	public void useSelectedNews(){
 		selectedNews = newsEJB.getById(selectedNewsId);
-		System.out.println("getting news with title: " + selectedNews.getTitle());
 	}
 
 	

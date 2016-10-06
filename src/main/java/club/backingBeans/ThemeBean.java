@@ -14,15 +14,13 @@ public class ThemeBean {
 	private String secondaryColorHEX;
 	
 	public ThemeBean() {
-		this.primaryColorHEX = "#B312C7";
-		this.secondaryColorHEX = "#1695A3";
 	}
 	
 	public Theme createThemeFromBean(){
 		Theme theme = new Theme();
 		theme.setId(1);
-		theme.setPrimaryColorHex(primaryColorHEX);
-		theme.setSecondaryColorHex(secondaryColorHEX);
+		theme.setPrimaryColorHex("#" + primaryColorHEX);
+		theme.setSecondaryColorHex("#" + secondaryColorHEX);
 		
 		return theme;
 	}
@@ -40,9 +38,4 @@ public class ThemeBean {
 	public void setSecondaryColorHEX(String secondaryColorHEX) {
 		this.secondaryColorHEX = secondaryColorHEX;
 	}
-	
-	
-	
-	
-
 }

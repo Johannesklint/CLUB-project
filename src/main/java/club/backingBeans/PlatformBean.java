@@ -49,9 +49,7 @@ public class PlatformBean {
 	}
 	
 	public String savePlatform(){
-
-		System.out.println("before saveplatform: " + theme == null);
-		
+	
 		Platform platform = new Platform();
 		platform.setId(1);
 		platform.setTitle(title);

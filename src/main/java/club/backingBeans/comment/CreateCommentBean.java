@@ -1,4 +1,4 @@
-package club.backingBeans;
+package club.backingBeans.comment;
 
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -11,6 +11,7 @@ import javax.inject.Named;
 import club.DAO.Comment;
 import club.DAO.Post;
 import club.EJB.interfaces.LocalComment;
+import club.backingBeans.PostGetterBean;
 import club.exceptions.ValidateException;
 
 @Named(value="createCommentBean")
@@ -24,7 +25,6 @@ public class CreateCommentBean extends CommentBean{
 	private PostGetterBean postGetterBean;
 
 	public String submit() {
-		
 		return createComment();
 	}
 	

@@ -1,4 +1,4 @@
-package club.backingBeans;
+package club.backingBeans.comment;
 
 import java.util.Map;
 
@@ -10,6 +10,7 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
 import club.DAO.Comment;
+import club.backingBeans.ListNewsBean;
 
 @Named(value="commentListLimitBean")
 @RequestScoped

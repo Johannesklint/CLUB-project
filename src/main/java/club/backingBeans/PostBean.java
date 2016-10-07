@@ -89,7 +89,7 @@ public abstract class PostBean<T extends Post> extends BasicFrontendBean {
 		return "home";
 	}
 	
-	String updateAndGetRedirect(){ // TODO: rename
+	protected String updateAndGetRedirect(){ // TODO: rename
 		System.out.println("inne i update news " + getTitle());
 		
 		Post savedPost = update();

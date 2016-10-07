@@ -25,12 +25,15 @@ public class PostGetterBean {
 	@PostConstruct
 	public void init() {
 		
+		
 		System.out.println("INIT");
 		
 		Map<String, String> params =  FacesContext.getCurrentInstance()
 				.getExternalContext()
 				.getRequestParameterMap();
 		String selectedIdString = params.get("id");
+		
+		
 		
 		if(selectedIdString != null) {
 			

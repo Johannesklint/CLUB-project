@@ -17,6 +17,13 @@
 				<p>#{ eventEntity.author.fullName }</p>
 				<p>When: #{ eventEntity.startTime }</p>
 				
+				<h:form id="attend_event_form">
+					<h:commandButton id="button" value="Attend" action="#{ addAttendantOnEventBean.submit() }">
+						<f:param name="id" value="#{ eventEntity.id }"></f:param>
+					</h:commandButton>					
+				</h:form>
+				<br/>
+				
 				<h:link rendered="#{ includeReadMoreBtn }" outcome="post-details" value="Read more" includeViewParams="true">		
 				  <f:param name="id" value="#{ eventEntity.id }"></f:param>		
 				</h:link>

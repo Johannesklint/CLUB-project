@@ -42,7 +42,7 @@ public class CreateCommentBean extends CommentBean{
 		}
 		catch(ValidateException e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
-			return "";
+			return "post-details.xhtml?faces-redirect=true&id=" + post.getId();
 		}
 		
 		return "post-details.xhtml?faces-redirect=true&id=" + post.getId();

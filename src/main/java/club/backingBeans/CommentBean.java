@@ -25,7 +25,7 @@ public class CommentBean extends BasicFrontendBean{
 	
 	@EJB
 	private LocalComment commentEJB;
-
+	
 	@Inject @Named("loginUserBean")
 	private LoginUserBean loginUserBean;
 	
@@ -37,7 +37,7 @@ public class CommentBean extends BasicFrontendBean{
 
 	public CommentBean(){
 	}
-		
+	
 	
 	public String updateComment(){
 		System.out.println("HALLA TEXT: " + text + "AND ID: " + selectedCommentId);
@@ -61,10 +61,8 @@ public class CommentBean extends BasicFrontendBean{
 		
 		boolean deletedComment = commentEJB.saveComment(commentToDelete);
 		if(deletedComment){
-			System.out.println("DELETED COMMENT");
 			return "post-details.xhtml?faces-redirect=true&id=" + commentToDelete.getPost().getId();
 		}else{
-			System.out.println("NOT DELETED COMMENT");
 			super.addFacesMessage("Could not delete");
 		}return "post-details.xhtml?faces-redirect=true&id=" + commentToDelete.getPost().getId();
 	}
@@ -113,5 +111,6 @@ public class CommentBean extends BasicFrontendBean{
 	public void setSelectedCommentId(int selectedCommentId) {
 		this.selectedCommentId = selectedCommentId;
 	}
+
 
 }

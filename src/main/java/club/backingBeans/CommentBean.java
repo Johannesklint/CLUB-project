@@ -10,12 +10,16 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.hibernate.type.descriptor.java.PrimitiveByteArrayTypeDescriptor;
+
 import java.sql.Timestamp;
 import club.DAO.Comment;
 import club.DAO.News;
 import club.DAO.Post;
 import club.DAO.User;
 import club.EJB.interfaces.LocalComment;
+import club.EJB.interfaces.LocalGenericCrud;
 import club.backingBeans.user.LoginUserBean;
 import club.exceptions.ValidateException;
 
@@ -32,7 +36,7 @@ public class CommentBean extends BasicFrontendBean{
 	
 	@EJB
 	private LocalComment commentEJB;
-
+	
 	@Inject @Named("loginUserBean")
 	private LoginUserBean loginUserBean;
 
@@ -69,21 +73,23 @@ public class CommentBean extends BasicFrontendBean{
 
 		try {
 			commentEJB.validateComment(comment);
-			boolean isSaved = false;//da
+			boolean isSaved = false;
 			isSaved = commentEJB.saveComment(comment);
 			if(isSaved) {
 				text = null;
+				return "post-details.xhtml?faces-redirect=true&id=" + post1.getId();
+
 			}
 			else {
 				//TODO: how to handle this?
+				return "post-details.xhtml?faces-redirect=true&id=" + post1.getId();
+
 			}
 		}
 		catch(ValidateException e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
 		}
 		
-		return "post-details.xhtml?faces-redirect=true&id=" + comment.getPost().getId();
-
 		return "post-details.xhtml?faces-redirect=true&id=" + post1.getId();
 	}
 	
@@ -109,10 +115,8 @@ public class CommentBean extends BasicFrontendBean{
 		
 		boolean deletedComment = commentEJB.saveComment(commentToDelete);
 		if(deletedComment){
-			System.out.println("DELETED COMMENT");
 			return "post-details.xhtml?faces-redirect=true&id=" + commentToDelete.getPost().getId();
 		}else{
-			System.out.println("NOT DELETED COMMENT");
 			super.addFacesMessage("Could not delete");
 		}return "post-details.xhtml?faces-redirect=true&id=" + commentToDelete.getPost().getId();
 	}
@@ -161,5 +165,6 @@ public class CommentBean extends BasicFrontendBean{
 	public void setSelectedCommentId(int selectedCommentId) {
 		this.selectedCommentId = selectedCommentId;
 	}
+
 
 }

@@ -32,4 +32,5 @@ public class CommentEJB implements LocalComment {
 		return commentDao.getById(id);
 	}
 
+
 }

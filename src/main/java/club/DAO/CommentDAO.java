@@ -17,7 +17,6 @@ public class CommentDAO {
 	}
 
 	public Comment getById(int id) {
-		System.out.println("INSIDE COMMENTDAO");
 		return manager.find(Comment.class, id);
 	}
 

@@ -32,5 +32,9 @@ public class CommentEJB implements LocalComment {
 		return commentDao.getById(id);
 	}
 
+	@Override
+	public Comment updateComment(Comment comment) {
+		return commentDao.update(comment);
+	}
 
 }

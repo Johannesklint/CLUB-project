@@ -67,5 +67,8 @@ public class PostGetterBean {
 		return (Event) selectedPost;
 	}
 	
+	public Post getAsPost() {
+		return selectedPost;
+	}
 
 }

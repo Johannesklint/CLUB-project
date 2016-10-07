@@ -1,20 +1,17 @@
-package club.backingBeans;
+package club.backingBeans.comment;
 
 import java.time.LocalDateTime;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import club.DAO.Comment;
 import club.DAO.Post;
 import club.DAO.User;
 import club.EJB.interfaces.LocalComment;
+import club.backingBeans.BasicFrontendBean;
 import club.backingBeans.user.LoginUserBean;
 
-
-@Named(value="commentBean")
-@RequestScoped
 public class CommentBean extends BasicFrontendBean{
 
 	private String text;
@@ -38,45 +35,18 @@ public class CommentBean extends BasicFrontendBean{
 	public CommentBean(){
 	}
 	
-	
-	public String updateComment(){
-		System.out.println("HALLA TEXT: " + text + "AND ID: " + selectedCommentId);
-		
-		Comment commentToUpdate = commentEJB.getById(selectedCommentId);
-		commentToUpdate.setText(text);
-		//commentToUpdate.setCreated(Timestamp.from(Instant.now())); 
-		
-		boolean savedComment = commentEJB.saveComment(commentToUpdate);
-		if(savedComment){	
-			return "post-details.xhtml?faces-redirect=true&id=" + commentToUpdate.getPost().getId();
-		}else{
-			super.addFacesMessage("Could not update");
-		}return "post-details.xhtml?faces-redirect=true&id=" + commentToUpdate.getPost().getId();
-	}
-
-	public String deleteComment(){
-		System.out.println("DELETE FFS");
-		Comment commentToDelete = commentEJB.getById(selectedCommentId);
-		commentToDelete.setHidden(true);
-		
-		boolean deletedComment = commentEJB.saveComment(commentToDelete);
-		if(deletedComment){
-			return "post-details.xhtml?faces-redirect=true&id=" + commentToDelete.getPost().getId();
-		}else{
-			super.addFacesMessage("Could not delete");
-		}return "post-details.xhtml?faces-redirect=true&id=" + commentToDelete.getPost().getId();
-	}
-	
 	public void setFieldFromSelectedComment(){
 		Comment comment = commentEJB.getById(selectedCommentId);
 		setText(comment.getText());
 	}
 	
 	public String getText() {
+		System.out.println("getText: " + text);
 		return text;
 	}
 	
 	public void setText(String text) {
+		System.out.println("setText: " + text);
 		this.text = text;
 	}
 	
@@ -105,12 +75,23 @@ public class CommentBean extends BasicFrontendBean{
 	}
 
 	public int getSelectedCommentId() {
+		System.out.println("getSelectedCommentId: " + selectedCommentId);
 		return selectedCommentId;
 	}
 
 	public void setSelectedCommentId(int selectedCommentId) {
 		this.selectedCommentId = selectedCommentId;
 	}
+
+	public LoginUserBean getLoginUserBean() {
+		return loginUserBean;
+	}
+
+	public void setLoginUserBean(LoginUserBean loginUserBean) {
+		this.loginUserBean = loginUserBean;
+	}
+	
+	
 
 
 }

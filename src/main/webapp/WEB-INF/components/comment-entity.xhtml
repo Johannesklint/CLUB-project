@@ -28,13 +28,12 @@
 							</h:messages>
 							
 							<h:panelGrid columns="2" cellpadding="5">	
-								<h:inputText class="text" value="#{ commentEntity.text }"></h:inputText>
-	
-								<h:commandButton action="#{ commentBean.updateComment }" value="Update">
-	    							<f:setPropertyActionListener target="#{ commentBean.text }" value="#{ commentEntity.text }" />
-	    							<f:setPropertyActionListener target="#{ commentBean.selectedCommentId }" value="#{ commentEntity.id }"/>
+								<h:inputTextarea class="text" value="#{ commentEntity.text }"/>
+								<h:commandButton action="#{ updateCommentBean.submit }" value="Update">
+	    							<f:setPropertyActionListener target="#{ updateCommentBean.text }" value="#{ commentEntity.text }" />
+	    							<f:setPropertyActionListener target="#{ updateCommentBean.selectedCommentId }" value="#{ commentEntity.id }"/>
 								</h:commandButton>
-								<h:commandButton action="#{ commentBean.deleteComment }" value="Delete">
+								<h:commandButton action="#{ deleteCommentBean.submit }" value="Delete">
 	    							<f:setPropertyActionListener target="#{ commentBean.selectedCommentId }" value="#{ commentEntity.id }"/>								
 								</h:commandButton>			
 							</h:panelGrid>	

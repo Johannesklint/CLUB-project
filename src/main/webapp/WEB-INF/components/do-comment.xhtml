@@ -14,9 +14,9 @@
 			<h:message for="text"></h:message>
 		</h:messages>	
 
-		<h:inputText id="text" value="#{ createCommentBean.text }" required="true" label="Text">
+		<h:inputTextarea id="text" value="#{ createCommentBean.text }" required="true" label="Text">
 			<f:validateLength minimum="1" maximum="140"/>
-		</h:inputText>	
+		</h:inputTextarea>	
 		
 		<h:commandButton value="Comment" action="#{ createCommentBean.submit() }">
 			<f:param name="id" value="#{ postEntity.id }"/>			

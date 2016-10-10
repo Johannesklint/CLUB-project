@@ -54,9 +54,14 @@ public class UpdateComment extends HttpServlet {
 		commentEJB.saveComment(commentToUpdate);		
 
 		if(redirect!=null) {
-	    	response.sendRedirect(redirect);	    				
+			response.sendRedirect(redirect);	    				
 		}
-		else response.getWriter().append("Success (but no redirect)");
+		else if(request.getHeader("referer")!=null){
+			response.sendRedirect(request.getHeader("referer"));	    				
+		}
+		else {
+			response.getWriter().append("Success (but no redirect)").append(", Referer: "+request.getHeader("referer"));
+		}
 	}
 
 	/**

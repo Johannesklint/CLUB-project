@@ -21,7 +21,6 @@
 					<h:panelGroup rendered="#{ commentEntity.user.email eq loginUserBean.user.email }" >					 
 						<form action="/clubproject/update-comment" method="post">
 							<input type="hidden" name="comment_id" value="#{ commentEntity.id }"/>
-							<input type="hidden" name="redirect" value="/clubproject/faces/home.xhtml"/>
 							<textarea name="text">#{ commentEntity.text }</textarea>
 							<input type="submit" value="Update comment"/>
 						</form> 

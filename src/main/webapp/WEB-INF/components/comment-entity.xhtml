@@ -18,7 +18,14 @@
 					<hr></hr>			
 					<b>#{ commentEntity.text }</b>  <p> #{ commentEntity.user.fullName }</p>
 				
-					<p:commandButton rendered="#{ commentEntity.user.email eq loginUserBean.user.email }" value="Update" type="button" onclick="PF(#{ modalId }).show();" />
+					<h:panelGroup rendered="#{ commentEntity.user.email eq loginUserBean.user.email }" >					 
+						<form action="/clubproject/update-comment" method="post">
+							<input type="hidden" name="comment_id" value="#{ commentEntity.id }"/>
+							<input type="hidden" name="redirect" value="/clubproject/faces/home.xhtml"/>
+							<textarea name="text">#{ commentEntity.text }</textarea>
+							<input type="submit" value="Update comment"/>
+						</form> 
+					</h:panelGroup>
 					 
 					<p:dialog header="Update comment" widgetVar="#{ modalId }" modal="true" height="300">
 	

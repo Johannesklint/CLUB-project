@@ -53,6 +53,24 @@
 	    <artifactId>primefaces</artifactId>  
 	    <version>6.0</version>  
 	</dependency>  
+	
+	
+	<!--  JAX-RS  + JSON -->
+    
+    <dependency>
+        <groupId>org.glassfish.jersey.containers</groupId>
+        <artifactId>jersey-container-servlet</artifactId>
+        <version>2.6</version>
+        <scope>provided</scope>
+    </dependency>
+    <!-- if you are using Jersey client specific features -->
+
+    
+    <dependency>
+        <groupId>org.glassfish.jersey.core</groupId>
+        <artifactId>jersey-client</artifactId>
+        <version>2.6</version>
+    </dependency>
 	 
 	
   </dependencies>

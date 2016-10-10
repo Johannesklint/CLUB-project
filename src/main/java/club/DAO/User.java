@@ -46,10 +46,6 @@ public class User implements Serializable {
 	private String hMACPassword;
 
 
-	//bi-directional many-to-one association to Comment
-	@OneToMany(mappedBy="user")
-	private List<Comment> comments;
-
 	public User() {
 	}
 
@@ -109,27 +105,6 @@ public class User implements Serializable {
 		hMACPassword = PasswordHandler.hash(password).toString();	
 	}
 
-	public List<Comment> getComments() {
-		return this.comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
-
-	public Comment addComment(Comment comment) {
-		getComments().add(comment);
-		comment.setUser(this);
-
-		return comment;
-	}
-
-	public Comment removeComment(Comment comment) {
-		getComments().remove(comment);
-		comment.setUser(null);
-
-		return comment;
-	}
 	
 	public String getFullName(){
 		return this.firstName + " " + this.lastName;

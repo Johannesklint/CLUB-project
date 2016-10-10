@@ -9,7 +9,6 @@ CREATE FUNCTION timestamp_plus_x_days_with_y_time(daysIntoFuture INTEGER, new_ti
 INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`hmac_password`,`admin`, `approved_state`) VALUES (null,'Admin', 'Adminsson', 'admin@admin.se', '73617059CED40DB461984E72F15EA0F2F30C2385565CDF59124B8C56911ECDC29E90328EF190E5D0EA339E7B1221A6F9BDC4BB5D25F14F560E7FA8B451931A0A:7B8509E35DD2EBBC00BAECA928F9CD57', true, 0);
 INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`hmac_password`,`admin`, `approved_state`) VALUES (null,'Marcin', 'Retek', 'marcin@retek.se', '73617059CED40DB461984E72F15EA0F2F30C2385565CDF59124B8C56911ECDC29E90328EF190E5D0EA339E7B1221A6F9BDC4BB5D25F14F560E7FA8B451931A0A:7B8509E35DD2EBBC00BAECA928F9CD57', true, 2);
 INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`hmac_password`,`admin`, `approved_state`) VALUES (null,'Emil', 'Rånge', 'emil@range.se', '73617059CED40DB461984E72F15EA0F2F30C2385565CDF59124B8C56911ECDC29E90328EF190E5D0EA339E7B1221A6F9BDC4BB5D25F14F560E7FA8B451931A0A:7B8509E35DD2EBBC00BAECA928F9CD57', false, 2);
-                             
 
 # Create Theme
 

@@ -35,6 +35,7 @@ public class UpdateComment extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		System.out.println("---------------------------------------------------- update comment");
 		
 		String commentId = request.getParameter("comment_id");
 		String redirect = request.getParameter("redirect");
@@ -53,6 +54,8 @@ public class UpdateComment extends HttpServlet {
 		
 		commentEJB.saveComment(commentToUpdate);		
 
+		System.out.println("  a "+request.getHeader("referer"));
+		
 		if(redirect!=null) {
 			response.sendRedirect(redirect);	    				
 		}
@@ -60,6 +63,7 @@ public class UpdateComment extends HttpServlet {
 			response.sendRedirect(request.getHeader("referer"));	    				
 		}
 		else {
+			System.out.println("!!!");
 			response.getWriter().append("Success (but no redirect)").append(", Referer: "+request.getHeader("referer"));
 		}
 	}

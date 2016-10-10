@@ -3,6 +3,8 @@ package club.DAO;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import club.password.CouldNotEncryptPasswordException;
 import club.password.PasswordHandler;
 

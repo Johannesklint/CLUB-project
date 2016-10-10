@@ -22,6 +22,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 @Entity
 @Table(name="post")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -49,8 +52,7 @@ public abstract class Post {
 	private boolean hidden;
 
 	public Post() {
-		this.comments = new ArrayList<>();
-		
+
 	}
 
 	public Integer getId() {
@@ -89,6 +91,11 @@ public abstract class Post {
 		System.out.println("Getting comments. in COmment.java: " + comments);
 		return comments;
 	}
+	
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
 	public boolean getHidden() {
 		return this.hidden;
 	}

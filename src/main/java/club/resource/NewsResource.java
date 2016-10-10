@@ -1,5 +1,6 @@
 package club.resource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -36,8 +37,13 @@ public class NewsResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<News> getAllNews(){
-		System.out.println();
-		return newsEJB.getAll();
+		
+		List<News> news = newsEJB.getAll();
+		System.out.println("inne i GET NEWS:" + news.get(0).getComments().size() );
+		News n1 = new News();
+		n1.setComments(new ArrayList<>());
+		
+		return news;
 		
 	
 	

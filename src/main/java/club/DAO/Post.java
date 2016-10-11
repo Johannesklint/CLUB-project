@@ -48,7 +48,10 @@ public abstract class Post {
 	@Column(name="hidden", nullable=false)
 	private boolean hidden;
 
-	public Post() {}
+	public Post() {
+		this.comments = new ArrayList<>();
+		
+	}
 
 	public Integer getId() {
 		return id;
@@ -83,6 +86,7 @@ public abstract class Post {
 		this.created = created;
 	}
 	public List<Comment> getComments() {
+		System.out.println("Getting comments. in COmment.java: " + comments);
 		return comments;
 	}
 	public boolean getHidden() {

@@ -2,6 +2,9 @@ package club.DAO;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.sql.Timestamp;
 
 
@@ -31,6 +34,7 @@ public class Comment implements Serializable {
 	@JoinColumn(name="author_id", nullable=false)
 	private User user;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="post_id", nullable=false)
 	private Post post;

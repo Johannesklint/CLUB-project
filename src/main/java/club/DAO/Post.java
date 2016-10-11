@@ -22,6 +22,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="post")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -42,6 +44,7 @@ public abstract class Post {
 //	@OneToMany(targetEntity=User.class, mappedBy="comments")
 //	private List<User> followers;
 
+	@JsonIgnore
 	@OneToMany(mappedBy="post")
 	private List<Comment> comments;
 

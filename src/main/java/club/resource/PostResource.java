@@ -24,9 +24,9 @@ import javax.ws.rs.core.UriInfo;
 import club.DAO.Post;
 import club.EJB.interfaces.LocalPost;
 
-@RequestScoped
+@Stateless
 @Path("/posts")
-public class PostResource {
+public class PostResource extends BasicResource {
 	
 	@EJB
 	LocalPost postEJB;
@@ -42,7 +42,7 @@ public class PostResource {
 		List<Post> posts = postEJB.getAll();
 		return Response.status(Status.ACCEPTED)
 				.entity(posts)
-				.links(getSelfLink())
+				.links(super.getSelfLink())
 				.build();
 	}
 	
@@ -53,7 +53,7 @@ public class PostResource {
 		Post post = postEJB.getById(id);
 		return Response.status(ACCEPTED)
 				.entity(post)
-				.links(getSelfLink())
+				.links(super.getSelfLink())
 				.build();
 	}
 	
@@ -61,15 +61,6 @@ public class PostResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public CommentResource getPostComments(@PathParam("post_id") int id){
 		return commentResource;
-	}
-	
-	private URI getAbsolutePathURIFromContext() {
-		return uriInfo.getAbsolutePath();
-	}
-	
-	private Link getSelfLink() {
-		URI uri = getAbsolutePathURIFromContext();
-		return Link.fromUri(uri).rel("self").build();
 	}
 	
 	

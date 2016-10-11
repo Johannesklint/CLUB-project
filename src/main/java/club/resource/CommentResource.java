@@ -18,7 +18,7 @@ import club.EJB.interfaces.LocalComment;
 
 @RequestScoped
 @Path("/comments")
-public class CommentResource {
+public class CommentResource extends BasicResource {
 	
 	// hur kommer man åt 1an i  /messages/1/comments/ 
 	// vi kan komma åt den via @PathParam också
@@ -38,6 +38,7 @@ public class CommentResource {
 		List<Comment> comments = commentEJB.getAllByPostId(postId);
 		return Response.status(Status.ACCEPTED)
 				.entity(comments)
+				.links(super.getSelfLink())
 				.build();
 	}
 	

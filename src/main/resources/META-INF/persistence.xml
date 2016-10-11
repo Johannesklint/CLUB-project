@@ -17,7 +17,7 @@
 			<!-- create db tables / insert data (or what ever) on deploy  -->
 			<!-- see http://docs.oracle.com/javaee/7/tutorial/persistence-intro005.htm -->
 			
-			<property name="javax.persistence.sql-load-script-source" value="META-INF/sql/data.sql" />
+			<property name="javax.persistence.sql-load-script-source" value="resources/META-INF/sql/data.sql" />
 			
 			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>		
 			<!-- decide what to create / drop from metadata, ie Annotations -->

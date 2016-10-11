@@ -1,5 +1,7 @@
 package club.EJB.interfaces;
 
+import java.util.List;
+
 import javax.ejb.Local;
 
 import club.DAO.Comment;
@@ -14,5 +16,6 @@ public interface LocalComment {
 	void validateComment(Comment comment) throws ValidateException;
 
 	public Comment getById(int selectedCommentId);
+	public List<Comment> getAllByPostId(int postId);
 
 }

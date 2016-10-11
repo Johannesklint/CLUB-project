@@ -14,7 +14,10 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name="comment")
-@NamedQuery(name="Comment.findAll", query="SELECT c FROM Comment c")
+@NamedQueries( { 
+	@NamedQuery(name="Comment.findAll", query="SELECT c FROM Comment c"),
+	@NamedQuery(name="Comment.findAllByPostId", query="SELECT c FROM Comment c WHERE c.post.id = :postId")
+})
 public class Comment implements Serializable {
 	private static final long serialVersionUID = 1L;
 

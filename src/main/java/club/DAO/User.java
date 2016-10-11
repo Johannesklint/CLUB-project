@@ -3,6 +3,8 @@ package club.DAO;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import club.password.CouldNotEncryptPasswordException;
 import club.password.PasswordHandler;
 
@@ -97,6 +99,7 @@ public class User implements Serializable {
 		this.lastName = lastName;
 	}
 
+	@JsonIgnore
 	public String getHashedPasswordSaltpair() {
 		return hMACPassword;
 	}

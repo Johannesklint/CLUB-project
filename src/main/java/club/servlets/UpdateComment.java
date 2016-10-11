@@ -1,6 +1,8 @@
 package club.servlets;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.Instant;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -34,8 +36,6 @@ public class UpdateComment extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		System.out.println("---------------------------------------------------- update comment");
 		
 		String commentId = request.getParameter("comment_id");
 		String redirect = request.getParameter("redirect");
@@ -50,11 +50,10 @@ public class UpdateComment extends HttpServlet {
 		
 		Comment commentToUpdate = commentEJB.getById(commentIdI);
 		commentToUpdate.setText(text);
-		//commentToUpdate.setCreated(Timestamp.from(Instant.now())); 
+		commentToUpdate.setLastUpdated( Timestamp.from(Instant.now()) );
 		
 		commentEJB.saveComment(commentToUpdate);		
 
-		System.out.println("  a "+request.getHeader("referer"));
 		
 		if(redirect!=null) {
 			response.sendRedirect(redirect);	    				

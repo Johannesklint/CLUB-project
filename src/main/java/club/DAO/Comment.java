@@ -29,8 +29,19 @@ public class Comment implements Serializable {
 	@Column(nullable=false)
 	private Timestamp created;
 
+	@Column(name="last_updated")
+	private Timestamp lastUpdated;
+
 	@Column(nullable=false, length=140)
 	private String text;
+
+	public Timestamp getLastUpdated() {
+		return lastUpdated;
+	}
+
+	public void setLastUpdated(Timestamp lastUpdated) {
+		this.lastUpdated = lastUpdated;
+	}
 
 	//bi-directional many-to-one association to User
 	@ManyToOne

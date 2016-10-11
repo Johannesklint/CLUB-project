@@ -9,6 +9,7 @@ import club.EJB.interfaces.LocalComment;
 import club.exceptions.ValidateException;
 
 @Stateless
+@EJB(name="commentEJB", beanInterface=LocalComment.class)
 public class CommentEJB implements LocalComment {
 
 	@EJB

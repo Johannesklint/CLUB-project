@@ -113,4 +113,12 @@ public class User implements Serializable {
 		return this.firstName + " " + this.lastName;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		User user = (User)obj;
+		return user.getId() == this.getId();
+	}
+	
+	
+
 }

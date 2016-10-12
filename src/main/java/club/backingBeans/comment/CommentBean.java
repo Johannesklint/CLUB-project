@@ -12,7 +12,7 @@ import club.EJB.interfaces.LocalComment;
 import club.backingBeans.BasicFrontendBean;
 import club.backingBeans.user.LoginUserBean;
 
-public class CommentBean extends BasicFrontendBean{
+public abstract class CommentBean extends BasicFrontendBean{
 
 	private String text;
 	private User author;

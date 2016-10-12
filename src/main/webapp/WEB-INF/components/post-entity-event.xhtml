@@ -22,15 +22,21 @@
 					<ui:repeat var="a" value="#{eventEntity.attendees}">
 						<li>#{ a.fullName }</li>						
 					</ui:repeat>
+					
 				</ul>
 				
-				<h:form id="attend_event_form" rendered="#{ includeAttendButton }">
-
-					<h:commandButton id="button" value="Attend" action="#{ addAttendantOnEventBean.submit() }">
-						<f:param name="id" value="#{ eventEntity.id }"></f:param>
-					</h:commandButton>
-					
-					<br/>					
+				<h:form id="attend_event_form">
+					<h:panelGroup rendered="#{ includeAttendButton }">
+						<h:commandButton id="attend" value="Attend" action="#{ addAttendantOnEventBean.submit() }">
+							<f:param name="id" value="#{ eventEntity.id }"></f:param>
+						</h:commandButton>
+						<br/>
+					</h:panelGroup >	
+					<h:panelGroup rendered="#{ includeUnAttendButton }">
+						<h:commandButton id="unAttend" value="UnAttend" action="#{ removeAttendantOnEventBean.submit() }">
+							<f:param name="id" value="#{ eventEntity.id }"></f:param>	
+						</h:commandButton>
+					</h:panelGroup>				
 				</h:form>
 				
 				<h:link rendered="#{ includeReadMoreBtn }" outcome="post-details" value="Read more" includeViewParams="true">		

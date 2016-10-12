@@ -52,8 +52,7 @@ public abstract class Post {
 	private boolean hidden;
 
 	public Post() {
-		this.comments = new ArrayList<>();
-		
+
 	}
 
 	public Integer getId() {
@@ -92,6 +91,11 @@ public abstract class Post {
 		System.out.println("Getting comments. in COmment.java: " + comments);
 		return comments;
 	}
+	
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
 	public boolean getHidden() {
 		return this.hidden;
 	}

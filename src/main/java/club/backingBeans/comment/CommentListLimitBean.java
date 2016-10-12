@@ -1,13 +1,8 @@
 package club.backingBeans.comment;
 
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
 
 import club.DAO.Comment;
 import club.backingBeans.ListNewsBean;

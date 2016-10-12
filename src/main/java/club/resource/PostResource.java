@@ -1,24 +1,19 @@
 package club.resource;
 
-import static javax.ws.rs.core.Response.Status.ACCEPTED;
+import static javax.ws.rs.core.Response.Status.*;
 
-import java.net.URI;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Link;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 
 import club.DAO.Post;
@@ -40,7 +35,7 @@ public class PostResource extends BasicResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllPosts(){
 		List<Post> posts = postEJB.getAll();
-		return Response.status(Status.ACCEPTED)
+		return Response.status(OK)
 				.entity(posts)
 				.links(super.getSelfLink())
 				.build();
@@ -51,7 +46,7 @@ public class PostResource extends BasicResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getById(@PathParam("post_id") int id){
 		Post post = postEJB.getById(id);
-		return Response.status(ACCEPTED)
+		return Response.status(OK)
 				.entity(post)
 				.links(super.getSelfLink())
 				.build();

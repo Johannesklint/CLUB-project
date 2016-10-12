@@ -48,8 +48,9 @@ public class Comment implements Serializable {
 	@JoinColumn(name="author_id", nullable=false)
 	private User user;
 
-	@JsonIgnore
+	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="post_id", nullable=false)
 	private Post post;
 	
@@ -99,11 +100,12 @@ public class Comment implements Serializable {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
+	
+	@JsonIgnore
 	public Post getPost() {
 		return this.post;
 	}
-
+	@JsonIgnore
 	public void setPost(Post post) {
 		this.post = post;
 	}

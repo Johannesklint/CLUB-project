@@ -1,5 +1,7 @@
 package club.EJB;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -35,6 +37,11 @@ public class CommentEJB implements LocalComment {
 	@Override
 	public Comment updateComment(Comment comment) {
 		return commentDao.update(comment);
+	}
+	
+	@Override
+	public List<Comment> getAllByPostId(int postId) {
+		return commentDao.getAllByPostId(postId);
 	}
 
 }

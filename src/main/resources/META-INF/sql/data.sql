@@ -24,11 +24,11 @@ INSERT INTO `club_db`.`post` (`ID`, `created`, `post_type`, `TEXT`, `TITLE`, `AU
 INSERT INTO `club_db`.`post` (`ID`, `created`, `post_type`, `TEXT`, `TITLE`, `AUTHOR_ID`, `hidden`) VALUES (null, NOW(), 'NEWS', 'text for news 4', 'News - 4', 1, true);
 
 # Create Comment to post
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), false, 'Comment to post 1, by user 1', 1, 1);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), false, 'Comment to post 1, by user 2', 1, 2);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), false, 'Comment to post 2, by user 1', 2, 1);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), false, 'Comment to post 2, by user 2', 2, 2);
-INSERT INTO `club_db`.`comment` VALUES (null, NOW(), false, 'Comment to post 2, by user 1', 2, 1);
+INSERT INTO `club_db`.`comment` VALUES (null, NOW(), false,null, 'Comment to post 1, by user 1', 1, 1 );
+INSERT INTO `club_db`.`comment` VALUES (null, NOW(), false,null, 'Comment to post 1, by user 2', 1, 2 );
+INSERT INTO `club_db`.`comment` VALUES (null, NOW(), false,null, 'Comment to post 2, by user 1', 2, 1 );
+INSERT INTO `club_db`.`comment` VALUES (null, NOW(), false,null, 'Comment to post 2, by user 2', 2, 2 );
+INSERT INTO `club_db`.`comment` VALUES (null, NOW(), false,null, 'Comment to post 2, by user 1', 2, 1 );
 
 # Create Post > Event
 INSERT INTO `club_db`.`post` (`post_type`, `CREATED`, `hidden`, `TITLE`, `TEXT`, `AUTHOR_ID`, `STARTTIME`,`DURATIONINMINUTES`) VALUES ("EVENT", NOW(), 0, "Event nr 1", "There will be a 2 hour event today.", 1, timestamp_plus_x_days_with_y_time(0, '20:00'), 120);

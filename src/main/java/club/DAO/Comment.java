@@ -14,7 +14,10 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name="comment")
-@NamedQuery(name="Comment.findAll", query="SELECT c FROM Comment c")
+@NamedQueries( { 
+	@NamedQuery(name="Comment.findAll", query="SELECT c FROM Comment c"),
+	@NamedQuery(name="Comment.findAllByPostId", query="SELECT c FROM Comment c WHERE c.post.id = :postId")
+})
 public class Comment implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -26,14 +29,26 @@ public class Comment implements Serializable {
 	@Column(nullable=false)
 	private Timestamp created;
 
+	@Column(name="last_updated")
+	private Timestamp lastUpdated;
+
 	@Column(nullable=false, length=140)
 	private String text;
+
+	public Timestamp getLastUpdated() {
+		return lastUpdated;
+	}
+
+	public void setLastUpdated(Timestamp lastUpdated) {
+		this.lastUpdated = lastUpdated;
+	}
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name="author_id", nullable=false)
 	private User user;
 
+	
 	@ManyToOne
 	@JsonIgnore
 	@JoinColumn(name="post_id", nullable=false)

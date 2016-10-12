@@ -99,6 +99,7 @@ public class User implements Serializable {
 		this.lastName = lastName;
 	}
 
+	@JsonIgnore
 	public String getHashedPasswordSaltpair() {
 		return hMACPassword;
 	}

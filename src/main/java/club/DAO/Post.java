@@ -22,8 +22,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="post")
@@ -45,6 +44,7 @@ public abstract class Post {
 //	@OneToMany(targetEntity=User.class, mappedBy="comments")
 //	private List<User> followers;
 
+	@JsonIgnore
 	@OneToMany(mappedBy="post")
 	private List<Comment> comments;
 

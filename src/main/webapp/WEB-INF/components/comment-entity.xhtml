@@ -17,10 +17,18 @@
 				<div>
 					<hr></hr>			
 					<b>#{ commentEntity.text }</b>  <p> #{ commentEntity.user.fullName }</p>
-				
+					<h:panelGroup rendered="#{not empty commentEntity.lastUpdated }">
+						<i>Last updated: #{commentEntity.lastUpdated}</i>
+					</h:panelGroup>									 
+
 					<p:commandButton rendered="#{ commentEntity.user.email eq loginUserBean.user.email }" value="Update" type="button" onclick="PF(#{ modalId }).show();" />
-					 
 					<p:dialog header="Update comment" widgetVar="#{ modalId }" modal="true" height="300">
+
+						<form action="/clubproject/update-comment" method="post">
+							<input type="hidden" name="comment_id" value="#{ commentEntity.id }"/>
+							<textarea name="text">#{ commentEntity.text }</textarea>
+							<input type="submit" value="Update comment"/>
+						</form> 
 	
 						<h:form id="update_comment">
 							<h:messages>
@@ -28,11 +36,6 @@
 							</h:messages>
 							
 							<h:panelGrid columns="2" cellpadding="5">	
-								<h:inputTextarea class="text" value="#{ commentEntity.text }"/>
-								<h:commandButton action="#{ updateCommentBean.submit }" value="Update">
-	    							<f:setPropertyActionListener target="#{ updateCommentBean.text }" value="#{ commentEntity.text }" />
-	    							<f:setPropertyActionListener target="#{ updateCommentBean.selectedCommentId }" value="#{ commentEntity.id }"/>
-								</h:commandButton>
 								<h:commandButton action="#{ deleteCommentBean.submit }" value="Delete">
 	    							<f:setPropertyActionListener target="#{ commentBean.selectedCommentId }" value="#{ commentEntity.id }"/>								
 								</h:commandButton>			

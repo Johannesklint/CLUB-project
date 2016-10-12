@@ -1,8 +1,11 @@
 package club.DAO;
 
+import java.util.List;
+
 import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import club.DAO.Comment;
 import club.exceptions.MergeNullException;
@@ -25,6 +28,14 @@ public class CommentDAO {
 		Comment savedComment = manager.merge(comment);
 		if(savedComment==null) throw new MergeNullException();
 		return savedComment;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Comment> getAllByPostId(int postId) {
+		Query query = manager.createNamedQuery("Comment.findAllByPostId");
+		query.setParameter("postId", postId);
+		List<Comment> comments = (List<Comment>)query.getResultList();
+		return comments;
 	}
 
 }

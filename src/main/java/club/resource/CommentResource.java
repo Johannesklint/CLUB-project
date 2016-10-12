@@ -1,5 +1,8 @@
 package club.resource;
+import static javax.ws.rs.core.Response.Status.*;
+
 import java.util.List;
+import java.util.Optional;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -7,11 +10,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.core.UriInfo;
 
 import club.DAO.Comment;
 import club.EJB.interfaces.LocalComment;
@@ -29,29 +30,41 @@ public class CommentResource extends BasicResource {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getComments(@Context UriInfo uriInfo, @PathParam("post_id") int postId) {
+	public Response getComments(@PathParam("post_id") int postId) {
 		
 		System.out.println("INSIDE COMMENT RESOURCE GEEET: " + uriInfo.getAbsolutePath().toString());
 		System.out.println("post id is : " + postId);
 		
 		System.out.println("commentEJB = " + commentEJB);
 		List<Comment> comments = commentEJB.getAllByPostId(postId);
-		return Response.status(Status.ACCEPTED)
+		return Response.status(OK)
 				.entity(comments)
 				.links(super.getSelfLink())
 				.build();
 	}
 	
 	@GET
-	@Path("/{commentId}")
+	@Path("/{comment_id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String getCommentById(
-			@Context UriInfo uriInfo,
-			@PathParam("idcommentId") int commentId, 
-			@PathParam("messageId") int messageId) { // OBS : detta låser oss till att
+	public Response getCommentById(
+			@PathParam("post_id") int postId,
+			@PathParam("comment_id") int commentId) { // OBS : detta låser oss till att
 				// .. bara använda resursen när vi får med oss messageId. 
 		// dsv inte direkt via api/comments/1 
 		
+		
+		List<Comment> postComments = commentEJB.getAllByPostId(postId);
+		Optional<Comment> requestedComment = postComments.stream()
+				.filter(c -> c.getId() == commentId)
+				.findFirst();
+		
+		Status responseStatus = 
+				requestedComment.isPresent() ? OK : NOT_FOUND;
+		
+		return Response.status(responseStatus)
+				.entity(requestedComment.orElse(new Comment()))
+				.links(super.getSelfLink())
+				.build();
 		
 //		String uri = uriInfo.getBaseUriBuilder()
 //				.path(MessageResources.class) // path fram till /resources/
@@ -63,8 +76,6 @@ public class CommentResource extends BasicResource {
 //				.build() 
 //				.toString();
 		
-		
-		return "nada";
 	}
 	
 	

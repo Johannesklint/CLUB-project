@@ -14,6 +14,7 @@ import club.backingBeans.user.LoginUserBean;
 @RequestScoped
 public class AddAttendantOnEventBean extends EventBean {
 
+	
 	@Inject @Named("loginUserBean")
 	private LoginUserBean loginUserBean;
 
@@ -25,12 +26,14 @@ public class AddAttendantOnEventBean extends EventBean {
 		return updateAndGetRedirect();		
 	}
 	
+	
 	@Override
 	public Event getFromFields() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	
 	@Override
 	public Event updateFromFields() {
 		
@@ -38,8 +41,11 @@ public class AddAttendantOnEventBean extends EventBean {
 		if(userToAttend==null) throw new RuntimeException("Not logged in when try attend");
 		
 		Event eventToUpdate = (Event)super.getById(getId());
-		eventToUpdate.getAttendees().add(userToAttend);
-		//throw new RuntimeException("Not logged in when try attend");
+			eventToUpdate.getAttendees().add(userToAttend);
+
+			//throw new RuntimeException("Not logged in when try attend");
+		
+		
 		return eventToUpdate;
 	}
 

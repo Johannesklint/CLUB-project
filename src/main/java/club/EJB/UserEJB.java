@@ -32,7 +32,7 @@ public class UserEJB implements LocalUser{
 	}	
 	
 	@Override
-	public void loginUser(String username, String password, LoginUserBean loginUserBean) throws LoginException{
+	public void loginUser(String username, String password, LoginHandlerable loginHandlerable) throws LoginException{
 		User tryLoginUser = getUserByEmail(username);	
 
 		if(tryLoginUser==null) {
@@ -47,7 +47,7 @@ public class UserEJB implements LocalUser{
 			throw new LoginException("This user is not approved by admin, pls try again later.");
 		}
 			
-		loginUserBean.onLogin(tryLoginUser);		
+		loginHandlerable.onLogin(tryLoginUser);		
 	}
 	
 	@Override

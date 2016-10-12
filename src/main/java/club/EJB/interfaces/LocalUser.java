@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 import club.DAO.User;
+import club.EJB.LoginHandlerable;
 import club.backingBeans.user.LoginUserBean;
 import club.exceptions.LoginException;
 import club.exceptions.ValidateException;
@@ -16,7 +17,7 @@ public interface LocalUser {
 	List<User> getAll();
 	boolean deleteUser(int id);
 	User getUserByEmail(String email);
-	void loginUser(String username, String password, LoginUserBean loginUserBean) throws LoginException;
+	void loginUser(String username, String password, LoginHandlerable loginHandlerable) throws LoginException;
 	boolean hasUniqueEmail(User user);
 	void validateRegisterUser(User user) throws ValidateException;
 }

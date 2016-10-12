@@ -1,5 +1,8 @@
 use club_db;
 
+# RUN THIS IF YOU NEED A CLEAN DB
+# DROP TABLE IF EXISTS `platform`, `theme`, `comment`, `post_user`, `post`, `user`;
+
 # Create custom function to generate timestamp inte the future (for future events)
 DROP FUNCTION IF EXISTS timestamp_plus_x_days_with_y_time;
 CREATE FUNCTION timestamp_plus_x_days_with_y_time(daysIntoFuture INTEGER, new_time VARCHAR(5)) RETURNS DATETIME RETURN DATE_ADD(DATE_ADD( CURRENT_DATE(), INTERVAL daysIntoFuture DAY), INTERVAL new_time HOUR_MINUTE);

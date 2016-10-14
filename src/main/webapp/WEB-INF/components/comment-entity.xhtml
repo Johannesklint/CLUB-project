@@ -21,6 +21,22 @@
 						<i>Last updated: #{commentEntity.lastUpdated}</i>
 					</h:panelGroup>									 
 
+
+						<h:form id="update_comment">
+							<h:messages>
+								<h:message for="update_comment"></h:message>
+							</h:messages>
+							
+							<h:panelGrid columns="2" cellpadding="5">	
+								<h:commandButton action="#{ deleteCommentBean.submit() }" value="Delete">
+	    							<f:setPropertyActionListener target="#{ deleteCommentBean.selectedCommentId }" value="#{ commentEntity.id }"/>								
+									<f:param name="id" value="#{ commentEntity.post.id }"/>
+								</h:commandButton>			
+							</h:panelGrid>	
+							
+						</h:form>	   
+
+
 					<p:commandButton rendered="#{ commentEntity.user.email eq loginUserBean.user.email }" value="Update" type="button" onclick="PF(#{ modalId }).show();" />
 					<p:dialog header="Update comment" widgetVar="#{ modalId }" modal="true" height="300">
 
@@ -30,18 +46,6 @@
 							<input type="submit" value="Update comment"/>
 						</form> 
 	
-						<h:form id="update_comment">
-							<h:messages>
-								<h:message for="update_comment"></h:message>
-							</h:messages>
-							
-							<h:panelGrid columns="2" cellpadding="5">	
-								<h:commandButton action="#{ deleteCommentBean.submit }" value="Delete">
-	    							<f:setPropertyActionListener target="#{ commentBean.selectedCommentId }" value="#{ commentEntity.id }"/>								
-								</h:commandButton>			
-							</h:panelGrid>	
-							
-						</h:form>	   
 						
 					</p:dialog>	
 				</div>

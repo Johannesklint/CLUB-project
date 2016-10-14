@@ -21,7 +21,7 @@
 						<i>Last updated: #{commentEntity.lastUpdated}</i>
 					</h:panelGroup>									 
 
-
+					<h:panelGroup rendered="#{ commentEntity.user.email eq loginUserBean.user.email}">
 						<h:form id="update_comment">
 							<h:messages>
 								<h:message for="update_comment"></h:message>
@@ -35,7 +35,7 @@
 							</h:panelGrid>	
 							
 						</h:form>	   
-
+					</h:panelGroup>
 
 					<p:commandButton rendered="#{ commentEntity.user.email eq loginUserBean.user.email }" value="Update" type="button" onclick="PF(#{ modalId }).show();" />
 					<p:dialog header="Update comment" widgetVar="#{ modalId }" modal="true" height="300">

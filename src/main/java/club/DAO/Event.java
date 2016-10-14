@@ -1,7 +1,9 @@
 package club.DAO;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.temporal.TemporalAmount;
 import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
@@ -47,6 +49,13 @@ public class Event extends Post {
 
 	public void setAttendees(List<User> attendees) {
 		this.attendees = attendees;
+	}
+	
+	public Timestamp getEndTime() {
+		TemporalAmount minutes = Duration.ofMinutes(this.durationInMinutes);
+		Instant startTimeAsInstant = startTime.toInstant();
+		Instant endTime = startTimeAsInstant.plus(minutes); 
+		return Timestamp.from(endTime);
 	}
 
 

@@ -22,10 +22,19 @@
 			<param-value>true</param-value>
 		</init-param>
 	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>javax.ws.rs.core.Application</servlet-name>
 		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name> club.soap.AttendEventSoap</servlet-name>
+		<servlet-class>club.soap.AttendEventSoap</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>club.soap.AttendEventSoap</servlet-name>
+		<url-pattern>/soap/attend-event</url-pattern>
 	</servlet-mapping>
 
 </web-app>

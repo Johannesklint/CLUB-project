@@ -2,6 +2,7 @@ package club.backingBeans.user;
 
 import javax.inject.Named;
 import club.DAO.User;
+import club.EJB.LoginHandlerable;
 import club.EJB.interfaces.LocalUser;
 import club.backingBeans.BasicFrontendBean;
 import club.exceptions.LoginException;
@@ -12,7 +13,7 @@ import javax.enterprise.context.SessionScoped;
 
 @Named(value="loginUserBean")
 @SessionScoped
-public class LoginUserBean extends BasicFrontendBean implements Serializable {
+public class LoginUserBean extends BasicFrontendBean implements Serializable, LoginHandlerable {
 	
 	private static final long serialVersionUID = -6514760360423746740L;
 

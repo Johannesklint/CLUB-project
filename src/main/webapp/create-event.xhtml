@@ -7,6 +7,7 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
 	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:b="http://bootsfaces.net/ui"
 	>
 <h:body>
 	
@@ -27,7 +28,10 @@
 			
 				<h:outputLabel for="event_title">Event title:</h:outputLabel>
 			   	<h:inputText id="event_title" value="#{ createEventBean.title }" required="true" label="Event Title"/>
-			   
+			   	
+			   	<h:outputLabel for="event_start_time">Start time</h:outputLabel>
+			   	<b:dateTimePicker value="#{ createEventBean.startTime }"></b:dateTimePicker>
+			   	
 			   	<h:outputLabel for="event_text">Event description:</h:outputLabel>
 			   	<h:inputTextarea id="event_text" value="#{ createEventBean.text }" required="true" label="Event Description"/>
 			   				   	

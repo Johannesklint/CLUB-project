@@ -45,7 +45,7 @@ public class CreateEventBean extends EventBean{
 		event.setAuthor(super.getAuthor());
 		event.setTitle(super.getTitle());
 		event.setText(super.getText());
-		event.setStartTime(convertStringToStartTimeTimestamp());
+		event.setStartTime(convertStartTimeToTimestamp());
 		event.setDurationInMinutes(super.getDurationInMinutes());
 		event.setCreated(Timestamp.from(Instant.now()));
 		event.setAttendees(new ArrayList<User>());
@@ -62,10 +62,9 @@ public class CreateEventBean extends EventBean{
 		return eventToUpdate;
 	}	
 	
-	private Timestamp convertStringToStartTimeTimestamp() {
-		//TODO: fix actual conversion or solve with datetime-picker
-		TemporalAmount twoDays = Duration.ofDays(2);
-		return Timestamp.from(Instant.now().plus(twoDays));
+	private Timestamp convertStartTimeToTimestamp() {
+		Instant startTimeAsInstant = super.getStartTime().toInstant();
+		return Timestamp.from(startTimeAsInstant);
 	}
 
 }

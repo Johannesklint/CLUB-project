@@ -1,9 +1,17 @@
 package club.soap;
 
 
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+import javax.xml.bind.DatatypeConverter;
+import javax.xml.ws.WebServiceContext;
+import javax.xml.ws.handler.MessageContext;
+
 import club.DAO.Event;
 import club.DAO.User;
 import club.EJB.LoginHandlerable;
@@ -20,10 +28,16 @@ public class AttendEventSoap {
 	@EJB
 	private LocalUser userEJB;
 	
+	
+	// ---------------------------------------------------------
+	// this is not needed if there is no "public" soap. A Soap used internally do not require login, just a simple UserId is needed.
 	private User user = null;
-    
+
+	@Resource
+	private WebServiceContext wsctx;
+    	
 	@WebMethod
-	public String attendEvent(String username, String password, int eventId) throws LoginException {
+	public void attendEventAUTH(String username, String password, int eventId) throws LoginException {
 						
 		LoginHandlerable loginHandlerable = new LoginHandlerable() {
 			
@@ -33,18 +47,48 @@ public class AttendEventSoap {
 			}
 		};
 		
+		//TODO: use HTTP Basic AUTH if client can handle it
+		MessageContext mctx = wsctx.getMessageContext();
+		Map http_headers = (Map) mctx.get(MessageContext.HTTP_REQUEST_HEADERS);
+		String authorization = ((List) http_headers.get("Authorization")).get(0).toString();
+		// Basic HFKJAHJFKHRJKA <-- Base decode last part and its should give you <username>:<password> and use these to verify who is attending / logging in
+		// DatatypeConverter.parseBase64Binary(lexicalXSDBase64Binary) <-- this worls
+		// ----
+		
 		userEJB.loginUser(username,password,loginHandlerable);
 		Event event = eventEJB.getById(eventId);
 		if(event==null) throw new RuntimeException("event not found");
 		event.getAttendees().add(user);
 		eventEJB.save(event);
-		
-		return "Ok";
 	}
 
-	
 	private void setUser(User user) {
 		this.user = user;
 	}
+	// -----------------------------------------------
+	
+	
+	@WebMethod
+	public void attendEvent(int userId, int eventId) throws LoginException {
+						
+		User user = userEJB.getUserById(userId);
+		Event event = eventEJB.getById(eventId);
+		if(user==null) throw new RuntimeException("user not found");
+		if(event==null) throw new RuntimeException("event not found");
+		event.getAttendees().add(user);
+		eventEJB.save(event);
+	}
+
+	@WebMethod
+	public void unAttendEvent(int userId, int eventId) throws LoginException {
+						
+		User user = userEJB.getUserById(userId);
+		Event event = eventEJB.getById(eventId);
+		if(user==null) throw new RuntimeException("user not found");
+		if(event==null) throw new RuntimeException("event not found");
+		event.getAttendees().remove(user);
+		eventEJB.save(event);
+	}
+	
 	
 }

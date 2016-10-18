@@ -54,7 +54,6 @@
 	    <version>6.0</version>  
 	</dependency>  
 	
-	
 	<!--  JAX-RS  + JSON -->
     
     <dependency>

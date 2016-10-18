@@ -4,7 +4,7 @@
  	padding:0;
  }
  
- ul.nav{
+ ul.navish{
  	display:block;
  	padding:5px;
  	margin:7px;
@@ -18,14 +18,14 @@
  	font-size: 13.33px;
  }
  
- ul.nav li{
+ ul.navish li{
  	display: inline;
  	padding: 0 14px 0 14px;
  	border-right: 1px solid #999;
  
  }
  
- a.navbar-brand {
+ a.navbar-brandish {
  	font-size: 24px;
  	font-weight: bold;
  	color: #333;
@@ -33,7 +33,7 @@
  	text-decoration: none;	
  }
  
- .navbar-header{
+ .navbar-headerish{
  	padding: 12px;
  }
  
@@ -42,7 +42,7 @@
  	margin:13px;
  }
  
- ul.nav a {
+ ul.navish a {
     text-decoration: none;
  	color: white;
  }

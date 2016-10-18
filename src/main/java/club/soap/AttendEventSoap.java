@@ -1,5 +1,6 @@
 package club.soap;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -7,61 +8,87 @@ import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+import javax.xml.bind.DatatypeConverter;
 import javax.xml.ws.WebServiceContext;
+import javax.xml.ws.handler.MessageContext;
+
 import club.DAO.Event;
 import club.DAO.User;
 import club.EJB.LoginHandlerable;
 import club.EJB.interfaces.LocalEvent;
 import club.EJB.interfaces.LocalUser;
 import club.exceptions.LoginException;
-import javax.xml.ws.handler.MessageContext;
 
 @WebService
-public class AttendEventSoap implements LoginHandlerable {
+public class AttendEventSoap {
 
 	@EJB
 	private LocalEvent eventEJB;
 
 	@EJB
 	private LocalUser userEJB;
+	
+	
+	// ---------------------------------------------------------
+	// this is not needed if there is no "public" soap. A Soap used internally do not require login, just a simple UserId is needed.
+	private User user = null;
 
-    @Resource
-    WebServiceContext wsctx;
-
-	private User user;
-
-	//TODO: SOAP can handle params in a better way than send them as headerparams. EventId should be a normal param. 
-	//TODO: Think that Soap can handle login and password in a "real" AUTH-way instead of use of header params.  
-	//TODO: error handle this method(in a good way and soap correct way). no event found. invalid login. login is not approved. user already at event.
-	//TODO: find a correct name/location standard and for class, package and method names.
+	@Resource
+	private WebServiceContext wsctx;
+    	
 	@WebMethod
-	public String attendEvent() throws LoginException {
-
+	public void attendEventAUTH(String username, String password, int eventId) throws LoginException {
+						
+		LoginHandlerable loginHandlerable = new LoginHandlerable() {
+			
+			@Override
+			public void onLogin(User tryLoginUser) {
+				setUser(tryLoginUser);
+			}
+		};
+		
+		//TODO: use HTTP Basic AUTH if client can handle it
 		MessageContext mctx = wsctx.getMessageContext();
 		Map http_headers = (Map) mctx.get(MessageContext.HTTP_REQUEST_HEADERS);
-
-		//Yes, this is real ugly. Could not make correct way of params to work
-		List userList = (List) http_headers.get("Username");
-		List passList = (List) http_headers.get("Password");
-		List eventList = (List) http_headers.get("EventId");
-		String username = userList.get(0).toString();
-		String password = passList.get(0).toString();
-		Integer eventId = Integer.parseInt(eventList.get(0).toString());
-		//---
+		String authorization = ((List) http_headers.get("Authorization")).get(0).toString();
+		// Basic HFKJAHJFKHRJKA <-- Base decode last part and its should give you <username>:<password> and use these to verify who is attending / logging in
+		// DatatypeConverter.parseBase64Binary(lexicalXSDBase64Binary) <-- this worls
+		// ----
 		
-		userEJB.loginUser(username,password,this);
-		if(eventEJB==null) throw new RuntimeException("event not found");
+		userEJB.loginUser(username,password,loginHandlerable);
 		Event event = eventEJB.getById(eventId);
 		if(event==null) throw new RuntimeException("event not found");
 		event.getAttendees().add(user);
 		eventEJB.save(event);
-		
-		return "Ok"; //TODO: what should a soap return?
 	}
 
-	//TODO: can see this method in SOAP-client. thats wrong. 'hide' it somehow. try move to make an local anon class/object in attendEvent that implements LoginHandlerable	
-	@Override
-	public void onLogin(User tryLoginUser) {
-		user = tryLoginUser;		
+	private void setUser(User user) {
+		this.user = user;
 	}
+	// -----------------------------------------------
+	
+	
+	@WebMethod
+	public void attendEvent(int userId, int eventId) throws LoginException {
+						
+		User user = userEJB.getUserById(userId);
+		Event event = eventEJB.getById(eventId);
+		if(user==null) throw new RuntimeException("user not found");
+		if(event==null) throw new RuntimeException("event not found");
+		event.getAttendees().add(user);
+		eventEJB.save(event);
+	}
+
+	@WebMethod
+	public void unAttendEvent(int userId, int eventId) throws LoginException {
+						
+		User user = userEJB.getUserById(userId);
+		Event event = eventEJB.getById(eventId);
+		if(user==null) throw new RuntimeException("user not found");
+		if(event==null) throw new RuntimeException("event not found");
+		event.getAttendees().remove(user);
+		eventEJB.save(event);
+	}
+	
+	
 }

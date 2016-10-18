@@ -5,21 +5,19 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-
-
 <ui:composition>
 
 	
 	
 
 
-	<div class="navbar navbar-default">
-	  <div class="container-fluid">
-	    <div class="navbar-header">
-	      <a class="navbar-brand" href="#">#{ platformBean.title }</a>
+	<div class="navbarish">
+	  <div class="container-fluidish">
+	    <div class="navbar-headerish">
+	      <a class="navbar-brandish" href="#">#{ platformBean.title }</a>
 	    </div>
 	    
-	    <ul class="nav navbar-nav">
+	    <ul class="navish">
 	      	<li><h:link outcome="home">Home</h:link></li>
 	      	<h:panelGroup rendered="#{loginUserBean.validLogin}">
 	      		<li><h:link outcome="news-list">News</h:link></li>

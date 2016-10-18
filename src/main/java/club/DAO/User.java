@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import club.password.CouldNotEncryptPasswordException;
 import club.password.PasswordHandler;
-
+import java.sql.Date;
 import java.util.List;
 
 @Entity
@@ -43,6 +43,17 @@ public class User implements Serializable {
 
 	@Column(name="last_name", nullable=false, length=45)
 	private String lastName;
+
+	@Column(name="birthday", nullable=false, length=8)
+	private Date birthday;
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
 
 	@Column(name="hmac_password", nullable=false, length=161)
 	private String hMACPassword;

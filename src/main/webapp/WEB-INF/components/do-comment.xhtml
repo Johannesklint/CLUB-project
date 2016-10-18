@@ -14,14 +14,15 @@
 			<h:message for="text"></h:message>
 		</h:messages>	
 
-		<h:inputTextarea class="text" value="#{ createCommentBean.text }" required="true" label="Text">
+		<h:inputTextarea id="text-area" class="text" value="#{ createCommentBean.text }" required="true" label="Text">
 			<f:validateLength minimum="1" maximum="140"/>
 		</h:inputTextarea>	
 		
-		<h:commandButton class="btn" value="Comment" action="#{ createCommentBean.submit() }">
+		<h:commandButton id="submit-button" class="btn" value="Comment" action="#{ createCommentBean.submit() }">
 			<f:param name="id" value="#{ postEntity.id }"/>			
 		</h:commandButton>
 		
 	</h:form>
+	
 </ui:composition>
 </html>

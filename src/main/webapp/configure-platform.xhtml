@@ -39,11 +39,12 @@
        			   
 					<h:outputLabel for="primary_color">Primary color:</h:outputLabel>
 				   <p:colorPicker value="#{themeBean.primaryColorHEX}" />                   	       			
-	
+
 	       		   <h:outputLabel for="secondary_color">Seconday color:</h:outputLabel>
+
 				   <p:colorPicker value="#{themeBean.secondaryColorHEX}" />
 			    </h:panelGrid>                  	       			
-			   <h:commandButton class="btn" value="Create platform" action="#{ platformBean.savePlatform() }" />
+			   <h:commandButton class="btn" value="Update platform" action="#{ platformBean.savePlatform() }" />
 			</h:panelGrid>
 			
 		</h:form>

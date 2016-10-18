@@ -15,7 +15,7 @@ INSERT INTO `club_db`.`user` (`id`,`first_name`, `last_name`, `email`,`hmac_pass
 
 # Create Theme
 
-INSERT INTO `club_db`.`theme`(`id`,`primary_color_hex`,`secondary_color_hex`) VALUES (null,"#6cffb8","#fcb0b3");
+INSERT INTO `club_db`.`theme`(`id`,`primary_color_hex`,`secondary_color_hex`) VALUES (null,"5b05a1","ac00bf");
 
 # Create Platform
 INSERT INTO `club_db`.`platform`(`id`,`title`,`description`,`terms_and_condition`,`theme_id`) VALUES (null,'Default title','Default platform description','Terms and conditions',1);

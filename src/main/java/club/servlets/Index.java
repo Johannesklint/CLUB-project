@@ -35,7 +35,7 @@ public class Index extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	    if(!bean.isValidLogin())
-	    	response.sendRedirect("/clubproject/faces/login.xhtml");
+	    	response.sendRedirect("/clubproject/faces/index.xhtml");
 	    else
 	    	response.sendRedirect("/clubproject/faces/home.xhtml");	    	
 	}

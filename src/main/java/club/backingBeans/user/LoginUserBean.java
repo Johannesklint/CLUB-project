@@ -28,7 +28,7 @@ public class LoginUserBean extends BasicFrontendBean implements Serializable, Lo
 		
 		try {
 			userEJB.loginUser(username,password,this);
-			return "home";				
+			return "home.xhtml?faces-redirect=true";				
 		}
 		catch(LoginException e) {
 			super.addFacesMessage(e.getMessage());
@@ -39,7 +39,7 @@ public class LoginUserBean extends BasicFrontendBean implements Serializable, Lo
 	
 	public String doLogout() {
 		loggedInUser = null;
-		return "login";
+		return "index.xhtml?faces-redirect=true";
 	}
 	
 	public void onLogin(User user) {

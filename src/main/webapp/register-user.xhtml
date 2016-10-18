@@ -28,7 +28,7 @@
 			   <h:inputText id="last_name" value="#{ registerUserBean.lastName }" required="true" label="Last name"/>
 
 			   <h:outputLabel for="birthday">Birthday:</h:outputLabel>
-				<b:datepicker id="birthday" value="#{ registerUserBean.birthday }"></b:datepicker>
+			   	<b:dateTimePicker id="birthday" value="#{ registerUserBean.birthday }" show-time="false" required="true" label="Birthday"></b:dateTimePicker>
 			
 			   <h:outputLabel for="email">Email:</h:outputLabel>
 			   <h:inputText id="email" value="#{ registerUserBean.email }" required="true" label="Email">

@@ -7,17 +7,22 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import club.DAO.Event;
 import club.DAO.News;
 import club.DAO.Post;
 import club.EJB.interfaces.LocalPost;
+import club.backingBeans.user.LoginUserBean;
 
 @Named(value="postGetterBean")
 @RequestScoped
-public class PostGetterBean {
-	
+public class PostGetterBean extends BasicFrontendBean {
+
+	@Inject @Named(value="loginUserBean")
+	LoginUserBean loginUserBean;
+
 	@EJB
 	private LocalPost postEJB;
 	private Post selectedPost;
@@ -25,6 +30,7 @@ public class PostGetterBean {
 	@PostConstruct
 	public void init() {
 		
+		super.redirectIfNotLoggedIn(loginUserBean);
 		
 		System.out.println("INIT");
 		

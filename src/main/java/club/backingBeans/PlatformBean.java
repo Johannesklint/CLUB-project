@@ -59,6 +59,7 @@ public class PlatformBean {
 		
 		System.out.println("i saveplatform" + theme == null);
 		
+				
 		if(platformEJB.savePlatform(platform)){
 			setPlatformBeanFieldsFromDb();
 		}

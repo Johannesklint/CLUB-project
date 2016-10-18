@@ -19,8 +19,8 @@ public class ThemeBean {
 	public Theme createThemeFromBean(){
 		Theme theme = new Theme();
 		theme.setId(1);
-		theme.setPrimaryColorHex("#" + primaryColorHEX);
-		theme.setSecondaryColorHex("#" + secondaryColorHEX);
+		theme.setPrimaryColorHex(primaryColorHEX);
+		theme.setSecondaryColorHex(secondaryColorHEX);
 		
 		return theme;
 	}
@@ -38,4 +38,13 @@ public class ThemeBean {
 	public void setSecondaryColorHEX(String secondaryColorHEX) {
 		this.secondaryColorHEX = secondaryColorHEX;
 	}
+	
+	public String getPrimaryColorHEXwithHash() {
+		return "#"+getPrimaryColorHEX();
+	}
+
+	public String getSecondaryColorHEXwithHash() {
+		return "#"+getSecondaryColorHEX();		
+	}
+
 }

@@ -32,7 +32,7 @@
 					   	<h:outputLabel for="event_startTime">Event start time:</h:outputLabel>
 		   	<h:inputTextarea id="event_startTime" value="#{ eventUpdateBean.startTime }" required="true" label="Event Start time"/>
 			-->
-			<h:commandButton  action="#{ eventUpdateBean.submit() }" value="Update event post">
+			<h:commandButton class="btn" action="#{ eventUpdateBean.submit() }" value="Update event post">
 				<f:param name="id" value="#{ eventUpdateBean.id }"></f:param>
 			</h:commandButton>
 

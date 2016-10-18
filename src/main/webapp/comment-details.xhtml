@@ -26,7 +26,7 @@
 				<f:setPropertyActionListener target="#{ commentBean.text }" value="#{ updateCommentBean.text }"/>								
 			</h:commandButton>			
 			
-			<h:commandButton action="#{ deleteCommentBean.submit }" value="Delete">
+			<h:commandButton class="btn" action="#{ deleteCommentBean.submit }" value="Delete">
 				<f:setPropertyActionListener target="#{ commentBean.selectedCommentId }" value="#{ commentEntity.id }"/>								
 			</h:commandButton>			
 		</h:panelGrid>	

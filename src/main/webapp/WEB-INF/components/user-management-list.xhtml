@@ -14,8 +14,7 @@
 	<h:dataTable value="#{ users }" var="u" rendered="#{ users.size() > 0 }"
 		styleClass="user-table"
 		headerClass="user-table-header"
-		rowClasses="user-table-odd-row,user-table-even-row"
-	>
+		rowClasses="user-table-odd-row,user-table-even-row">
 		<h:column>
 			<f:facet name="header"> First name </f:facet>
 			<p>#{u.firstName}</p>
@@ -40,17 +39,17 @@
 		<h:column>
 			<h:form>
 				<h:panelGroup rendered="#{show_deny_option}">
-					<h:commandButton value="Deny" action="#{ userManagementBean.denyApprovement() }">				
+					<h:commandButton class="btn" value="Deny" action="#{ userManagementBean.denyApprovement() }">				
 						<f:setPropertyActionListener value="#{ u }" target="#{ userManagementBean.selectedUser }"></f:setPropertyActionListener>
 					</h:commandButton>
 				</h:panelGroup>
 				<h:panelGroup rendered="#{show_grant_option}">
-					<h:commandButton value="Approve" action="#{ userManagementBean.grantApprovement() }">				
+					<h:commandButton class="btn" value="Approve" action="#{ userManagementBean.grantApprovement() }">				
 						<f:setPropertyActionListener value="#{ u }" target="#{ userManagementBean.selectedUser }"></f:setPropertyActionListener>
 					</h:commandButton>
 				</h:panelGroup>				
 				<h:panelGroup rendered="#{ true }">
-					<h:commandButton value="Switch Admin state" action="#{ userManagementBean.switchAdminState() }">				
+					<h:commandButton class="btn" value="Switch Admin state" action="#{ userManagementBean.switchAdminState() }">				
 						<f:setPropertyActionListener value="#{ u }" target="#{ userManagementBean.selectedUser }"></f:setPropertyActionListener>
 					</h:commandButton>
 				</h:panelGroup>				

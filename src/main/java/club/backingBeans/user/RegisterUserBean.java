@@ -6,7 +6,10 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import java.sql.Date;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import club.DAO.User;
 import club.DAO.User.ApprovedState;
 import club.EJB.interfaces.LocalUser;
@@ -95,20 +98,38 @@ public class RegisterUserBean extends BasicFrontendBean{
 	}
 	public String getBirthday() {
 		return birthday;
-	}
+	} 
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 	
 	private User buildFromFields() {
+		
 		User user = new User();
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
 		user.setEmail(email);
-		user.generateNewHMACpassword(password);		
-		user.setBirthday(  Date.valueOf(birthday) );
+		user.generateNewHMACpassword(password);			
+		
+		user.setBirthday(  parseDate(birthday)  );
 		user.setAdmin(admin);
 		user.setApprovedState(ApprovedState.PENDING);
 		return user;
 	}
+	
+	private java.sql.Date parseDate(String input) {
+
+        SimpleDateFormat parser = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
+        Date date = null;
+		try {
+			date = parser.parse(input);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = formatter.format(date);
+        return java.sql.Date.valueOf(formattedDate);
+	}
+	
 }

@@ -12,12 +12,10 @@
 		<div class="post-box">
 			<div class="post-inner-box">
 			
-				<h5>#{ eventEntity.title }<span> created: #{eventEntity.created}</span></h5>
+				<h5>#{ eventEntity.title }</h5>
 				<p>#{ eventEntity.text }</p>
-				<p>#{ eventEntity.author.fullName }</p>
-				<p>When: #{ eventEntity.startTime }</p>
-				<p>EndTime: #{ eventEntity.endTime } </p>
-				<p>Number of attendants: #{ eventEntity.attendees.size() }</p>
+				<p>When: #{ eventEntity.startTime } - #{ eventEntity.endTime }</p>
+				<p>Going: #{ eventEntity.attendees.size() }</p>
 
 				<ul>
 					<ui:repeat var="a" value="#{eventEntity.attendees}">
@@ -28,13 +26,13 @@
 				
 				<h:form id="attend_event_form">
 					<h:panelGroup rendered="#{ includeAttendButton }">
-						<h:commandButton id="attend" value="Attend" action="#{ addAttendantOnEventBean.submit() }">
+						<h:commandButton class="btn" id="attend" value="Going" action="#{ addAttendantOnEventBean.submit() }">
 							<f:param name="id" value="#{ eventEntity.id }"></f:param>
 						</h:commandButton>
-						<br/>
+					
 					</h:panelGroup >	
 					<h:panelGroup rendered="#{ includeUnAttendButton }">
-						<h:commandButton id="unAttend" value="UnAttend" action="#{ removeAttendantOnEventBean.submit() }">
+						<h:commandButton class="btn" id="unAttend" value="Not Going" action="#{ removeAttendantOnEventBean.submit() }">
 							<f:param name="id" value="#{ eventEntity.id }"></f:param>	
 						</h:commandButton>
 					</h:panelGroup>				
@@ -61,7 +59,8 @@
 					</ui:include>
 
 				</h:panelGroup>
-				
+				<p><em>#{ eventEntity.author.fullName }</em></p>
+				<p><em>#{eventEntity.created}</em></p>
 			</div>
 		</div>
 		

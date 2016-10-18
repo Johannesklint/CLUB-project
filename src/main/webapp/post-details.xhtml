@@ -17,10 +17,10 @@
 		<h:form id="manage_news_form">
 		<h:panelGrid columns="2" rendered="#{ loginUserBean.user.admin }">
 			
-			<h:button outcome="post-update" value="Edit fields">
+			<h:button class="btn" outcome="post-update" value="Edit fields">
 				<f:param name="id" value="#{ postGetterBean.selectedPost.id }"></f:param>
 			</h:button>
-			<h:commandButton action="#{ deletePostBean.submit() }" value="Delete">
+			<h:commandButton class="btn" action="#{ deletePostBean.submit() }" value="Delete">
 				<f:param name="id" value="#{ postGetterBean.selectedPost.id }"></f:param>			
 			</h:commandButton>	
 		</h:panelGrid>

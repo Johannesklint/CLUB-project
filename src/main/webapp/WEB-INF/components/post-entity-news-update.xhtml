@@ -25,7 +25,7 @@
 			   	<h:outputLabel for="news_text">News description:</h:outputLabel>
 			   	<h:inputTextarea id="news_text" value="#{ newsUpdateBean.text }" required="true" label="News Description"/>
 
-				<h:commandButton  action="#{ newsUpdateBean.submit() }" value="Update news post">
+				<h:commandButton class="btn" action="#{ newsUpdateBean.submit() }" value="Update news post">
 					<f:param name="id" value="#{ newsUpdateBean.id }"></f:param>
 				</h:commandButton>
                

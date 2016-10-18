@@ -12,14 +12,13 @@
 		<div class="post-box">
 			<div class="post-inner-box">
 			
-				<h5>#{ newsEntity.title }<span> created: #{newsEntity.created}</span></h5>
+				<h3>#{ newsEntity.title }</h3>
 				<p>#{ newsEntity.text }</p>
-				<p>#{ newsEntity.author.fullName }</p>
 				
 				<h:link rendered="#{ includeReadMoreBtn }" outcome="post-details" value="Read more" includeViewParams="true">		
 				  <f:param name="id" value="#{ newsEntity.id }"></f:param>		
 				</h:link>
-
+				<br></br>
 				<h:panelGroup rendered="#{ compactCommentList }">
 
 					<ui:include src="/WEB-INF/components/comment-list-compact.xhtml">
@@ -37,7 +36,9 @@
 					</ui:include>
 
 				</h:panelGroup>
-
+				<p><em>#{ newsEntity.author.fullName }</em></p>
+				<p><em>#{ newsEntity.created }</em></p>
+				
 			</div>
 		</div>
 		

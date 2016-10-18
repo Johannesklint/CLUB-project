@@ -13,13 +13,14 @@
 	<title>#{platformBean.title}</title>
 	  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 	<h:outputStylesheet library="css" name="mantis.css"  />
-	<link href="https://fonts.googleapis.com/css?family=David+Libre" rel="stylesheet"/>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"/>
 </h:head>
 
 <h:body>
 	<style>
 		 ul.nav{
 			background-color: #{ themeBean.secondaryColorHEX };
+			padding: 15px;
 		 }
 		 
 		 ul.nav a:hover{
@@ -56,12 +57,12 @@
 		
 		.user-table-odd-row {
 		   text-align:center;
-		   background:none repeat scroll 0 0 #{ themeBean.primaryColorHEX };	
+		   background:none repeat scroll 0 0 white;	
 		}
 		
 		.user-table-even-row {
 		   text-align:center;
-		   background:none repeat scroll 0 0 #{ themeBean.secondaryColorHEX };
+		   background:none repeat scroll 0 0 white;
 		}
 	
 	</style>
@@ -70,7 +71,7 @@
 	<ui:include src="/WEB-INF/components/nav-bar.xhtml" />
 	
 	<!-- Main content goes here -->
-	<div class="container">
+	<div class="main-content">
 		<ui:insert name="pageContent">
 			<p>No content inserted</p>
 		</ui:insert>

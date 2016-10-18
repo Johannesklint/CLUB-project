@@ -6,6 +6,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import java.sql.Date;
 import club.DAO.User;
 import club.DAO.User.ApprovedState;
 import club.EJB.interfaces.LocalUser;
@@ -21,6 +22,7 @@ public class RegisterUserBean extends BasicFrontendBean{
 	private String lastName;
 	private String email;
 	private String password;
+	private String birthday;
 	private boolean admin;
 	private boolean approved;
 	private Boolean termsAndConditions;
@@ -91,13 +93,20 @@ public class RegisterUserBean extends BasicFrontendBean{
 	public void setTermsAndConditions(Boolean termsAndConditions) {
 		this.termsAndConditions = termsAndConditions;
 	}
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
 	
 	private User buildFromFields() {
 		User user = new User();
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
 		user.setEmail(email);
-		user.generateNewHMACpassword(password);
+		user.generateNewHMACpassword(password);		
+		user.setBirthday(  Date.valueOf(birthday) );
 		user.setAdmin(admin);
 		user.setApprovedState(ApprovedState.PENDING);
 		return user;

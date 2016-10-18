@@ -14,8 +14,8 @@
 	
 			<h:panelGroup rendered="#{ !commentEntity.hidden }">
 			
-				<div>
-					<hr></hr>			
+				<div class="comment-box">
+					
 					<b>#{ commentEntity.text }</b>  <p> #{ commentEntity.user.fullName }</p>
 					<h:panelGroup rendered="#{not empty commentEntity.lastUpdated }">
 						<i>Last updated: #{commentEntity.lastUpdated}</i>
@@ -28,7 +28,8 @@
 							</h:messages>
 							
 							<h:panelGrid columns="2" cellpadding="5">	
-								<h:commandButton action="#{ deleteCommentBean.submit() }" value="Delete">
+							<img src="remove.png"></img>
+								<h:commandButton class="btn" action="#{ deleteCommentBean.submit() }" value="Delete">
 	    							<f:setPropertyActionListener target="#{ deleteCommentBean.selectedCommentId }" value="#{ commentEntity.id }"/>								
 									<f:param name="id" value="#{ commentEntity.post.id }"/>
 								</h:commandButton>			
@@ -37,7 +38,7 @@
 						</h:form>	   
 					</h:panelGroup>
 
-					<p:commandButton rendered="#{ commentEntity.user.email eq loginUserBean.user.email }" value="Update" type="button" onclick="PF(#{ modalId }).show();" />
+					<p:commandButton class="btn" rendered="#{ commentEntity.user.email eq loginUserBean.user.email }" value="Update" type="button" onclick="PF(#{ modalId }).show();" />
 					<p:dialog header="Update comment" widgetVar="#{ modalId }" modal="true" height="300">
 
 						<form action="/clubproject/update-comment" method="post">

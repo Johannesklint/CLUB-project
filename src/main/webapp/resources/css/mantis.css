@@ -13,6 +13,19 @@
  	clear: both;
  }
  
+ .post-box h5 {
+	font-size:18px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+ }
+
+ .post-box .time {
+	color: #444;
+	margin-top:0;
+	margin-bottom:0;
+	font-weight: bold;
+ }
+ 
  *{
 	font-family: 'Open Sans', sans-serif;
  	font-size: 13.33px;

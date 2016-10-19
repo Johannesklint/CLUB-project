@@ -29,16 +29,5 @@ public class CommentListLimitBean {
 		}
 		return false;
 	}
-	
-	private Integer getLimit() {
-		
-		System.out.println("---");
-		System.out.println(listNews);
-		
-		if(listNews==null) {
-			return null;
-		}
-		return 3; // TODO: fix?
-	}
 
 }

@@ -37,8 +37,9 @@ public class LoggedInAuthorization implements Filter {
 			throws IOException, ServletException {
 		if(!loginUserBean.isLoggedIn()) {
 
-			HttpServletResponse res = (HttpServletResponse) response;
-			res.sendRedirect("/clubproject/faces/error403.xhtml");
+			HttpServletResponse hsr = (HttpServletResponse) response;
+		    hsr.setStatus(403);
+			request.getRequestDispatcher("error403.xhtml").forward(request, response);
 			return;
 		}
 		

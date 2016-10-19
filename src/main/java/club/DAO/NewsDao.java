@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import javax.ejb.Stateful;
 
 @Stateful
-public class NewsDao extends GenericCrudDao<News> {
+public class NewsDAO extends GenericCrudDao<News> {
 	
 	public List<News> getAll(boolean includeHidden) {
 		return super.getAll()

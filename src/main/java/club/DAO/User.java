@@ -3,12 +3,13 @@ package club.DAO;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.auth0.jwt.internal.com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-import club.password.CouldNotEncryptPasswordException;
 import club.password.PasswordHandler;
 import java.sql.Date;
-import java.util.List;
 
 @Entity
 @Table(name="user")
@@ -47,17 +48,17 @@ public class User implements Serializable {
 	@Column(name="birthday", nullable=false, length=8)
 	private Date birthday;
 
+	@Column(name="hmac_password", nullable=false, length=161)
+	@JsonProperty(access = Access.READ_ONLY)
+	private String HMACPassword;
+
 	public Date getBirthday() {
 		return birthday;
 	}
-
+	
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
-
-	@Column(name="hmac_password", nullable=false, length=161)
-	private String hMACPassword;
-
 
 	public User() {
 	}
@@ -107,19 +108,29 @@ public class User implements Serializable {
 	}
 
 	public void setLastName(String lastName) {
+		System.out.println("LASTNAME: " + lastName);
 		this.lastName = lastName;
 	}
 
-	@JsonIgnore
+	@JsonIgnore()
 	public String getHashedPasswordSaltpair() {
-		return hMACPassword;
+		return HMACPassword;
 	}
 	
 	public void generateNewHMACpassword(String password) {		
-		hMACPassword = PasswordHandler.hash(password).toString();	
+		HMACPassword = PasswordHandler.hash(password).toString();	
+	}
+	
+	@JsonIgnore
+	public String getHMACPassword() {
+		return HMACPassword;
+	}
+	
+	public void setHMACPassword(String HMACPassword) {
+		System.out.println("PASSWORD IN SET" + HMACPassword);
+		this.HMACPassword = HMACPassword;
 	}
 
-	
 	public String getFullName(){
 		return this.firstName + " " + this.lastName;
 	}

@@ -17,7 +17,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 @WebFilter(urlPatterns={
-		"/faces/home.xhtml"
+		"/faces/home.xhtml",
+		"/faces/post-details.xhtml",
+		"/faces/news-list.xhtml",
+		"/faces/events-list.xhtml",
+		"/faces/user-profile.xhtml"
 })
 public class LoggedInAuthorization implements Filter {
 

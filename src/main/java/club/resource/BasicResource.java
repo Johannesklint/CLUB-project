@@ -26,9 +26,9 @@ public abstract class BasicResource {
 		URI selfUri  = getSelfLink().getUriBuilder().build();
 		System.out.println("SelfLink: " + selfUri.toString());
 		String resourceURL = 
-				selfUri.getPath() + 
-				UriBuilder.fromResource(resourceClass).build().getPath().replaceAll("/", "");
-		
+				selfUri.getPath() + "/" +
+				UriBuilder.fromResource(resourceClass).build().getPath();
+		resourceURL.replaceAll("//", "/");
 		Link resourceLink = Link.fromUri(resourceURL)
 				//.baseUri(selfUri.getPath())
 				.rel(relName)

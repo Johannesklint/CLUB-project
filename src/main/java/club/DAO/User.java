@@ -25,6 +25,9 @@ public class User implements Serializable {
 
 	private static final long serialVersionUID = 7589032287673546267L;
 	
+	@Transient
+	private String password;
+	
 	@Id
 	@Column(unique=true, nullable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -49,7 +52,7 @@ public class User implements Serializable {
 	private Date birthday;
 
 	@Column(name="hmac_password", nullable=false, length=161)
-	@JsonProperty(access = Access.READ_ONLY)
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String HMACPassword;
 
 	public Date getBirthday() {
@@ -121,6 +124,14 @@ public class User implements Serializable {
 		HMACPassword = PasswordHandler.hash(password).toString();	
 	}
 	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@JsonIgnore
 	public String getHMACPassword() {
 		return HMACPassword;

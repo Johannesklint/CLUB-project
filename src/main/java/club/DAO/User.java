@@ -112,7 +112,7 @@ public class User implements Serializable {
 		this.lastName = lastName;
 	}
 
-	@JsonIgnore()
+	@JsonIgnore
 	public String getHashedPasswordSaltpair() {
 		return HMACPassword;
 	}
@@ -127,8 +127,8 @@ public class User implements Serializable {
 	}
 	
 	public void setHMACPassword(String HMACPassword) {
-		System.out.println("PASSWORD IN SET" + HMACPassword);
-		this.HMACPassword = HMACPassword;
+		System.out.println("setter kors");
+		generateNewHMACpassword(HMACPassword);
 	}
 
 	public String getFullName(){

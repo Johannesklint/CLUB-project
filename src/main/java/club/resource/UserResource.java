@@ -1,5 +1,7 @@
 package club.resource;
 
+import java.util.Date;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
@@ -26,9 +28,12 @@ public class UserResource extends BasicResource{
 	public Response createUser(User user, @QueryParam("password") String password){
 		user.setApprovedState(ApprovedState.DENIED);
 		user.setAdmin(false);
+		user.setBirthday(new java.sql.Date(0));
 		//user.generateNewHMACpassword(password);
-		//userEJB.create(user);
-		return Response.accepted(user).build();
+		user.setHMACPassword(user.getHMACPassword());
+		User user2 = userEJB.create(user);
+		
+		return Response.accepted(user2).build();
 	}
 	
 }

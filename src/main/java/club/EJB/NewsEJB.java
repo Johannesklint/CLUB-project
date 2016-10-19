@@ -6,7 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import club.DAO.News;
-import club.DAO.NewsDao;
+import club.DAO.NewsDAO;
 import club.EJB.interfaces.LocalNews;
 
 
@@ -14,7 +14,7 @@ import club.EJB.interfaces.LocalNews;
 public class NewsEJB implements LocalNews{
 	
 	@EJB
-	private NewsDao newsDao;
+	private NewsDAO newsDao;
 
 	@Override
 	public News save(News entity) {

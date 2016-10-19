@@ -6,7 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import club.DAO.News;
-import club.DAO.NewsDao;
+import club.DAO.NewsDAO;
 import club.DAO.Post;
 import club.DAO.PostDAO;
 import club.EJB.interfaces.LocalNews;

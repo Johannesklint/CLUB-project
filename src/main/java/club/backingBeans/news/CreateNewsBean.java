@@ -27,7 +27,6 @@ public class CreateNewsBean extends NewsBean {
 	@PostConstruct
 	public void init() {
 		System.out.println("In CreateNewsBean init()");
-		super.redirectIfNotAdmin(loginUserBean);
 	}
 
 	@Override

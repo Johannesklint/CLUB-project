@@ -19,7 +19,7 @@ import club.backingBeans.user.UserProfileBean;
 @Named("platformBean")
 @Startup
 @Singleton
-public class PlatformBean {
+public class PlatformBean extends BasicFrontendBean {
 	
 	
 	@PostConstruct

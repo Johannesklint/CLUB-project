@@ -28,7 +28,6 @@ public abstract class NewsBean extends PostBean<News> {
 	
 	@PostConstruct
 	public void init() {
-		super.redirectIfNotLoggedIn(loginUserBean);
 		super.setAuthor(loginUserBean.getUser());
 	}
 	

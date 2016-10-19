@@ -21,13 +21,13 @@
 		
 			<h:panelGrid columns="2">
 			   <h:outputLabel for="title">Title:</h:outputLabel>
-			   <h:inputText id="title" value="#{ platformBean.title }" required="true" label="title"/>
+			   <h:inputText id="title" value="#{ configurePlatformBean.title }" required="true" label="title"/>
 			   
 			   <h:outputLabel for="description">Description:</h:outputLabel>
-			   <h:inputTextarea id="description" value="#{ platformBean.description }" required="true" label="description"/>
+			   <h:inputTextarea id="description" value="#{ configurePlatformBean.description }" required="true" label="description"/>
 			
 			   <h:outputLabel for="terms_and_conditions">Terms and conditions:</h:outputLabel>
-			   <h:inputTextarea id="terms_and_conditions" value="#{ platformBean.termsAndConditions }" required="true" label="terms_and_conditions"/>
+			   <h:inputTextarea id="terms_and_conditions" value="#{ configurePlatformBean.termsAndConditions }" required="true" label="terms_and_conditions"/>
        			  
        	<!--	   <h:outputLabel for="primary_color">Primary color:</h:outputLabel>
 			   <h:inputText id="primary_color" value="#{ themeBean.primaryColorHEX }" required="true" label="primary_color"/>
@@ -44,7 +44,7 @@
 
 				   <p:colorPicker value="#{themeBean.secondaryColorHEX}" />
 			    </h:panelGrid>                  	       			
-			   <h:commandButton class="btn" value="Update platform" action="#{ platformBean.savePlatform() }" />
+			   <h:commandButton class="btn" value="Update platform" action="#{ configurePlatformBean.savePlatform() }" />
 			</h:panelGrid>
 			
 		</h:form>

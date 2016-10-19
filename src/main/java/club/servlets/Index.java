@@ -37,7 +37,8 @@ public class Index extends HttpServlet {
 	    if(!bean.isValidLogin())
 	    	response.sendRedirect("/clubproject/faces/index.xhtml");
 	    else
-	    	response.sendRedirect("/clubproject/faces/home.xhtml");	    	
+	    	response.sendRedirect("/clubproject/faces/home.xhtml");	 
+	    
 	}
 
 }

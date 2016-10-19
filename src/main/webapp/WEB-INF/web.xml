@@ -13,6 +13,21 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>/faces/*</url-pattern>
 	</servlet-mapping>
+	
+	<error-page>
+	    <error-code>404</error-code>
+	    <location>/faces/error404.xhtml</location>
+	</error-page>
+
+	<error-page>
+	    <error-code>500</error-code>
+	    <location>/faces/error500.xhtml</location>
+	</error-page>
+
+	<error-page>
+	    <error-code>403</error-code>
+	    <location>/faces/error403.xhtml</location>
+	</error-page>
 
 
 	<servlet>

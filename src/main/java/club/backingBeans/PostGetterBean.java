@@ -30,7 +30,6 @@ public class PostGetterBean extends BasicFrontendBean {
 	@PostConstruct
 	public void init() {
 		
-		super.redirectIfNotLoggedIn(loginUserBean);
 		
 		System.out.println("INIT");
 		

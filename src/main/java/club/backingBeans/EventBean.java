@@ -51,7 +51,6 @@ public abstract class EventBean extends PostBean<Event> {
 	
 	@PostConstruct
 	public void init() {
-		super.redirectIfNotLoggedIn(loginUserBean);
 		super.setAuthor(loginUserBean.getUser());
 	}
 	

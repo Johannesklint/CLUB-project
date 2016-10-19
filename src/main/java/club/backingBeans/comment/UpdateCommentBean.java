@@ -21,7 +21,6 @@ public class UpdateCommentBean extends CommentBean{
 	
 	@PostConstruct
 	public void init() {
-		super.redirectIfNotLoggedIn(loginUserBean);
 	}
 	
 	public String submit(){

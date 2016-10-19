@@ -30,7 +30,6 @@ public class UserManagementBean extends BasicFrontendBean{
 
 	@PostConstruct
 	public void init() {
-		super.redirectIfNotAdmin(loginUserBean);
 	}
 
 	public String switchAdminState() {

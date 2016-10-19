@@ -24,7 +24,6 @@ public class ListNewsBean extends BasicFrontendBean {
 	
 	@PostConstruct
 	public void init() {
-		super.redirectIfNotLoggedIn(loginUserBean);
 	}
 	
 	public List<News> getAll(){

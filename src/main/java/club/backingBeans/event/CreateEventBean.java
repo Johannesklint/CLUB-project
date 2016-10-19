@@ -36,7 +36,7 @@ public class CreateEventBean extends EventBean{
 	@PostConstruct
 	public void init() {
 		System.out.println("In CreateEventBean init()");
-		super.redirectIfNotAdmin(loginUserBean);	}
+	}
 	
 	@Override
 	public Event getFromFields() {

@@ -28,8 +28,7 @@
 							</h:messages>
 							
 							<h:panelGrid columns="2" cellpadding="5">	
-								<h:commandButton class="btn" action="#{ deleteCommentBean.submit() }" value="Delete">
-	    							<f:setPropertyActionListener target="#{ deleteCommentBean.selectedCommentId }" value="#{ commentEntity.id }"/>								
+								<h:commandButton class="btn" action="#{ deleteCommentBean.submit(commentEntity.id ) }" value="Delete">
 									<f:param name="id" value="#{ commentEntity.post.id }"/>
 								</h:commandButton>			
 							</h:panelGrid>	

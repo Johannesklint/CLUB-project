@@ -2,6 +2,8 @@ package club.backingBeans.comment;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -13,14 +15,23 @@ import club.DAO.comment.Comment;
 import club.DAO.post.Post;
 import club.EJB.interfaces.LocalComment;
 import club.backingBeans.post.PostGetterBean;
+import club.backingBeans.user.LoginUserBean;
 import club.exceptions.ValidateException;
 
 @Named(value="createCommentBean")
 @RequestScoped
-public class CreateCommentBean extends CommentBean{
+public class CreateCommentBean extends CommentBean {
 
 	@EJB
 	private LocalComment commentEJB;
+
+	@Inject @Named("loginUserBean")
+	private LoginUserBean loginUserBean;
+	
+	@PostConstruct
+	public void init() {
+		setAuthor(loginUserBean.getUser());
+	}
 
 	@Inject @Named(value="postGetterBean")
 	private PostGetterBean postGetterBean;

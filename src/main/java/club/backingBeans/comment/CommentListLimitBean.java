@@ -1,5 +1,6 @@
 package club.backingBeans.comment;
 
+import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -8,17 +9,10 @@ import club.DAO.comment.Comment;
 import club.backingBeans.news.ListNewsBean;
 
 @Named(value="commentListLimitBean")
-@RequestScoped
+@Dependent
 public class CommentListLimitBean {
-
-	@Inject @Named(value="listNewsBean")
-	private ListNewsBean listNews;
 			
 	public boolean render(Comment c, int limit) {
-
-		//Integer limit = getLimit();
-		//if(limit==null) return true;
-		
 		int size = c.getPost().getComments().size();
 		int index = 0;
 		for(Comment compareComment : c.getPost().getComments()) {
@@ -29,5 +23,4 @@ public class CommentListLimitBean {
 		}
 		return false;
 	}
-
 }

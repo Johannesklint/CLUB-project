@@ -2,8 +2,6 @@ package club.backingBeans.platform;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -12,14 +10,11 @@ import club.DAO.platform.Theme;
 import club.EJB.interfaces.LocalPlatform;
 import club.backingBeans.BasicFrontendBean;
 
-
-@Named("platformBean")
-@Startup
-@Singleton
 public abstract class PlatformBean extends BasicFrontendBean {
 	
 	@PostConstruct
 	public void init() {
+		System.out.println("IN platform bean init!!");
 		setPlatformBeanFieldsFromDb();
 	}
 	
@@ -43,21 +38,6 @@ public abstract class PlatformBean extends BasicFrontendBean {
 		Platform platform = platformEJB.getById(1);
 		return platform;
 	}
-	
-	public String updatePlatform(){
-	
-		Platform platform = new Platform();
-		platform.setId(1);
-		platform.setTitle(title);
-		platform.setDescription(description);
-		platform.setTermsAndCondition(termsAndConditions);
-		platform.setTheme(theme.createThemeFromBean());
-		
-		platformEJB.update(platform);
-		setPlatformBeanFieldsFromDb();
-		return "";
-		
-	}	
 	
 	public String getTitle() {
 		return title != null ? title : DEFAULT_TITLE;
@@ -86,7 +66,7 @@ public abstract class PlatformBean extends BasicFrontendBean {
 	}
 	
 	
-	private void setPlatformBeanFieldsFromDb() {
+	protected void setPlatformBeanFieldsFromDb() {
 		Platform platform = getPlatformById();
 		System.out.println("init platform: " + platform.getTitle());
 		

@@ -5,7 +5,9 @@ import java.text.SimpleDateFormat;
 import javax.enterprise.context.Dependent;
 import javax.inject.Named;
 
-import club.DAO.Event;
+import club.DAO.event.Event;
+
+
 
 @Named(value="eventWhenFormater")
 @Dependent

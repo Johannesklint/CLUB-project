@@ -18,7 +18,4 @@ public class NewsDAO extends GenericCrudDao<News> {
 			.map(post -> (News) post) // cast to please the compiler
 			.collect(Collectors.toList());
 	}
-	
-	
-
 }

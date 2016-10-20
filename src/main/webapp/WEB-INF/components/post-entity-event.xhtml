@@ -12,8 +12,9 @@
 			<div class="post-inner-box">
 			
 				<h5>#{ eventEntity.title }</h5>
+	 			<p class="time">#{eventWhenFormater.render(eventEntity)}</p>
+				
 				<p>#{ eventEntity.text }</p>
-				<p>When: #{ eventEntity.startTime } - #{ eventEntity.endTime }</p>
 				<p>Going: #{ eventEntity.attendees.size() }</p>
 				
 				

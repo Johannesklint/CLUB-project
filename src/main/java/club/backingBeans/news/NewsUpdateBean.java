@@ -53,13 +53,11 @@ public class NewsUpdateBean extends NewsBean {
 
 	public void setSelectedId(int selectedId) {
 		throw new RuntimeException("");
-		//System.out.println("seeting id to " + selectedId);
-		//this.selectedId = selectedId;
 	}
 
 	@Override
 	public News getFromFields() {
-		// TODO Auto-generated method stub
+		// N/A
 		return null;
 	}
 	

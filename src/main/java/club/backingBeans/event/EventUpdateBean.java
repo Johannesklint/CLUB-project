@@ -49,7 +49,7 @@ public class EventUpdateBean extends EventBean {
 
 	@Override
 	public Event getFromFields() {
-		// TODO Auto-generated method stub
+		// N/A
 		return null;
 	}	
 }

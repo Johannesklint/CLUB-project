@@ -5,13 +5,10 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Startup;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import club.DAO.user.User;
-import club.DAO.user.User.ApprovedState;
 import club.EJB.interfaces.LocalUser;
 import club.backingBeans.BasicFrontendBean;
 
@@ -66,7 +63,7 @@ public class UserProfileBean extends BasicFrontendBean{
 	
 	public String delete(){
 		
-		if(userEJB.deleteUser(user.getId())){
+		if(userEJB.delete(user.getId())){
 			loginUser.doLogout();			
 			return "index";	
 		}else {

@@ -36,6 +36,12 @@ public class NewsEJB implements LocalNews{
 		return newsDao.getById(id);
 	}
 
+	@Override
+	public News update(News entity) {
+		// TODO: use this in update
+		return null;
+	}
+
 
 	
 }

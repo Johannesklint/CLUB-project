@@ -45,7 +45,7 @@ public class PlatformBean extends BasicFrontendBean {
 	}
 	
 	public Platform getPlatformById(){
-		Platform platform = platformEJB.getPlatformById(1);
+		Platform platform = platformEJB.getById(1);
 		return platform;
 	}
 	
@@ -61,7 +61,7 @@ public class PlatformBean extends BasicFrontendBean {
 		System.out.println("i saveplatform" + theme == null);
 		
 				
-		if(platformEJB.savePlatform(platform)){
+		if(platformEJB.save(platform) != null){
 			setPlatformBeanFieldsFromDb();
 		}
 		

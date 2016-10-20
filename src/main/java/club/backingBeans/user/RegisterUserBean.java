@@ -1,15 +1,8 @@
 package club.backingBeans.user;
 
 import javax.ejb.EJB;
-import javax.ejb.Startup;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
 
 import club.DAO.user.User;
 import club.DAO.user.User.ApprovedState;
@@ -42,8 +35,7 @@ public class RegisterUserBean extends BasicFrontendBean{
 		
 		try {
 			userEJB.validateRegisterUser(user);
-
-			if (userEJB.create(user) != null) {
+			if (userEJB.save(user) != null) {
 				return "wait-for-approve";			
 			}else {
 				super.addFacesMessage("User could not be saved");

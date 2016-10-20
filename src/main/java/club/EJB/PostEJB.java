@@ -43,4 +43,10 @@ public class PostEJB implements LocalPost {
 		return postDao.getById(id);
 	}
 
+	@Override
+	public Post update(Post entity) {
+		// TODO use this!!!
+		return null;
+	}
+
 }

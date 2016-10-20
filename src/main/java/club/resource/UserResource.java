@@ -40,7 +40,7 @@ public class UserResource extends BasicResource{
 		user.setAdmin(false);
 		user.setBirthday(new java.sql.Date(0));
 		user.setHMACPassword(user.getPassword());
-		User createdUser = userEJB.create(user);
+		User createdUser = userEJB.save(user);
 		
 		return Response.status(OK)
 				.entity(createdUser)
@@ -72,7 +72,7 @@ public class UserResource extends BasicResource{
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getById(@PathParam("user_id") int id){
-		User user = userEJB.getUserById(id);
+		User user = userEJB.getById(id);
 		Link udpateByIdLink = Link.fromUri(super.getAbsolutePathURIFromContext()).rel("Update this user").build();
 
 		return Response.status(OK)

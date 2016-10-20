@@ -1,6 +1,8 @@
 package club.EJB;
 
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -15,13 +17,31 @@ public class PlatformEJB implements LocalPlatform{
 	private PlatformDAO platformDAO;
 	
 	@Override
-	public boolean savePlatform(Platform platform) {	
-		return platformDAO.saveToDB(platform);
+	public Platform save(Platform platform) {	
+		return platformDAO.save(platform);
 	}
 
 	@Override
-	public Platform getPlatformById(int id) {
-		return platformDAO.getFromDBById(id);
+	public Platform getById(int id) {
+		return platformDAO.getById(id);
+	}
+
+	@Override
+	public Platform update(Platform entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean delete(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Platform> getAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

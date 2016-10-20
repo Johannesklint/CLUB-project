@@ -24,7 +24,7 @@ public class DeleteCommentBean extends CommentBean{
 		int postId = postGetterBean.getAsPost().getId();
 		Comment commentToDelete = commentEJB.getById(super.getSelectedCommentId());
 		commentToDelete.setHidden(true);
-		commentEJB.saveComment(commentToDelete);
+		commentEJB.save(commentToDelete);
 		return "post-details.xhtml?faces-redirect=true&id=" + postId;
 	}
 }

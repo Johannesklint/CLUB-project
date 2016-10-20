@@ -16,7 +16,7 @@ import club.backingBeans.BasicFrontendBean;
 @Named("platformBean")
 @Startup
 @Singleton
-public class PlatformBean extends BasicFrontendBean {
+public abstract class PlatformBean extends BasicFrontendBean {
 	
 	@PostConstruct
 	public void init() {
@@ -44,7 +44,7 @@ public class PlatformBean extends BasicFrontendBean {
 		return platform;
 	}
 	
-	public String savePlatform(){
+	public String updatePlatform(){
 	
 		Platform platform = new Platform();
 		platform.setId(1);
@@ -53,10 +53,8 @@ public class PlatformBean extends BasicFrontendBean {
 		platform.setTermsAndCondition(termsAndConditions);
 		platform.setTheme(theme.createThemeFromBean());
 		
-		if(platformEJB.save(platform) != null){
-			setPlatformBeanFieldsFromDb();
-		}
-		
+		platformEJB.update(platform);
+		setPlatformBeanFieldsFromDb();
 		return "";
 		
 	}	

@@ -23,7 +23,6 @@ public class RegisterUserBean extends BasicFrontendBean{
 	private boolean admin;
 	private boolean approved;
 
-
 	private Boolean termsAndConditions;
 	
 	@EJB
@@ -112,22 +111,6 @@ public class RegisterUserBean extends BasicFrontendBean{
 		return user;
 	}
 	
-	/*
-	private java.sql.Date parseDate(String input) {
-
-        SimpleDateFormat parser = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
-        Date date = null;
-		try {
-			date = parser.parse(input);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String formattedDate = formatter.format(date);
-        return java.sql.Date.valueOf(formattedDate);
-	}*/
-
 	private java.sql.Date convertBirthdayToDate() {
 		return new java.sql.Date(getBirthday().getTime());
 	}

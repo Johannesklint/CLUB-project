@@ -28,8 +28,7 @@ public class PlatformEJB implements LocalPlatform{
 
 	@Override
 	public Platform update(Platform entity) {
-		// TODO Auto-generated method stub
-		return null;
+		return platformDAO.update(entity);
 	}
 
 	@Override

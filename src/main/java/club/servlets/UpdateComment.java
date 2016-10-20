@@ -29,7 +29,6 @@ public class UpdateComment extends HttpServlet {
      */
     public UpdateComment() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

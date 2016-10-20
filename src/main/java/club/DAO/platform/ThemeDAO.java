@@ -1,4 +1,4 @@
-package club.DAO;
+package club.DAO.platform;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

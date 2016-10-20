@@ -2,7 +2,7 @@ package club.EJB.interfaces;
 
 import javax.ejb.Local;
 
-import club.DAO.Platform;
+import club.DAO.platform.Platform;
 
 
 @Local

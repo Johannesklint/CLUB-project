@@ -4,9 +4,10 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import club.DAO.Comment;
+
+import club.DAO.comment.Comment;
 import club.EJB.interfaces.LocalComment;
-import club.backingBeans.PostGetterBean;
+import club.backingBeans.post.PostGetterBean;
 
 @Named(value="deleteCommentBean")
 @RequestScoped

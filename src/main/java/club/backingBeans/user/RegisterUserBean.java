@@ -10,8 +10,9 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import club.DAO.User;
-import club.DAO.User.ApprovedState;
+
+import club.DAO.user.User;
+import club.DAO.user.User.ApprovedState;
 import club.EJB.interfaces.LocalUser;
 import club.backingBeans.BasicFrontendBean;
 import club.exceptions.ValidateException;

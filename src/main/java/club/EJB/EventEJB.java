@@ -5,8 +5,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import club.DAO.Event;
-import club.DAO.EventDAO;
+import club.DAO.event.Event;
+import club.DAO.event.EventDAO;
 import club.EJB.interfaces.LocalEvent;
 
 @Stateless

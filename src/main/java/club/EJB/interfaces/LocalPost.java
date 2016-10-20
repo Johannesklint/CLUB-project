@@ -1,6 +1,6 @@
 package club.EJB.interfaces;
 
-import club.DAO.Post;
+import club.DAO.post.Post;
 
 //NOTE: does not need to have @Local, since LocalGenericCrud already has that annotation
 public interface LocalPost extends LocalGenericCrud<Post> {

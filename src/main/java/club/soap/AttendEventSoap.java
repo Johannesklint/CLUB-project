@@ -12,8 +12,8 @@ import javax.xml.bind.DatatypeConverter;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
 
-import club.DAO.Event;
-import club.DAO.User;
+import club.DAO.event.Event;
+import club.DAO.user.User;
 import club.EJB.LoginHandlerable;
 import club.EJB.interfaces.LocalEvent;
 import club.EJB.interfaces.LocalUser;

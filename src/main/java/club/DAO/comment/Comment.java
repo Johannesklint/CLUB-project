@@ -1,9 +1,12 @@
-package club.DAO;
+package club.DAO.comment;
 
 import java.io.Serializable;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import club.DAO.post.Post;
+import club.DAO.user.User;
 
 import java.sql.Timestamp;
 

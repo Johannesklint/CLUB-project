@@ -1,7 +1,8 @@
 package club.backingBeans.user;
 
 import javax.inject.Named;
-import club.DAO.User;
+
+import club.DAO.user.User;
 import club.EJB.LoginHandlerable;
 import club.EJB.interfaces.LocalUser;
 import club.backingBeans.BasicFrontendBean;

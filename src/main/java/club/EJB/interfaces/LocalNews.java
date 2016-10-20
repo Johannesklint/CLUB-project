@@ -1,6 +1,6 @@
 package club.EJB.interfaces;
 
-import club.DAO.News;
+import club.DAO.news.News;
 
 //NOTE: does not need to have @Local, since LocalGenericCrud already has that annotation
 public interface LocalNews extends LocalGenericCrud<News> {

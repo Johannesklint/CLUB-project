@@ -4,9 +4,10 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import club.DAO.User;
-import club.DAO.User.ApprovedState;
-import club.DAO.UserDAO;
+
+import club.DAO.user.User;
+import club.DAO.user.UserDAO;
+import club.DAO.user.User.ApprovedState;
 import club.EJB.interfaces.LocalUser;
 import club.backingBeans.user.LoginUserBean;
 import club.exceptions.LoginException;

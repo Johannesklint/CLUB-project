@@ -1,9 +1,11 @@
-package club.DAO;
+package club.DAO.post;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.ejb.Stateful;
+
+import club.DAO.GenericCrudDao;
 
 @Stateful
 public class PostDAO extends GenericCrudDao<Post> {

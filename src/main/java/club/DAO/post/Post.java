@@ -1,4 +1,4 @@
-package club.DAO;
+package club.DAO.post;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -23,6 +23,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import club.DAO.comment.Comment;
+import club.DAO.user.User;
 
 @Entity
 @Table(name="post")

@@ -1,4 +1,4 @@
-package club.backingBeans;
+package club.backingBeans.post;
 
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -6,9 +6,10 @@ import java.time.Instant;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 
-import club.DAO.Post;
-import club.DAO.User;
+import club.DAO.post.Post;
+import club.DAO.user.User;
 import club.EJB.interfaces.LocalPost;
+import club.backingBeans.BasicFrontendBean;
 
 public abstract class PostBean<T extends Post> extends BasicFrontendBean {
 	
@@ -64,7 +65,7 @@ public abstract class PostBean<T extends Post> extends BasicFrontendBean {
 		this.id = id;
 	}
 
-	Post save() {
+	protected Post save() {
 		Post post = getFromFields();
 		return postEJB.save(post);
 	}

@@ -5,8 +5,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import club.DAO.News;
-import club.DAO.NewsDAO;
+import club.DAO.news.News;
+import club.DAO.news.NewsDAO;
 import club.EJB.interfaces.LocalNews;
 
 

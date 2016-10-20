@@ -1,13 +1,15 @@
-package club.backingBeans;
+package club.backingBeans.news;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import club.DAO.News;
-import club.DAO.Post;
+
+import club.DAO.news.News;
+import club.DAO.post.Post;
 import club.EJB.interfaces.LocalNews;
+import club.backingBeans.post.PostBean;
 import club.backingBeans.user.LoginUserBean;
 
 

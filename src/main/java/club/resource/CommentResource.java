@@ -14,7 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import club.DAO.Comment;
+import club.DAO.comment.Comment;
 import club.EJB.interfaces.LocalComment;
 
 @RequestScoped

@@ -4,8 +4,8 @@ package club.EJB;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import club.DAO.Platform;
-import club.DAO.PlatformDAO;
+import club.DAO.platform.Platform;
+import club.DAO.platform.PlatformDAO;
 import club.EJB.interfaces.LocalPlatform;
 
 @Stateless

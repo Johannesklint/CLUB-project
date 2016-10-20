@@ -1,4 +1,4 @@
-package club.DAO;
+package club.DAO.event;
 
 import java.sql.Timestamp;
 import java.time.Duration;
@@ -11,6 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+
+import club.DAO.post.Post;
+import club.DAO.user.User;
 
 @Entity
 @DiscriminatorValue(value="EVENT")

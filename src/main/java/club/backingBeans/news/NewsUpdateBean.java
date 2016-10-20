@@ -1,4 +1,4 @@
-package club.backingBeans;
+package club.backingBeans.news;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -6,7 +6,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.management.RuntimeErrorException;
 
-import club.DAO.News;
+import club.DAO.news.News;
+import club.backingBeans.post.PostGetterBean;
 
 @Named(value="newsUpdateBean")
 @RequestScoped

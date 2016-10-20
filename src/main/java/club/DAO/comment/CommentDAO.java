@@ -1,4 +1,4 @@
-package club.DAO;
+package club.DAO.comment;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import club.DAO.Comment;
+import club.DAO.comment.Comment;
 import club.exceptions.MergeNullException;
 
 @Stateful

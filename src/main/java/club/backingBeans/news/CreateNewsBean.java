@@ -8,8 +8,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import club.DAO.News;
-import club.backingBeans.NewsBean;
+import club.DAO.news.News;
 import club.backingBeans.user.LoginUserBean;
 
 @RequestScoped

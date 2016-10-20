@@ -1,4 +1,4 @@
-package club.backingBeans;
+package club.backingBeans.post;
 
 import java.util.List;
 import java.util.Map;
@@ -10,10 +10,11 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import club.DAO.Event;
-import club.DAO.News;
-import club.DAO.Post;
+import club.DAO.event.Event;
+import club.DAO.news.News;
+import club.DAO.post.Post;
 import club.EJB.interfaces.LocalPost;
+import club.backingBeans.BasicFrontendBean;
 import club.backingBeans.user.LoginUserBean;
 
 @Named(value="postGetterBean")

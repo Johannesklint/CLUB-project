@@ -1,4 +1,4 @@
-package club.backingBeans;
+package club.backingBeans.event;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -8,10 +8,11 @@ import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import club.DAO.Event;
-import club.DAO.News;
-import club.DAO.User;
+import club.DAO.event.Event;
+import club.DAO.news.News;
+import club.DAO.user.User;
 import club.EJB.interfaces.LocalNews;
+import club.backingBeans.post.PostBean;
 import club.backingBeans.user.LoginUserBean;
 
 

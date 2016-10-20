@@ -1,8 +1,10 @@
-package club.DAO;
+package club.DAO.event;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.ejb.Stateful;
+
+import club.DAO.GenericCrudDao;
 
 @Stateful
 public class EventDAO extends GenericCrudDao<Event>{

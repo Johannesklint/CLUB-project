@@ -19,9 +19,10 @@ import javax.ws.rs.core.Link;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-import club.DAO.Post;
-import club.DAO.User;
-import club.DAO.User.ApprovedState;
+
+import club.DAO.post.Post;
+import club.DAO.user.User;
+import club.DAO.user.User.ApprovedState;
 import club.EJB.interfaces.LocalUser;
 
 @Stateless

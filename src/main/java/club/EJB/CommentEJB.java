@@ -5,8 +5,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import club.DAO.Comment;
-import club.DAO.CommentDAO;
+import club.DAO.comment.Comment;
+import club.DAO.comment.CommentDAO;
 import club.EJB.interfaces.LocalComment;
 import club.exceptions.ValidateException;
 

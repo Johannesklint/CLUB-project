@@ -1,9 +1,11 @@
-package club.DAO;
+package club.DAO.news;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+
+import club.DAO.post.Post;
 
 @Entity
 @DiscriminatorValue(value="NEWS")

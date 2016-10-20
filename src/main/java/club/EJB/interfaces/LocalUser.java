@@ -3,7 +3,8 @@ package club.EJB.interfaces;
 import java.util.List;
 
 import javax.ejb.Local;
-import club.DAO.User;
+
+import club.DAO.user.User;
 import club.EJB.LoginHandlerable;
 import club.backingBeans.user.LoginUserBean;
 import club.exceptions.LoginException;

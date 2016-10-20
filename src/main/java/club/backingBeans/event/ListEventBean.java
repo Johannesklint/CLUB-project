@@ -9,8 +9,8 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import club.DAO.Event;
-import club.DAO.News;
+import club.DAO.event.Event;
+import club.DAO.news.News;
 import club.EJB.interfaces.LocalEvent;
 import club.EJB.interfaces.LocalNews;
 import club.backingBeans.BasicFrontendBean;

@@ -2,8 +2,8 @@ package club.EJB;
 
 import javax.ejb.EJB;
 
-import club.DAO.Theme;
-import club.DAO.ThemeDAO;
+import club.DAO.platform.Theme;
+import club.DAO.platform.ThemeDAO;
 import club.EJB.interfaces.LocalTheme;
 
 public class ThemeEJB implements LocalTheme{

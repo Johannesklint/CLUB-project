@@ -8,8 +8,9 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import club.DAO.User;
-import club.DAO.User.ApprovedState;
+
+import club.DAO.user.User;
+import club.DAO.user.User.ApprovedState;
 import club.EJB.interfaces.LocalUser;
 import club.backingBeans.user.LoginUserBean;
 

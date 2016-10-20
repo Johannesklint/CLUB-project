@@ -2,13 +2,13 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="CLUB">
 		<jta-data-source>jdbc/club_db_resource</jta-data-source>
-		<class>club.DAO.Comment</class>
-		<class>club.DAO.User</class>
-		<class>club.DAO.Platform</class>
-		<class>club.DAO.Theme</class>
-		<class>club.DAO.Post</class>
-		<class>club.DAO.Event</class>
-		<class>club.DAO.News</class>
+		<class>club.DAO.comment.Comment</class>
+		<class>club.DAO.user.User</class>
+		<class>club.DAO.platform.Platform</class>
+		<class>club.DAO.platform.Theme</class>
+		<class>club.DAO.post.Post</class>
+		<class>club.DAO.event.Event</class>
+		<class>club.DAO.news.News</class>
 		
 		<!-- https://en.wikibooks.org/wiki/Java_Persistence/Caching#Example_JPA_2.0_Cacheable_annotation -->
 		<shared-cache-mode>NONE</shared-cache-mode>

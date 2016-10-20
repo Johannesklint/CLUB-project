@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import club.DAO.Comment;
+import club.DAO.comment.Comment;
 import club.exceptions.ValidateException;
 
 @Local

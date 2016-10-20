@@ -1,6 +1,6 @@
 package club.EJB;
 
-import club.DAO.User;
+import club.DAO.user.User;
 
 public interface LoginHandlerable {
 

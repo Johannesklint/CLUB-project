@@ -1,4 +1,4 @@
-package club.backingBeans;
+package club.backingBeans.platform;
 
 import javax.inject.Inject;
 import javax.inject.Named;

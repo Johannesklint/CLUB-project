@@ -51,6 +51,7 @@ public abstract class GenericCrudDao<T> {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
+	protected
 	List<T> getAll() {
 		System.out.println("Generic getAll");
 		String className = getProvidedGenericClass().getSimpleName();

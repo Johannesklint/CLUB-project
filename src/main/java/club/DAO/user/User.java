@@ -1,4 +1,4 @@
-package club.DAO;
+package club.DAO.user;
 
 import java.io.Serializable;
 import javax.persistence.*;

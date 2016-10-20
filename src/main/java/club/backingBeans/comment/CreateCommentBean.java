@@ -8,10 +8,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import club.DAO.Comment;
-import club.DAO.Post;
+
+import club.DAO.comment.Comment;
+import club.DAO.post.Post;
 import club.EJB.interfaces.LocalComment;
-import club.backingBeans.PostGetterBean;
+import club.backingBeans.post.PostGetterBean;
 import club.exceptions.ValidateException;
 
 @Named(value="createCommentBean")

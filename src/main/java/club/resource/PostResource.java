@@ -17,7 +17,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import club.DAO.Post;
+import club.DAO.post.Post;
 import club.EJB.interfaces.LocalPost;
 
 @Stateless

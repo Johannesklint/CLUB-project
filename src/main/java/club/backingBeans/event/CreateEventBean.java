@@ -13,13 +13,12 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import club.DAO.Event;
-import club.DAO.User;
+import club.DAO.event.Event;
+import club.DAO.user.User;
 import club.EJB.EventEJB;
 import club.EJB.interfaces.LocalEvent;
 import club.EJB.interfaces.LocalNews;
 import club.backingBeans.BasicFrontendBean;
-import club.backingBeans.EventBean;
 import club.backingBeans.user.LoginUserBean;
 
 @Named(value="createEventBean")

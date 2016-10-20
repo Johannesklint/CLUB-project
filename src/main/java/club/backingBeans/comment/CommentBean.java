@@ -5,9 +5,10 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.inject.Named;
-import club.DAO.Comment;
-import club.DAO.Post;
-import club.DAO.User;
+
+import club.DAO.comment.Comment;
+import club.DAO.post.Post;
+import club.DAO.user.User;
 import club.EJB.interfaces.LocalComment;
 import club.backingBeans.BasicFrontendBean;
 import club.backingBeans.user.LoginUserBean;

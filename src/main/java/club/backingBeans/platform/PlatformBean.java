@@ -1,4 +1,4 @@
-package club.backingBeans;
+package club.backingBeans.platform;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,9 +10,10 @@ import javax.ejb.Startup;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import club.DAO.Platform;
-import club.DAO.Theme;
+import club.DAO.platform.Platform;
+import club.DAO.platform.Theme;
 import club.EJB.interfaces.LocalPlatform;
+import club.backingBeans.BasicFrontendBean;
 import club.backingBeans.user.UserProfileBean;
 
 

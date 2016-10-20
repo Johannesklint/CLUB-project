@@ -16,7 +16,7 @@
 			
 				<div class="comment-box">
 					
-					<b>#{ commentEntity.text }</b>  <p><em>#{ commentEntity.user.fullName }</em></p>
+					<p><b>#{ commentEntity.user.fullName }:</b> #{ commentEntity.text }</p>
 					<h:panelGroup rendered="#{not empty commentEntity.lastUpdated }">
 						<i id="updated-comment">Last updated: #{commentEntity.lastUpdated}</i>
 					</h:panelGroup>									 

@@ -162,8 +162,10 @@
  }
  
  .comment-box{
- 	border: 1px solid lightgray;
- 	background-color: #F0F0F0;
+ 	border: 1px solid #777;
+ 	background-color: #eee;
+ 	padding: 5px;
+ 	margin-bottom: 2px;
  }
  
  .text{

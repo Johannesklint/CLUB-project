@@ -13,11 +13,11 @@
 			
 				<h5>#{ eventEntity.title }</h5>
 	 			<p class="time">#{eventWhenFormater.render(eventEntity)}</p>
-				
 				<p>#{ eventEntity.text }</p>
-				<p>Going: #{ eventEntity.attendees.size() }</p>
-				
-				
+				<p>Submitted <i><h:outputText value="#{eventEntity.created}" ><f:convertDateTime pattern="yyyy-MM-dd HH:mm" /></h:outputText> </i>
+				by <i>#{ eventEntity.author.fullName }</i></p>
+
+
 
 				
 				<h:form id="attend_event_form">
@@ -33,20 +33,6 @@
 						</h:commandButton>
 					</h:panelGroup>				
 				</h:form>
-				<div class="dropdown">
-						<h:panelGroup rendered="#{ eventEntity.attendees.size() > 0 }">
-							<button onclick="dropdown_function()" class="dropbtn"><span>&#10597;</span></button>
-						</h:panelGroup>
-						
-						<div id="myDropdown" class="dropdown-content">
-					    	<ui:repeat var="a" value="#{ eventEntity.attendees }">
-					    		<a href="#">#{ a.fullName }</a>
-					    	</ui:repeat>
-					  </div>
-					</div>
-				<h:link rendered="#{ includeReadMoreBtn }" outcome="post-details" value="Read more" includeViewParams="true">		
-				  <f:param name="id" value="#{ eventEntity.id }"></f:param>		
-				</h:link>
 
 				<h:panelGroup rendered="#{ compactCommentList }">
 
@@ -65,8 +51,11 @@
 					</ui:include>
 
 				</h:panelGroup>
-				<p><em>#{ eventEntity.author.fullName }</em></p>
-				<p><em>#{eventEntity.created}</em></p>
+
+				<h:link rendered="#{ includeReadMoreBtn }" outcome="post-details" value="Read more" includeViewParams="true">		
+				  <f:param name="id" value="#{ eventEntity.id }"></f:param>		
+				</h:link>
+
 			</div>
 			<div class="attendants">
 				<h:panelGroup rendered="#{ eventEntity.attendees.size() > 0 }">

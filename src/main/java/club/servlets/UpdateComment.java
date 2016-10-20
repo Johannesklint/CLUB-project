@@ -52,7 +52,7 @@ public class UpdateComment extends HttpServlet {
 		commentToUpdate.setText(text);
 		commentToUpdate.setLastUpdated( Timestamp.from(Instant.now()) );
 		
-		commentEJB.saveComment(commentToUpdate);		
+		commentEJB.save(commentToUpdate);		
 
 		
 		if(redirect!=null) {

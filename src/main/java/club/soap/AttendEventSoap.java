@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
-import javax.xml.bind.DatatypeConverter;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.handler.MessageContext;
 
@@ -71,7 +70,7 @@ public class AttendEventSoap {
 	@WebMethod
 	public void attendEvent(int userId, int eventId) throws LoginException {
 						
-		User user = userEJB.getUserById(userId);
+		User user = userEJB.getById(userId);
 		Event event = eventEJB.getById(eventId);
 		if(user==null) throw new RuntimeException("user not found");
 		if(event==null) throw new RuntimeException("event not found");
@@ -82,7 +81,7 @@ public class AttendEventSoap {
 	@WebMethod
 	public void unAttendEvent(int userId, int eventId) throws LoginException {
 						
-		User user = userEJB.getUserById(userId);
+		User user = userEJB.getById(userId);
 		Event event = eventEJB.getById(eventId);
 		if(user==null) throw new RuntimeException("user not found");
 		if(event==null) throw new RuntimeException("event not found");

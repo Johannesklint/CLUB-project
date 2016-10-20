@@ -6,13 +6,11 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import club.DAO.user.User;
-import club.DAO.user.UserDAO;
 import club.DAO.user.User.ApprovedState;
+import club.DAO.user.UserDAO;
 import club.EJB.interfaces.LocalUser;
-import club.backingBeans.user.LoginUserBean;
 import club.exceptions.LoginException;
 import club.exceptions.ValidateException;
-import club.password.CouldNotEncryptPasswordException;
 import club.password.HMAC;
 import club.password.PasswordHandler;
 
@@ -22,15 +20,6 @@ public class UserEJB implements LocalUser{
 	@EJB
 	private UserDAO userDao;
 	
-	@Override
-	public User create(User user) {
-		return userDao.saveToDB(user);	
-	}
-
-	@Override
-	public User getUserById(int id) {
-		return userDao.getUserById(id);
-	}	
 	
 	@Override
 	public void loginUser(String username, String password, LoginHandlerable loginHandlerable) throws LoginException{
@@ -51,14 +40,10 @@ public class UserEJB implements LocalUser{
 		loginHandlerable.onLogin(tryLoginUser);		
 	}
 	
-	@Override
-	public List<User> getAll() {
-		return userDao.getAll();
-	}
 
 	@Override
-	public boolean deleteUser(int id) {
-		return userDao.deleteUser(id);
+	public boolean delete(int id) {
+		return userDao.delete(id);
 	}	
 
 	@Override
@@ -85,8 +70,24 @@ public class UserEJB implements LocalUser{
 	}
 
 	@Override
-	public User update(User user) {
-		return userDao.saveToDB(user);	
+	public User update(User entity) {
+		return userDao.update(entity);
 	}
+
+	@Override
+	public User save(User entity) {
+		return userDao.save(entity);
+	}
+
+	@Override
+	public User getById(int id) {
+		return userDao.getById(id);
+	}
+
+	@Override
+	public List<User> getAll() {
+		return userDao.getAll();
+	}
+
 
 }

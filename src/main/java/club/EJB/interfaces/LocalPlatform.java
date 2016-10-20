@@ -6,8 +6,7 @@ import club.DAO.platform.Platform;
 
 
 @Local
-public interface LocalPlatform {
-	boolean savePlatform(Platform platform);
-	Platform getPlatformById(int id);
+public interface LocalPlatform extends LocalGenericCrud<Platform> {
+	
 }
 

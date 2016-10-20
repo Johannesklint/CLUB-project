@@ -2,11 +2,12 @@ package club.DAO;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import club.exceptions.MergeNullException;
 
 /**
  * 
@@ -25,14 +26,20 @@ public abstract class GenericCrudDao<T> {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	public T update(T entity) {
+		T updatedEntity = entityManager.merge(entity);
+		if(updatedEntity==null) throw new MergeNullException();
+		return updatedEntity;
+	}
+	
 	public T save(T entity) {
-		System.out.println("Generic save");
-		return entityManager.merge(entity);
+		T savedEntity = entityManager.merge(entity);
+		if(savedEntity==null) throw new MergeNullException();
+		return savedEntity;
 	}
 
 	@SuppressWarnings("unchecked")
 	public T getById(int id) {
-		System.out.println("Generic getById");
 		return (T) entityManager.find(getProvidedGenericClass(), id);
 	}
 
@@ -51,11 +58,8 @@ public abstract class GenericCrudDao<T> {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	protected
-	List<T> getAll() {
-		System.out.println("Generic getAll");
+	public List<T> getAll() {
 		String className = getProvidedGenericClass().getSimpleName();
-		System.out.println("Generic getAll. className is: " + className);
 		Query query = entityManager.createNamedQuery(className + ".findAll");
 		List<T> entities = (List<T>)query.getResultList();				
 		return entities;

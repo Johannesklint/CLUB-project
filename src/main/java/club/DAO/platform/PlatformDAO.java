@@ -4,19 +4,10 @@ import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import club.DAO.GenericCrudDao;
+
 @Stateful
-public class PlatformDAO {
+public class PlatformDAO extends GenericCrudDao<Platform> {
 
-	@PersistenceContext
-	private EntityManager entityManager;
-	
-	public boolean saveToDB(Platform platform) {
-			
-		return entityManager.merge(platform) != null;
-	}
-
-	public Platform getFromDBById(int id) {
-		return entityManager.find(Platform.class, id);
-	}
 
 }

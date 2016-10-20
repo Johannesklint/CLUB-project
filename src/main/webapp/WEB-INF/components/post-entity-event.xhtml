@@ -14,7 +14,11 @@
 				<h5>#{ eventEntity.title }</h5>
 	 			<p class="time">#{eventWhenFormater.render(eventEntity)}</p>
 				<p>#{ eventEntity.text }</p>
-				<p>Submitted <i>#{eventEntity.created}</i> by <i>#{ eventEntity.author.fullName }</i></p>
+				<p>Submitted <i><h:outputText value="#{eventEntity.created}" ><f:convertDateTime pattern="yyyy-MM-dd HH:mm" /></h:outputText> </i>
+				by <i>#{ eventEntity.author.fullName }</i></p>
+
+
+
 				
 				<h:form id="attend_event_form">
 					<h:panelGroup rendered="#{ includeAttendButton }">

@@ -1,12 +1,8 @@
 package club.backingBeans.event;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.management.RuntimeErrorException;
 
 import club.DAO.event.Event;
 import club.DAO.user.User;

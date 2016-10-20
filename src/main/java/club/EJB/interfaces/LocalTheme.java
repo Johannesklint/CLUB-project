@@ -2,8 +2,6 @@ package club.EJB.interfaces;
 
 import club.DAO.platform.Theme;
 
-public interface LocalTheme {
+public interface LocalTheme extends LocalGenericCrud<Theme> {
 	
-	Theme getThemeById(int id);
-
 }

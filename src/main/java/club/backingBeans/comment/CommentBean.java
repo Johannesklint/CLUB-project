@@ -29,7 +29,6 @@ public abstract class CommentBean extends BasicFrontendBean{
 	
 	@PostConstruct
 	public void init() {
-		//redirectIfNotLoggedIn(); //TODO: fix redirect
 		this.author = loginUserBean.getUser();
 	}
 
@@ -42,12 +41,10 @@ public abstract class CommentBean extends BasicFrontendBean{
 	}
 	
 	public String getText() {
-		System.out.println("getText: " + text);
 		return text;
 	}
 	
 	public void setText(String text) {
-		System.out.println("setText: " + text);
 		this.text = text;
 	}
 	
@@ -76,7 +73,6 @@ public abstract class CommentBean extends BasicFrontendBean{
 	}
 
 	public int getSelectedCommentId() {
-		System.out.println("getSelectedCommentId: " + selectedCommentId);
 		return selectedCommentId;
 	}
 

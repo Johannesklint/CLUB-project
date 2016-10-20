@@ -5,12 +5,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import club.DAO.news.News;
-import club.DAO.news.NewsDAO;
 import club.DAO.post.Post;
 import club.DAO.post.PostDAO;
-import club.EJB.interfaces.LocalNews;
-import club.EJB.interfaces.LocalPlatform;
 import club.EJB.interfaces.LocalPost;
 
 

@@ -1,7 +1,6 @@
 package club.backingBeans.event;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -10,9 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import club.DAO.event.Event;
-import club.DAO.news.News;
 import club.EJB.interfaces.LocalEvent;
-import club.EJB.interfaces.LocalNews;
 import club.backingBeans.BasicFrontendBean;
 import club.backingBeans.user.LoginUserBean;
 

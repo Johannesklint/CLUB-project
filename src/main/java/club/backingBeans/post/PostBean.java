@@ -1,8 +1,5 @@
 package club.backingBeans.post;
 
-import java.sql.Timestamp;
-import java.time.Instant;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 

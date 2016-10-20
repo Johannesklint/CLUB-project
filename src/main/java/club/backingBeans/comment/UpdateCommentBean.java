@@ -6,7 +6,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import club.DAO.comment.Comment;
 import club.EJB.interfaces.LocalComment;
 import club.backingBeans.user.LoginUserBean;
 

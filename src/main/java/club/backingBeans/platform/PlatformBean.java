@@ -1,8 +1,5 @@
 package club.backingBeans.platform;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
@@ -14,14 +11,12 @@ import club.DAO.platform.Platform;
 import club.DAO.platform.Theme;
 import club.EJB.interfaces.LocalPlatform;
 import club.backingBeans.BasicFrontendBean;
-import club.backingBeans.user.UserProfileBean;
 
 
 @Named("platformBean")
 @Startup
 @Singleton
 public class PlatformBean extends BasicFrontendBean {
-	
 	
 	@PostConstruct
 	public void init() {
@@ -58,9 +53,6 @@ public class PlatformBean extends BasicFrontendBean {
 		platform.setTermsAndCondition(termsAndConditions);
 		platform.setTheme(theme.createThemeFromBean());
 		
-		System.out.println("i saveplatform" + theme == null);
-		
-				
 		if(platformEJB.save(platform) != null){
 			setPlatformBeanFieldsFromDb();
 		}

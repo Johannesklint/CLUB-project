@@ -31,6 +31,7 @@ public class UserDAO extends GenericCrudDao<User> {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<User> getUsersByEmail(String email) {
 		Query findByEmail = entityManager.createNamedQuery("User.findByEmail");
 		findByEmail.setParameter("email", email);

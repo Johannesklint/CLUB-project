@@ -1,15 +1,11 @@
 package club.soap;
 
 
-import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.xml.ws.WebServiceContext;
-import javax.xml.ws.handler.MessageContext;
 
 import club.DAO.event.Event;
 import club.DAO.user.User;
@@ -47,9 +43,9 @@ public class AttendEventSoap {
 		};
 		
 		//TODO: use HTTP Basic AUTH if client can handle it
-		MessageContext mctx = wsctx.getMessageContext();
-		Map http_headers = (Map) mctx.get(MessageContext.HTTP_REQUEST_HEADERS);
-		String authorization = ((List) http_headers.get("Authorization")).get(0).toString();
+		//MessageContext mctx = wsctx.getMessageContext();
+//		Map http_headers = (Map) mctx.get(MessageContext.HTTP_REQUEST_HEADERS);
+//		String authorization = ((List) http_headers.get("Authorization")).get(0).toString();
 		// Basic HFKJAHJFKHRJKA <-- Base decode last part and its should give you <username>:<password> and use these to verify who is attending / logging in
 		// DatatypeConverter.parseBase64Binary(lexicalXSDBase64Binary) <-- this worls
 		// ----

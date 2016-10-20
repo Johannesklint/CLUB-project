@@ -8,8 +8,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import club.DAO.GenericCrudDao;
-import club.DAO.comment.Comment;
-import club.exceptions.MergeNullException;
 
 @Stateful
 public class CommentDAO extends GenericCrudDao<Comment> {

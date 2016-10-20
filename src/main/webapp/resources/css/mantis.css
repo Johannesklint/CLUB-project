@@ -1,13 +1,17 @@
  
  body{
- 	margin:0;
- 	padding:0;
+ 	margin: 0;
+ 	padding: 0;
  }
  
  ul.navish{
- 	display:block;
- 	padding:5px;
- 	margin:7px;
+ 	min-width: 1200px; /* suppose you want minimun width of 1000px */
+	width: auto !important;  /* Firefox will set width as auto */
+	width: 1200px;             /* As IE ignores !important it will set width as 1000px; */
+ 
+ 	display: block;
+ 	padding: 5px;
+ 	margin: 7px;
  	border: 1px solid #999;
  	height: 16px;
  	clear: both;

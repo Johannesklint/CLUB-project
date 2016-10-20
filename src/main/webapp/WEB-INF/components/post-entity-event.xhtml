@@ -68,6 +68,20 @@
 				<p><em>#{ eventEntity.author.fullName }</em></p>
 				<p><em>#{eventEntity.created}</em></p>
 			</div>
+			<div class="attendants">
+				<h:panelGroup rendered="#{ eventEntity.attendees.size() > 0 }">
+					<h4>#{ eventEntity.attendees.size() } Attendant(s)</h4>
+					<ul>
+						<ui:repeat var="a" value="#{ eventEntity.attendees }">
+							<li>#{ a.fullName }</li>
+						</ui:repeat>				
+					</ul>
+				</h:panelGroup>
+				<h:panelGroup rendered="#{ eventEntity.attendees.size() == 0 }">
+					<h4>(No attendants yet)</h4>
+				</h:panelGroup>
+			</div>
+			<div class="end"></div>
 		</div>
 		
 		<script type="text/javascript">

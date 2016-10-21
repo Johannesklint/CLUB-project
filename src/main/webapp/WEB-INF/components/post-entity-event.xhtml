@@ -14,12 +14,7 @@
 				<h5>#{ eventEntity.title }</h5>
 	 			<p class="time">#{eventWhenFormater.render(eventEntity)}</p>
 				<p>#{ eventEntity.text }</p>
-				<p>Submitted <i><h:outputText value="#{eventEntity.created}" ><f:convertDateTime pattern="yyyy-MM-dd HH:mm" /></h:outputText> </i>
-				by <i>#{ eventEntity.author.fullName }</i></p>
-
-
-
-				
+					
 				<h:form id="attend_event_form">
 					<h:panelGroup rendered="#{ includeAttendButton }">
 						<h:commandButton class="btn" id="attend" value="Going" action="#{ addAttendantOnEventBean.submit() }">
@@ -49,7 +44,9 @@
 						<ui:param name="commentList" value="#{ eventEntity.comments }"></ui:param>
 						<ui:param name="postEntity" value="#{ eventEntity }"></ui:param>
 					</ui:include>
-
+					
+					<p><i><h:outputText value="#{eventEntity.created}"><f:convertDateTime pattern="yyyy-MM-dd HH:mm" /></h:outputText> </i></p>
+					<p><i>#{ eventEntity.author.fullName }</i></p>
 				</h:panelGroup>
 
 				<h:link rendered="#{ includeReadMoreBtn }" outcome="post-details" value="Read more" includeViewParams="true">		
@@ -59,7 +56,7 @@
 			</div>
 			<div class="attendants">
 				<h:panelGroup rendered="#{ eventEntity.attendees.size() > 0 }">
-					<h4>#{ eventEntity.attendees.size() } Attendant(s)</h4>
+					<h4>#{ eventEntity.attendees.size() } Going</h4>
 					<ul>
 						<ui:repeat var="a" value="#{ eventEntity.attendees }">
 							<li>#{ a.fullName }</li>
@@ -67,7 +64,7 @@
 					</ul>
 				</h:panelGroup>
 				<h:panelGroup rendered="#{ eventEntity.attendees.size() == 0 }">
-					<h4>(No attendants yet)</h4>
+					<h4>No one's going</h4>
 				</h:panelGroup>
 			</div>
 			<div class="end"></div>

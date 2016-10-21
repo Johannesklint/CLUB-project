@@ -23,8 +23,8 @@ public class ChatMessageDecoder implements Decoder.Text<ChatMessage> {
 	public ChatMessage decode(String textmessage) throws DecodeException {
 		ChatMessage chatMessage = new ChatMessage();
 		JsonObject jsonObject = Json.createReader(new StringReader(textmessage)).readObject();
-		chatMessage.setMessage(jsonObject.getString("message"));
 		chatMessage.setSender(jsonObject.getString("sender"));
+		chatMessage.setMessage(jsonObject.getString("message"));
 		chatMessage.setReceived((new Date()));
 		
 		return chatMessage;

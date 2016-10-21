@@ -5,11 +5,14 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
-
 <h:body>
+
+
 	<ui:composition template="WEB-INF/templates/main-template.xhtml">
 		<ui:define name="pageContent">
-			<div class="container chat-wrapper">
+
+			<div class="chat-wrapper">
+				<h:inputHidden value="#{ loginUserBean.user.fullName }" id="nickname"></h:inputHidden>			
 				<form id="do-chat">
 					<h2 class="alert alert-success"></h2>
 					<table id="response" class="table table-bordered"></table>
@@ -18,14 +21,14 @@
 						<div class="controls">
 							<input type="text" class="input-block-level"
 								placeholder="Your message..." id="message" style="height: 60px" />
-							<input type="submit" class="btn btn-large btn-block btn-primary"
+							<input type="submit" class="btn"
 								value="Send message" />
-							<button class="btn btn-large btn-block" type="button"
-								id="leave-room">Leave room</button>
+						
 						</div>
 					</fieldset>
 				</form>
 			</div>
+
 		</ui:define>
 	</ui:composition>
 </h:body>

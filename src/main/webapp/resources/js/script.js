@@ -1,67 +1,46 @@
-	/* <![CDATA[ */
-	var wsocket;
-	var serviceLocation = "ws://localhost:8888/clubproject/chat/";
-	var $nickName;
-	var $message;
-	var $chatWindow;
-	var room = '';
-	console.log('tja');
-	function onMessageReceived(evt) {
-		var msg = JSON.parse(evt.data); 
-		var $messageLine = $('<tr><td class="received">' + msg.received
-		+ '</td><td class="user label label-info">' + msg.sender
-		+ '</td><td class="message badge">' + msg.message
-		+ '</td></tr>');
-		$chatWindow.append($messageLine);
-	}
-	function sendMessage() {
-		var msg = '{"message":"' + $message.val() + '", "sender":"'
-		+ $nickName.val() + '", "received":""}';
+/* <![CDATA[ */
+var wsocket;
+var serviceLocation = "ws://localhost:8888/clubproject/chat/";
+var $nickName;
+var $message;
+var $chatWindow;
+var room = '';
+
+function onMessageReceived(evt) {
+	var msg = JSON.parse(evt.data);
+	var $messageLine = $('<tr><td class="received">' + msg.received
+			+ '</td><td class="user label label-info">' + msg.sender
+			+ '</td><td class="message badge">' + msg.message + '</td></tr>');
+	$chatWindow.append($messageLine);
+}
+function sendMessage() {
+	var msg = '{"message":"' + $message.val() + '", "sender":"'
+			+ $nickName.val() + '", "received":""}';
 	wsocket.send(msg);
 	$message.val('').focus();
-	}
-	
-	function connectToChatserver() {
-		room = $('#chatroom option:selected').val();
-		wsocket = new WebSocket(serviceLocation + room);
-		wsocket.onmessage = onMessageReceived;
-	}
-	
-	function leaveRoom() {
-		wsocket.close();
-		$chatWindow.empty();
-		$('.chat-wrapper').hide();
-	$('.chat-signin').show();
-		$nickName.focus();
-	}
-	
-	$(document).ready(
-			function() {
-				$nickName = $('#nickname');
-		$message = $('#message');
-		$chatWindow = $('#response');
-		$('.chat-wrapper').hide();
-		$nickName.focus();
-	
-		$('#enterRoom').click(
-				function(evt) {
-					evt.preventDefault();
-					connectToChatserver();
-					$('.chat-wrapper h2').text(
-							'Chat # ' + $nickName.val() + "@"
-									+ room);
-					$('.chat-signin').hide();
-					$('.chat-wrapper').show();
-					$message.focus();
-				});
-		$('#do-chat').submit(function(evt) {
-			evt.preventDefault();
-			sendMessage()
-		});
-	
-		$('#leave-room').click(function() {
-			leaveRoom();
-		});
+}
+
+function connectToChatserver() {
+	room = 'java';
+	console.log(room);
+	wsocket = new WebSocket(serviceLocation + room);
+	wsocket.onmessage = onMessageReceived;
+}
+
+$(document).ready(function() {
+	connectToChatserver();	
+	$nickName = $('#nickname');
+	$message = $('#message');
+	$chatWindow = $('#response');
+	$('.chat-wrapper').show();
+	$nickName.focus();
+
+	$('#do-chat').submit(function(evt) {
+		evt.preventDefault();
+		sendMessage()
 	});
-	
-	/* ]]> */
+
+
+});
+
+/* ]]> */

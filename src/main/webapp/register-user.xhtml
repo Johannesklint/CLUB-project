@@ -15,46 +15,46 @@
 	<ui:define name="pageContent">
 	
 	<h3>Create user: </h3>
-		<h:form id="create_user_form">
-			<h:messages>
-				<h:message for="create_user_form"></h:message>
-			</h:messages>	
-		
-			<h:panelGrid columns="2">
-			   <h:outputLabel for="first_name">First name:</h:outputLabel>
-			   <h:inputText id="first_name" value="#{ registerUserBean.firstName }" required="true" label="First name"/>
-			   
-			   <h:outputLabel for="last_name">Last name:</h:outputLabel>
-			   <h:inputText id="last_name" value="#{ registerUserBean.lastName }" required="true" label="Last name"/>
+	<h:form id="create_user_form">
+		<h:messages>
+			<h:message for="create_user_form"></h:message>
+		</h:messages>	
+	
+		<h:panelGrid columns="2">
+		   <h:outputLabel for="first_name">First name:</h:outputLabel>
+		   <h:inputText id="first_name" value="#{ registerUserBean.firstName }" required="true" label="First name"/>
+		   
+		   <h:outputLabel for="last_name">Last name:</h:outputLabel>
+		   <h:inputText id="last_name" value="#{ registerUserBean.lastName }" required="true" label="Last name"/>
 
-			   <h:outputLabel for="birthday">Birthday:</h:outputLabel>
-			   	<b:dateTimePicker id="birthday" value="#{ registerUserBean.birthday }" show-time="false" required="true" label="Birthday"></b:dateTimePicker>
-			
-			   <h:outputLabel for="email">Email:</h:outputLabel>
-			   <h:inputText id="email" value="#{ registerUserBean.email }" required="true" label="Email">
-			   	<f:validateRegex pattern='((?=.*[a-z]).{6,})'></f:validateRegex>
-			   </h:inputText>
-			
-			   <h:outputLabel for="password">Password:</h:outputLabel>
-			   <h:inputSecret id="password" value="#{ registerUserBean.password }" required="true" label="Password" />
-			   
-		 	   <h:outputLabel for="terms_and_conditions">Terms And Conditions:</h:outputLabel>
-			   <h:selectBooleanCheckbox id="terms_and_conditions" value="#{ registerUserBean.termsAndConditions }" requiredMessage="You must agree with the Terms and Conditions" required="true" label="Terms and Conditions">
-			   		<f:validator validatorId="requiredCheckboxValidator" />
-			   </h:selectBooleanCheckbox>
-			   
-			   <h:inputHidden id="terms" value="#{platformBean.termsAndConditions}"></h:inputHidden>
+		   <h:outputLabel for="birthday">Birthday:</h:outputLabel>
+		   <b:dateTimePicker id="birthday" value="#{ registerUserBean.birthday }" show-time="false" required="true" label="Birthday"></b:dateTimePicker>
+		
+		   <h:outputLabel for="email">Email:</h:outputLabel>
+		   <h:inputText id="email" value="#{ registerUserBean.email }" required="true" label="Email">
+		   	<f:validateRegex pattern='((?=.*[a-z]).{6,})'></f:validateRegex>
+		   </h:inputText>
+		
+		   <h:outputLabel for="password">Password:</h:outputLabel>
+		   <h:inputSecret id="password" value="#{ registerUserBean.password }" required="true" label="Password" />
+		   
+	 	   <h:outputLabel for="terms_and_conditions">Terms And Conditions:</h:outputLabel>
+		   <h:selectBooleanCheckbox id="terms_and_conditions" value="#{ registerUserBean.termsAndConditions }" requiredMessage="You must agree with the Terms and Conditions" required="true" label="Terms and Conditions">
+		   		<f:validator validatorId="requiredCheckboxValidator" />
+		   </h:selectBooleanCheckbox>
+		   
+		   <h:inputHidden id="terms" value="#{platformBean.termsAndConditions}"></h:inputHidden>
 
-			   <h:commandButton class="btn" id="button" value="Create user" action="#{ registerUserBean.create() }" />
-			</h:panelGrid>
+		   <h:commandButton style="float:right;" class="btn" id="button" value="Create user" action="#{ registerUserBean.create() }" />
+		</h:panelGrid>
+	
 		
-			
-		</h:form>
-		
-		<button onclick="readTerms()">Read Terms and Conditions</button>
-		<h:inputHidden id="terms" value="#{ platformBean.termsAndConditions }"></h:inputHidden>
-	 	<div id="printTerms"></div>
-	 	
+	</h:form>
+	
+	<button onclick="readTerms()">Read Terms and Conditions</button>
+	<h:inputHidden id="terms" value="#{ platformBean.termsAndConditions }"></h:inputHidden>
+ 	<div id="printTerms"></div>
+ 	
      <script type="text/javascript" language="javascript">  
 	     function readTerms() {
 	    	 	var x = document.getElementById('terms').value;

@@ -21,6 +21,15 @@
  	clear:both;
  }
  
+ form .delete-comment {
+ 	display:inline;
+ }
+ 
+ .comment-method-link {
+ 	font-size:12px !important;
+ 	color:#333 !important;
+ }
+ 
  .attendants {
 	 float:right;
 	padding:20px;

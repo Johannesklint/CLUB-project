@@ -21,8 +21,7 @@
 		   <h:outputLabel for="password">Password:</h:outputLabel>
 		   <h:inputSecret id="password" value="#{ loginUserBean.password }" required="true" label="Password"/>
 				   
-						   
-		   <h:commandButton value="Login user" action="#{ loginUserBean.doLogin() }" />
+		   <h:commandButton class="btn" value="Login user" action="#{ loginUserBean.doLogin() }" />
 		</h:panelGrid>
 			
 	</h:form>

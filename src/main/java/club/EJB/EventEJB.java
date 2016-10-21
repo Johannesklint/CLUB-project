@@ -35,4 +35,9 @@ public class EventEJB implements LocalEvent {
 		return eventDAO.getById(id);		
 	}
 
+	@Override
+	public Event update(Event entity) {
+		return eventDAO.update(entity);
+	}
+
 }

@@ -1,7 +1,6 @@
 package club.backingBeans.platform;
 
 import javax.ejb.Singleton;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import club.DAO.platform.Theme;

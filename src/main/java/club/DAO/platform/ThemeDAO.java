@@ -1,16 +1,7 @@
 package club.DAO.platform;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import club.DAO.GenericCrudDao;
 
-public class ThemeDAO {
-
-	@PersistenceContext
-	private EntityManager entityManager;
-	
-	
-	public Theme getUserById(int id) {
-		return entityManager.find(Theme.class, id);
-	}
+public class ThemeDAO extends GenericCrudDao<Theme>  {
 
 }

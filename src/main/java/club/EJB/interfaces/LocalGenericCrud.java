@@ -13,6 +13,8 @@ import javax.ejb.Local;
 @Local
 public interface LocalGenericCrud<T> {
 	
+	T update(T entity);
+	
 	T save(T entity);
 
 	boolean delete(int id);

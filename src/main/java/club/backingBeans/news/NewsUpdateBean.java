@@ -4,7 +4,6 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.management.RuntimeErrorException;
 
 import club.DAO.news.News;
 import club.backingBeans.post.PostGetterBean;
@@ -54,13 +53,11 @@ public class NewsUpdateBean extends NewsBean {
 
 	public void setSelectedId(int selectedId) {
 		throw new RuntimeException("");
-		//System.out.println("seeting id to " + selectedId);
-		//this.selectedId = selectedId;
 	}
 
 	@Override
 	public News getFromFields() {
-		// TODO Auto-generated method stub
+		// N/A
 		return null;
 	}
 	

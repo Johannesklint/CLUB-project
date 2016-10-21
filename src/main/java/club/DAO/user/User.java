@@ -1,15 +1,23 @@
 package club.DAO.user;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.sql.Date;
 
-import com.auth0.jwt.internal.com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import club.password.PasswordHandler;
-import java.sql.Date;
 
 @Entity
 @Table(name="user")

@@ -1,5 +1,7 @@
 package club.EJB;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 
 import club.DAO.platform.Theme;
@@ -12,8 +14,32 @@ public class ThemeEJB implements LocalTheme{
 	ThemeDAO themeDao;
 
 	@Override
-	public Theme getThemeById(int id) {
-		return themeDao.getUserById(id);
+	public Theme getById(int id) {
+		return themeDao.getById(id);
+	}
+
+	@Override
+	public Theme update(Theme entity) {
+		// N/A
+		return null;
+	}
+
+	@Override
+	public Theme save(Theme entity) {
+		// N/A
+		return null;
+	}
+
+	@Override
+	public boolean delete(int id) {
+		// N/A
+		return false;
+	}
+
+	@Override
+	public List<Theme> getAll() {
+		// N/A
+		return null;
 	}
 
 }

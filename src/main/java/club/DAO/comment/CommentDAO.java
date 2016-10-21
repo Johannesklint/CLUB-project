@@ -7,26 +7,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import club.DAO.comment.Comment;
-import club.exceptions.MergeNullException;
+import club.DAO.GenericCrudDao;
 
 @Stateful
-public class CommentDAO {
+public class CommentDAO extends GenericCrudDao<Comment> {
 	
 	@PersistenceContext
 	private EntityManager manager;
 
-	public boolean save(Comment comment) {
-		return manager.merge(comment) != null;
-	}
-
-	public Comment getById(int id) {
-		return manager.find(Comment.class, id);
-	}
-
+	@Override
 	public Comment update(Comment comment) {
-		Comment savedComment = manager.merge(comment);
-		if(savedComment==null) throw new MergeNullException();
+		Comment savedComment = super.update(comment);
 		return savedComment;
 	}
 

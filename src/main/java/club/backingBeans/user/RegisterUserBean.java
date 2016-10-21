@@ -1,15 +1,8 @@
 package club.backingBeans.user;
 
 import javax.ejb.EJB;
-import javax.ejb.Startup;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
 
 import club.DAO.user.User;
 import club.DAO.user.User.ApprovedState;
@@ -30,7 +23,6 @@ public class RegisterUserBean extends BasicFrontendBean{
 	private boolean admin;
 	private boolean approved;
 
-
 	private Boolean termsAndConditions;
 	
 	@EJB
@@ -42,8 +34,7 @@ public class RegisterUserBean extends BasicFrontendBean{
 		
 		try {
 			userEJB.validateRegisterUser(user);
-
-			if (userEJB.create(user) != null) {
+			if (userEJB.save(user) != null) {
 				return "wait-for-approve";			
 			}else {
 				super.addFacesMessage("User could not be saved");
@@ -120,22 +111,6 @@ public class RegisterUserBean extends BasicFrontendBean{
 		return user;
 	}
 	
-	/*
-	private java.sql.Date parseDate(String input) {
-
-        SimpleDateFormat parser = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
-        Date date = null;
-		try {
-			date = parser.parse(input);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String formattedDate = formatter.format(date);
-        return java.sql.Date.valueOf(formattedDate);
-	}*/
-
 	private java.sql.Date convertBirthdayToDate() {
 		return new java.sql.Date(getBirthday().getTime());
 	}

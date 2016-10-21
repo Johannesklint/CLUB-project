@@ -17,7 +17,7 @@ public class CommentEJB implements LocalComment {
 	CommentDAO commentDao;
 	
 	@Override
-	public boolean saveComment(Comment comment) {
+	public Comment save(Comment comment) {
 		return commentDao.save(comment);
 	}
 	
@@ -35,13 +35,25 @@ public class CommentEJB implements LocalComment {
 	}
 
 	@Override
-	public Comment updateComment(Comment comment) {
+	public Comment update(Comment comment) {
 		return commentDao.update(comment);
 	}
 	
 	@Override
 	public List<Comment> getAllByPostId(int postId) {
 		return commentDao.getAllByPostId(postId);
+	}
+
+	@Override
+	public boolean delete(int id) {
+		// TODO: implement hide here		
+		return false;
+	}
+
+	@Override
+	public List<Comment> getAll() {
+		// Not applicable
+		return null;
 	}
 
 }

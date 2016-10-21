@@ -14,13 +14,11 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Link;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import club.DAO.post.Post;
 import club.DAO.user.User;
 import club.DAO.user.User.ApprovedState;
 import club.EJB.interfaces.LocalUser;
@@ -40,7 +38,7 @@ public class UserResource extends BasicResource{
 		user.setAdmin(false);
 		user.setBirthday(new java.sql.Date(0));
 		user.setHMACPassword(user.getPassword());
-		User createdUser = userEJB.create(user);
+		User createdUser = userEJB.save(user);
 		
 		return Response.status(OK)
 				.entity(createdUser)
@@ -72,7 +70,7 @@ public class UserResource extends BasicResource{
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getById(@PathParam("user_id") int id){
-		User user = userEJB.getUserById(id);
+		User user = userEJB.getById(id);
 		Link udpateByIdLink = Link.fromUri(super.getAbsolutePathURIFromContext()).rel("Update this user").build();
 
 		return Response.status(OK)

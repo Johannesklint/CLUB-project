@@ -29,7 +29,6 @@ public class UpdateComment extends HttpServlet {
      */
     public UpdateComment() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -52,7 +51,7 @@ public class UpdateComment extends HttpServlet {
 		commentToUpdate.setText(text);
 		commentToUpdate.setLastUpdated( Timestamp.from(Instant.now()) );
 		
-		commentEJB.saveComment(commentToUpdate);		
+		commentEJB.save(commentToUpdate);		
 
 		
 		if(redirect!=null) {

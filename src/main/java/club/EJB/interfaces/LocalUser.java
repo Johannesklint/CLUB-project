@@ -1,22 +1,15 @@
 package club.EJB.interfaces;
 
-import java.util.List;
-
 import javax.ejb.Local;
 
 import club.DAO.user.User;
 import club.EJB.LoginHandlerable;
-import club.backingBeans.user.LoginUserBean;
 import club.exceptions.LoginException;
 import club.exceptions.ValidateException;
 
 @Local
-public interface LocalUser {
-	User create(User user);
-	User update(User user);
-	User getUserById(int id);
-	List<User> getAll();
-	boolean deleteUser(int id);
+public interface LocalUser extends LocalGenericCrud<User> {
+	
 	User getUserByEmail(String email);
 	void loginUser(String username, String password, LoginHandlerable loginHandlerable) throws LoginException;
 	boolean hasUniqueEmail(User user);

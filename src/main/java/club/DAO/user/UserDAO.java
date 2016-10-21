@@ -8,23 +8,16 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import club.DAO.GenericCrudDao;
+
 @Stateful
-public class UserDAO {
+public class UserDAO extends GenericCrudDao<User> {
 	
 	@PersistenceContext
 	EntityManager entityManager;
 
-	public User saveToDB(User user) {
-		return entityManager.merge(user);	
-	}
-
-
-
-	public User getUserById(int id) {
-		return entityManager.find(User.class, id);
-	}
-
 	public User getUserByEmail(String email) {
+		
 		Query query = entityManager.createNamedQuery("User.findByEmail");
 
 		query.setParameter("email", email);
@@ -37,25 +30,8 @@ public class UserDAO {
 			return null;
 		}
 	}
-	
-	// Skicka User till databas, hämta osv.
 
-	public List<User> getAll() {
-		Query findAll = entityManager.createNamedQuery("User.findAll");
-		return (List<User>)findAll.getResultList();
-	}
-
-	public boolean deleteUser(int id) {
-		User user = entityManager.find(User.class, id);
-		if(user != null){
-			 entityManager.remove(user);
-			 return true;
-		}
-		return false;
-	}
-
-
-
+	@SuppressWarnings("unchecked")
 	public List<User> getUsersByEmail(String email) {
 		Query findByEmail = entityManager.createNamedQuery("User.findByEmail");
 		findByEmail.setParameter("email", email);

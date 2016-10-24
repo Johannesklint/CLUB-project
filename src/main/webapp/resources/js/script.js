@@ -8,7 +8,7 @@ var room = '';
 
 function onMessageReceived(evt) {
 	var msg = JSON.parse(evt.data);
-	var $messageLine = $('<h4>' + msg.sender + '<em>' + msg.received + '</em></h4>'
+	var $messageLine = $('<h4>' + msg.sender + ' | <em>' + msg.received + '</em></h4>'
 			+ '<p> '+ msg.message +' </p><hr>');
 //	var $messageLine = $('<tr><th class="user label label-info"><h5>' + msg.sender + '</h5>'
 //			+ '</th><td class="received"><em>' + msg.received + '</em>'

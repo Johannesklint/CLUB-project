@@ -23,5 +23,4 @@ public class ChatMessageEncoder implements Encoder.Text<ChatMessage> {
 				.add("received", chatMessage.getReceived()
 				.toString()).build().toString();
 	}
-
 }

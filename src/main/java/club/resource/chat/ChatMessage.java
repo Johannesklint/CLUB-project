@@ -6,8 +6,7 @@ import club.DAO.user.User;
 
 public class ChatMessage {
 	private String message;
-	private User user;
-	private Date received;
+	private String received;
 	private String sender;
 	
 	public String getMessage() {
@@ -16,16 +15,10 @@ public class ChatMessage {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public Date getReceived() {
+	public String getReceived() {
 		return received;
 	}
-	public void setReceived(Date received) {
+	public void setReceived(String received) {
 		this.received = received;
 	}
 	public String getSender() {

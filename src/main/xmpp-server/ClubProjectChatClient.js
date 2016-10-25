@@ -17,11 +17,12 @@ ClubProjectChatClient.prototype.newConnection = function(host,o,nick)
     {
         c.on('error', function(error)
         {
+            console.log(error);
             throw "error"
         });
         c.on('close', function()
         {
-            throw "connection closed";
+            o.onClose();
         });
         c.on('message', function(message)
         {

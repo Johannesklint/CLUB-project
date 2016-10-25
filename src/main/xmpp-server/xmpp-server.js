@@ -1,65 +1,71 @@
-var WebSocketClient = require('./websocket').client;
 
+var Client = require('./node-xmpp-client/index')
+var xmpp = require('./node-xmpp-server/index')
+var ClubProjectChatClient = require('./ClubProjectChatClient.js');
 
-var ClubProjectChatClient = function()
+var startServer = function ()
 {
-};
+    server = new xmpp.C2S.TCPServer({port: 5222,domain: 'localhost'})
 
-
-ClubProjectChatClient.prototype.newConnection = function(host,o,nick)
-{
-    var newConnection = new Object();
-    newConnection.nick = nick;
-    newConnection.client = new WebSocketClient();
-    newConnection.connection = null;
-
-    newConnection.client.on('connect', function(c)
+    server.on('connection', function (client)
     {
-        c.on('error', function(error)
+
+        var cpccCallback = new Object();
+        cpccCallback.onConnect = function()
         {
-            throw "error"
-        });
-        c.on('close', function()
-        {
-            throw "connection closed";
-        });
-        c.on('message', function(message)
-        {
-            if (message.type === 'utf8')
-            {
-                o.onIncomingMessage(message.utf8Data);
-            }
-        });
 
-        newConnection.connection = c;
-
-        o.onConnect();
-
-    });   
-
-    newConnection.client.on('connectFailed', function(error) {
-        throw "connection failed";
-    });
-
-    newConnection.client.connect('ws://'+host+"//"+nick, null);
-
-    newConnection.send = function(to,message)
-    {
-        var connection = newConnection.connection;
-
-        if(connection && connection.connected)
-        {
-            var data = new Object();
-            data.sender = newConnection.nick;
-            data.message = message;
-            data.recipient = to;
-            connection.sendUTF(JSON.stringify(data));
         }
-        else throw "can not send when not connected"
 
-    };
+        cpccCallback.onClose = function()
+        {
+            client.end();
+        }
 
-    return newConnection;
+        cpccCallback.onIncomingMessage = function(message)
+        {
+            var from = eval('('+message+')').sender;
+            var to = eval('('+message+')').recipient;
+            var msg = eval('('+message+')').message;
+            var xmppElement = new xmpp.Element('message', { "to": to, "from": from,  type: 'chat', 'xml:lang': 'ko' }).c('body').t(msg);
+            client.send(xmppElement);
+        }
+
+        client.on('authenticate', function (opts, cb)
+        {
+            var nick = opts.username;
+            client.socket = ClubProjectChatClient.newConnection('localhost:8080/clubproject/chat',cpccCallback,nick);
+            console.log("nick"+nick);
+            cb(null, opts)
+        })
+
+        client.on('online', function () 
+        {
+
+        })
+
+        client.on('stanza', function (stanza)
+        {
+            if(stanza.name=="message")
+            {
+                var msg = stanza.children[0].children[0];
+                if(msg)client.socket.send(stanza.attrs.to,msg);
+            }
+            else
+            {
+                var from = stanza.attrs.from
+                stanza.attrs.from = stanza.attrs.to
+                stanza.attrs.to = from
+                client.send(stanza)
+            }
+        })
+
+        client.on('disconnect', function ()
+        {
+
+        })
+    })
+
+    server.on('listening', function(){})
 }
 
-module.exports = new ClubProjectChatClient();
+startServer();

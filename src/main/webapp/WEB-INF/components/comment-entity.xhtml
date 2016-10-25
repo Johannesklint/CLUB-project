@@ -11,39 +11,50 @@
 
 	<!-- @param commentEntity. Comment -->
 	<ui:param name="modalId" value="#{ commentEntity.id }"></ui:param>
-	
-			<h:panelGroup rendered="#{ !commentEntity.hidden }">
-			
-				<div class="comment-box">
-					
-					<p><b>#{ commentEntity.user.fullName }:</b> #{ commentEntity.text }</p>
-					<h:panelGroup rendered="#{not empty commentEntity.lastUpdated }">
-						<i id="updated-comment">Last updated: #{commentEntity.lastUpdated}</i>
-					</h:panelGroup>									 
 
-					<h:panelGroup rendered="#{ commentEntity.user.email eq loginUserBean.user.email}">
-						<h:form id="delete_comment" class="delete-comment">
-								<h:commandLink action="#{ deleteCommentBean.submit(commentEntity.id ) }" value="Delete" class="comment-method-link">
-									<f:param name="id" value="#{ commentEntity.post.id }"/>
-								</h:commandLink>				
-						</h:form> |    
-					</h:panelGroup>
+	<h:panelGroup rendered="#{ !commentEntity.hidden }">
 
-					<!-- TODO: comment-method-link css do not fix font size. Fix -->
-					<p:commandLink class="comment-method-link" rendered="#{ commentEntity.user.email eq loginUserBean.user.email }" value="Update" type="button" onclick="PF(#{ modalId }).show();" />
-					<p:dialog header="Update comment" widgetVar="#{ modalId }" modal="true" height="300">
+		<div class="comment-box">
 
-						<form action="/clubproject/update-comment" method="post">
-							<input type="hidden" name="comment_id" value="#{ commentEntity.id }"/>
-							<textarea name="text">#{ commentEntity.text }</textarea>
-							<input type="submit" value="Update comment"/>
-						</form> 
-	
-						
-					</p:dialog>	
-				</div>
-				
+			<p>
+				<b>#{ commentEntity.user.fullName }:</b> #{ commentEntity.text }
+			</p>
+			<h:panelGroup rendered="#{not empty commentEntity.lastUpdated }">
+				<i id="updated-comment">Last updated:
+					#{commentEntity.lastUpdated}</i>
 			</h:panelGroup>
+
+			<h:panelGroup
+				rendered="#{ commentEntity.user.email eq loginUserBean.user.email}">
+				<h:form id="delete_comment" class="delete-comment">
+					<h:commandLink style="float:right; padding: 4px;" action="#{ deleteCommentBean.submit(commentEntity.id ) }"	class="comment-method-link">
+						<h:graphicImage value="resources/images/remove.png" />
+						<f:param name="id" value="#{ commentEntity.post.id }" />
+					</h:commandLink>
+				</h:form>
+			</h:panelGroup>
+
+			<p:commandLink style="float:right;" class="comment-method-link"
+				rendered="#{ commentEntity.user.email eq loginUserBean.user.email }"
+				type="button" onclick="PF(#{ modalId }).show();">
+				<h:graphicImage value="resources/images/update.png" />
+			</p:commandLink>
+			<p:dialog header="Update comment" widgetVar="#{ modalId }"
+				modal="true" height="300">
+
+				<form action="/clubproject/update-comment" method="post">
+					<input type="hidden" name="comment_id"
+						value="#{ commentEntity.id }" />
+					<textarea name="text">#{ commentEntity.text }</textarea>
+					<input type="submit" value="Update comment" />
+				</form>
+
+			</p:dialog>
+			<div style="clear: both;"></div>
+
+		</div>
+
+	</h:panelGroup>
 </ui:composition>
 
 </html>

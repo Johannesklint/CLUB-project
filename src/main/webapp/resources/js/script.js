@@ -1,6 +1,6 @@
 /* <![CDATA[ */
 var wsocket;
-var serviceLocation = "ws://localhost:8888/clubproject/chat/";
+var serviceLocation = "ws://localhost:8080/clubproject/chat/";
 var $nickName;
 var $message;
 var $chatWindow;

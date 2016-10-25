@@ -49,6 +49,9 @@ public class ChatEndpoint {
 						s.getBasicRemote().sendObject(chatMessage);
 					}					
 				} else {
+					
+					System.out.println("BBBBBBBB");
+					
 					if (s.isOpen() && room.equals(s.getUserProperties().get("room"))) {
 						s.getBasicRemote().sendObject(chatMessage);
 					}					

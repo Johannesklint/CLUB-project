@@ -11,8 +11,11 @@
 	<ui:composition template="WEB-INF/templates/main-template.xhtml">
 		<ui:define name="pageContent">
 
+			<h1>Chatting with #{chatBean.chatWith.fullName}</h1>
+
 			<div class="chat-wrapper">
 				<h:inputHidden value="#{ loginUserBean.user.fullName }" id="nickname"></h:inputHidden>			
+				<h:inputHidden value="#{chatBean.chatWith.cpcid}" id="recipient"></h:inputHidden>			
 				<form id="do-chat">
 					<h2 class="alert alert-success"></h2>
 					<table id="response" class="table table-bordered"></table>

@@ -19,14 +19,14 @@ function onMessageReceived(evt) {
 function sendMessage() {
 	console.log(serviceLocation);
 	var msg = '{"message":"' + $message.val() + '", "sender":"'
-			+ $nickName.val() + '", "received":""}';
+			+ $nickName.val() + '", "received":"","recipient":""}';
 	wsocket.send(msg);
 	$message.val('').focus();
 }
 
 function connectToChatserver() {
 	room = 'java';
-	wsocket = new WebSocket(serviceLocation + room);
+	wsocket = new WebSocket(serviceLocation + room+"/e");
 	wsocket.onmessage = onMessageReceived;
 }
 

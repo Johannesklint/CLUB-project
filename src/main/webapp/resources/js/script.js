@@ -18,15 +18,22 @@ function onMessageReceived(evt) {
 }
 function sendMessage() {
 	console.log(serviceLocation);
-	var msg = '{"message":"' + $message.val() + '", "sender":"'
-			+ $nickName.val() + '", "received":"","recipient":""}';
+	
+	var data = new Object();
+	data.message = $message.val()
+	data.sender = $nickName.val()
+	data.received = "";
+	data.recipient = $('#to-cpcid').val();
+	
+	var msg = JSON.stringify(data);
 	wsocket.send(msg);
 	$message.val('').focus();
 }
 
 function connectToChatserver() {
 	room = 'java';
-	wsocket = new WebSocket(serviceLocation + room+"/e");
+	var cpcid = $('#from-cpcid').val();
+	wsocket = new WebSocket(serviceLocation + room+"/"+cpcid);
 	wsocket.onmessage = onMessageReceived;
 }
 

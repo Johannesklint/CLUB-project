@@ -44,7 +44,7 @@ public class ChatEndpoint {
 	public void onMessage(final Session session, final ChatMessage chatMessage) {
 
 		System.out.println(":......");
-		System.out.println(session.getUserProperties().get("jid"));
+		System.out.println(session.getUserProperties().get("cpcid"));
 		System.out.println(chatMessage);
 		System.out.println(":.:.....");
 		
@@ -54,13 +54,16 @@ public class ChatEndpoint {
 				
 		try {
 			for (Session s : session.getOpenSessions()) {
-
-				String jid = (String)s.getUserProperties().get("jid");
+				System.out.println("-------------------a");
+				String jid = (String)s.getUserProperties().get("cpcid");
 
 				if(!recipient.equals("")) {
 
-					System.out.println("########");
-							
+					System.out.println("###1#####");
+					System.out.println(jid);
+					System.out.println(recipient);
+					System.out.println("####2####");
+
 					if (s.isOpen() && recipient.equals(jid) ) {
 						System.out.println("...1");
 						s.getBasicRemote().sendObject(chatMessage);

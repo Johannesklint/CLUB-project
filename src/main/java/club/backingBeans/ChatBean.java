@@ -1,6 +1,10 @@
 package club.backingBeans;
 
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import club.DAO.user.User;
@@ -12,8 +16,22 @@ public class ChatBean {
 	@EJB
 	private LocalUser userEJB;	
 
+	private Integer chatWithId;
+	
+	@PostConstruct
+	public void init() {
+		
+		chatWithId = null;
+		
+		Map<String, String> params =  FacesContext.getCurrentInstance()
+				.getExternalContext()
+				.getRequestParameterMap();
+		chatWithId = Integer.parseInt(params.get("id"));
+		
+	}
 	public User getChatWith() {
-		return userEJB.getById(1);
+		if(chatWithId==null) return null;
+		return userEJB.getById(chatWithId);
 	}
 	
 }

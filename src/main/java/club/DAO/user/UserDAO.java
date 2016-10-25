@@ -37,4 +37,18 @@ public class UserDAO extends GenericCrudDao<User> {
 		findByEmail.setParameter("email", email);
 		return (List<User>)findByEmail.getResultList();
 	}
+
+	public User getByCpcid(String cpcid) {
+		Query query = entityManager.createNamedQuery("User.findByCpcid");
+
+		query.setParameter("cpcid", cpcid);
+		
+		//TODO: detta är fel att använda exception för fel man faktiskt kan medvetet göra IMO. borde finnas något sätt att se om resultat finns innan man hämtar det.
+		try {
+			return (User)query.getSingleResult();		
+		}
+		catch(NoResultException e) {
+			return null;
+		}
+	}
 }

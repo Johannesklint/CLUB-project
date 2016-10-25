@@ -23,7 +23,8 @@ import club.password.PasswordHandler;
 @Table(name="user")
 @NamedQueries({
     @NamedQuery(name="User.findAll", query="SELECT u FROM User u"),
-    @NamedQuery(name="User.findByEmail", query="SELECT u FROM User u WHERE  u.email = :email")
+    @NamedQuery(name="User.findByEmail", query="SELECT u FROM User u WHERE  u.email = :email"),
+    @NamedQuery(name="User.findByCpcid", query="SELECT u FROM User u WHERE  u.cpcid = :cpcid")
 }) 
 public class User implements Serializable {
 

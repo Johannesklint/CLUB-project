@@ -90,4 +90,10 @@ public class UserEJB implements LocalUser{
 	}
 
 
+	@Override
+	public User getUserByCpcid(String cpcid) {
+		return userDao.getByCpcid(cpcid);
+	}
+
+
 }

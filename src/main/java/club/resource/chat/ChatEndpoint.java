@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.ejb.EJB;
 import javax.websocket.EncodeException;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -12,15 +13,31 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/chat/{room}/{jid}", encoders = ChatMessageEncoder.class, decoders = ChatMessageDecoder.class)
+import club.EJB.interfaces.LocalUser;
+
+@ServerEndpoint(value = "/chat/{room}/{cpcid}", encoders = ChatMessageEncoder.class, decoders = ChatMessageDecoder.class)
 public class ChatEndpoint {
+
 	private final Logger LOG = Logger.getLogger(getClass().getName());
 
+	@EJB
+	private LocalUser userEJB;
+
 	@OnOpen
-	public void open(final Session session, @PathParam("room") final String room, @PathParam("jid") final String jid) {
+	public void open(final Session session, @PathParam("room") final String room, @PathParam("cpcid") final String cpcid) {
 		
 		session.getUserProperties().put("room", room);
-		session.getUserProperties().put("jid", jid);
+		session.getUserProperties().put("cpcid", cpcid);
+
+		if(userEJB.getUserByCpcid(cpcid)==null) {
+		
+		try {
+			session.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
     }
 
 	@OnMessage

@@ -21,8 +21,7 @@ public class ChatEndpoint {
 		
 		session.getUserProperties().put("room", room);
 		session.getUserProperties().put("jid", jid);
-
-	}
+    }
 
 	@OnMessage
 	public void onMessage(final Session session, final ChatMessage chatMessage) {

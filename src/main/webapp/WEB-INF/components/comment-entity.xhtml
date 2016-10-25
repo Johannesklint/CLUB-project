@@ -22,21 +22,15 @@
 					</h:panelGroup>									 
 
 					<h:panelGroup rendered="#{ commentEntity.user.email eq loginUserBean.user.email}">
-						<h:form id="update_comment">
-							<h:messages>
-								<h:message for="update_comment"></h:message>
-							</h:messages>
-							
-							<h:panelGrid columns="2" cellpadding="5">	
-								<h:commandButton class="btn" action="#{ deleteCommentBean.submit(commentEntity.id ) }" value="Delete">
+						<h:form id="delete_comment" class="delete-comment">
+								<h:commandLink action="#{ deleteCommentBean.submit(commentEntity.id ) }" value="Delete" class="comment-method-link">
 									<f:param name="id" value="#{ commentEntity.post.id }"/>
-								</h:commandButton>			
-							</h:panelGrid>	
-							
-						</h:form>	   
+								</h:commandLink>				
+						</h:form> |    
 					</h:panelGroup>
 
-					<p:commandButton class="btn" rendered="#{ commentEntity.user.email eq loginUserBean.user.email }" value="Update" type="button" onclick="PF(#{ modalId }).show();" />
+					<!-- TODO: comment-method-link css do not fix font size. Fix -->
+					<p:commandLink class="comment-method-link" rendered="#{ commentEntity.user.email eq loginUserBean.user.email }" value="Update" type="button" onclick="PF(#{ modalId }).show();" />
 					<p:dialog header="Update comment" widgetVar="#{ modalId }" modal="true" height="300">
 
 						<form action="/clubproject/update-comment" method="post">

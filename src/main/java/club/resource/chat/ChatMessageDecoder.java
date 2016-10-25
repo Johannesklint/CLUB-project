@@ -1,6 +1,7 @@
 package club.resource.chat;
 
 import java.io.StringReader;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.json.Json;
@@ -32,8 +33,9 @@ public class ChatMessageDecoder implements Decoder.Text<ChatMessage> {
 		
 		chatMessage.setSender(jsonObject.getString("sender"));
 		chatMessage.setMessage(jsonObject.getString("message"));
-		chatMessage.setRecipient(jsonObject.getString("recipient"));
-		chatMessage.setReceived((new Date()));
+
+		chatMessage.setReceived(formatTime());
+
 		
 		return chatMessage;
 	}
@@ -42,5 +44,11 @@ public class ChatMessageDecoder implements Decoder.Text<ChatMessage> {
 	public boolean willDecode(String s) {
 		return true;
 	}
-
+	
+	public String formatTime(){
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd HH:mm");
+		String format = simpleDateFormat.format(new Date());
+		return format;
+	
+	}
 }

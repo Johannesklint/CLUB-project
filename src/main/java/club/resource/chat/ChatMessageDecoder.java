@@ -36,6 +36,7 @@ public class ChatMessageDecoder implements Decoder.Text<ChatMessage> {
 		chatMessage.setSender(jsonObject.getString("sender"));
 		chatMessage.setMessage(jsonObject.getString("message"));
 		chatMessage.setRecipient(jsonObject.getString("recipient"));
+		chatMessage.setChatRoom(jsonObject.getString("chatRoom"));
 		chatMessage.setReceived(formatTime());
 
 		return chatMessage;

@@ -72,16 +72,12 @@ public class ChatEndpoint {
 		}
 		else if(sessionInRoom!=null && !sessionInRoom.equals("")) {
 
-			return false; //TODO: fix room logic
+			if(chatMessage.getChatRoom().equals(sessionInRoom)){
+				return true;
+			}
 			
 		}
 		else if(messageRecipient!=null && !messageRecipient.equals("")) {
-
-			System.out.println("#------");
-			System.out.print(messageRecipient);
-			System.out.print(sessionCpcid);
-			System.out.println("#a-----");
-			
 			if(messageRecipient.equals(sessionCpcid)) {
 				return true;
 			}

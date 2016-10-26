@@ -6,6 +6,7 @@ var $nickName;
 var $message;
 var $chatWindow;
 var room = '';
+var adr = '';
 
 function onMessageReceived(evt) {
 	var msg = JSON.parse(evt.data);
@@ -17,13 +18,17 @@ function onMessageReceived(evt) {
 	$chatWindow.append($messageLine);
 }
 function sendMessage() {
-	console.log(serviceLocation);
+	console.log(adr);
 	
 	var data = new Object();
 	data.message = $message.val()
 	data.sender = $('#from-cpcid').val();
 	data.received = "";
 	data.recipient = $('#to-cpcid').val();
+	data.chatRoom = $('#chat-room').val();
+
+	if(data.recipient===undefined)data.recipient=""
+	if(data.chatRoom===undefined)data.chatRoom=""
 	
 	var msg = JSON.stringify(data);
 	wsocket.send(msg);
@@ -31,9 +36,12 @@ function sendMessage() {
 }
 
 function connectToChatserver() {
-	room = '';
+	room = $('#chat-room').val();
 	var cpcid = $('#from-cpcid').val();
+	if(room===undefined)room="";
+
 	wsocket = new WebSocket(serviceLocation + room+"/"+cpcid);
+	adr = serviceLocation + room+"/"+cpcid;
 	wsocket.onmessage = onMessageReceived;
 }
 

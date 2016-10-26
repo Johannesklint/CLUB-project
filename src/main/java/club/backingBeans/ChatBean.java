@@ -26,12 +26,18 @@ public class ChatBean {
 		Map<String, String> params =  FacesContext.getCurrentInstance()
 				.getExternalContext()
 				.getRequestParameterMap();
-		chatWithId = Integer.parseInt(params.get("id"));
+		if(params.get("id")!=null)
+			chatWithId = Integer.parseInt(params.get("id"));
 		
 	}
 	public User getChatWith() {
 		if(chatWithId==null) return null;
 		return userEJB.getById(chatWithId);
 	}
-	
+
+	public String getChatRoom() {
+		if(chatWithId!=null) return null;
+		return "main";
+	}
+
 }

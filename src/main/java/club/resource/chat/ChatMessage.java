@@ -11,6 +11,7 @@ public class ChatMessage {
 	private String senderFullName;
 	private String sender;
 	private String recipient;
+	private String chatRoom;
 	
 	public String getMessage() {
 		return message;
@@ -47,6 +48,12 @@ public class ChatMessage {
 	}
 	public void setSenderFullName(String senderFullName) {
 		this.senderFullName = senderFullName;
+	}
+	public String getChatRoom() {
+		return chatRoom;
+	}
+	public void setChatRoom(String chatRoom) {
+		this.chatRoom = chatRoom;
 	}
 	
 	

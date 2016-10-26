@@ -21,7 +21,7 @@ function sendMessage() {
 	
 	var data = new Object();
 	data.message = $message.val()
-	data.sender = $nickName.val()
+	data.sender = $('#from-cpcid').val();
 	data.received = "";
 	data.recipient = $('#to-cpcid').val();
 	
@@ -31,7 +31,7 @@ function sendMessage() {
 }
 
 function connectToChatserver() {
-	room = 'java';
+	room = '';
 	var cpcid = $('#from-cpcid').val();
 	wsocket = new WebSocket(serviceLocation + room+"/"+cpcid);
 	wsocket.onmessage = onMessageReceived;

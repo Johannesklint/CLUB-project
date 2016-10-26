@@ -43,46 +43,49 @@ public class ChatEndpoint {
 	@OnMessage
 	public void onMessage(final Session session, final ChatMessage chatMessage) {
 
-		System.out.println(":......");
-		System.out.println(session.getUserProperties().get("cpcid"));
-		System.out.println(chatMessage);
-		System.out.println(":.:.....");
-		
-		
-		String room = (String) session.getUserProperties().get("room");
-		String recipient = chatMessage.getRecipient();
 				
 		try {
 			for (Session s : session.getOpenSessions()) {
-				System.out.println("-------------------a");
-				String jid = (String)s.getUserProperties().get("cpcid");
-
-				if(!recipient.equals("")) {
-
-					System.out.println("###1#####");
-					System.out.println(jid);
-					System.out.println(recipient);
-					System.out.println("####2####");
-
-					if (s.isOpen() && recipient.equals(jid) ) {
-						System.out.println("...1");
-						s.getBasicRemote().sendObject(chatMessage);
-					}					
-				} else {
-					
-					System.out.println("BBBBBBBB");
-					
-					if (s.isOpen() && room.equals(s.getUserProperties().get("room"))) {
-						s.getBasicRemote().sendObject(chatMessage);
-					}					
-					
-				}
 				
+				if(isMessageForSession(s,chatMessage)) {
+					s.getBasicRemote().sendObject(chatMessage);					
+				}				
 			}
 		} catch (IOException | EncodeException e) {
 			LOG.log(Level.WARNING, "onMessage failed", e);
 		}
 
+	}
+
+	private boolean isMessageForSession(Session session, ChatMessage chatMessage) {
+
+		String sessionInRoom = (String) session.getUserProperties().get("room");
+		String sessionCpcid = (String) session.getUserProperties().get("cpcid");
+		String messageRecipient = chatMessage.getRecipient();
+		String messageSender = chatMessage.getSender();
+		
+		if(messageSender.equals(sessionCpcid)) {
+			return true;
+		}
+		else if(sessionInRoom!=null && !sessionInRoom.equals("")) {
+
+			return false; //TODO: fix room logic
+			
+		}
+		else if(messageRecipient!=null && !messageRecipient.equals("")) {
+
+			System.out.println("#------");
+			System.out.print(messageRecipient);
+			System.out.print(sessionCpcid);
+			System.out.println("#a-----");
+			
+			if(messageRecipient.equals(sessionCpcid)) {
+				return true;
+			}
+			
+		}
+
+		return false;
 	}
 
 }

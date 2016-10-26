@@ -54,6 +54,7 @@ ClubProjectChatClient.prototype.newConnection = function(host,o,nick)
             data.sender = newConnection.nick;
             data.message = message;
             data.recipient = to;
+            data.chatRoom = ""; //TODO: this make this client not a chat room availble client. ok?
             connection.sendUTF(JSON.stringify(data));
         }
         else throw "can not send when not connected"

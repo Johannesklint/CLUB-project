@@ -48,6 +48,9 @@ public class ChatEndpoint {
 			for (Session s : session.getOpenSessions()) {
 				
 				if(isMessageForSession(s,chatMessage)) {
+					
+					String senderFullName = userEJB.getUserByCpcid(chatMessage.getSender()).getFullName();
+					chatMessage.setSenderFullName(senderFullName);
 					s.getBasicRemote().sendObject(chatMessage);					
 				}				
 			}

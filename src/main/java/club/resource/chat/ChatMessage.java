@@ -8,7 +8,7 @@ public class ChatMessage {
 
 	private String message;
 	private String received;
-
+	private String senderFullName;
 	private String sender;
 	private String recipient;
 	
@@ -41,6 +41,12 @@ public class ChatMessage {
 	@Override
 	public String toString() {
 		return "[msg:"+message+",sender:"+sender+",date:"+received+",recipient:"+recipient+"]";
+	}
+	public String getSenderFullName() {
+		return senderFullName;
+	}
+	public void setSenderFullName(String senderFullName) {
+		this.senderFullName = senderFullName;
 	}
 	
 	

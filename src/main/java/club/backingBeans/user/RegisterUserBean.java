@@ -1,5 +1,8 @@
 package club.backingBeans.user;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
@@ -19,7 +22,7 @@ public class RegisterUserBean extends BasicFrontendBean{
 	private String lastName;
 	private String email;
 	private String password;
-	private java.util.Date birthday;
+	private String birthday;
 	private boolean admin;
 	private boolean approved;
 
@@ -90,10 +93,10 @@ public class RegisterUserBean extends BasicFrontendBean{
 	public void setTermsAndConditions(Boolean termsAndConditions) {
 		this.termsAndConditions = termsAndConditions;
 	}
-	public java.util.Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	} 
-	public void setBirthday(java.util.Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 	
@@ -113,7 +116,16 @@ public class RegisterUserBean extends BasicFrontendBean{
 	}
 	
 	private java.sql.Date convertBirthdayToDate() {
-		return new java.sql.Date(getBirthday().getTime());
+		
+		java.util.Date temp;
+		try {
+			temp = new SimpleDateFormat("yyyy-MM-dd").parse(getBirthday());
+		} catch (ParseException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+		
+		return new java.sql.Date(temp.getTime());
 	}
 
 }

@@ -23,7 +23,8 @@ import club.password.PasswordHandler;
 @Table(name="user")
 @NamedQueries({
     @NamedQuery(name="User.findAll", query="SELECT u FROM User u"),
-    @NamedQuery(name="User.findByEmail", query="SELECT u FROM User u WHERE  u.email = :email")
+    @NamedQuery(name="User.findByEmail", query="SELECT u FROM User u WHERE  u.email = :email"),
+    @NamedQuery(name="User.findByCpcid", query="SELECT u FROM User u WHERE  u.cpcid = :cpcid")
 }) 
 public class User implements Serializable {
 
@@ -49,6 +50,17 @@ public class User implements Serializable {
 
 	@Column(nullable=false, length=60)
 	private String email;
+
+	@Column(nullable=true, length=32)
+	private String cpcid;
+	
+	public String getCpcid() {
+		return cpcid;
+	}
+
+	public void setCpcid(String cpcid) {
+		this.cpcid = cpcid;
+	}
 
 	@Column(name="first_name", nullable=false, length=45)
 	private String firstName;

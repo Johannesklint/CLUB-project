@@ -11,8 +11,22 @@
 	<ui:composition template="WEB-INF/templates/main-template.xhtml">
 		<ui:define name="pageContent">
 
+			<h:inputHidden value="#{ loginUserBean.user.cpcid }" id="from-cpcid"></h:inputHidden>
+			
+			<h:panelGroup rendered="#{not empty chatBean.chatWith}">
+				<h:inputHidden value="#{ chatBean.chatWith.cpcid }" id="to-cpcid"></h:inputHidden>
+				<h1>Chatting with #{chatBean.chatWith.fullName}</h1>
+			</h:panelGroup>
+
+			<h:panelGroup rendered="#{not empty chatBean.chatRoom}">
+				<h:inputHidden value="#{ chatBean.chatRoom }" id="chat-room"></h:inputHidden>
+				<h1>Chatting in #{chatBean.chatRoom}</h1>			
+			</h:panelGroup>
+
+			
 			<div class="chat-wrapper">
 				<h:inputHidden value="#{ loginUserBean.user.fullName }" id="nickname"></h:inputHidden>			
+				<h:inputHidden value="#{chatBean.chatWith.cpcid}" id="recipient"></h:inputHidden>			
 				<form id="do-chat">
 					<h2 class="alert alert-success"></h2>
 					<table id="response" class="table table-bordered"></table>

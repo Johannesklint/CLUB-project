@@ -28,6 +28,9 @@
                 
 				<h:outputLabel for="repeatPassword" value="Repeat password:"></h:outputLabel>
                 <h:inputSecret id="repeatPassword" label="Repeat Password" value="#{ userProfileBean.repeatPassword }" required="true"></h:inputSecret>                     
+
+                <h:outputLabel for="cpcid" value="CPCid:"></h:outputLabel>
+                <h:inputText id="cpcid" label="CPCid" value="#{ userProfileBean.cpcid }"></h:inputText>
                
                 <h:commandButton class="btn" action="#{ userProfileBean.update() }" value="Save"></h:commandButton>
             </h:panelGrid>			

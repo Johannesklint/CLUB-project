@@ -18,6 +18,7 @@ import club.backingBeans.BasicFrontendBean;
 public class UserProfileBean extends BasicFrontendBean{
 
 	private String email;
+	private String cpcid;
 	private String password;
 	private String repeatPassword;
 	
@@ -38,12 +39,14 @@ public class UserProfileBean extends BasicFrontendBean{
 	public void Init(){
 		fetchUserFromLogin();
 		this.email = user.getEmail();		
+		this.cpcid = user.getCpcid();		
 	}
 		
 	public String update() {	
 		
 		if(password.equals(repeatPassword)){
 			user.setEmail(email);	
+			user.setCpcid(cpcid);	
 			user.generateNewHMACpassword(password);
 			
 			if (userEJB.update(user) != null) {  									
@@ -78,6 +81,12 @@ public class UserProfileBean extends BasicFrontendBean{
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getCpcid() {
+		return cpcid;
+	}
+	public void setCpcid(String cpcid) {
+		this.cpcid = cpcid;
 	}
 	public String getPassword() {
 		return password;

@@ -22,21 +22,23 @@
 	
 		<h:panelGrid columns="2">
 		   <h:outputLabel for="first_name">First name:</h:outputLabel>
-		   <h:inputText id="first_name" value="#{ registerUserBean.firstName }" required="true" label="First name"/>
+		   <h:inputText id="first_name" value="#{ registerUserBean.firstName }" required="true" label="First name" a:placeholder="Enter first name"/>
 		   
 		   <h:outputLabel for="last_name">Last name:</h:outputLabel>
-		   <h:inputText id="last_name" value="#{ registerUserBean.lastName }" required="true" label="Last name"/>
+		   <h:inputText id="last_name" value="#{ registerUserBean.lastName }" required="true" label="Last name" a:placeholder="Enter last name"/>
 
-		   <h:outputLabel for="birthday">Birthday:</h:outputLabel>
-		   <b:dateTimePicker id="birthday" value="#{ registerUserBean.birthday }" show-time="false" required="true" label="Birthday"></b:dateTimePicker>
+			<h:outputLabel for="birthday">Birthday:</h:outputLabel>
+			<h:inputText id="birthday" value="#{ registerUserBean.birthday }" required="true" label="Birthday" a:placeholder="YYYY-MM-DD">
+				<f:validator validatorId="club.validators.ValidDateString" />
+			</h:inputText>
 		
 		   <h:outputLabel for="email">Email:</h:outputLabel>
-		   <h:inputText id="email" value="#{ registerUserBean.email }" required="true" label="Email">
-		   	<f:validateRegex pattern='((?=.*[a-z]).{6,})'></f:validateRegex>
+		   <h:inputText id="email" value="#{ registerUserBean.email }" required="true" label="Email" validatorMessage="Email format error" a:placeholder="local-part@domain">
+			<f:validateRegex pattern='((?=.*[a-z]).{6,})'></f:validateRegex>
 		   </h:inputText>
 		
 		   <h:outputLabel for="password">Password:</h:outputLabel>
-		   <h:inputSecret id="password" value="#{ registerUserBean.password }" required="true" label="Password" />
+		   <h:inputSecret id="password" value="#{ registerUserBean.password }" required="true" label="Password" a:placeholder="Enter password"/>
 		   
 	 	   <h:outputLabel for="terms_and_conditions">Terms And Conditions:</h:outputLabel>
 		   <h:selectBooleanCheckbox id="terms_and_conditions" value="#{ registerUserBean.termsAndConditions }" requiredMessage="You must agree with the Terms and Conditions" required="true" label="Terms and Conditions">

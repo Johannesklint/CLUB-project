@@ -11,7 +11,9 @@ import club.exceptions.ValidateException;
 public interface LocalUser extends LocalGenericCrud<User> {
 	
 	User getUserByEmail(String email);
+	User getUserByCpcid(String cpcid);
 	void loginUser(String username, String password, LoginHandlerable loginHandlerable) throws LoginException;
 	boolean hasUniqueEmail(User user);
 	void validateRegisterUser(User user) throws ValidateException;
+	String getCalculatedAndValidCpcid(String firstName, String lastName);
 }

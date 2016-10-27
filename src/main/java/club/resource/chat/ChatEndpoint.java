@@ -1,9 +1,11 @@
 package club.resource.chat;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.ejb.EJB;
 import javax.websocket.EncodeException;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -11,29 +13,78 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-@ServerEndpoint(value = "/chat/{room}", encoders = ChatMessageEncoder.class, decoders = ChatMessageDecoder.class)
+import club.EJB.interfaces.LocalUser;
+
+@ServerEndpoint(value = "/chat/{room}/{cpcid}", encoders = ChatMessageEncoder.class, decoders = ChatMessageDecoder.class)
 public class ChatEndpoint {
+
 	private final Logger LOG = Logger.getLogger(getClass().getName());
 
+	@EJB
+	private LocalUser userEJB;
+
 	@OnOpen
-	public void open(final Session session, @PathParam("room") final String room) {
-		session.getUserProperties().put("room", room);	
-	}
+	public void open(final Session session, @PathParam("room") final String room, @PathParam("cpcid") final String cpcid) {
+		
+		session.getUserProperties().put("room", room);
+		session.getUserProperties().put("cpcid", cpcid);
+
+		if(userEJB.getUserByCpcid(cpcid)==null) {
+		
+		try {
+			session.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+    }
 
 	@OnMessage
 	public void onMessage(final Session session, final ChatMessage chatMessage) {
-		String room = (String) session.getUserProperties().get("room");
 
+				
 		try {
 			for (Session s : session.getOpenSessions()) {
-				if (s.isOpen() && room.equals(s.getUserProperties().get("room"))) {
-					s.getBasicRemote().sendObject(chatMessage);
-				}
+				
+				if(isMessageForSession(s,chatMessage)) {
+					
+					String senderFullName = userEJB.getUserByCpcid(chatMessage.getSender()).getFullName();
+					chatMessage.setSenderFullName(senderFullName);
+					s.getBasicRemote().sendObject(chatMessage);					
+				}				
 			}
 		} catch (IOException | EncodeException e) {
 			LOG.log(Level.WARNING, "onMessage failed", e);
 		}
 
+	}
+
+	private boolean isMessageForSession(Session session, ChatMessage chatMessage) {
+
+		String sessionInRoom = (String) session.getUserProperties().get("room");
+		String sessionCpcid = (String) session.getUserProperties().get("cpcid");
+		String messageRecipient = chatMessage.getRecipient();
+		String messageSender = chatMessage.getSender();
+		
+		if(messageSender.equals(sessionCpcid)) {
+			return true;
+		}
+		else if(sessionInRoom!=null && !sessionInRoom.equals("")) {
+
+			if(chatMessage.getChatRoom().equals(sessionInRoom)){
+				return true;
+			}
+			
+		}
+		else if(messageRecipient!=null && !messageRecipient.equals("")) {
+			if(messageRecipient.equals(sessionCpcid)) {
+				return true;
+			}
+			
+		}
+
+		return false;
 	}
 
 }

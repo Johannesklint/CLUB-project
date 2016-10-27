@@ -103,6 +103,7 @@ public class RegisterUserBean extends BasicFrontendBean{
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
 		user.setEmail(email);
+		user.setCpcid(userEJB.getCalculatedAndValidCpcid(firstName,lastName));;
 		user.generateNewHMACpassword(password);			
 		
 		user.setBirthday(  convertBirthdayToDate()  );

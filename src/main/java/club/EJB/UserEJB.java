@@ -95,5 +95,12 @@ public class UserEJB implements LocalUser{
 		return userDao.getByCpcid(cpcid);
 	}
 
-
+	@Override
+	public String getCalculatedAndValidCpcid(String firstName, String lastName) {		
+		String calculatedCpcid = firstName.toLowerCase()+lastName.toLowerCase();
+		calculatedCpcid = calculatedCpcid.replaceAll("ä", "a");
+		calculatedCpcid = calculatedCpcid.replaceAll("å", "a");
+		calculatedCpcid = calculatedCpcid.replaceAll("ö", "o");
+		return calculatedCpcid;
+	}
 }

@@ -51,10 +51,11 @@
  }
 
  .messages li{
- 	display:block;
  	margin:0;
  	padding:0;
- 	margin-bottom: 6px;
+ 	margin-bottom: 8px;
+ 	margin-left:20px;
+ 	line-height:12px;
  }
  
  .end {

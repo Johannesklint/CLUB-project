@@ -38,7 +38,8 @@
 				<tr>
 					<th><h:outputLabel for="event_title">Event title:</h:outputLabel></th>
 			   		<td>
-			   			<h:inputText id="event_title" value="#{ createEventBean.title }" label="Event Title" a:placeholder="Enter title" validatorMessage="Invalid Event Title. 2 to 64 characters long is required. Can not contain invalid characters.">
+			   			<h:inputText id="event_title" value="#{ createEventBean.title }" label="Event title" a:placeholder="Enter title"
+			   					validatorMessage="Invalid Event Title. 2 to 64 characters long is required. Can not contain invalid characters.">
 			   				<f:validateRegex pattern=".{2,64}"></f:validateRegex>
 			   			</h:inputText>
 			   			</td>
@@ -47,8 +48,9 @@
 				<tr>
 					<th><h:outputLabel for="event_start_time">Start time:</h:outputLabel></th>
 					<td>
-						<h:inputText value="#{ createEventBean.startTime }" required="true" label="Event start time" a:placeholder="YYYY-MM-DD hh:mm">
-					   		<f:validator validatorId="club.validators.ValidDateTimeString"></f:validator>
+						<h:inputText value="#{ createEventBean.startTime }" label="Event start time" a:placeholder="YYYY-MM-DD hh:mm"
+							validatorMessage="Invalid Start time. It is not a valid formated date, not a valid date or not in future.">
+					   		<f:validator validatorId="club.validators.ValidFutureDateTimeString"></f:validator>
 					   	</h:inputText>
 					</td>
 				</tr>
@@ -58,7 +60,10 @@
 					   	<h:outputLabel for="event_text">Event description:</h:outputLabel>
 					</th>
 					<td>
-					   	<h:inputTextarea id="event_text" value="#{ createEventBean.text }" required="true" label="Event Description" a:placeholder="Enter description"/>
+					   	<h:inputTextarea id="event_text" value="#{ createEventBean.text }" label="Event Description" a:placeholder="Enter description"
+					   			validatorMessage="Invalid Event description. Title. 2 to 8192 characters long is required. Can not contain invalid characters.">
+			   				<f:validateRegex pattern=".{2,64}"></f:validateRegex>
+						</h:inputTextarea>
 					</td>
 				</tr>
 				<tr>		
@@ -69,10 +74,13 @@
 					   	<h:inputText 
 					   		id="event_duration"
 					   		a:placeholder="Enter duration in minutes" 
-					   		validatorMessage="only integers (1,2,3..) allowed"
+					   		validatorMessage="Invalid Event duration. Only integers (1,2,3..) allowed. A value between 1 and 9999 required."
 					   		value="#{ createEventBean.durationInMinutes }" 
-					   		required="true" 
-					   		label="Event Duration"/>
+					   		label="Event Duration"
+					   		>
+					   		<f:validateDoubleRange minimum="1" maximum="9999"></f:validateDoubleRange>					   		
+							<f:validateRequired/>
+					   	</h:inputText>
 					</td>
 				</tr>
 				<tr>

@@ -17,7 +17,7 @@
 		
 		<h:form id="create_event_form">
 			
-			<table>
+			<table class="form-wrapper">
 				<tr>
 					<td>
 						<h:messages styleClass="messages">							
@@ -32,12 +32,16 @@
 				
 				<tr>
 					<th>Author:</th>
-					<td><h:outputText id="event_author" value="#{ createEventBean.author.fullName }"/></td>
+					<td><b><h:outputText id="event_author" value="#{ createEventBean.author.fullName }"/></b></td>
 				</tr>
 
 				<tr>
 					<th><h:outputLabel for="event_title">Event title:</h:outputLabel></th>
-			   		<td><h:inputText id="event_title" value="#{ createEventBean.title }" required="true" label="Event Title" a:placeholder="Enter title"/></td>
+			   		<td>
+			   			<h:inputText id="event_title" value="#{ createEventBean.title }" label="Event Title" a:placeholder="Enter title" validatorMessage="Invalid Event Title. 2 to 64 characters long is required. Can not contain invalid characters.">
+			   				<f:validateRegex pattern=".{2,64}"></f:validateRegex>
+			   			</h:inputText>
+			   			</td>
 				</tr>
 
 				<tr>

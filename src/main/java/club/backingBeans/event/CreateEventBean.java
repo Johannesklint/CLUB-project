@@ -53,12 +53,13 @@ public class CreateEventBean extends EventBean{
 		eventToUpdate.setDurationInMinutes(super.getDurationInMinutes());
 		return eventToUpdate;
 	}	
+
+	@Override
+	public User getAuthor() {
+		return loginUserBean.getUser();
+	}
 	
 	private Timestamp convertStartTimeToTimestamp() {
-//		Instant startTimeAsInstant = super.getStartTime().toInstant();
-
-	
-
 		java.util.Date temp;
 		try {
 			temp = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(getStartTime());
@@ -67,9 +68,6 @@ public class CreateEventBean extends EventBean{
 			throw new RuntimeException();
 		}
 		return Timestamp.from(temp.toInstant());
-		
-//		return new java.sql.Date(temp.getTime());
-	
 	}
 
 }

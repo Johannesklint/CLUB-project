@@ -19,6 +19,11 @@
  .standard-form{
  	border: 1px solid #999;
  	padding: 20px;
+	width: 100%;
+ }
+
+ .form-wrapper{
+	width: 450px;
  }
  
  .standard-form textarea{
@@ -49,6 +54,7 @@
  	display:block;
  	margin:0;
  	padding:0;
+ 	margin-bottom: 6px;
  }
  
  .end {

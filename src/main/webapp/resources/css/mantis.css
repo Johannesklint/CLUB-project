@@ -16,6 +16,41 @@
  	clear: both;
  }
  
+ .standard-form{
+ 	border: 1px solid #999;
+ 	padding: 20px;
+ }
+ 
+ .standard-form textarea{
+  	padding:1px;
+  	resize:none;
+  	height:200px;
+ }
+
+ .standard-form th{
+	color:#333;
+	text-align:right;
+	vertical-align:top;
+ }
+
+ .standard-form td.submit{
+ 	padding-top:10px;
+	text-align:center;
+ }
+
+ .messages{
+ 	border: 1px solid #fd238f;
+ 	background: #ff9ccd;
+ 	padding: 20px;
+ 	margin:0;
+ }
+
+ .messages li{
+ 	display:block;
+ 	margin:0;
+ 	padding:0;
+ }
+ 
  .end {
  	clear:both;
  }

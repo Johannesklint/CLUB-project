@@ -1,6 +1,8 @@
 package club.backingBeans.event;
 
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
 
@@ -26,7 +28,6 @@ public class CreateEventBean extends EventBean{
 	
 	@PostConstruct
 	public void init() {
-		System.out.println("In CreateEventBean init()");
 	}
 	
 	@Override
@@ -54,8 +55,21 @@ public class CreateEventBean extends EventBean{
 	}	
 	
 	private Timestamp convertStartTimeToTimestamp() {
-		Instant startTimeAsInstant = super.getStartTime().toInstant();
-		return Timestamp.from(startTimeAsInstant);
+//		Instant startTimeAsInstant = super.getStartTime().toInstant();
+
+	
+
+		java.util.Date temp;
+		try {
+			temp = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(getStartTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		}
+		return Timestamp.from(temp.toInstant());
+		
+//		return new java.sql.Date(temp.getTime());
+	
 	}
 
 }

@@ -16,38 +16,68 @@
 		<h1>Create an event post</h1>
 		
 		<h:form id="create_event_form">
-			<h:messages>
-				<h:message for="create_event_form"></h:message>
-			</h:messages>
 			
-			<h:panelGrid columns="2">	
+			<table>
+				<tr>
+					<td>
+						<h:messages styleClass="messages">							
+							<h:message for="create_event_form"></h:message>
+						</h:messages>					
+					</td>
+				</tr>
+				<tr>
+				<td>
 				
-				<h:outputLabel for="event_author">Author:</h:outputLabel>
-			   	<h:outputText id="event_author" value="#{ createEventBean.author.fullName }" />
-			
-				<h:outputLabel for="event_title">Event title:</h:outputLabel>
-			   	<h:inputText id="event_title" value="#{ createEventBean.title }" required="true" label="Event Title"/>
-			   	
-			   	<h:outputLabel for="event_start_time">Start time</h:outputLabel>
-			   	<b:dateTimePicker value="#{ createEventBean.startTime }"></b:dateTimePicker>
-			   	
-			   	<h:outputLabel for="event_text">Event description:</h:outputLabel>
-			   	<h:inputTextarea id="event_text" value="#{ createEventBean.text }" required="true" label="Event Description"/>
-			   				   	
-			   	<h:outputLabel for="event_duration">Event duration in minutes</h:outputLabel>
-			   	<h:inputTextarea 
-			   		id="event_duration"
-			   		a:placeholder="some placeholder" 
-			   		validatorMessage="only integers (1,2,3..) allowed"
-			   		value="#{ createEventBean.durationInMinutes }" 
-			   		required="true" 
-			   		label="Event Description"/>
-			   	
-			   	
+				<table class="standard-form">
 				
-				<h:commandButton class="btn" action="#{ createEventBean.submit() }" value="Create event post"></h:commandButton>
-			
-			</h:panelGrid>
+				<tr>
+					<th>Author:</th>
+					<td><h:outputText id="event_author" value="#{ createEventBean.author.fullName }"/></td>
+				</tr>
+
+				<tr>
+					<th><h:outputLabel for="event_title">Event title:</h:outputLabel></th>
+			   		<td><h:inputText id="event_title" value="#{ createEventBean.title }" required="true" label="Event Title" a:placeholder="Enter title"/></td>
+				</tr>
+
+				<tr>
+					<th><h:outputLabel for="event_start_time">Start time:</h:outputLabel></th>
+					<td>
+						<h:inputText value="#{ createEventBean.startTime }" required="true" label="Event start time" a:placeholder="YYYY-MM-DD hh:mm">
+					   		<f:validator validatorId="club.validators.ValidDateTimeString"></f:validator>
+					   	</h:inputText>
+					</td>
+				</tr>
+
+			   	<tr>
+			   		<th>
+					   	<h:outputLabel for="event_text">Event description:</h:outputLabel>
+					</th>
+					<td>
+					   	<h:inputTextarea id="event_text" value="#{ createEventBean.text }" required="true" label="Event Description" a:placeholder="Enter description"/>
+					</td>
+				</tr>
+				<tr>		
+					<th>
+					   	<h:outputLabel for="event_duration">Event duration in minutes:</h:outputLabel>
+					</th>
+					<td>
+					   	<h:inputText 
+					   		id="event_duration"
+					   		a:placeholder="Enter duration in minutes" 
+					   		validatorMessage="only integers (1,2,3..) allowed"
+					   		value="#{ createEventBean.durationInMinutes }" 
+					   		required="true" 
+					   		label="Event Duration"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="submit"><h:commandButton class="btn" action="#{ createEventBean.submit() }" value="Create event post"></h:commandButton></td>
+				</tr>
+				</table>
+				</td>
+				</tr>
+			</table>
 		</h:form>
 	
 	</ui:define>

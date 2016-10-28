@@ -20,15 +20,15 @@ public abstract class EventBean extends PostBean<Event> {
 
 	private int selectedNewsId;
 	
-	private int durationInMinutes;
+	private Integer durationInMinutes;
 	private List<User> attendees;
-	private Date startTime = Date.from(Instant.now().minusSeconds(500 * 10000000));
+	private String startTime;
 	
-	public Date getStartTime() {
+	public String getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Date startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
@@ -71,11 +71,11 @@ public abstract class EventBean extends PostBean<Event> {
 	}
 			
 
-	public int getDurationInMinutes() {
+	public Integer getDurationInMinutes() {
 		return durationInMinutes;
 	}
 
-	public void setDurationInMinutes(int durationInMinutes) {
+	public void setDurationInMinutes(Integer durationInMinutes) {
 		this.durationInMinutes = durationInMinutes;
 	}
 

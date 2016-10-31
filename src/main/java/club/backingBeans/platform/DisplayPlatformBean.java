@@ -13,5 +13,5 @@ import javax.inject.Named;
 @Singleton
 @Named("platformBean")
 public class DisplayPlatformBean extends PlatformBean {
-	
+		
 }

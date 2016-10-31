@@ -13,41 +13,48 @@
 <ui:composition template="WEB-INF/templates/main-template.xhtml">
 	<ui:define name="pageContent">
 
-	<h3>Configure platform: </h3>
-		<h:form id="configure_platform_form">
-			<h:messages>
-				<h:message for="configure_platform_form"></h:message>
-			</h:messages>	
-		
-			<h:panelGrid columns="2">
-			   <h:outputLabel for="title">Title:</h:outputLabel>
-			   <h:inputText id="title" value="#{ configurePlatformBean.title }" required="true" label="title"/>
+	<h1>Configure platform: </h1>
+	<h:form id="configure_platform_form">
+		<table class="form-wrapper">
+			<tr>
+				<td>
+					<h:messages styleClass="messages">
+						<h:message for="configure_platform_form"></h:message>
+					</h:messages>				
+				</td>			
+			</tr>		
+			<tr>
+				<td>
+					<table class="standard-form">
+						<tr>
+							<th><h:outputLabel for="title">Title:</h:outputLabel></th>
+							<td><h:inputText id="title" value="#{ configurePlatformBean.title }" required="true" label="title"/></td>
+						</tr>
+						<tr>
+							<th><h:outputLabel for="description">Description:</h:outputLabel></th>
+							<td><h:inputTextarea id="description" value="#{ configurePlatformBean.description }" required="true" label="description"/></td>
+						</tr>
+						<tr>
+							<th><h:outputLabel for="terms_and_conditions">Terms and conditions:</h:outputLabel></th>
+							<td><h:inputTextarea id="terms_and_conditions" value="#{ configurePlatformBean.termsAndConditions }" required="true" label="terms_and_conditions"/></td>
+						</tr>
+						<tr>
+							<th><h:outputLabel for="primary_color">Primary color:</h:outputLabel></th>
+							<td><p:colorPicker value="#{themeBean.primaryColorHEX}" /></td>
+						</tr>					
+						<tr>
+							<th><h:outputLabel for="secondary_color">Seconday color:</h:outputLabel></th>
+							<td><p:colorPicker value="#{themeBean.secondaryColorHEX}" /></td>
+						</tr>					
+						<tr>
+							<td colspan="2" class="submit"><h:commandButton class="btn" value="Update platform" action="#{ configurePlatformBean.updatePlatform() }" /></td>
+						</tr>
+					</table>
+				</td>
+			</tr>		
+		</table>
 			   
-			   <h:outputLabel for="description">Description:</h:outputLabel>
-			   <h:inputTextarea id="description" value="#{ configurePlatformBean.description }" required="true" label="description"/>
-			
-			   <h:outputLabel for="terms_and_conditions">Terms and conditions:</h:outputLabel>
-			   <h:inputTextarea id="terms_and_conditions" value="#{ configurePlatformBean.termsAndConditions }" required="true" label="terms_and_conditions"/>
-       			  
-       	<!--	   <h:outputLabel for="primary_color">Primary color:</h:outputLabel>
-			   <h:inputText id="primary_color" value="#{ themeBean.primaryColorHEX }" required="true" label="primary_color"/>
-       		   
-       		   <h:outputLabel for="secondary_color">Primary color:</h:outputLabel>
-			   <h:inputText id="secondary_color" value="#{ themeBean.secondaryColorHEX }" required="true" label="secondary_color"/>
-       	-->      
-       			<h:panelGrid columns="2" cellpadding="5" style="margin-left: 20px">
-       			   
-					<h:outputLabel for="primary_color">Primary color:</h:outputLabel>
-				   <p:colorPicker value="#{themeBean.primaryColorHEX}" />                   	       			
-
-	       		   <h:outputLabel for="secondary_color">Seconday color:</h:outputLabel>
-
-				   <p:colorPicker value="#{themeBean.secondaryColorHEX}" />
-			    </h:panelGrid>                  	       			
-			   <h:commandButton class="btn" value="Update platform" action="#{ configurePlatformBean.updatePlatform() }" />
-			</h:panelGrid>
-			
-		</h:form>
+	</h:form>
 
 	</ui:define>
 </ui:composition>

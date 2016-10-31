@@ -9,27 +9,39 @@
 <ui:composition>
 	<h1>Manage news: </h1>
 				
-		<h:form id="update_news_form">
-			<h:messages>
-				<h:message for="update_news_form"></h:message>
-			</h:messages>	
-		
-			<h:panelGrid columns="2" columnsClasses="rightAlign, leftAlign">
-            
-				<h:outputLabel for="news_author">Author:</h:outputLabel>
-			   	<h:outputText id="news_author" value="#{ newsUpdateBean.author.fullName }" />
-			
-				<h:outputLabel for="news_title">News title:</h:outputLabel>
-			   	<h:inputText id="news_title" value="#{ newsUpdateBean.title }" required="true" label="News Title"/>
-			   
-			   	<h:outputLabel for="news_text">News description:</h:outputLabel>
-			   	<h:inputTextarea id="news_text" value="#{ newsUpdateBean.text }" required="true" label="News Description"/>
+	<h:form id="update_news_form">
 
-				<h:commandButton class="btn" action="#{ newsUpdateBean.submit() }" value="Update news post">
-					<f:param name="id" value="#{ newsUpdateBean.id }"></f:param>
-				</h:commandButton>
-               
-            </h:panelGrid>			
-		</h:form>
+		<table class="form-wrapper">
+			<tr>
+				<td>
+					<h:messages styleClass="messages">
+						<h:message for="update_news_form"></h:message>
+					</h:messages>	
+				</td>				
+			</tr>			
+			<tr>
+				<td>
+					<table class="standard-form">
+						<tr>
+							<th><h:outputLabel for="news_title">News title:</h:outputLabel></th>
+							<td><h:inputText id="news_title" value="#{ newsUpdateBean.title }" required="true" label="News Title"/></td>
+						</tr>
+						<tr>
+							<th><h:outputLabel for="news_text">News description:</h:outputLabel></th>
+							<td><h:inputTextarea id="news_text" value="#{ newsUpdateBean.text }" required="true" label="News Description"/></td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<h:commandButton class="btn" action="#{ newsUpdateBean.submit() }" value="Update news post">
+									<f:param name="id" value="#{ newsUpdateBean.id }"></f:param>
+								</h:commandButton>								
+							</td>
+						</tr>
+					</table>
+				</td>				
+			</tr>			
+		</table>
+	
+	</h:form>
 </ui:composition>
 </html>

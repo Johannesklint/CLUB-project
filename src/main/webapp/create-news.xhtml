@@ -5,7 +5,8 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:body>
 	
@@ -15,24 +16,39 @@
 		<h1>Create a news post</h1>
 		
 		<h:form id="create_news_form">
-			<h:messages>
-				<h:message for="create_news_form"></h:message>
-			</h:messages>
+			<table class="form-wrapper">
+				<tr>
+					<td>
+						<h:messages styleClass="messages">
+							<h:message for="create_news_form"></h:message>
+						</h:messages>					
+					</td>				
+				</tr>
+				<tr>
+					<td>
+						<table class="standard-form">
+							<tr>
+								<th>Autho:r</th>
+								<td><b><h:outputText id="news_author" value="#{ createNewsBean.author.fullName }" /></b></td>
+							</tr>
+							<tr>
+								<th><h:outputLabel for="news_title">News title:</h:outputLabel></th>
+								<td><h:inputText a:placeholder="Enter title" id="news_title" value="#{ createNewsBean.title }" required="true" label="News Title"/></td>
+							</tr>
+							<tr>
+								<th><h:outputLabel for="news_text">News description:</h:outputLabel></th>
+								<td><h:inputTextarea a:placeholder="Enter description" id="news_text" value="#{ createNewsBean.text }" required="true" label="News Description"/></td>
+							</tr>
+							<tr>
+								<td colspan="2" class="submit"> 
+									<h:commandButton class="btn" action="#{ createNewsBean.submit() }" value="Create news post"></h:commandButton>
+								</td>
+							</tr>						
+						</table>					
+					</td>								
+				</tr>
+			</table>
 			
-			<h:panelGrid columns="2">	
-				
-				<h:outputLabel for="news_author">Author:</h:outputLabel>
-			   	<h:outputText id="news_author" value="#{ createNewsBean.author.fullName }" />
-			
-				<h:outputLabel for="news_title">News title:</h:outputLabel>
-			   	<h:inputText id="news_title" value="#{ createNewsBean.title }" required="true" label="News Title"/>
-			   
-			   	<h:outputLabel for="news_text">News description:</h:outputLabel>
-			   	<h:inputTextarea id="news_text" value="#{ createNewsBean.text }" required="true" label="News Description"/>
-			
-				<h:commandButton class="btn" action="#{ createNewsBean.submit() }" value="Create news post"></h:commandButton>
-			
-			</h:panelGrid>
 		</h:form>
 	
 	</ui:define>

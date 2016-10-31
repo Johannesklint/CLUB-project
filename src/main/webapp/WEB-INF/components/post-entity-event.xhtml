@@ -39,15 +39,14 @@
 				</h:panelGroup>
 
 				<h:panelGroup rendered="#{ !compactCommentList }">
-
 					<ui:include src="/WEB-INF/components/comment-list.xhtml">
 						<ui:param name="commentList" value="#{ eventEntity.comments }"></ui:param>
 						<ui:param name="postEntity" value="#{ eventEntity }"></ui:param>
 					</ui:include>
-					
-					<p><i><h:outputText value="#{eventEntity.created}"><f:convertDateTime pattern="yyyy-MM-dd HH:mm" /></h:outputText> </i></p>
-					<p><i>#{ eventEntity.author.fullName }</i></p>
 				</h:panelGroup>
+
+				<p><i><h:outputText value="#{eventEntity.created}"><f:convertDateTime pattern="yyyy-MM-dd HH:mm" /></h:outputText> </i></p>
+				<p><i>#{ eventEntity.author.fullName }</i></p>
 
 				<h:link rendered="#{ includeReadMoreBtn }" outcome="post-details" value="Read more" includeViewParams="true">		
 				  <f:param name="id" value="#{ eventEntity.id }"></f:param>		

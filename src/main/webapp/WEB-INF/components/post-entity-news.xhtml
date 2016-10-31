@@ -15,10 +15,6 @@
 				<h5>#{ newsEntity.title }</h5>
 				<p>#{ newsEntity.text }</p>
 				
-				<h:link rendered="#{ includeReadMoreBtn }" outcome="post-details" value="Read more" includeViewParams="true">		
-				  <f:param name="id" value="#{ newsEntity.id }"></f:param>		
-				</h:link>
-				<br></br>
 				<h:panelGroup rendered="#{ compactCommentList }">
 
 					<ui:include src="/WEB-INF/components/comment-list-compact.xhtml">
@@ -36,8 +32,14 @@
 					</ui:include>
 
 				</h:panelGroup>
-				<p><em>#{ newsEntity.author.fullName }</em></p>
-				<p><em>#{ newsEntity.created }</em></p>
+
+				<p><i><h:outputText value="#{newsEntity.created}"><f:convertDateTime pattern="yyyy-MM-dd HH:mm" /></h:outputText> </i></p>
+				<p><i>#{ newsEntity.author.fullName }</i></p>
+
+				<h:link rendered="#{ includeReadMoreBtn }" outcome="post-details" value="Read more" includeViewParams="true">		
+				  <f:param name="id" value="#{ newsEntity.id }"></f:param>		
+				</h:link>
+
 				
 			</div>
 			<div class="end"></div>

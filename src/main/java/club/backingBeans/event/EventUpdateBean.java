@@ -52,7 +52,6 @@ public class EventUpdateBean extends EventBean {
 
 	@Override
 	public Event getFromFields() {
-		// N/A
-		return null;
+		throw new RuntimeException("This should be never been called since this is a update-based bean");
 	}		
 }

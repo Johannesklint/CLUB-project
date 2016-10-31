@@ -46,12 +46,7 @@ public class CreateEventBean extends EventBean{
 	
 	@Override
 	public Event updateFromFields() {
-		
-		Event eventToUpdate = (Event)super.getById(getId());
-		eventToUpdate.setTitle(super.getTitle());
-		eventToUpdate.setText(super.getText());
-		eventToUpdate.setDurationInMinutes(super.getDurationInMinutes());
-		return eventToUpdate;
+		throw new RuntimeException("This should be never been called since this is a create-based bean");
 	}	
 
 	@Override
@@ -65,7 +60,7 @@ public class CreateEventBean extends EventBean{
 			temp = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(getStartTime());
 		} catch (ParseException e) {
 			e.printStackTrace();
-			throw new RuntimeException();
+			throw new RuntimeException(); // We can cast runtime exception here since this field has already been validated.
 		}
 		return Timestamp.from(temp.toInstant());
 	}

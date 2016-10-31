@@ -1,5 +1,9 @@
 package club.backingBeans.event;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -33,7 +37,6 @@ public class EventUpdateBean extends EventBean {
 		super.setId(event.getId());
 		super.setTitle(event.getTitle());
 		super.setText(event.getText());
-		super.setStartTime(event.getStartTime());
 		super.setDurationInMinutes(event.getDurationInMinutes());
 	}
 	
@@ -51,5 +54,5 @@ public class EventUpdateBean extends EventBean {
 	public Event getFromFields() {
 		// N/A
 		return null;
-	}	
+	}		
 }

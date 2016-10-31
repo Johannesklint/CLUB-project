@@ -34,7 +34,7 @@ public class CreateEventBean extends EventBean{
 	public Event getFromFields() {
 		
 		Event event = new Event();
-		event.setAuthor(super.getAuthor());
+		event.setAuthor(this.getAuthor()); // note: must use this instead of super since getAuthor is overriden
 		event.setTitle(super.getTitle());
 		event.setText(super.getText());
 		event.setStartTime(convertStartTimeToTimestamp());

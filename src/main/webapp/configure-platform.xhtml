@@ -40,11 +40,11 @@
 						</tr>
 						<tr>
 							<th><h:outputLabel for="primary_color">Primary color:</h:outputLabel></th>
-							<td><p:colorPicker value="#{themeBean.primaryColorHEX}" /></td>
+							<td><p:colorPicker value="#{themeBean.primaryColorHEX}"  mode="inline"/></td>
 						</tr>					
 						<tr>
 							<th><h:outputLabel for="secondary_color">Seconday color:</h:outputLabel></th>
-							<td><p:colorPicker value="#{themeBean.secondaryColorHEX}" /></td>
+							<td><p:colorPicker value="#{themeBean.secondaryColorHEX}" mode="inline"/></td>
 						</tr>					
 						<tr>
 							<td colspan="2" class="submit"><h:commandButton class="btn" value="Update platform" action="#{ configurePlatformBean.updatePlatform() }" /></td>

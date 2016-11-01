@@ -14,43 +14,66 @@
 <ui:composition template="WEB-INF/templates/main-template.xhtml">
 	<ui:define name="pageContent">
 	
-	<h3>Create user: </h3>
+	<h1>Create account: </h1>
 	<h:form id="create_user_form">
-		<h:messages>
-			<h:message for="create_user_form"></h:message>
-		</h:messages>	
-	
-		<h:panelGrid columns="2">
-		   <h:outputLabel for="first_name">First name:</h:outputLabel>
-		   <h:inputText id="first_name" value="#{ registerUserBean.firstName }" required="true" label="First name" a:placeholder="Enter first name"/>
-		   
-		   <h:outputLabel for="last_name">Last name:</h:outputLabel>
-		   <h:inputText id="last_name" value="#{ registerUserBean.lastName }" required="true" label="Last name" a:placeholder="Enter last name"/>
 
-			<h:outputLabel for="birthday">Birthday:</h:outputLabel>
-			<h:inputText id="birthday" value="#{ registerUserBean.birthday }" required="true" label="Birthday" a:placeholder="YYYY-MM-DD">
-				<f:validator validatorId="club.validators.ValidDateString" />
-			</h:inputText>
-		
-		   <h:outputLabel for="email">Email:</h:outputLabel>
-		   <h:inputText id="email" value="#{ registerUserBean.email }" required="true" label="Email" validatorMessage="Email format error" a:placeholder="local-part@domain">
-			<f:validateRegex pattern='((?=.*[a-z]).{6,})'></f:validateRegex>
-		   </h:inputText>
-		
-		   <h:outputLabel for="password">Password:</h:outputLabel>
-		   <h:inputSecret id="password" value="#{ registerUserBean.password }" required="true" label="Password" a:placeholder="Enter password"/>
-		   
-	 	   <h:outputLabel for="terms_and_conditions">Terms And Conditions:</h:outputLabel>
-		   <h:selectBooleanCheckbox id="terms_and_conditions" value="#{ registerUserBean.termsAndConditions }" requiredMessage="You must agree with the Terms and Conditions" required="true" label="Terms and Conditions">
-		   		<f:validator validatorId="requiredCheckboxValidator" />
-		   </h:selectBooleanCheckbox>
-		   
-		   <h:inputHidden id="terms" value="#{platformBean.termsAndConditions}"></h:inputHidden>
-
-		   <h:commandButton style="float:right;" class="btn" id="button" value="Create user" action="#{ registerUserBean.create() }" />
-		</h:panelGrid>
-	
-		
+		<table class="form-wrapper">
+			<tr>
+				<td>
+					<h:messages styleClass="messages">
+						<h:message for="create_user_form"></h:message>
+					</h:messages>					
+				</td>
+			</tr>		
+			<tr>
+				<td>
+					<table class="standard-form">
+						<tr>
+							<th><h:outputLabel for="first_name">First name:</h:outputLabel></th>
+							<td><h:inputText id="first_name" value="#{ registerUserBean.firstName }" required="true" label="First name" a:placeholder="Enter first name"/></td>
+						</tr>					
+						<tr>
+							<th><h:outputLabel for="last_name">Last name:</h:outputLabel></th>
+							<td><h:inputText id="last_name" value="#{ registerUserBean.lastName }" required="true" label="Last name" a:placeholder="Enter last name"/></td>
+						</tr>
+						<tr>
+							<th><h:outputLabel for="birthday">Birthday:</h:outputLabel></th>
+							<td>
+								<h:inputText id="birthday" value="#{ registerUserBean.birthday }" required="true" label="Birthday" a:placeholder="YYYY-MM-DD">
+									<f:validator validatorId="club.validators.ValidDateString" />
+								</h:inputText>
+							</td>
+						</tr>
+						<tr>
+							<th><h:outputLabel for="email">Email:</h:outputLabel></th>
+							<td>
+								<h:inputText id="email" value="#{ registerUserBean.email }" required="true" label="Email" validatorMessage="Email format error" a:placeholder="local-part@domain">
+									<f:validateRegex pattern='((?=.*[a-z]).{6,})'></f:validateRegex>
+								</h:inputText>
+							</td>
+						</tr>
+						<tr>
+							<th><h:outputLabel for="password">Password:</h:outputLabel></th>
+							<td><h:inputSecret id="password" value="#{ registerUserBean.password }" required="true" label="Password" a:placeholder="Enter password"/></td>
+						</tr>
+						<tr>
+							<th><h:outputLabel for="terms_and_conditions">Terms And Conditions:</h:outputLabel></th>
+							<td>
+								<h:selectBooleanCheckbox id="terms_and_conditions" value="#{ registerUserBean.termsAndConditions }" requiredMessage="You must agree with the Terms and Conditions" required="true" label="Terms and Conditions">
+									<f:validator validatorId="requiredCheckboxValidator" />
+								</h:selectBooleanCheckbox>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="submit">
+								<h:commandButton class="btn" id="button" value="Create account" action="#{ registerUserBean.create() }" />
+							</td>						
+						</tr>
+					</table>				
+				</td>
+			</tr>
+		</table>
+	   <h:inputHidden id="terms" value="#{platformBean.termsAndConditions}"></h:inputHidden>		
 	</h:form>
 	
 	<button onclick="readTerms()">Read Terms and Conditions</button>

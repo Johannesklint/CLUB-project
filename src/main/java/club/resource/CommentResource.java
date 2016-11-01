@@ -34,7 +34,8 @@ public class CommentResource extends BasicResource {
 		
 		System.out.println("commentEJB = " + commentEJB);
 		List<Comment> comments = commentEJB.getAllByPostId(postId);
-		return Response.status(OK)
+		
+		return Response.status(comments.size() > 0 ? OK : NO_CONTENT)
 				.entity(new RESTLinkable<List<Comment>>(comments, Arrays.asList(super.getSelfLink())))
 				.build();
 	}

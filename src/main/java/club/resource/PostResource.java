@@ -1,6 +1,6 @@
 package club.resource;
 
-import static javax.ws.rs.core.Response.Status.OK;
+import static javax.ws.rs.core.Response.Status.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +16,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+
+import org.omg.CORBA.NO_IMPLEMENT;
 
 import club.DAO.post.Post;
 import club.EJB.interfaces.LocalPost;
@@ -37,7 +39,8 @@ public class PostResource extends BasicResource {
 	public Response getAllPosts(){
 		List<Link> links = Arrays.asList(super.getSelfLink());
 		RESTLinkable<List<Post>> posts = new RESTLinkable<List<Post>>(postEJB.getAll(), links);
-		return Response.status(OK)
+		
+		return Response.status(posts.getEntity().size() > 0 ? OK : NO_CONTENT)
 				.entity(posts)
 				.build();
 	}

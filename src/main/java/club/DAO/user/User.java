@@ -174,6 +174,7 @@ public class User implements Serializable {
 	}
 
 	public String getFullName(){
+		if(isDeleted()) return "[Deleted user]";
 		return this.firstName + " " + this.lastName;
 	}
 

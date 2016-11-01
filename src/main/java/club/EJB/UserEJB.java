@@ -86,7 +86,11 @@ public class UserEJB implements LocalUser{
 	@Override
 	public boolean delete(int id) {
 		User user = userDao.getById(id);
+
 		user.setDeleted(true);
+		
+		//TODO: is this good? the deleted flag should be enough to make a user "appear" deleted.
+		//      Some values are quite hard to "delete" since date is not nullable, setHMACPassword generated new password. Maybe values should be nullable and make all values, execept deleted and id, nullable?
 		user.setAdmin(false);
 		user.setFirstName("[Deleted user]");
 		user.setLastName("[Deleted user]");
@@ -94,6 +98,8 @@ public class UserEJB implements LocalUser{
 		user.setCpcid("[Deleted user]");
 		user.setEmail("[Deleted user]");
 		user.setHMACPassword("[Deleted user]");
+		// ----
+		
 		return userDao.save(user) != null;
 	}
 

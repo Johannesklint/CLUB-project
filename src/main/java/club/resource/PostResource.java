@@ -2,6 +2,7 @@ package club.resource;
 
 import static javax.ws.rs.core.Response.Status.OK;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -34,10 +35,10 @@ public class PostResource extends BasicResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllPosts(){
-		List<Post> posts = postEJB.getAll();
+		List<Link> links = Arrays.asList(super.getSelfLink());
+		RESTLinkable<List<Post>> posts = new RESTLinkable<List<Post>>(postEJB.getAll(), links);
 		return Response.status(OK)
 				.entity(posts)
-				.links(super.getSelfLink())
 				.build();
 	}
 	
@@ -46,12 +47,13 @@ public class PostResource extends BasicResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getById(@PathParam("post_id") int id){
 		Post post = postEJB.getById(id);
+		
+		RESTLinkable<Post> entity = new RESTLinkable<Post>(
+					post, 
+					Arrays.asList(super.getSelfLink(), super.appendResourceToSelf(CommentResource.class, "comments")));
+		
 		return Response.status(OK)
-				.entity(post)
-				.links(
-						super.getSelfLink(), 
-						super.appendResourceToSelf(CommentResource.class, "comments")
-						)
+				.entity(entity)
 				.build();
 	}
 	
@@ -60,7 +62,5 @@ public class PostResource extends BasicResource {
 	public CommentResource getPostComments(@PathParam("post_id") int id){
 		return commentResource;
 	}
-	
-	
 	
 }

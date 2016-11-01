@@ -1,6 +1,7 @@
 package club.resource;
 import static javax.ws.rs.core.Response.Status.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,10 +22,6 @@ import club.EJB.interfaces.LocalComment;
 @Path("/comments")
 public class CommentResource extends BasicResource {
 	
-	// hur kommer man åt 1an i  /messages/1/comments/ 
-	// vi kan komma åt den via @PathParam också
-	
-	
 	@EJB
 	LocalComment commentEJB;
 	
@@ -38,8 +35,7 @@ public class CommentResource extends BasicResource {
 		System.out.println("commentEJB = " + commentEJB);
 		List<Comment> comments = commentEJB.getAllByPostId(postId);
 		return Response.status(OK)
-				.entity(comments)
-				.links(super.getSelfLink())
+				.entity(new RESTLinkable<List<Comment>>(comments, Arrays.asList(super.getSelfLink())))
 				.build();
 	}
 	
@@ -48,10 +44,7 @@ public class CommentResource extends BasicResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getCommentById(
 			@PathParam("post_id") int postId,
-			@PathParam("comment_id") int commentId) { // OBS : detta låser oss till att
-				// .. bara använda resursen när vi får med oss messageId. 
-		// dsv inte direkt via api/comments/1 
-		
+			@PathParam("comment_id") int commentId) { 
 		
 		List<Comment> postComments = commentEJB.getAllByPostId(postId);
 		Optional<Comment> requestedComment = postComments.stream()
@@ -61,22 +54,13 @@ public class CommentResource extends BasicResource {
 		Status responseStatus = 
 				requestedComment.isPresent() ? OK : NOT_FOUND;
 		
+		List<Link> links = Arrays.asList(super.getSelfLink());
+		RESTLinkable<Comment> comment = new RESTLinkable<Comment>(requestedComment.orElse(new Comment()), links);
+		
 		return Response.status(responseStatus)
-				.entity(requestedComment.orElse(new Comment()))
-				.links(super.getSelfLink())
+				.entity(comment)
 				.build();
-		
-//		String uri = uriInfo.getBaseUriBuilder()
-//				.path(MessageResources.class) // path fram till /resources/
-//				.path("" + messageId)
-//				.path(CommentResource.class)
-//				// här skulle vi kunna lägga till ett id eller liknande
-//				// funkar likadant för resurser path(AnotherResource.class)
-//				
-//				.build() 
-//				.toString();
-		
-	}
 	
+	}
 	
 }

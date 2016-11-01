@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import club.DAO.post.Post;
 import club.DAO.user.User;
 import club.DAO.user.User.ApprovedState;
 import club.DAO.user.UserDAO;
@@ -19,8 +20,7 @@ public class UserEJB implements LocalUser{
 
 	@EJB
 	private UserDAO userDao;
-	
-	
+		
 	@Override
 	public void loginUser(String username, String password, LoginHandlerable loginHandlerable) throws LoginException{
 		User tryLoginUser = getUserByEmail(username);	
@@ -40,12 +40,6 @@ public class UserEJB implements LocalUser{
 		loginHandlerable.onLogin(tryLoginUser);		
 	}
 	
-
-	@Override
-	public boolean delete(int id) {
-		return userDao.delete(id);
-	}	
-
 	@Override
 	public User getUserByEmail(String email) {
 		return userDao.getUserByEmail(email);
@@ -87,6 +81,20 @@ public class UserEJB implements LocalUser{
 	@Override
 	public List<User> getAll() {
 		return userDao.getAll();
+	}
+
+	@Override
+	public boolean delete(int id) {
+		User user = userDao.getById(id);
+		user.setDeleted(true);
+		user.setAdmin(false);
+		user.setFirstName("[Deleted user]");
+		user.setLastName("[Deleted user]");
+		user.setApprovedState(ApprovedState.DENIED);
+		user.setCpcid("[Deleted user]");
+		user.setEmail("[Deleted user]");
+		user.setHMACPassword("[Deleted user]");
+		return userDao.save(user) != null;
 	}
 
 

@@ -22,9 +22,9 @@ import club.password.PasswordHandler;
 @Entity
 @Table(name="user")
 @NamedQueries({
-    @NamedQuery(name="User.findAll", query="SELECT u FROM User u"),
-    @NamedQuery(name="User.findByEmail", query="SELECT u FROM User u WHERE  u.email = :email"),
-    @NamedQuery(name="User.findByCpcid", query="SELECT u FROM User u WHERE  u.cpcid = :cpcid")
+    @NamedQuery(name="User.findAll", query="SELECT u FROM User u WHERE u.deleted=false"),
+    @NamedQuery(name="User.findByEmail", query="SELECT u FROM User u WHERE  u.email = :email AND u.deleted=false"),
+    @NamedQuery(name="User.findByCpcid", query="SELECT u FROM User u WHERE  u.cpcid = :cpcid AND u.deleted=false")
 }) 
 public class User implements Serializable {
 
@@ -44,6 +44,17 @@ public class User implements Serializable {
 
 	@Column(nullable=false)
 	private boolean admin;
+
+	@Column(name="deleted", nullable=false)
+	private boolean deleted;
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
 
 	@Column(name="approved_state", nullable=false)
 	private int approvedState;

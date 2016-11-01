@@ -16,4 +16,5 @@ public interface LocalUser extends LocalGenericCrud<User> {
 	boolean hasUniqueEmail(User user);
 	void validateRegisterUser(User user) throws ValidateException;
 	String getCalculatedAndValidCpcid(String firstName, String lastName);
+
 }

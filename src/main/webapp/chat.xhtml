@@ -41,6 +41,13 @@
 				</form>
 			</div>
 
+
+			<ui:repeat var="p" value="#{chatBean.links}">
+				#{p}			
+			</ui:repeat>
+			
+
+
 		</ui:define>
 	</ui:composition>
 </h:body>

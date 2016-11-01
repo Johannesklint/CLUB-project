@@ -50,7 +50,7 @@ public class UserProfileBean extends BasicFrontendBean{
 			user.generateNewHMACpassword(password);
 			
 			if (userEJB.update(user) != null) {  									
-				return "home";		
+				return "home.xhtml?faces-redirect=true";
 			}else {
 				super.addFacesMessage("Could not update");
 				return "";
@@ -68,7 +68,7 @@ public class UserProfileBean extends BasicFrontendBean{
 		
 		if(userEJB.delete(user.getId())){
 			loginUser.doLogout();			
-			return "index";	
+			return "index.xhtml?faces-redirect=true";
 		}else {
 			super.addFacesMessage("Could not delete user");
 			return "";

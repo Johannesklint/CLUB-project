@@ -14,26 +14,52 @@
 	
 		<h1>Manage user: </h1>
 		<h:form id="update_user_form">
-			<h:messages>
-				<h:message for="update_user_form"></h:message>
-			</h:messages>	
-		
-			<h:panelGrid columns="2" columnsClasses="rightAlign, leftAlign">
-               
-                <h:outputLabel for="email" value="Email:"></h:outputLabel>
-                <h:inputText id="email" label="Email" value="#{ userProfileBean.email }" required="true"></h:inputText>
-                
-                <h:outputLabel for="password" value="Password:"></h:outputLabel>
-                <h:inputSecret id="password" label="Password" value="#{ userProfileBean.password }" required="true"></h:inputSecret>
-                
-				<h:outputLabel for="repeatPassword" value="Repeat password:"></h:outputLabel>
-                <h:inputSecret id="repeatPassword" label="Repeat Password" value="#{ userProfileBean.repeatPassword }" required="true"></h:inputSecret>                     
 
-                <h:outputLabel for="cpcid" value="CPCid:"></h:outputLabel>
-                <h:inputText id="cpcid" label="CPCid" value="#{ userProfileBean.cpcid }"></h:inputText>
-               
-                <h:commandButton class="btn" action="#{ userProfileBean.update() }" value="Save"></h:commandButton>
-            </h:panelGrid>			
+			<table class="form-wrapper">
+				<tr>
+					<td>
+						<h:messages styleClass="messages">
+							<h:message for="update_user_form"></h:message>
+						</h:messages>						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<table class="standard-form">
+							<tr>
+								<th>                <h:outputLabel for="email" value="Email:"></h:outputLabel>
+								</th>
+								<td>                <h:inputText id="email" label="Email" value="#{ userProfileBean.email }" required="true"></h:inputText>
+								</td>
+							</tr>						
+							<tr>
+								<th>                <h:outputLabel for="password" value="Password:"></h:outputLabel>
+								</th>
+								<td>                <h:inputSecret id="password" label="Password" value="#{ userProfileBean.password }" required="true"></h:inputSecret>
+								</td>
+							</tr>						
+							<tr>
+								<th>				<h:outputLabel for="repeatPassword" value="Repeat password:"></h:outputLabel>
+								</th>
+								<td>                <h:inputSecret id="repeatPassword" label="Repeat Password" value="#{ userProfileBean.repeatPassword }" required="true"></h:inputSecret>                     
+								</td>
+							</tr>						
+							<tr>
+								<th>                <h:outputLabel for="cpcid" value="CPCid:"></h:outputLabel>
+								</th>
+								<td>                <h:inputText id="cpcid" label="CPCid" value="#{ userProfileBean.cpcid }"></h:inputText>
+								</td>
+							</tr>						
+							<tr>
+								<td class="submit" colspan="2">                <h:commandButton class="btn" action="#{ userProfileBean.update() }" value="Save"></h:commandButton>
+								</td>
+							</tr>
+						</table>
+					
+					</td>				
+				</tr>						
+			</table>
+		
 		</h:form>
 		<br></br>
 		<h:form id="delete_user_form">

@@ -86,7 +86,6 @@ public abstract class Post {
 		this.created = created;
 	}
 	public List<Comment> getComments() {
-		System.out.println("Getting comments. in COmment.java: " + comments);
 		return comments;
 	}
 	

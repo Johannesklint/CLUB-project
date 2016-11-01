@@ -245,3 +245,10 @@
 	margin-top: 5px;
 	float: right;
 }
+
+#response {
+	height: 300px;
+    overflow-y: scroll;
+    table-layout: fixed;
+    display: block;
+}

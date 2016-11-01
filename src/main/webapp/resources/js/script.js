@@ -16,6 +16,8 @@ function onMessageReceived(evt) {
 //			+ '</th><td class="received"><em>' + msg.received + '</em>'
 //			+ '</td></tr><td class="message badge">' + msg.message + '</td>');
 	$chatWindow.append($messageLine);
+	
+	scrollToChatContainerBottom();
 }
 function sendMessage() {
 	console.log(adr);
@@ -45,6 +47,12 @@ function connectToChatserver() {
 	wsocket.onmessage = onMessageReceived;
 }
 
+function scrollToChatContainerBottom() {
+	jq$('#response').stop().animate({
+		scrollTop: jq$('#response')[0].scrollHeight
+	}, 800);
+}
+
 jq$(document).ready(function() {
 	connectToChatserver();	
 	$nickName = jq$('#nickname');
@@ -60,5 +68,7 @@ jq$(document).ready(function() {
 
 
 });
+
+
 
 /* ]]> */

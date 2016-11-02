@@ -1,7 +1,6 @@
 package club.resource;
 
 import java.net.URI;
-
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
@@ -28,5 +27,5 @@ public abstract class BasicResource {
 				UriBuilder.fromResource(resourceClass).build().getPath().replaceAll("/", "");
 		return new Link(relName, resourceURL);
 	}
-
+	
 }

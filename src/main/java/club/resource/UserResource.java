@@ -1,6 +1,6 @@
 package club.resource;
 
-import static javax.ws.rs.core.Response.Status.OK;
+import static javax.ws.rs.core.Response.Status.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -85,7 +85,7 @@ public class UserResource extends BasicResource{
 		Link getByIdLink = new Link(super.getAbsolutePathURIFromContext() + "/id", "Get user by id");
 		Link selfLink = super.getSelfLink();
 		
-		return Response.status(OK)
+		return Response.status(users.size() > 0 ? OK : NO_CONTENT)
 				.entity(new RESTLinkable<List<User>>(users, Arrays.asList(selfLink, getByIdLink)))
 				.build();		
 	}

@@ -41,11 +41,15 @@
 				</form>
 			</div>
 
-
+			<ul>
 			<ui:repeat var="p" value="#{chatBean.links}">
-				#{p}			
+				<li>
+					<h:link value="#{p.name}" outcome="chat">
+						<f:param name="cid" value="#{p.link}"/>
+					</h:link>
+				</li>
 			</ui:repeat>
-			
+			</ul>
 
 
 		</ui:define>

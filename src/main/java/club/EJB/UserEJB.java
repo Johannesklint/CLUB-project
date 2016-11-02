@@ -117,4 +117,9 @@ public class UserEJB implements LocalUser{
 		calculatedCpcid = calculatedCpcid.replaceAll("ö", "o");
 		return calculatedCpcid;
 	}
+
+	@Override
+	public List<User> getAllValidUser() {
+		return userDao.getAllValidUsers();
+	}
 }

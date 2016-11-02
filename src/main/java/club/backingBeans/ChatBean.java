@@ -20,6 +20,26 @@ public class ChatBean {
 
 	private Integer chatWithId;
 	
+	public class Chat {
+		
+		private String link;
+		private String name;
+
+		public Chat(String name, String link) {
+			this.link = link;
+			this.name = name;
+		}
+		
+		public String getLink() {
+			return link;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+	}
+	
 	@PostConstruct
 	public void init() {
 		
@@ -42,11 +62,14 @@ public class ChatBean {
 		return "main";
 	}
 	
-	public List<String> getLinks() {
-		//TODO: do a list of chat links (etc users and rooms)
-		List<String> links = new ArrayList<>();
-		links.add("test1");
-		links.add("test2");
+	public List<Chat> getLinks() {
+		List<Chat> links = new ArrayList<>();
+		links.add(new Chat("main","r"));
+		
+		for(User user : userEJB.getAllValidUser()) {
+			links.add(new Chat(user.getFullName(), "u"+user.getId()  ));			
+		}
+		
 		return links;
 	}
 

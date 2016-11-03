@@ -45,7 +45,7 @@
 			<ui:repeat var="p" value="#{chatBean.links}">
 				<li>
 					<h:link value="#{p.name}" outcome="chat">
-						<f:param name="cid" value="#{p.link}"/>
+						<f:param name="cdid" value="#{p.link}"/>
 					</h:link>
 				</li>
 			</ui:repeat>

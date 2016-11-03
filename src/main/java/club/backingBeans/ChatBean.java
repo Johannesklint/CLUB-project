@@ -18,7 +18,7 @@ public class ChatBean {
 	@EJB
 	private LocalUser userEJB;	
 
-	private Integer chatWithId;
+	private String chatId;
 	
 	public class Chat {
 		
@@ -43,23 +43,30 @@ public class ChatBean {
 	@PostConstruct
 	public void init() {
 		
-		chatWithId = null;
-		
 		Map<String, String> params =  FacesContext.getCurrentInstance()
 				.getExternalContext()
 				.getRequestParameterMap();
-		if(params.get("id")!=null)
-			chatWithId = Integer.parseInt(params.get("id"));
+		if(params.get("cdid")!=null) {
+			chatId = params.get("cdid"); 
+		} else {
+			chatId = "r";
+		}
 		
 	}
 	public User getChatWith() {
-		if(chatWithId==null) return null;
-		return userEJB.getById(chatWithId);
+		
+		if(chatId.substring(0, 1).equals("u")) {
+			int userId = Integer.parseInt(chatId.substring(1));
+			return userEJB.getById(userId);
+		}
+		return null;
 	}
 
 	public String getChatRoom() {
-		if(chatWithId!=null) return null;
-		return "main";
+		if(chatId.equals("r")) {
+			return "main";
+		}
+		return null;
 	}
 	
 	public List<Chat> getLinks() {

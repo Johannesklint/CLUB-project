@@ -9,6 +9,8 @@ CLUB is a small "template" for use by small communities.
 * Everyone can comment on a post as well as update and/or delete their own comment.
 * Everyone can participate in a group chat, or choose to open a chat for a specific user.
 
+#### Chat preview
+![](readme-media/chat-preview.gif)
 
 
 ## REST API documentation

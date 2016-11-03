@@ -34,6 +34,7 @@ public class UserResource extends BasicResource{
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createUser(User user){
+		user.setId(null); // id can not be specified, or else this will, in entity manager, be interpreted as an update
 		user.setApprovedState(ApprovedState.DENIED);
 		user.setAdmin(false);
 		user.setBirthday(new java.sql.Date(0));

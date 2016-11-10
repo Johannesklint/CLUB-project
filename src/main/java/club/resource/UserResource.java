@@ -40,9 +40,11 @@ public class UserResource extends BasicResource{
 		user.setBirthday(new java.sql.Date(0));
 		user.setHMACPassword(user.getPassword());
 		
-		// TODO: make this work.. need to add newly created id to url
-		List<Link> links = Arrays.asList(super.getSelfLink());
-		RESTLinkable<User> createdUser = new RESTLinkable<User>(userEJB.save(user), links);
+		User savedUser = userEJB.save(user);
+		Link self = super.getSelfLink();
+		self.setHref(super.getSelfLink().getHref() + "/" + savedUser.getId());
+		List<Link> links = Arrays.asList(self);
+		RESTLinkable<User> createdUser = new RESTLinkable<User>(savedUser, links);
 		
 		return Response.status(Status.CREATED)
 				.entity(createdUser)

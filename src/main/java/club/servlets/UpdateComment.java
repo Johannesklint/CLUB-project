@@ -39,7 +39,6 @@ public class UpdateComment extends HttpServlet {
 		String commentId = request.getParameter("comment_id");
 		String redirect = request.getParameter("redirect");
 		String text = request.getParameter("text");
-		System.out.println("c:"+commentId);
 		if(commentId==null || text==null) {
 			response.sendError(400);
 			return;
@@ -61,7 +60,6 @@ public class UpdateComment extends HttpServlet {
 			response.sendRedirect(request.getHeader("referer"));	    				
 		}
 		else {
-			System.out.println("!!!");
 			response.getWriter().append("Success (but no redirect)").append(", Referer: "+request.getHeader("referer"));
 		}
 	}

@@ -142,7 +142,6 @@ public class User implements Serializable {
 	}
 
 	public void setLastName(String lastName) {
-		System.out.println("LASTNAME: " + lastName);
 		this.lastName = lastName;
 	}
 
@@ -169,7 +168,6 @@ public class User implements Serializable {
 	}
 	
 	public void setHMACPassword(String HMACPassword) {
-		System.out.println("setter kors");
 		generateNewHMACpassword(HMACPassword);
 	}
 
@@ -184,6 +182,4 @@ public class User implements Serializable {
 		return user.getId() == this.getId();
 	}
 	
-	
-
 }

@@ -46,13 +46,13 @@ public class CommentEJB implements LocalComment {
 
 	@Override
 	public boolean delete(int id) {
-		// TODO: implement hide here		
+		// N/A	
 		return false;
 	}
 
 	@Override
 	public List<Comment> getAll() {
-		// Not applicable
+		// N/A
 		return null;
 	}
 

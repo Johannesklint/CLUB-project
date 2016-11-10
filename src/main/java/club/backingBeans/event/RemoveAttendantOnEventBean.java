@@ -28,7 +28,7 @@ public class RemoveAttendantOnEventBean extends EventBean{
 	
 	@Override
 	public Event getFromFields() {
-		// TODO Auto-generated method stub
+		// N/A
 		return null;
 	}
 
@@ -42,7 +42,6 @@ public class RemoveAttendantOnEventBean extends EventBean{
 		
 		eventToUpdate.getAttendees().remove(userToNotAttend);
 		
-		System.out.println(eventToUpdate.getAttendees().size());
 		return eventToUpdate;
 				
 	}

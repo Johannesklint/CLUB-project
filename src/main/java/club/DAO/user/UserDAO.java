@@ -10,7 +10,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import club.DAO.GenericCrudDao;
-import club.DAO.post.Post;
 import club.DAO.user.User.ApprovedState;
 
 @Stateful
@@ -25,7 +24,6 @@ public class UserDAO extends GenericCrudDao<User> {
 
 		query.setParameter("email", email);
 		
-		//TODO: detta är fel att använda exception för fel man faktiskt kan medvetet göra IMO. borde finnas något sätt att se om resultat finns innan man hämtar det.
 		try {
 			return (User)query.getSingleResult();		
 		}
@@ -60,7 +58,6 @@ public class UserDAO extends GenericCrudDao<User> {
 
 		query.setParameter("cpcid", cpcid);
 		
-		//TODO: detta är fel att använda exception för fel man faktiskt kan medvetet göra IMO. borde finnas något sätt att se om resultat finns innan man hämtar det.
 		try {
 			return (User)query.getSingleResult();		
 		}

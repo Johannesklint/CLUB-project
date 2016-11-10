@@ -67,17 +67,11 @@ public abstract class PostBean<T extends Post> extends BasicFrontendBean {
 		return postEJB.save(post);
 	}
 
-	public String createAndRedirect(){ // TODO: naming standard
-		System.out.println("creating news..");
-
+	public String createAndRedirect(){
 		Post savedPost = save();
-		System.out.println("saved news is: " + savedPost);
-		
 		if(savedPost != null) {
-			System.out.println("Saved news");
 			return "post-details.xhtml?faces-redirect=true&id=" + savedPost.getId();
 		} else {
-			System.out.println("Failed to save news");
 			return "";
 		}
 	}
@@ -87,9 +81,7 @@ public abstract class PostBean<T extends Post> extends BasicFrontendBean {
 		return "home";
 	}
 	
-	protected String updateAndGetRedirect(){ // TODO: rename
-		System.out.println("inne i update news " + getTitle());
-		
+	protected String updateAndGetRedirect(){
 		Post savedPost = update();
 			if(savedPost != null){
 				return "post-details.xhtml?faces-redirect=true&id=" + savedPost.getId();

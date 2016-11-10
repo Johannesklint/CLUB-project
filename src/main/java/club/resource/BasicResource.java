@@ -20,7 +20,7 @@ public abstract class BasicResource {
 	}
 	
 	protected Link appendResourceToSelf(Class<? extends BasicResource> resourceClass, String relName) {
-		// URI selfUri = getAbsolutePathURIFromContext();
+		
 		String selfHref  = getSelfLink().getHref();
 		String resourceURL = 
 				selfHref + "/" +

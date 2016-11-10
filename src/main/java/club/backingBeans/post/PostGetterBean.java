@@ -30,21 +30,13 @@ public class PostGetterBean extends BasicFrontendBean {
 	
 	@PostConstruct
 	public void init() {
-		
-		
-		System.out.println("INIT");
-		
 		Map<String, String> params =  FacesContext.getCurrentInstance()
 				.getExternalContext()
 				.getRequestParameterMap();
 		String selectedIdString = params.get("id");
 		
-		
-		
 		if(selectedIdString != null) {
-			
 			selectedPost = postEJB.getById(Integer.valueOf(selectedIdString));
-			System.out.println("selected post"+selectedPost);
 		}
 	}
 	

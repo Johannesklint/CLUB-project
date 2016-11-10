@@ -16,7 +16,6 @@ public class ValidFutureDateTimeString implements Validator {
 
 	@Override
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-
 		
 		//TODO: since we send date as an string from client and in backend parse it we do not have to worry about client-side
 		// time zone. Different platform might have timezone issues if "now" uses another timezone than date-parser for example.
@@ -24,7 +23,6 @@ public class ValidFutureDateTimeString implements Validator {
 		
 		String date = value.toString();
 		Date now = new Date();
-		System.out.println(now);
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			dateFormat.setLenient(false);

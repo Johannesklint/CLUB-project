@@ -14,7 +14,6 @@ public abstract class PlatformBean extends BasicFrontendBean {
 	
 	@PostConstruct
 	public void init() {
-		System.out.println("IN platform bean init!!");
 		setPlatformBeanFieldsFromDb();
 	}
 	
@@ -68,8 +67,6 @@ public abstract class PlatformBean extends BasicFrontendBean {
 	
 	protected void setPlatformBeanFieldsFromDb() {
 		Platform platform = getPlatformById();
-		System.out.println("init platform: " + platform.getTitle());
-		
 		// set PlatformBean fields
 		
 		this.setTitle(platform.getTitle());

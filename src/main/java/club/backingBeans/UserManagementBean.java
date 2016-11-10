@@ -45,7 +45,7 @@ public class UserManagementBean extends BasicFrontendBean{
 			
 			return "";			
 		}
-		return ""; //TODO: handle erroe
+		return "";
 	}
 
 	public String denyApprovement() {

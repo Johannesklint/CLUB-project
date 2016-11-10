@@ -38,7 +38,7 @@ public class NewsEJB implements LocalNews{
 
 	@Override
 	public News update(News entity) {
-		// TODO: use this in update
+		// N/A
 		return null;
 	}
 

@@ -5,7 +5,6 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-import club.DAO.post.Post;
 import club.DAO.user.User;
 import club.DAO.user.User.ApprovedState;
 import club.DAO.user.UserDAO;
@@ -89,8 +88,11 @@ public class UserEJB implements LocalUser{
 
 		user.setDeleted(true);
 		
-		//TODO: is this good? the deleted flag should be enough to make a user "appear" deleted.
-		//      Some values are quite hard to "delete" since date is not nullable, setHMACPassword generated new password. Maybe values should be nullable and make all values, execept deleted and id, nullable?
+		//TODO: The deleted flag should be enough to make a user "appear" deleted.
+		//      Some values are quite hard to "delete" since date is not nullable
+		//		in database. 
+		//		instead of "delete" values like this, make getters on
+		//		User return null-like values
 		user.setAdmin(false);
 		user.setFirstName("[Deleted user]");
 		user.setLastName("[Deleted user]");

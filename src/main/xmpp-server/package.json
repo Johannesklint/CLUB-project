@@ -1,0 +1,17 @@
+{
+  "name": "clubproject-sideproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "xmpp-server.js",
+  "dependencies": {
+    "node-xmpp-client": "^3.0.4",
+    "node-xmpp-server": "^2.2.2",
+    "websocket": "^1.0.23"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

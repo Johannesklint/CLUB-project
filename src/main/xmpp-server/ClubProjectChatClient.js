@@ -1,4 +1,4 @@
-var WebSocketClient = require('./websocket').client;
+var WebSocketClient = require('websocket').client;
 
 
 var ClubProjectChatClient = function()
@@ -18,7 +18,6 @@ ClubProjectChatClient.prototype.newConnection = function(host,o,nick)
         c.on('error', function(error)
         {
             console.log(error);
-            throw "error"
         });
         c.on('close', function()
         {
@@ -39,7 +38,6 @@ ClubProjectChatClient.prototype.newConnection = function(host,o,nick)
     });   
 
     newConnection.client.on('connectFailed', function(error) {
-        throw "connection failed";
     });
 
     newConnection.client.connect('ws://'+host+"//"+nick, null);

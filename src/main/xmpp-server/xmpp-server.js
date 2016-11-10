@@ -1,6 +1,6 @@
 
-var Client = require('./node-xmpp-client/index')
-var xmpp = require('./node-xmpp-server/index')
+var Client = require('node-xmpp-client')
+var xmpp = require('node-xmpp-server')
 var ClubProjectChatClient = require('./ClubProjectChatClient.js');
 
 var startServer = function ()
@@ -35,7 +35,7 @@ var startServer = function ()
         client.on('authenticate', function (opts, cb)
         {
             var nick = opts.username;
-            client.socket = ClubProjectChatClient.newConnection('localhost:8080/clubproject/chat',cpccCallback,nick);
+            client.socket = ClubProjectChatClient.newConnection('localhost:8787/clubproject/chat',cpccCallback,nick);
             cb(null, opts)
         })
 

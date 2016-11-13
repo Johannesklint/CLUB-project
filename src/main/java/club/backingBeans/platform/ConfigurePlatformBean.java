@@ -21,8 +21,6 @@ public class ConfigurePlatformBean extends PlatformBean {
 	
 	public String updatePlatform(){
 		
-		//TODO: think platform is a bit hack. saveing platform to db, update this object by database, and last set dipsplay platform fields from this object. But not Theme, it works somehow anyway
-		
 		Platform platform = new Platform();
 		platform.setId(1);
 		platform.setTitle(super.getTitle());

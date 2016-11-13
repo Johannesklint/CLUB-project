@@ -34,17 +34,12 @@ public abstract class NewsBean extends PostBean<News> {
 	}
 	
 	
-	public String create(){ // TODO: naming standard
-		System.out.println("creating news..");
-
+	public String create(){
 		Post savedNews = super.save();
-		System.out.println("saved news is: " + savedNews);
 		
 		if(savedNews != null) {
-			System.out.println("Saved news");
 			return "post-details.xhtml?faces-redirect=true&id=" + savedNews.getId();
 		} else {
-			System.out.println("Failed to save news");
 			return "";
 		}
 	}
@@ -57,7 +52,7 @@ public abstract class NewsBean extends PostBean<News> {
 		if(newsEJB.save(newsToUpdate) != null){
 			return "news-list.xhtml";
 		}
-		return ""; //TODO: do error handler
+		return "";
 	}
 		
 
@@ -71,7 +66,6 @@ public abstract class NewsBean extends PostBean<News> {
 	}
 
 	public void setSelectedNewsId(int selectedNewsId) {
-		System.out.println("Setting selectedNews to: " + selectedNewsId);
 		this.selectedNewsId = selectedNewsId;
 	}
 
@@ -90,7 +84,4 @@ public abstract class NewsBean extends PostBean<News> {
 	public Integer getCommentLimit() {
 		return null;
 	}
-
-
-	
 }

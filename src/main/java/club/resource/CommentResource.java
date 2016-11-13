@@ -28,11 +28,6 @@ public class CommentResource extends BasicResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getComments(@PathParam("post_id") int postId) {
-		
-		System.out.println("INSIDE COMMENT RESOURCE GEEET: " + uriInfo.getAbsolutePath().toString());
-		System.out.println("post id is : " + postId);
-		
-		System.out.println("commentEJB = " + commentEJB);
 		List<Comment> comments = commentEJB.getAllByPostId(postId);
 		
 		return Response.status(comments.size() > 0 ? OK : NO_CONTENT)

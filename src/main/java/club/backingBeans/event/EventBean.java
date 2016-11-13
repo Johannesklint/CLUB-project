@@ -1,6 +1,4 @@
 package club.backingBeans.event;
-import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -47,7 +45,6 @@ public abstract class EventBean extends PostBean<Event> {
 	private LocalNews newsEJB;
 	
 	public EventBean() {
-		System.out.println("Creating new NewsBean");
 	}
 	
 	@PostConstruct
@@ -67,7 +64,7 @@ public abstract class EventBean extends PostBean<Event> {
 		if(newsEJB.save(newsToUpdate) != null){
 			return "news-list.xhtml";
 		}
-		return ""; //TODO: do error handler
+		return "";
 	}
 			
 

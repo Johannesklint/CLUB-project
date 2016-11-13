@@ -1,6 +1,7 @@
 package club.resource;
 
-import static javax.ws.rs.core.Response.Status.*;
+import static javax.ws.rs.core.Response.Status.NO_CONTENT;
+import static javax.ws.rs.core.Response.Status.OK;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,12 +13,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
-
-import org.omg.CORBA.NO_IMPLEMENT;
 
 import club.DAO.post.Post;
 import club.EJB.interfaces.LocalPost;
@@ -30,9 +27,6 @@ public class PostResource extends BasicResource {
 	LocalPost postEJB;
 	@Inject
 	CommentResource commentResource;
-	
-	@Context
-	UriInfo uriInfo;
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

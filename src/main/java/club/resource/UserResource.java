@@ -34,14 +34,17 @@ public class UserResource extends BasicResource{
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createUser(User user){
+		user.setId(null); // id can not be specified, or else this will, in entity manager, be interpreted as an update
 		user.setApprovedState(ApprovedState.DENIED);
 		user.setAdmin(false);
 		user.setBirthday(new java.sql.Date(0));
 		user.setHMACPassword(user.getPassword());
 		
-		// TODO: make this work.. need to add newly created id to url
-		List<Link> links = Arrays.asList(super.getSelfLink());
-		RESTLinkable<User> createdUser = new RESTLinkable<User>(userEJB.save(user), links);
+		User savedUser = userEJB.save(user);
+		Link self = super.getSelfLink();
+		self.setHref(super.getSelfLink().getHref() + "/" + savedUser.getId());
+		List<Link> links = Arrays.asList(self);
+		RESTLinkable<User> createdUser = new RESTLinkable<User>(savedUser, links);
 		
 		return Response.status(Status.CREATED)
 				.entity(createdUser)

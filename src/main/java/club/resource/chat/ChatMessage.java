@@ -1,9 +1,5 @@
 package club.resource.chat;
 
-import java.util.Date;
-
-import club.DAO.user.User;
-
 public class ChatMessage {
 
 	private String message;

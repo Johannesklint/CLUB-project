@@ -40,7 +40,7 @@ public class User implements Serializable {
 	@Id
 	@Column(unique=true, nullable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	@Column(nullable=false)
 	private boolean admin;
@@ -97,11 +97,11 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -142,7 +142,6 @@ public class User implements Serializable {
 	}
 
 	public void setLastName(String lastName) {
-		System.out.println("LASTNAME: " + lastName);
 		this.lastName = lastName;
 	}
 
@@ -169,7 +168,6 @@ public class User implements Serializable {
 	}
 	
 	public void setHMACPassword(String HMACPassword) {
-		System.out.println("setter kors");
 		generateNewHMACpassword(HMACPassword);
 	}
 
@@ -184,6 +182,4 @@ public class User implements Serializable {
 		return user.getId() == this.getId();
 	}
 	
-	
-
 }

@@ -41,7 +41,6 @@ public class PostEJB implements LocalPost {
 
 	@Override
 	public Post update(Post entity) {
-		// TODO use this!!!
 		return null;
 	}
 

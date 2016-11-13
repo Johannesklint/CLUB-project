@@ -19,19 +19,15 @@ public class NewsUpdateBean extends NewsBean {
 	
 	@PostConstruct
 	public void init() {
-		System.out.println("update bean INIT");
 		News news = postGetterBean.getAsNews();
 		setBeanFieldsFromEntity(news);
 	}
 	
 	public String submit() {
-		System.out.println("submitting update");
 		return updateAndGetRedirect();
 	}
 		
 	private void setBeanFieldsFromEntity(News news) {
-		System.out.println("setting fields from " + news);
-		
 		setId(news.getId());
 		setTitle(news.getTitle());
 		setText(news.getText());
@@ -60,7 +56,5 @@ public class NewsUpdateBean extends NewsBean {
 		// N/A
 		return null;
 	}
-	
-	
 	
 }

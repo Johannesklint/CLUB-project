@@ -1,9 +1,5 @@
 package club.backingBeans.event;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -21,19 +17,15 @@ public class EventUpdateBean extends EventBean {
 		
 	@PostConstruct
 	public void init() {
-		System.out.println("update bean INIT");
 		Event event = postGetterBean.getAsEvent();
 		setBeanFieldsFromEntity(event);
 	}
 	
 	public String submit() {
-		System.out.println("submitting update");
 		return updateAndGetRedirect();
 	}
 		
 	private void setBeanFieldsFromEntity(Event event) {
-		System.out.println("setting fields from " + event);
-		
 		super.setId(event.getId());
 		super.setTitle(event.getTitle());
 		super.setText(event.getText());
